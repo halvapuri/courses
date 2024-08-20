@@ -1,0 +1,32 @@
+---
+title: Brownian Motion
+---
+
+```{mermaid}
+flowchart LR
+    markdown["`Random walk"]
+    newLines["`Line1
+    Line 2
+    Line 3`"]
+    markdown --> newLines
+```
+
+## Brownian motion as a markov process
+${X(t), t \geq 0}$. 
+
+- Markov property: Prediction of process $X(s+t) with known information about $X(r), r \leq s$ depends only on X(s)
+- 
+
+
+## Filtration
+
+Describes the past of a process $X$. 
+
+$$
+F_t = \sigma {X(s), s \in [0,t]}
+$$
+
+
+## Resources 
+
+- Oliver Ibe's Markov processes for stochastic modeling

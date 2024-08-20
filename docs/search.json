@@ -1,0 +1,618 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Worldlines",
+    "section": "",
+    "text": "Courses"
+  },
+  {
+    "objectID": "C0TimeSeriesandGIS/home_timeseriesandGIS.html",
+    "href": "C0TimeSeriesandGIS/home_timeseriesandGIS.html",
+    "title": "Time Series and GIS",
+    "section": "",
+    "text": "Source"
+  },
+  {
+    "objectID": "C0TimeSeriesandGIS/home_timeseriesandGIS.html#time-series-in-r",
+    "href": "C0TimeSeriesandGIS/home_timeseriesandGIS.html#time-series-in-r",
+    "title": "Time Series and GIS",
+    "section": "",
+    "text": "Source"
+  },
+  {
+    "objectID": "C0TimeSeriesandGIS/home_timeseriesandGIS.html#gis-in-r",
+    "href": "C0TimeSeriesandGIS/home_timeseriesandGIS.html#gis-in-r",
+    "title": "Time Series and GIS",
+    "section": "GIS in R",
+    "text": "GIS in R\n\n\nPackages to know\n\n\nsf, stars, terra"
+  },
+  {
+    "objectID": "C0stochastic/brownian.html",
+    "href": "C0stochastic/brownian.html",
+    "title": "Brownian Motion",
+    "section": "",
+    "text": "flowchart LR\n    markdown[\"`Random walk\"]\n    newLines[\"`Line1\n    Line 2\n    Line 3`\"]\n    markdown --&gt; newLines"
+  },
+  {
+    "objectID": "C0stochastic/brownian.html#brownian-motion-as-a-markov-process",
+    "href": "C0stochastic/brownian.html#brownian-motion-as-a-markov-process",
+    "title": "Brownian Motion",
+    "section": "Brownian motion as a markov process",
+    "text": "Brownian motion as a markov process\n\\({X(t), t \\geq 0}\\).\n\nMarkov property: Prediction of process $X(s+t) with known information about \\(X(r), r \\leq s\\) depends only on X(s)"
+  },
+  {
+    "objectID": "C0stochastic/brownian.html#filtration",
+    "href": "C0stochastic/brownian.html#filtration",
+    "title": "Brownian Motion",
+    "section": "Filtration",
+    "text": "Filtration\nDescribes the past of a process \\(X\\).\n\\[\nF_t = \\sigma {X(s), s \\in [0,t]}\n\\]"
+  },
+  {
+    "objectID": "C0stochastic/brownian.html#resources",
+    "href": "C0stochastic/brownian.html#resources",
+    "title": "Brownian Motion",
+    "section": "Resources",
+    "text": "Resources\n\nOliver Ibe’s Markov processes for stochastic modeling"
+  },
+  {
+    "objectID": "C0topology/home_topology.html",
+    "href": "C0topology/home_topology.html",
+    "title": "Topology",
+    "section": "",
+    "text": "Spaces"
+  },
+  {
+    "objectID": "C0statanalysis/rainfall.html",
+    "href": "C0statanalysis/rainfall.html",
+    "title": "Rainfall",
+    "section": "",
+    "text": "Using the rainfall data and the grid in the quota DB:\n\nEstimate the total amount of rain on the Calabria-Basilicata area using kriging in a maximum likelihood framework. (choose variogram and trend)\ngiven a) build pointwise confidence intervals.\nmap results and comment output.\n\nan Rmarkdown with code and a few comments will be optimal."
+  },
+  {
+    "objectID": "C0statanalysis/rainfall.html#problem-4",
+    "href": "C0statanalysis/rainfall.html#problem-4",
+    "title": "Rainfall",
+    "section": "",
+    "text": "Using the rainfall data and the grid in the quota DB:\n\nEstimate the total amount of rain on the Calabria-Basilicata area using kriging in a maximum likelihood framework. (choose variogram and trend)\ngiven a) build pointwise confidence intervals.\nmap results and comment output.\n\nan Rmarkdown with code and a few comments will be optimal."
+  },
+  {
+    "objectID": "C0statanalysis/rainfall.html#problem-5",
+    "href": "C0statanalysis/rainfall.html#problem-5",
+    "title": "Rainfall",
+    "section": "Problem 5",
+    "text": "Problem 5\nUsing rainfall data prepare an R script that:\n\nimplement Bayesian kriging (krige.bayes, splm, JAGS…).\nevaluate estimates’ precision using credibility intervals.\ndiscuss your results and compare them to those obtained in homework 4."
+  },
+  {
+    "objectID": "C0statanalysis/rainfall.html#problem-6",
+    "href": "C0statanalysis/rainfall.html#problem-6",
+    "title": "Rainfall",
+    "section": "Problem 6",
+    "text": "Problem 6\nUsing Jags implement spatial interpolation of wolfcamp data on a 20x20 grid. In the implementation try to reduce the computational time as much as possible."
+  },
+  {
+    "objectID": "C0statanalysis/rainfall.html#problem-7",
+    "href": "C0statanalysis/rainfall.html#problem-7",
+    "title": "Rainfall",
+    "section": "Problem 7",
+    "text": "Problem 7\nUsing the  Sudden Infant Death data produce an R script to: 1. Compare pseudolikelihood estimates with those obtained using spautolm (library spdep) 2. Choose the “best” neighborhood structure for a CAR model on these data and justify your choice."
+  },
+  {
+    "objectID": "C0statanalysis/rainfall.html#problem-8",
+    "href": "C0statanalysis/rainfall.html#problem-8",
+    "title": "Rainfall",
+    "section": "Problem 8",
+    "text": "Problem 8\nUsing the data in the mite datasets (from library vegan in R) create the presence-absence variable for species ONOV and LCIL, then\n\nExplore the available variables (environmental variables are in the mite.env)\nBuild an autologistic model for each species choosing the best neighborhood structure\nDraw a predictive map for all models and for the simple logistic model.\nVerify the predictive ability of all models. Hint: use the example with the pepper trees plantation as an example"
+  },
+  {
+    "objectID": "C0statanalysis/rainfall.html#problem-9",
+    "href": "C0statanalysis/rainfall.html#problem-9",
+    "title": "Rainfall",
+    "section": "Problem 9",
+    "text": "Problem 9\nUsing the data in file  dati_VE.mdb (or dati_VE.RData)\nGEV (Generalized extreme value distribution) model: 1) define an appropriate time window to use in maxima building (maxima should be iid)\n\nestimate the GEV model for each rainfall station and comment on possible differences.\ncompute return levels of order  100, 200, 500 e 1000\n\nGPD model: 4) on the same data estimate GPD model.\n\ncompute return levels of order 100, 200, 500 e 1000,\ndiscuss difference between the two approaches\n\n\ndatiAll &lt;- load(\"_data/datiAll.RData\")\nrain &lt;- load(\"_data/RainData.RData\")\n\n\ndatiAll[\"sidscents\"]\n\n[1] NA\n\n\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(hrbrthemes)\n\nCalabriaquota32 &lt;- rename(Calabriaquota32, c(XUTM=\"X\", YUTM = \"Y\"))\n\nplotter &lt;- function(boundary, interior){\n  # Plot the original XUTM and YUTM coordinates\n  p &lt;- ggplot(boundary, aes(x = XUTM, y = YUTM)) +\n    geom_point(color = \"black\") +\n    labs(x = \"XUTM\", y = \"YUTM\", title = \"Bas\")\n  \n  # Add the subset of specific coordinates colored by Quota\n  p &lt;- p + geom_point(data = interior, aes(x = XUTM, y = YUTM, color = Quota)) +\n    scale_color_gradient(low = \"blue\", high = \"red\") +  # Customize the color scale\n    labs(color = \"Quota\") +\n    theme_ipsum()\n  \n  # Show the plot\n  print(p)  \n  \n}\n\nplotter(Bas, Basquota32)\n\n\n\n# plotter(Cal, Calabriaquota32)"
+  },
+  {
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Heading 1",
+    "section": "",
+    "text": "sdfds\n\n\nsdfds\n\n\nsdf\n\n\nsdfsd"
+  },
+  {
+    "objectID": "test.html#heading-2",
+    "href": "test.html#heading-2",
+    "title": "Heading 1",
+    "section": "",
+    "text": "sdfds\n\n\nsdf\n\n\nsdfsd"
+  },
+  {
+    "objectID": "test.html#head",
+    "href": "test.html#head",
+    "title": "Heading 1",
+    "section": "Head",
+    "text": "Head"
+  },
+  {
+    "objectID": "C0financial/dataretrieval.html#using-edo",
+    "href": "C0financial/dataretrieval.html#using-edo",
+    "title": "Retrieving financial Data",
+    "section": "Using edo",
+    "text": "Using edo"
+  },
+  {
+    "objectID": "C0manyBody/kohnsham.html",
+    "href": "C0manyBody/kohnsham.html",
+    "title": "Kohn Sham Equations",
+    "section": "",
+    "text": "There is an analogy that I’d like to create between the many body quantum electronic hamiltonian and the Kohn-Sham equations.\nLike all analogies it would be woefully skimpy on details but when I first started out I thought it was a useful way of looking at things. That and the fact that I like to recast equations into stories.\nConsider the complete many-body electronic hamiltonian:\n\\[\nMany body hamiltonian\n\\]\nI like to think of this way. We have a society of electrons that we would like to describe. The society might occupy these buildings which do not move.\nOf course buildings do move, say in response to earthquakes but most are stationary.\nTo explain that society of electrons in toto we need to find out about each and every member of that society.\nThis is akin to doing a thorough census. Or say a novel with a third person omniscient view in which the author, writes a gigantic Tolstoyan work, going into the motivations of every character.\nThat would be a detailed work and it would tell us what the society is fundamentally like, its ground state energy.\nBut say you are only interested in this fundamental aspect of society, not in the story of every single electron. Well what can you do?\nExactly what Kohn and Sham did.\nTo describe what the common denominator of that society is, you can move to a first person point of view.\nYou find out how that one member of society relates to other members of the society (taking society in a smeared out, abstracted sense). You find out how that one person interacts with all the buildings.\nBut since you are now not taking all the members your results would have an uncertainty. You would have to make presumptions to take into account the unique quirks of that individual.\nYou lump all that in the \\(E_XC\\) term. But if you’re making assumptions about what that unique person is then society’s interaction with that individual electron are mediated through his quirky behavior. So you have to explore his character, reducing his unique traits to a minimum.\nWhen you’ve removed all those contributions, in a sensible way you will have all the different mental states and moods of the central character of your novel.\nKohn-Sham are essentially saying that if you pin down an individual’s unique traits and are able to negate them, you will have the same picture of what the society is fundamentally like; that you would have had if you’d taken the sum over all the individual members."
+  },
+  {
+    "objectID": "C0probtheory/home_probabilitytheory.html",
+    "href": "C0probtheory/home_probabilitytheory.html",
+    "title": "Probability Theory Home",
+    "section": "",
+    "text": "Motivation"
+  },
+  {
+    "objectID": "C0probtheory/home_probabilitytheory.html#prbability-i",
+    "href": "C0probtheory/home_probabilitytheory.html#prbability-i",
+    "title": "Probability Theory Home",
+    "section": "",
+    "text": "Motivation"
+  },
+  {
+    "objectID": "C0probtheory/03-FinitelyAdditiveMeasures.html",
+    "href": "C0probtheory/03-FinitelyAdditiveMeasures.html",
+    "title": "Finitely Additive Measures",
+    "section": "",
+    "text": "Instead of defining measures on full \\(\\sigma\\)-fields, we start with ‘weaker’ notions of measure."
+  },
+  {
+    "objectID": "C0probtheory/03-FinitelyAdditiveMeasures.html#pre-measure-and-finitely-additive-measures",
+    "href": "C0probtheory/03-FinitelyAdditiveMeasures.html#pre-measure-and-finitely-additive-measures",
+    "title": "Finitely Additive Measures",
+    "section": "Pre-measure and Finitely Additive Measures",
+    "text": "Pre-measure and Finitely Additive Measures\n\nSuppose \\(A\\) is a field over \\(\\Omega\\) then \\((\\Omega, A)\\) is a Premeasurable Space\nA countably additive function \\(\\mu: A -&gt; [0, \\infty)\\) is a Premeasure\nIf \\(\\mu\\) is finitely additive then we use \\(\\chi\\) to represent it : \\(\\chi (A \\cup B) = \\chi(A) + \\chi(B)\\) then it is a Finitely Additive Measure\n\nCountable additivity is still difficult to construct."
+  },
+  {
+    "objectID": "C0calculusI/home_calculusI.html",
+    "href": "C0calculusI/home_calculusI.html",
+    "title": "Calculus I",
+    "section": "",
+    "text": "This is the course home. All assignments, announcements will be posted here."
+  },
+  {
+    "objectID": "C0calculusI/home_calculusI.html#announcements",
+    "href": "C0calculusI/home_calculusI.html#announcements",
+    "title": "Calculus I",
+    "section": "Announcements",
+    "text": "Announcements"
+  },
+  {
+    "objectID": "C0calculusI/home_calculusI.html#other-resources",
+    "href": "C0calculusI/home_calculusI.html#other-resources",
+    "title": "Calculus I",
+    "section": "Other Resources",
+    "text": "Other Resources\n\nTo run the notebooks you’ll need python 3."
+  },
+  {
+    "objectID": "C0calculusII/home_calculusII.html",
+    "href": "C0calculusII/home_calculusII.html",
+    "title": "Test",
+    "section": "",
+    "text": "import sympy as sm\nx = sm.symbols('x', real=True)\n# h_ = sm.symbols('h_')\n\nw = 3 * sm.sqrt(1 - (x / 7)**2)\nl = ((x + 3) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x + 1)**2) +\n      sm.S(6) / 7 * sm.sqrt(10))\nr = ((3 - x) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x - 1)**2) +\n      sm.S(6) / 7 * sm.sqrt(10))\nh = (3*(sm.Abs(x - sm.S.Half) + sm.Abs(x + sm.S.Half) + 6) -\n                11*(sm.Abs(x - sm.S(3)/4) + sm.Abs(x + sm.S(3)/4)))/2  \nf = ((h - l) * sm.Heaviside(x + 1, 0) +\n      (r - h) * sm.Heaviside(x - 1, 0) +\n      (l - w) * sm.Heaviside(x + 3, 0) +\n      (w - r) * sm.Heaviside(x - 3, 0) +\n      w)\ng = (sm.S(1) / 2 * (sm.Abs(x / 2) + sm.sqrt(1 - (sm.Abs(sm.Abs(x) - 2) -\n      1)**2) - sm.S(1) / 112 * (3 * sm.sqrt(33) - 7) * x**2 + 3 *\n      sm.sqrt(1 - (sm.S(1) / 7 * x)**2) - 3) * ((x + 4) / sm.Abs(x + 4) -\n      (x - 4) / sm.Abs(x - 4)) - 3 * sm.sqrt(1 - (x / 7)**2))\nsm.plot(f, g)\n\n&lt;lambdifygenerated-3&gt;:2: RuntimeWarning: invalid value encountered in sqrt\n  return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x15247dbc7a30&gt;"
+  },
+  {
+    "objectID": "C0calculusII/notebooks/11_2,3,4DotCrossProduct.html",
+    "href": "C0calculusII/notebooks/11_2,3,4DotCrossProduct.html",
+    "title": "Dot Product",
+    "section": "",
+    "text": "%matplotlib ipympl\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.widgets import Slider\n\n\n\n\n# Project vector v1 onto v2\ndef project(v1, v2):\n    return (np.dot(v1, v2) / np.dot(v2, v2)) * v2\n\n# Rotate vector\ndef rotate_vector(v, angle):\n    radians = np.deg2rad(angle)\n    rotation_matrix = np.array([\n        [np.cos(radians), -np.sin(radians)],\n        [np.sin(radians), np.cos(radians)]\n    ])\n    return np.dot(rotation_matrix, v)\n\ndef create_plot(xlim = (-6,6), ylim = (-6,6)):\n    fig, ax = plt.subplots()\n    plt.subplots_adjust(left=0.1, bottom=0.25)\n    ax.set_aspect('equal')\n    ax.set_xlim(-6, 6)\n    ax.set_ylim(-6, 6)\n    \n    return ax\n    \n\n\n# Initial vectors\nv1 = np.array([3, 2])\nv2 = np.array([3, 2]) * 1.3\n\n# Initial projection\nv1_proj = project(v1, v2)\n\n# Create plot\nax = create_plot(xlim = (-6,6), ylim = (-6,6))\n\n# Plot vector v1, vector v2, and the projection\nvector_v1, = ax.plot([0, v1[0]], [0, v1[1]], 'r', label='v1')\nvector_v2, = ax.plot([0, v2[0]], [0, v2[1]], 'cyan', label='v2')\nvector_proj, = ax.plot([0, v1_proj[0]], [0, v1_proj[1]], 'g--', label='Projection of v1 onto v2')\n\n# Slider for rotating v1\nax_angle = plt.axes([0.1, 0.1, 0.8, 0.05]) # [x0, y0] to [x1,y1]\nslider_angle = Slider(ax_angle, 'Angle', 0, 360, valinit=0)\n\n# Update function\ndef update(val):\n    \"\"\"\n    Updates when the slider is changed. \n\n    1. Read the slider value\n    2. Rotate the vector\n    3. Update v1 and its projection. v2 remains unchanged.\n    \"\"\"\n    \n    angle = slider_angle.val\n    v1_rot = rotate_vector(v1, angle)\n    v1_proj_rot = project(v1_rot, v2)\n    \n    vector_v1.set_xdata([0, v1_rot[0]])\n    vector_v1.set_ydata([0, v1_rot[1]])\n    vector_proj.set_xdata([0, v1_proj_rot[0]])\n    vector_proj.set_ydata([0, v1_proj_rot[1]])\n    \n    fig.canvas.draw_idle()\n\n# Call update function on slider value change\nslider_angle.on_changed(update)\n\n# Add legend and show plot\nax.legend()\nplt.show()\n\n\n\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.animation import FuncAnimation\n\npoints = 50\n\nx = np.linspace(0, 2 * np.pi, points)\ny = np.sin(x)\n\nfig, ax = plt.subplots()\nax.set_xlim(-0.3, 2 * np.pi + 0.3)\nax.set_ylim(-1.2, 1.2)\n\ndef animate(i):\n\n    if i == 0:\n#        fig.clear()\n        ax.plot(x[i], y[i], 'ro')\n    else:\n#        fig.clear()\n        ax.plot(x[i-1], y[i-1], 'bo')\n        ax.plot(x[i], y[i], 'ro')\n\nanim = FuncAnimation(fig, animate, frames=points, repeat=False, interval=150)\n\nplt.show()"
+  },
+  {
+    "objectID": "C0calculusII/notebooks/10_1ParametricCurves.html",
+    "href": "C0calculusII/notebooks/10_1ParametricCurves.html",
+    "title": "Setup",
+    "section": "",
+    "text": "##You may need to run the following for animations:\n# !pip install ipympl\n\n\n## If you're using jupyter lab2\n# !pip install nodejs-bin\n# !jupyter labextension install @jupyter-widgets/jupyterlab-manager\n# !jupyter labextension install jupyter-matplotlib\n%matplotlib ipympl\nimport pandas as pd\nimport numpy as np\nimport sympy as sp\nimport matplotlib.pyplot as plt\n\nfrom sympy import plot_parametric, symbols, cos, sin\nfrom sympy import symbols\npd.set_option('display.precision', 2)"
+  },
+  {
+    "objectID": "C0calculusII/notebooks/10_1ParametricCurves.html#examples",
+    "href": "C0calculusII/notebooks/10_1ParametricCurves.html#examples",
+    "title": "Setup",
+    "section": " Examples",
+    "text": "Examples\n\nExample 1: \\(\\quad x = sin(\\pi t/2),\\quad y=t, \\quad 0\\leq t\\leq 6\\)\n\nt = symbols('t')\nx = sin(sp.pi * t/2)\ny = t\n\np = plot_parametric((x, y), (t, 0, 6), show = False)\np.aspect_ratio=(1,1)\np.show()\n\n\n\n\n\n# Generate the table for specific values of t\n\ndef evaluate(x, s, values):\n    \"\"\"\n    Evaluate x on s, for num_values (given as a list) and return the result\n    \"\"\"    \n    return [round(float(x.evalf(subs={s: val})), 2) for val in values]\n\nvalues   = evaluate(t, t, list(range(7))) \nx_values = evaluate(x, t, values)\ny_values = evaluate(x, t, values)\n\n# Create a pandas DataFrame\ndata = {\n    't': t_values,\n    'x': x_values,\n    'y': y_values\n}\ndf = pd.DataFrame(data)\ndisplay(df)\n\n\n\n\n\n\n\n\nt\nx\ny\n\n\n\n\n0\n0\n0.0\n0.0\n\n\n1\n1\n1.0\n1.0\n\n\n2\n2\n0.0\n0.0\n\n\n3\n3\n-1.0\n-1.0\n\n\n4\n4\n-0.0\n-0.0\n\n\n5\n5\n1.0\n1.0\n\n\n6\n6\n0.0\n0.0\n\n\n\n\n\n\n\n\n## Using numpy\nt = np.linspace(0,6,7)\nx = np.sin(np.pi*t/2)\ny = t \n\npd.DataFrame([t,x,y]).T\n\nplt.plot(x,y)\nplt.gca().set_aspect('equal')\n\n\n\nExample 2\n\n\nExample 3\nYou may have seen the following equation. What does it represent? \\[\ny = ax - bx^2\n\\]\nWhere \\(a\\) and \\(b\\) are some constants.\nNow this equation can be parametrized into two equations as follows:  \\[\nx = ut, \\qquad y = vt + w t^2\n\\]  Where \\(u\\), \\(v\\), and \\(w\\) are constants related to \\(a\\) and \\(b\\). What are these equations showing?\n\nx, y, t = Symbol('x y t')\nu, v, w = Symbol('u v w')\n\nx = u*t\ny = v * t + w t^2\n\np = plot_parametric((x, y), (t, 0, 6), show = False)\n\n\n\nExample: Slider\n\n\nExample 3: Animate\n\n### Example Animate\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nimport matplotlib.animation as animation\n\nfig, ax = plt.subplots()\nt = np.linspace(0, 3, 40)\ng = -9.81\nv0 = 12\nz = g * t**2 / 2 + v0 * t\n\nv02 = 5\nz2 = g * t**2 / 2 + v02 * t\n\nscat = ax.scatter(t[0], z[0], c=\"b\", s=5, label=f'v0 = {v0} m/s')\nline2 = ax.plot(t[0], z2[0], label=f'v0 = {v02} m/s')[0]\nax.set(xlim=[0, 3], ylim=[-4, 10], xlabel='Time [s]', ylabel='Z [m]')\nax.legend()\n\n\ndef update(frame):\n    # for each frame, update the data stored on each artist.\n    x = t[:frame]\n    y = z[:frame]\n    # update the scatter plot:\n    data = np.stack([x, y]).T\n    scat.set_offsets(data)\n    # update the line plot:\n    line2.set_xdata(t[:frame])\n    line2.set_ydata(z2[:frame])\n    return (scat, line2)\n\n\nani = animation.FuncAnimation(fig=fig, func=update, frames=40, interval=20)\nplt.show()\n\n\n\n\n\nplt.close()\n\n\n\nGetting creative\n\n!jt -t chesterish\n\n\n!jt -r\n\nReset css and font defaults in:\n/home/fes33/.jupyter/custom &\n/home/fes33/.local/share/jupyter/nbextensions\n\n\n\n!jt -l\n\nAvailable Themes: \n   chesterish\n   grade3\n   gruvboxd\n   gruvboxl\n   monokai\n   oceans16\n   onedork\n   solarizedd\n   solarizedl\n\n\n\nimport matplotlib.pyplot as plt\n\n\nplt.plot()\n\n[]\n\n\n\n\n\n\ndata = np.random.rand(180,1)\nnbnd = data.shape[0]\nlenk = int(data.shape[0] / nbnd)\nlenk\n\n1\n\n\n\ndata.shape[0] / 33\n\n5.454545454545454\n\n\n\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom matplotlib.ticker import (MultipleLocator, AutoMinorLocator)\n\n\nt = np.arange(0.0, 100.0, 0.1)\ns = np.sin(0.1 * np.pi * t) * np.exp(-t * 0.01)\n\nfig, ax = plt.subplots()\nax.plot(t, s)\n\n# Make a plot with major ticks that are multiples of 20 and minor ticks that\n# are multiples of 5.  Label major ticks with '.0f' formatting but don't label\n# minor ticks.  The string is used directly, the `StrMethodFormatter` is\n# created automatically.\nax.xaxis.set_major_locator(MultipleLocator(20))\nax.xaxis.set_major_formatter('{x:.2f}')\n\n# For the minor ticks, use no labels; default NullFormatter.\nax.xaxis.set_minor_locator(MultipleLocator(5))\n\nplt.show()"
+  },
+  {
+    "objectID": "C0statmech/quantumgases.html",
+    "href": "C0statmech/quantumgases.html",
+    "title": "Quantum Gases",
+    "section": "",
+    "text": "graph TD\n    Q[Quantum Gases] --&gt; A[Ensembles]\n    A --&gt; B[Microcanonical Ensemble]\n    A --&gt; C[Canonical Ensemble]\n    A --&gt; D[Grand Canonical Ensemble]\n    Q --&gt; E[Partition Function]\n    Q --&gt; T[Thermodynamics]\n\n    SE(Shannon Entropy) --&gt; |Maximal|BE(Boltzmann Entropy)\nG\n\n  \n\nQuantum Gases\n\n Quantum Gases   \n\nEnsembles\n\n Ensembles   \n\nQuantum Gases–Ensembles\n\n   \n\nThermodynamics\n\n Thermodynamics   \n\nQuantum Gases–Thermodynamics\n\n   \n\nPartition Function\n\n Partition Function   \n\nQuantum Gases–Partition Function\n\n   \n\nMicrocanonical\n\n Microcanonical   \n\nEnsembles–Microcanonical\n\n   \n\nCanonical\n\n Canonical   \n\nEnsembles–Canonical\n\n   \n\nGrand Canonical\n\n Grand Canonical   \n\nEnsembles–Grand Canonical"
+  },
+  {
+    "objectID": "C0statmech/quantumgases.html#microcanonical",
+    "href": "C0statmech/quantumgases.html#microcanonical",
+    "title": "Quantum Gases",
+    "section": "Microcanonical",
+    "text": "Microcanonical\nSee this and this\n\nCommon eigenstates\nPrinciple of uniform a priori probabilities\nEnergy shell\nMicrocanonical density operator\nInternal energy\nEntropy postulate\nPhase space volume"
+  },
+  {
+    "objectID": "C0statmech/quantumgases.html#canonical",
+    "href": "C0statmech/quantumgases.html#canonical",
+    "title": "Quantum Gases",
+    "section": "Canonical",
+    "text": "Canonical"
+  },
+  {
+    "objectID": "C0statmech/quantumgases.html#grand-canonical",
+    "href": "C0statmech/quantumgases.html#grand-canonical",
+    "title": "Quantum Gases",
+    "section": "Grand Canonical",
+    "text": "Grand Canonical"
+  },
+  {
+    "objectID": "C0noneqthermo/linearresponsetheory.html",
+    "href": "C0noneqthermo/linearresponsetheory.html",
+    "title": "Linear Response Theory",
+    "section": "",
+    "text": "Non-equilibrium thermodynamics uses a phenomenological approach since enough information is not really available.\nG\n\n Formalism  \n\n1st + 2nd Law\n\n 1st + 2nd Law   \n\nGibbs equation\n\n Gibbs equation   \n\n1st + 2nd Law-&gt;Gibbs equation\n\n    \n\nRate of Entropy Production\n\n Rate of Entropy Production   \n\nGibbs equation-&gt;Rate of Entropy Production\n\n    \n\nLevel of Energy Dissipation\n\n Level of Energy Dissipation   \n\nRate of Entropy Production-&gt;Level of Energy Dissipation\n\n    \n\nBalance equations\n\n Balance equations   \n\nBalance equations-&gt;Rate of Entropy Production\nWe will not go far from equilibrium. The transport and rate equations will be expressed in linear forms, and the Onsager reciprocal relations are valid."
+  },
+  {
+    "objectID": "C0noneqthermo/linearresponsetheory.html#stationary-states",
+    "href": "C0noneqthermo/linearresponsetheory.html#stationary-states",
+    "title": "Linear Response Theory",
+    "section": "Stationary States",
+    "text": "Stationary States\nIntensive properties that specify the state of a substance are time independent in equilibrium systems and in nonequilibrium stationary states (which only happens in non-isolated systems of course).\nExtensive properties specifying the state of a system with boundaries are also independent of time, and the boundaries are stationary in a coordinate system.\nThe stationary state of a substance at any point is related to the stationary state of the system\nThe total entropy will not change:\n\\[\n\\frac{dS}{dt} = \\frac{dS_e}{dt} + \\frac{dS_i}{dt} = 0\n\\]\nAlso in terms of entropy currents (in and out) a continuity equation can be written:\n\\[\n\\frac{dS_i}{dt} + (J_{s,in} - J_{s,out}) = 0\n\\]\n\n\n\\[\n\\begin{align}\n\\frac{dS_e}{dt} &= \\text{Entropy exchange between system and surroundings} \\\\\n\\frac{dS_i}{dt} &= \\text{Entropy production inside}\n\\end{align}\n\\]\nEntropy production (\\(dS_i \\geq 0\\)) and since \\(dS_e/dt\\) is greater than 0 (system need not be isolated):\n\\[\n\\frac{dS_e}{dt} = -\\frac{dS_i}{dt} = (J_{s,in} - J_{s,out}) &lt; 0\n\\]\n\n\nEntropy exchange with the environment is negative\n\n\nThe stationary state is maintained through the decrease in entropy exchanged between the system and its surrounding.\nThe total entropy produced within the system must be discharged across the boundary at stationary state.\n\n\n\n\n\n\n\n\n\nD\n\n Formalism  \n\nStationary state\n\n Stationary state   \n\nBoundary conditions do not change with time\n\n Boundary conditions do not change with time   \n\nStationary state-&gt;Boundary conditions do not change with time\n\n    \n\nIsolated system\n\n Isolated system   \n\nSteady state not possible\n\n Steady state not possible   \n\nIsolated system-&gt;Steady state not possible\n\n    \n\ndS_e/dt = 0\n\n dS_e/dt = 0   \n\nSteady state not possible-&gt;dS_e/dt = 0\n\n    \n\nEntropy created cannot be discharged to maintain steady state (dS_e/dt = 0)\n\n Entropy created cannot be discharged to maintain steady state (dS_e/dt = 0)   \n\nSteady state not possible-&gt;Entropy created cannot be discharged to maintain steady state (dS_e/dt = 0)\n\n    \n\nAdiabatic system\n\n Adiabatic system   \n\nAdiabatic system-&gt;Steady state not possible\n\n    \n\nEquilibrium\n\n Equilibrium   \n\ndS/dt = dS_e/dt = dS_i/dt = 0\n\n dS/dt = dS_e/dt = dS_i/dt = 0   \n\nEquilibrium-&gt;dS/dt = dS_e/dt = dS_i/dt = 0"
+  },
+  {
+    "objectID": "C0noneqthermo/home_noneqthermo.html",
+    "href": "C0noneqthermo/home_noneqthermo.html",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "",
+    "text": "Langevin equation\nFokker Planck equation\nLinear Response Theory"
+  },
+  {
+    "objectID": "0courses.html",
+    "href": "0courses.html",
+    "title": "Courses",
+    "section": "",
+    "text": "All pages grouped."
+  },
+  {
+    "objectID": "0courses.html#non-equilibrium-physics",
+    "href": "0courses.html#non-equilibrium-physics",
+    "title": "Courses",
+    "section": "Non-Equilibrium Physics",
+    "text": "Non-Equilibrium Physics\nLangevin equation\\\nFokker Planck equation"
+  },
+  {
+    "objectID": "0courses.html#probability-theory",
+    "href": "0courses.html#probability-theory",
+    "title": "Courses",
+    "section": "Probability Theory",
+    "text": "Probability Theory"
+  },
+  {
+    "objectID": "0courses.html#statistical-field-theory",
+    "href": "0courses.html#statistical-field-theory",
+    "title": "Courses",
+    "section": "Statistical Field Theory",
+    "text": "Statistical Field Theory"
+  },
+  {
+    "objectID": "0courses.html#bayesian-statistics",
+    "href": "0courses.html#bayesian-statistics",
+    "title": "Courses",
+    "section": "Bayesian Statistics",
+    "text": "Bayesian Statistics"
+  },
+  {
+    "objectID": "0courses.html#gis",
+    "href": "0courses.html#gis",
+    "title": "Courses",
+    "section": "GIS",
+    "text": "GIS\nGIS"
+  },
+  {
+    "objectID": "0courses.html#statistical-analysis",
+    "href": "0courses.html#statistical-analysis",
+    "title": "Courses",
+    "section": "Statistical Analysis",
+    "text": "Statistical Analysis\nRainfall"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "docs/C0stochastic/brownian.html",
+    "href": "docs/C0stochastic/brownian.html",
+    "title": "Brownian Motion",
+    "section": "",
+    "text": "flowchart LR\n    markdown[\"`Random walk\"]\n    newLines[\"`Line1\n    Line 2\n    Line 3`\"]\n    markdown --&gt; newLines"
+  },
+  {
+    "objectID": "docs/C0stochastic/brownian.html#brownian-motion-as-a-markov-process",
+    "href": "docs/C0stochastic/brownian.html#brownian-motion-as-a-markov-process",
+    "title": "Brownian Motion",
+    "section": "Brownian motion as a markov process",
+    "text": "Brownian motion as a markov process\n\\({X(t), t \\geq 0}\\).\n\nMarkov property: Prediction of process $X(s+t) with known information about \\(X(r), r \\leq s\\) depends only on X(s)"
+  },
+  {
+    "objectID": "docs/C0stochastic/brownian.html#filtration",
+    "href": "docs/C0stochastic/brownian.html#filtration",
+    "title": "Brownian Motion",
+    "section": "Filtration",
+    "text": "Filtration\nDescribes the past of a process \\(X\\).\n\\[\nF_t = \\sigma {X(s), s \\in [0,t]}\n\\]"
+  },
+  {
+    "objectID": "docs/C0stochastic/brownian.html#resources",
+    "href": "docs/C0stochastic/brownian.html#resources",
+    "title": "Brownian Motion",
+    "section": "Resources",
+    "text": "Resources\n\nOliver Ibe’s Markov processes for stochastic modeling"
+  },
+  {
+    "objectID": "C0noneqthermo/langevin.html",
+    "href": "C0noneqthermo/langevin.html",
+    "title": "Langevin Equation",
+    "section": "",
+    "text": "We are going to stochastically solve the Langevin Equation.\nWe take the Langevin equation. There is a stochastic force in there which is Gaussian in nature.\nWe will (1) use Euler’s method to generate a realization but for that we first need (2) a sampled Gaussian distribution.\nConsult Gerd Ropke’s text on non-equilibrium thermodynamics."
+  },
+  {
+    "objectID": "C0noneqthermo/langevin.html#sampling-a-gaussian",
+    "href": "C0noneqthermo/langevin.html#sampling-a-gaussian",
+    "title": "Langevin Equation",
+    "section": "Sampling a Gaussian",
+    "text": "Sampling a Gaussian\n\nManually (Box-Fuller method)\nLet’s try the Box-Fuller method.\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\ndef SampleGaussian(num = 1000):\n\n    u = np.random.rand(num)\n    u1 = u[:int(num/2)]\n    u2 = u[int(num/2):]\n\n    z0 = np.sqrt(-2*np.log(u1)) * np.cos(2 * np.pi* u1)\n    z1 = np.sqrt(-2*np.log(u1)) * np.sin(2 * np.pi* u2)\n    z = np.concatenate((z0,z1))\n    return z\n\n\nplt.hist(SampleGaussian(), bins = 10)\n\n(array([  6.,  24., 209., 199., 318., 120.,  61.,  39.,  23.,   1.]),\n array([-2.82989146, -2.16441528, -1.4989391 , -0.83346292, -0.16798674,\n         0.49748944,  1.16296562,  1.8284418 ,  2.49391798,  3.15939416,\n         3.82487034]),\n &lt;BarContainer object of 10 artists&gt;)\n\n\n\n\n\n\n\nAutomatic (use some library)"
+  },
+  {
+    "objectID": "C0noneqthermo/langevin.html#numerical-solution-of-the-langevin-equation",
+    "href": "C0noneqthermo/langevin.html#numerical-solution-of-the-langevin-equation",
+    "title": "Langevin Equation",
+    "section": "Numerical solution of the Langevin equation",
+    "text": "Numerical solution of the Langevin equation\n\nUse the Euler method\n\\(v_k^{(m)} = v_{k-1}^{(m)} + h (-\\gamma v_{k-1}^{(m)} + r_{k-1}^{m})\\)\n$M = 1000 (Number of realizations), $ $N = 24000 time steps, $ $h = 0.025, $ \\(t_N - t_0 = 600 s,\\) \\(\\gamma = 5; D = 1\\)\n\n\nSolve it directly\n\nFor one realization: Create N random variables.\n\n\ndef eulerlangevin(vk_1, rk_1, h, gamma ):\n    return vk_1 + h * (-gamma * vk_1 + rk_1)\n\n\ndef langevinrealizations(h = 0.025, samples = 100, realizations = 10, v0 = 1, gamma = 5, D = 1):\n    \"\"\"\n    Create multiple langevin realizations\n    Arguments:\n        v0 = Initial velocity\n        h = time step\n        gamma = friction\n        D = Diffusion\n\n        time (not passed but total simulation time = h*samples)\n\n    \"\"\"\n\n    time = np.linspace(0,h*samples, samples)\n\n    allvk = np.empty((realizations, samples))\n    allgaussians = np.empty((realizations, samples))\n\n    for m in range(realizations):\n        gaussianrv = SampleGaussian(samples)\n        vk = np.array([])\n        for i in range(len(gaussianrv)):\n            if i == 0:\n                vk = np.array([v0]) #np.append(vk, eulerlangevin(v0, gaussianrv[0], h, gamma))\n            else:\n                vk = np.append(vk, eulerlangevin(vk[i-1], gaussianrv[i-1], h, gamma))\n\n        allvk[m] = vk\n        allgaussians[m] = gaussianrv\n\n    return time, allvk, allgaussians\ntime, allvk, allgaussians = langevinrealizations(samples = 1000, h = 0.025, gamma = 5, D = 1, realizations = 10)\n\nWe plot some realizations.\n\nn = 50\nplt.plot(time[:n], allvk[0][:n])\nplt.plot(time[:n], allvk[1][:n])\nplt.plot(time[:n], allvk[2][:n])"
+  },
+  {
+    "objectID": "C0statmech/home_statmech.html",
+    "href": "C0statmech/home_statmech.html",
+    "title": "Statistical Mechanics",
+    "section": "",
+    "text": "Quantum Gases"
+  },
+  {
+    "objectID": "jupyternotebooks/Untitled.html",
+    "href": "jupyternotebooks/Untitled.html",
+    "title": "WORLDLINES",
+    "section": "",
+    "text": "import pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\n## Sampling the Gaussian distribution using the Box-Muller Transform\n\n\nu = np.random.rand(1000)\nu1 = u[:500]\nu2 = u[500:]\n\n\nnp.pi\n\n3.141592653589793\n\n\n\nz0 = np.sqrt(-2*np.log(u1)) * np.cos(2 * np.pi* u1)\nz1 = np.sqrt(-2*np.log(u1)) * np.sin(2 * np.pi* u2)\nz = np.concatenate((z0,z1))\n\n\nplt.hist(z, bins = 10)\n\n\n\n\n(array([  4.,  14.,  50., 260., 236., 236., 104.,  54.,  34.,   8.]),\n array([-3.26780785, -2.58134183, -1.8948758 , -1.20840978, -0.52194376,\n         0.16452227,  0.85098829,  1.53745431,  2.22392034,  2.91038636,\n         3.59685238]),\n &lt;BarContainer object of 10 artists&gt;)"
+  },
+  {
+    "objectID": "C0calculusII/notebooks/10_2CalculusonParametrization.html",
+    "href": "C0calculusII/notebooks/10_2CalculusonParametrization.html",
+    "title": "Calculus with Parametric Curves",
+    "section": "",
+    "text": "import sympy\n\nTangent lines and areas\nLength of a (parametrically defined) curve\n\nAreas of surfaces of revolution"
+  },
+  {
+    "objectID": "C0calculusII/notebooks/10_6,7ConicSections.html",
+    "href": "C0calculusII/notebooks/10_6,7ConicSections.html",
+    "title": "Conic Sections",
+    "section": "",
+    "text": "pts = {                #Define High Symmetry Points\n    'gG1'   : 0,\n    'X1'    : 30,\n    'M1'    : 60,\n    'gG2'   : 90,\n    'R1'    : 120,\n    'X2|M2' : 150,\n    'R2'    : 180\n}\n\n\nlist(pts.keys())\n\n['gG1', 'X1', 'M1', 'gG2', 'R1', 'X2|M2', 'R2']\n\n\n\nk = list('abcdefghij')\nk\n\n['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']\n\n\n\nindex = [2,4,8]\nk = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']\n\nlst = []\nfor ind in index:\n    lst.append(k[ind])\n\n\nlst = [k[ind] for ind in index]\nlst\n\n['c', 'e', 'i']\n\n\n\nlst\n\n['c', 'e', 'i']\n\n\n\na = list('1234567')\nb = list('ABCDEFG')\nc = list(zip(a,b))\n{el[1]: int(el[0]) for el in c}\n\n{'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7}\n\n\n\nhigh_symmetry_points = {            \n    'gG1'   : 0,\n    'X1'    : 30,\n    'M1'    : 60,\n    'gG2'   : 90,\n    'R1'    : 120,\n    'R2'    : 180\n}\n\n\n**high_symmetry_points\n\nSyntaxError: invalid syntax (151406231.py, line 1)\n\n\n\ndef fun(**kwargs):\n    if 'gg1' in kwargs.keys():\n        print(kwargs['gg1'])\n    return\n\n\nfun(gg2 = 'sdfs')"
+  },
+  {
+    "objectID": "C0calculusII/notebooks/10_6,7ConicSections.html#conic-sections-in-polar-coordinates",
+    "href": "C0calculusII/notebooks/10_6,7ConicSections.html#conic-sections-in-polar-coordinates",
+    "title": "Conic Sections",
+    "section": "",
+    "text": "pts = {                #Define High Symmetry Points\n    'gG1'   : 0,\n    'X1'    : 30,\n    'M1'    : 60,\n    'gG2'   : 90,\n    'R1'    : 120,\n    'X2|M2' : 150,\n    'R2'    : 180\n}\n\n\nlist(pts.keys())\n\n['gG1', 'X1', 'M1', 'gG2', 'R1', 'X2|M2', 'R2']\n\n\n\nk = list('abcdefghij')\nk\n\n['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']\n\n\n\nindex = [2,4,8]\nk = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']\n\nlst = []\nfor ind in index:\n    lst.append(k[ind])\n\n\nlst = [k[ind] for ind in index]\nlst\n\n['c', 'e', 'i']\n\n\n\nlst\n\n['c', 'e', 'i']\n\n\n\na = list('1234567')\nb = list('ABCDEFG')\nc = list(zip(a,b))\n{el[1]: int(el[0]) for el in c}\n\n{'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7}\n\n\n\nhigh_symmetry_points = {            \n    'gG1'   : 0,\n    'X1'    : 30,\n    'M1'    : 60,\n    'gG2'   : 90,\n    'R1'    : 120,\n    'R2'    : 180\n}\n\n\n**high_symmetry_points\n\nSyntaxError: invalid syntax (151406231.py, line 1)\n\n\n\ndef fun(**kwargs):\n    if 'gg1' in kwargs.keys():\n        print(kwargs['gg1'])\n    return\n\n\nfun(gg2 = 'sdfs')"
+  },
+  {
+    "objectID": "C0calculusI/notebooks/01functions.html",
+    "href": "C0calculusI/notebooks/01functions.html",
+    "title": "WORLDLINES",
+    "section": "",
+    "text": "from sympy import symbols"
+  },
+  {
+    "objectID": "C0probtheory/01-probmot.html",
+    "href": "C0probtheory/01-probmot.html",
+    "title": "Probability Motivation",
+    "section": "",
+    "text": "(See links below for resources)"
+  },
+  {
+    "objectID": "C0probtheory/01-probmot.html#finite-vs.-countable",
+    "href": "C0probtheory/01-probmot.html#finite-vs.-countable",
+    "title": "Probability Motivation",
+    "section": "Finite vs. Countable",
+    "text": "Finite vs. Countable\nQuestion: Toss a coint till the first tail comes up. What is the probability that the number of tosses was odd?\nTake the sample space the set of all countably infinite sequences: \\[\n\\begin{aligned}\n\\Omega & = \\{(w_1, w_2, w_3, ...): w_j \\in \\{H,T\\}\\} \\\\\n& = \\{w: N \\rightarrow \\{H, T\\}\\}\n\\end{aligned}\n\\]\nProbability measures are countably additive"
+  },
+  {
+    "objectID": "C0probtheory/01-probmot.html#probability-measure",
+    "href": "C0probtheory/01-probmot.html#probability-measure",
+    "title": "Probability Motivation",
+    "section": "Probability Measure",
+    "text": "Probability Measure"
+  },
+  {
+    "objectID": "C0probtheory/01-probmot.html#resources",
+    "href": "C0probtheory/01-probmot.html#resources",
+    "title": "Probability Motivation",
+    "section": "Resources",
+    "text": "Resources\n\nLecture playlist"
+  },
+  {
+    "objectID": "C0probtheory/01-probmot.html#glossary",
+    "href": "C0probtheory/01-probmot.html#glossary",
+    "title": "Probability Motivation",
+    "section": "Glossary",
+    "text": "Glossary\n\n\n\n\n\nterm\ndefinition\n\n\n\n\nCountable Additivity\nThe measure of the union of a countable number of nonoverlapping sets equals the sum of their measures. Allows summing of probabilities.Also called sigma-additivity (See: https://www.statlect.com/glossary/countable-additivity)"
+  },
+  {
+    "objectID": "C0probtheory/02-sigmaFields.html",
+    "href": "C0probtheory/02-sigmaFields.html",
+    "title": "Sigma Fields/Algebras",
+    "section": "",
+    "text": "Remember that a sample space is \\(\\Omega\\) contains all possible outcomes. The probability measure takes subsets of \\(\\Omega\\) and maps them on to 0 and 1. But we might not want ALL subsets.\nThis is the p-value"
+  },
+  {
+    "objectID": "C0probtheory/02-sigmaFields.html#glossary",
+    "href": "C0probtheory/02-sigmaFields.html#glossary",
+    "title": "Sigma Fields/Algebras",
+    "section": "Glossary",
+    "text": "Glossary\n\n\n\n\n\nterm\ndefinition\n\n\n\n\np-value\nThe probability of the observed data, or more extreme data, if the null hypothesis is true. The lower the p-value, the higher the test statistic, and less likely it is to observe the data if the null hypothesis is true."
+  },
+  {
+    "objectID": "C0financial/home_financial.html",
+    "href": "C0financial/home_financial.html",
+    "title": "Financial Data Analysis (With pyspark)",
+    "section": "",
+    "text": "Data Retrieval"
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html",
+    "href": "C0numericaltechniques/home_numericaltechniques.html",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "",
+    "text": "Nonlinear coupled differential equations arise in various fields, such as physics, engineering, biology, and economics. Solving them can be challenging due to the complexity introduced by nonlinearity and coupling between the equations. Here are several techniques and methods commonly used to solve such equations:"
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#exact-solutions",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#exact-solutions",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Exact Solutions:",
+    "text": "Exact Solutions:\n    Separation of Variables: If the equations can be separated into simpler, independent equations.\n\n    Transform Methods: Techniques like Laplace and Fourier transforms can sometimes linearize and decouple the equations.\n\n    Integrating Factors: Useful for first-order nonlinear equations.\n\n    Symmetry Methods: Exploiting symmetries of the equations to find exact solutions."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#perturbation-methods",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#perturbation-methods",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Perturbation Methods:",
+    "text": "Perturbation Methods:\n    Regular Perturbation: Assumes a small parameter in the system to expand the solution as a power series.\n\n    Singular Perturbation: Deals with problems where small parameters multiply the highest derivatives."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#variational-methods",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#variational-methods",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Variational Methods:",
+    "text": "Variational Methods:\n    Euler-Lagrange Equations: For systems that can be described by a variational principle."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#finite-difference-method-fdm",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#finite-difference-method-fdm",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Finite Difference Method (FDM):",
+    "text": "Finite Difference Method (FDM):\nExplicit and Implicit Methods: Discretize the equations on a grid and use iterative schemes to solve.\n\nCrank-Nicolson Method: A mix of explicit and implicit methods, often used for time-dependent problems."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#finite-element-method-fem",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#finite-element-method-fem",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Finite Element Method (FEM):",
+    "text": "Finite Element Method (FEM):\nGalerkin Method: Projects the problem onto a finite-dimensional space using basis functions.\n\nMesh Generation: Divides the domain into smaller regions (elements) to solve the problem locally."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#finite-volume-method-fvm",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#finite-volume-method-fvm",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Finite Volume Method (FVM):",
+    "text": "Finite Volume Method (FVM):\nConserves quantities through discretization by integrating the equations over control volumes."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#spectral-methods",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#spectral-methods",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Spectral Methods:",
+    "text": "Spectral Methods:\nFourier Spectral Methods: Expand the solution in terms of global basis functions like Fourier series.\n\nChebyshev Spectral Methods: Use Chebyshev polynomials as basis functions."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#runge-kutta-methods",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#runge-kutta-methods",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Runge-Kutta Methods:",
+    "text": "Runge-Kutta Methods:\nExplicit and Implicit Runge-Kutta: Time-stepping methods for initial value problems.\n\nAdaptive Runge-Kutta: Adjusts the step size based on the error estimate to improve efficiency."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#multistep-methods",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#multistep-methods",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Multistep Methods:",
+    "text": "Multistep Methods:\nAdams-Bashforth and Adams-Moulton: Use multiple past points to estimate the next point in time-stepping."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#shooting-method",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#shooting-method",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Shooting Method:",
+    "text": "Shooting Method:\nConverts boundary value problems into initial value problems by guessing the initial conditions."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#newtons-method-for-systems",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#newtons-method-for-systems",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Newton’s Method for Systems:",
+    "text": "Newton’s Method for Systems:\nAn iterative method to solve nonlinear algebraic equations resulting from discretization."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#continuation-methods",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#continuation-methods",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Continuation Methods:",
+    "text": "Continuation Methods:\nPseudo-Arclength Continuation: Tracks solution paths as parameters vary.\n\nHomotopy Continuation: Connects a difficult problem to an easier one via a continuous path."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#stochastic-methods",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#stochastic-methods",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Stochastic Methods:",
+    "text": "Stochastic Methods:\nMonte Carlo Methods: Useful for systems with probabilistic components.\n\nGenetic Algorithms: Optimization techniques inspired by natural selection."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#domain-decomposition-methods",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#domain-decomposition-methods",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Domain Decomposition Methods:",
+    "text": "Domain Decomposition Methods:\nSchwarz Alternating Method: Decomposes the domain into smaller subdomains and solves iteratively."
+  },
+  {
+    "objectID": "C0numericaltechniques/home_numericaltechniques.html#multi-grid-methods",
+    "href": "C0numericaltechniques/home_numericaltechniques.html#multi-grid-methods",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Multi-Grid Methods:",
+    "text": "Multi-Grid Methods:\nSolves the problem on multiple grids with different resolutions to accelerate convergence."
+  },
+  {
+    "objectID": "C0topology/01-spaces.html",
+    "href": "C0topology/01-spaces.html",
+    "title": "Spaces",
+    "section": "",
+    "text": "This is the p-value"
+  },
+  {
+    "objectID": "C0topology/01-spaces.html#glossary",
+    "href": "C0topology/01-spaces.html#glossary",
+    "title": "Spaces",
+    "section": "Glossary",
+    "text": "Glossary\n\n\n\n\n\nterm\ndefinition\n\n\n\n\np-value\nThe probability of the observed data, or more extreme data, if the null hypothesis is true. The lower the p-value, the higher the test statistic, and less likely it is to observe the data if the null hypothesis is true."
+  },
+  {
+    "objectID": "C0stochastic/home_stoch.html",
+    "href": "C0stochastic/home_stoch.html",
+    "title": "Stochastic Processes",
+    "section": "",
+    "text": "Brownian Motion"
+  },
+  {
+    "objectID": "C0TimeSeriesandGIS/GIS/01gis.html",
+    "href": "C0TimeSeriesandGIS/GIS/01gis.html",
+    "title": "Basic tasks in GIS using R",
+    "section": "",
+    "text": "Test"
+  }
+]
