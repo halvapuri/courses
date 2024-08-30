@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Worldlines",
+    "title": "Course Hub",
     "section": "",
-    "text": "Courses"
+    "text": "Content relevant to your course will be posted on the corresponding course pages which you can access from the list below or using side panel.\nNote that it is your responiblity to keep yourself updated with any new developments and/or announcements.\nCalculus I - MT101\nCalculus II - MT202"
   },
   {
     "objectID": "C0TimeSeriesandGIS/home_timeseriesandGIS.html",
@@ -179,7 +179,7 @@
     "href": "C0calculusI/home_calculusI.html",
     "title": "Calculus I",
     "section": "",
-    "text": "This is the course home. All assignments, announcements will be posted here."
+    "text": "This is the home page for calculus I (MT-101). All assignments, announcements, and other relevant materials will be posted here."
   },
   {
     "objectID": "C0calculusI/home_calculusI.html#announcements",
@@ -193,14 +193,14 @@
     "href": "C0calculusI/home_calculusI.html#other-resources",
     "title": "Calculus I",
     "section": "Other Resources",
-    "text": "Other Resources\n\nTo run the notebooks you’ll need python 3."
+    "text": "Other Resources"
   },
   {
     "objectID": "C0calculusII/home_calculusII.html",
     "href": "C0calculusII/home_calculusII.html",
-    "title": "Test",
+    "title": "Calculus II",
     "section": "",
-    "text": "import sympy as sm\nx = sm.symbols('x', real=True)\n# h_ = sm.symbols('h_')\n\nw = 3 * sm.sqrt(1 - (x / 7)**2)\nl = ((x + 3) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x + 1)**2) +\n      sm.S(6) / 7 * sm.sqrt(10))\nr = ((3 - x) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x - 1)**2) +\n      sm.S(6) / 7 * sm.sqrt(10))\nh = (3*(sm.Abs(x - sm.S.Half) + sm.Abs(x + sm.S.Half) + 6) -\n                11*(sm.Abs(x - sm.S(3)/4) + sm.Abs(x + sm.S(3)/4)))/2  \nf = ((h - l) * sm.Heaviside(x + 1, 0) +\n      (r - h) * sm.Heaviside(x - 1, 0) +\n      (l - w) * sm.Heaviside(x + 3, 0) +\n      (w - r) * sm.Heaviside(x - 3, 0) +\n      w)\ng = (sm.S(1) / 2 * (sm.Abs(x / 2) + sm.sqrt(1 - (sm.Abs(sm.Abs(x) - 2) -\n      1)**2) - sm.S(1) / 112 * (3 * sm.sqrt(33) - 7) * x**2 + 3 *\n      sm.sqrt(1 - (sm.S(1) / 7 * x)**2) - 3) * ((x + 4) / sm.Abs(x + 4) -\n      (x - 4) / sm.Abs(x - 4)) - 3 * sm.sqrt(1 - (x / 7)**2))\nsm.plot(f, g)\n\n&lt;lambdifygenerated-3&gt;:2: RuntimeWarning: invalid value encountered in sqrt\n  return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x15247dbc7a30&gt;"
+    "text": "We will most likely have three quizzes. Tentatively:\nQuiz 1 (5 marks, 4th week) Quiz 2 (10 marks, 7th week) Quiz 3 (10 marks, 13th week)"
   },
   {
     "objectID": "C0calculusII/notebooks/11_2,3,4DotCrossProduct.html",
@@ -415,9 +415,9 @@
   {
     "objectID": "C0calculusI/notebooks/01functions.html",
     "href": "C0calculusI/notebooks/01functions.html",
-    "title": "WORLDLINES",
+    "title": "Worldlines",
     "section": "",
-    "text": "from sympy import symbols"
+    "text": "from sympy import symbols\n\n\nimport matplotlib.pyplot as plt\n\n\nplt.plot()\n\n[]"
   },
   {
     "objectID": "C0probtheory/01-probmot.html",
@@ -614,5 +614,103 @@
     "title": "Basic tasks in GIS using R",
     "section": "",
     "text": "Test"
+  },
+  {
+    "objectID": "C0calculusI/home_calculusI.html#quizzes-and-assignments",
+    "href": "C0calculusI/home_calculusI.html#quizzes-and-assignments",
+    "title": "Calculus I",
+    "section": "Quizzes and Assignments",
+    "text": "Quizzes and Assignments\nWe will most likely have three quizzes. Tentatively:\n\nQuiz 1 (5 marks, 4th week)\n\nQuiz 2 (10 marks, 7th week)\n\nQuiz 3 (10 marks, 13th week)\n\n\nN.B.: If you can’t take the quiz for some reason, you need to inform us in advance."
+  },
+  {
+    "objectID": "C0calculusI/home_calculusI.html#course-outline",
+    "href": "C0calculusI/home_calculusI.html#course-outline",
+    "title": "Calculus I",
+    "section": "Course Outline",
+    "text": "Course Outline\nOutline (pdf)"
+  },
+  {
+    "objectID": "C0calculusI/home_calculusI.html#slides-and-notebooks",
+    "href": "C0calculusI/home_calculusI.html#slides-and-notebooks",
+    "title": "Calculus I",
+    "section": "Slides and Notebooks",
+    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\nFunctions\nTest"
+  },
+  {
+    "objectID": "C0calculusI/lectures/test.html",
+    "href": "C0calculusI/lectures/test.html",
+    "title": "Test",
+    "section": "",
+    "text": "import matplotlib.pyplot as plt\nplt.plot()\n\n[]\n\n\n\n\n\n\\[\nx = 3 + y\n\\]"
+  },
+  {
+    "objectID": "C0calculusII/home_calculusII.html#quizzes-and-assignments",
+    "href": "C0calculusII/home_calculusII.html#quizzes-and-assignments",
+    "title": "Calculus II",
+    "section": "",
+    "text": "We will most likely have three quizzes. Tentatively:\nQuiz 1 (5 marks, 4th week) Quiz 2 (10 marks, 7th week) Quiz 3 (10 marks, 13th week)"
+  },
+  {
+    "objectID": "C0calculusII/home_calculusII.html#slides-and-notebooks",
+    "href": "C0calculusII/home_calculusII.html#slides-and-notebooks",
+    "title": "Calculus II",
+    "section": "Slides and Notebooks",
+    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here"
+  },
+  {
+    "objectID": "C0calculusII/home_calculusII.html#course-outline",
+    "href": "C0calculusII/home_calculusII.html#course-outline",
+    "title": "Calculus II",
+    "section": "Course Outline",
+    "text": "Course Outline\nOutline (pdf)"
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_1ParametricPlots.html",
+    "href": "C0calculusII/lectures/10_1ParametricPlots.html",
+    "title": "Parametric Plots",
+    "section": "",
+    "text": "Rpython\n\n\n\n## Parametric plot of heart symbol\n# dat &lt;- data.frame(t=seq(0, 2*pi, 0.1))\n# xheart &lt;- function(t) 16*sin(t)^3\n# yheart &lt;- function(t) 13*cos(t)-5*cos(2*t)-2*cos(3*t)-cos(4*t)\n# dat$y=yheart(dat$t)\n# dat$x=xheart(dat$t)\n# with(dat, plot(x,y, type=\"l\"))\n# with(dat, polygon(x,y, col=\"pink\"))   \n# points(c(10,-10, -15, 15), c(-10, -10, 10, 10), pch=169, font=5, col = \"orange\")\n\n\n\n\nimport sympy as sp\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.widgets import Slider\n\n# Define the symbolic variables and parametric equations\nt = sp.Symbol('t')\nx = sp.cos(t)\ny = sp.sin(t)\n\n# Convert the parametric equations to a numerical function\nf_x = sp.lambdify(t, x, 'numpy')\nf_y = sp.lambdify(t, y, 'numpy')\n\n# Generate the values for the curve\nt_values = np.linspace(0, 2 * np.pi, 400)\nx_values = f_x(t_values)\ny_values = f_y(t_values)\n\n# Set up the plot\nfig, ax = plt.subplots()\nplt.subplots_adjust(left=0.1, bottom=0.25)\nline, = plt.plot(x_values, y_values, lw=2)\ndot, = plt.plot([], [], 'ro')  # The red dot indicating the position\nax.set_aspect('equal')\n\n\n# # Set plot limits\n# ax.set_xlim(-1.5, 1.5)\n# ax.set_ylim(-1.5, 1.5)\n# ax.set_aspect('equal')\n# \n# # Define the slider axis and create the slider\n# axcolor = 'lightgoldenrodyellow'\n# ax_slider = plt.axes([0.1, 0.1, 0.8, 0.03], facecolor=axcolor)\n# slider = Slider(ax_slider, 't', 0, 2 * np.pi, valinit=0)\n# \n# # Update function for the slider\n# def update(val):\n#     t_val = slider.val\n#     x_val = f_x(t_val)\n#     y_val = f_y(t_val)\n#     dot.set_data([x_val], [y_val])  # Update the dot position\n#     fig.canvas.draw_idle()\n# \n# # Set the update function to the slider\n# slider.on_changed(update)\n\n# Display the plot\nplt.show()"
+  },
+  {
+    "objectID": "C0calculusII/notebooks/10_1aParametricCurvesAnimated.html",
+    "href": "C0calculusII/notebooks/10_1aParametricCurvesAnimated.html",
+    "title": "Worldlines",
+    "section": "",
+    "text": "import sympy as sp\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom ipywidgets import FloatSlider, interact\nfrom IPython.display import display\n\n# Define the symbolic variables and parametric equations\nt = sp.Symbol('t')\nx = sp.cos(t)\ny = sp.sin(t)\n\n# Convert the parametric equations to a numerical function\nf_x = sp.lambdify(t, x, 'numpy')\nf_y = sp.lambdify(t, y, 'numpy')\n\n# Generate the values for the curve\nt_values = np.linspace(0, 2 * np.pi, 400)\nx_values = f_x(t_values)\ny_values = f_y(t_values)\n\n# Set up the plot\nfig, ax = plt.subplots()\nline, = ax.plot(x_values, y_values, lw=2)\ndot, = ax.plot([], [], 'ro')  # The red dot indicating the position\n\n# Set plot limits\nax.set_xlim(-1.5, 1.5)\nax.set_ylim(-1.5, 1.5)\nax.set_aspect('equal')\n\n# Update function for the slider\ndef update(t_val):\n    x_val = f_x(t_val)\n    y_val = f_y(t_val)\n    dot.set_data([x_val], [y_val])  # Update the dot position\n    fig.canvas.draw_idle()\n\n# Create the slider and display it\nslider = FloatSlider(value=0, min=0, max=2 * np.pi, step=0.01, description='t')\ninteract(update, t_val=slider)\n\n# Display the plot\nplt.show()"
+  },
+  {
+    "objectID": "C0calculusI/lectures/1functions.html",
+    "href": "C0calculusI/lectures/1functions.html",
+    "title": "Functions",
+    "section": "",
+    "text": "Read: Chapter 1"
+  },
+  {
+    "objectID": "C0calculusI/lectures/1functions.html#terminology",
+    "href": "C0calculusI/lectures/1functions.html#terminology",
+    "title": "Functions",
+    "section": "Terminology",
+    "text": "Terminology\nFollowing is a list of terms that you should know the meaning of.\n\nWhat are functions?\n\nVertical line test for a function.\nPiece-wise defined functions\n\nIndependent vs. dependent variables.\nDomain vs. range.\n\nClosed vs. open intervals"
+  },
+  {
+    "objectID": "C0calculusI/lectures/1functions.html#some-special-functions",
+    "href": "C0calculusI/lectures/1functions.html#some-special-functions",
+    "title": "Functions",
+    "section": "Some special functions",
+    "text": "Some special functions\n\nLinear functions\n\n\nAbsolute value function/Modulus\n\n\nPower functions\n\n\nPolynomials\n\n\nRational functions\n\n\nAlgebraic functions\n\n\nTrigonometric functions\n\n\nExponential functions\n\n\nLogarithmic functions\n\n\nTranscendental functions"
+  },
+  {
+    "objectID": "C0calculusI/lectures/1functions.html#some-special-functions.colorred",
+    "href": "C0calculusI/lectures/1functions.html#some-special-functions.colorred",
+    "title": "Functions",
+    "section": "[Some special functions]{.color=red}",
+    "text": "[Some special functions]{.color=red}\n\nAbsolute value function/Modulus"
+  },
+  {
+    "objectID": "C0calculusI/lectures/1functions.html#functions-some-properties",
+    "href": "C0calculusI/lectures/1functions.html#functions-some-properties",
+    "title": "Functions",
+    "section": "Functions: Some properties",
+    "text": "Functions: Some properties\n\nIncreasing vs. decreasing\nEven vs. odd\nLinear vs. non-linear"
   }
 ]
