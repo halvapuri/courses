@@ -390,13 +390,18 @@ function openCity(evt, cityName) {
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">112</span> <span class="op">*</span> (<span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">33</span>) <span class="op">-</span> <span class="dv">7</span>) <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>      sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> x)<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> <span class="dv">3</span>) <span class="op">*</span> ((x <span class="op">+</span> <span class="dv">4</span>) <span class="op">/</span> sm.Abs(x <span class="op">+</span> <span class="dv">4</span>) <span class="op">-</span></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>      (x <span class="op">-</span> <span class="dv">4</span>) <span class="op">/</span> sm.Abs(x <span class="op">-</span> <span class="dv">4</span>)) <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (x <span class="op">/</span> <span class="dv">7</span>)<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>sm.plot(f, g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend object at 0x15204ad157f0&gt;
-
-&lt;lambdifygenerated-5&gt;:2: RuntimeWarning: invalid value encountered in sqrt
-  return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)</code></pre>
-</div>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co"># p0 = sm.plot(0,0, (x,-8,8), show=False )</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>p1 <span class="op">=</span> sm.plot(f, g, (x, <span class="op">-</span><span class="fl">0.1</span>, <span class="fl">0.1</span>), show<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>p2 <span class="op">=</span> sm.plot((f, g, (x, <span class="op">-</span><span class="dv">8</span>, <span class="op">-</span><span class="dv">4</span>)), </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>      (f,g, (x, <span class="dv">4</span>, <span class="dv">8</span>)), show<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the plots by adding them together</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>p1.extend(p2)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>p1.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="10_1ParametricPlots_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid" width="672"></p>
 </div>

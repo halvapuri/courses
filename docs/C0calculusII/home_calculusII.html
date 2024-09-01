@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -319,42 +285,6 @@ function openCity(evt, cityName) {
 </section>
 <section id="test" class="level1">
 <h1>Test</h1>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sm</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sm.symbols(<span class="st">'x'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># h_ = sm.symbols('h_')</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (x <span class="op">/</span> <span class="dv">7</span>)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> ((x <span class="op">+</span> <span class="dv">3</span>) <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> sm.S(<span class="dv">3</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>) <span class="op">*</span> sm.sqrt(<span class="dv">4</span> <span class="op">-</span> (x <span class="op">+</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      sm.S(<span class="dv">6</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> ((<span class="dv">3</span> <span class="op">-</span> x) <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> sm.S(<span class="dv">3</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>) <span class="op">*</span> sm.sqrt(<span class="dv">4</span> <span class="op">-</span> (x <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      sm.S(<span class="dv">6</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> (<span class="dv">3</span><span class="op">*</span>(sm.Abs(x <span class="op">-</span> sm.S.Half) <span class="op">+</span> sm.Abs(x <span class="op">+</span> sm.S.Half) <span class="op">+</span> <span class="dv">6</span>) <span class="op">-</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                <span class="dv">11</span><span class="op">*</span>(sm.Abs(x <span class="op">-</span> sm.S(<span class="dv">3</span>)<span class="op">/</span><span class="dv">4</span>) <span class="op">+</span> sm.Abs(x <span class="op">+</span> sm.S(<span class="dv">3</span>)<span class="op">/</span><span class="dv">4</span>)))<span class="op">/</span><span class="dv">2</span>  </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> ( (h <span class="op">-</span> l) <span class="op">*</span> sm.Heaviside(x <span class="op">+</span> <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      (r <span class="op">-</span> h) <span class="op">*</span> sm.Heaviside(x <span class="op">-</span> <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      (l <span class="op">-</span> w) <span class="op">*</span> sm.Heaviside(x <span class="op">+</span> <span class="dv">3</span>, <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      (w <span class="op">-</span> r) <span class="op">*</span> sm.Heaviside(x <span class="op">-</span> <span class="dv">3</span>, <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      w</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> (sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> (sm.Abs(x <span class="op">/</span> <span class="dv">2</span>) <span class="op">+</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (sm.Abs(sm.Abs(x) <span class="op">-</span> <span class="dv">2</span>) <span class="op">-</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">112</span> <span class="op">*</span> (<span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">33</span>) <span class="op">-</span> <span class="dv">7</span>) <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>      sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> x)<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> <span class="dv">3</span>) <span class="op">*</span> ((x <span class="op">+</span> <span class="dv">4</span>) <span class="op">/</span> sm.Abs(x <span class="op">+</span> <span class="dv">4</span>) <span class="op">-</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>      (x <span class="op">-</span> <span class="dv">4</span>) <span class="op">/</span> sm.Abs(x <span class="op">-</span> <span class="dv">4</span>)) <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (x <span class="op">/</span> <span class="dv">7</span>)<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>sm.plot(f, g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>&lt;lambdifygenerated-3&gt;:2: RuntimeWarning: invalid value encountered in sqrt
-  return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="home_calculusII_files/figure-html/cell-2-output-2.png" width="662" height="470"></p>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14d2205c5e20&gt;</code></pre>
-</div>
-</div>
 
 
 </section>
