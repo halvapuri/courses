@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Course Hub",
     "section": "",
-    "text": "Content relevant to your course will be posted on the corresponding course pages which you can access from the list below or using side panel.\nNote that  it is your responiblity to keep yourself updated  with any new developments and/or announcements.\nCalculus I - MT101\nCalculus II - MT202"
+    "text": "Content relevant to your course will be posted on the corresponding course pages which you can access from the list below or using side panel.\nNote that  it is your responsiblity to keep yourself updated  with any new developments and/or announcements.\nCalculus I - MT101\nCalculus II - MT202"
   },
   {
     "objectID": "C0TimeSeriesandGIS/home_timeseriesandGIS.html",
@@ -725,6 +725,27 @@
     "href": "C0calculusI/home_calculusI.html#contacts",
     "title": "Calculus I",
     "section": "Contacts",
-    "text": "Contacts\nsheharyar [at] giki.edu.pk\nOffice (G-27, FES)\nConsultation hours (9 to 10 am, Mon to Fri)\nTA: Ms. Iqra Anjum\nEmail: ges2319@giki.edu.pk\nPlease direct all queries regarding attendance, quizzes, and assignments to Ms. Anjum."
+    "text": "Contacts\nTA: Ms. Iqra Anjum\nEmail: ges2319@giki.edu.pk\nPlease direct all queries regarding attendance, quizzes, and assignments to Ms. Anjum."
+  },
+  {
+    "objectID": "C0calculusI/lectures/1functions.html#plotting-functions",
+    "href": "C0calculusI/lectures/1functions.html#plotting-functions",
+    "title": "Functions",
+    "section": "Plotting functions",
+    "text": "Plotting functions\n\ndef centeraxes():\n  \"\"\"Centers axes in the middle\"\"\"\n  ax = plt.gca()\n  ax.spines['top'].set_color('none')\n  ax.spines['left'].set_position('zero')\n  ax.spines['right'].set_color('none')\n  ax.spines['bottom'].set_position('zero')\n  return ax\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndomain = np.linspace(-5,5, 1000)\nfunc = domain**2\nfunc2 = domain**3\nfunc3 = np.cos(domain)\n\n\n# plt.plot(domain, func)\n# plt.plot(domain, func2)\nplt.plot(domain, func3)\n\ncenteraxes()\n\nplt.show()"
+  },
+  {
+    "objectID": "index.html#contact",
+    "href": "index.html#contact",
+    "title": "Course Hub",
+    "section": "Contact",
+    "text": "Contact\nsheharyar [at] giki.edu.pk\nOffice (G-27, FES)\nConsultation hours (9 to 10 am, Mon to Fri)"
+  },
+  {
+    "objectID": "C0calculusII/home_calculusII.html#teaching-assistants",
+    "href": "C0calculusII/home_calculusII.html#teaching-assistants",
+    "title": "Calculus II",
+    "section": "Teaching Assistants",
+    "text": "Teaching Assistants\nIn case of queries regarding attendance, quizzes, and assignments to:\nMr. Hassan Ali\nEmail: hassan.ali@giki.edu.pk\nMr. Aamir Shehzad\nEmail: aamir.shehzad@giki.edu.pk"
   }
 ]
