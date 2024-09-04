@@ -109,7 +109,7 @@
     "href": "C0statanalysis/rainfall.html#problem-9",
     "title": "Rainfall",
     "section": "Problem 9",
-    "text": "Problem 9\nUsing the data in file  dati_VE.mdb (or dati_VE.RData)\nGEV (Generalized extreme value distribution) model: 1) define an appropriate time window to use in maxima building (maxima should be iid)\n\nestimate the GEV model for each rainfall station and comment on possible differences.\ncompute return levels of order  100, 200, 500 e 1000\n\nGPD model: 4) on the same data estimate GPD model.\n\ncompute return levels of order 100, 200, 500 e 1000,\ndiscuss difference between the two approaches\n\n\ndatiAll &lt;- load(\"_data/datiAll.RData\")\nrain &lt;- load(\"_data/RainData.RData\")\n\n\ndatiAll[\"sidscents\"]\n\n[1] NA\n\n\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(hrbrthemes)\n\nCalabriaquota32 &lt;- rename(Calabriaquota32, c(XUTM=\"X\", YUTM = \"Y\"))\n\nplotter &lt;- function(boundary, interior){\n  # Plot the original XUTM and YUTM coordinates\n  p &lt;- ggplot(boundary, aes(x = XUTM, y = YUTM)) +\n    geom_point(color = \"black\") +\n    labs(x = \"XUTM\", y = \"YUTM\", title = \"Bas\")\n  \n  # Add the subset of specific coordinates colored by Quota\n  p &lt;- p + geom_point(data = interior, aes(x = XUTM, y = YUTM, color = Quota)) +\n    scale_color_gradient(low = \"blue\", high = \"red\") +  # Customize the color scale\n    labs(color = \"Quota\") +\n    theme_ipsum()\n  \n  # Show the plot\n  print(p)  \n  \n}\n\nplotter(Bas, Basquota32)\n\n\n\n# plotter(Cal, Calabriaquota32)"
+    "text": "Problem 9\nUsing the data in file  dati_VE.mdb (or dati_VE.RData)\nGEV (Generalized extreme value distribution) model: 1) define an appropriate time window to use in maxima building (maxima should be iid)\n\nestimate the GEV model for each rainfall station and comment on possible differences.\ncompute return levels of order  100, 200, 500 e 1000\n\nGPD model: 4) on the same data estimate GPD model.\n\ncompute return levels of order 100, 200, 500 e 1000,\ndiscuss difference between the two approaches\n\n\n# datiAll &lt;- load(\"_data/datiAll.RData\")\n# rain &lt;- load(\"_data/RainData.RData\")\n\n\n# datiAll[\"sidscents\"]\n\n\n# library(ggplot2)\n# library(dplyr)\n# library(hrbrthemes)\n\n# Calabriaquota32 &lt;- rename(Calabriaquota32, c(XUTM=\"X\", YUTM = \"Y\"))\n\n# plotter &lt;- function(boundary, interior){\n#   # Plot the original XUTM and YUTM coordinates\n#   p &lt;- ggplot(boundary, aes(x = XUTM, y = YUTM)) +\n#     geom_point(color = \"black\") +\n#     labs(x = \"XUTM\", y = \"YUTM\", title = \"Bas\")\n  \n#   # Add the subset of specific coordinates colored by Quota\n#   p &lt;- p + geom_point(data = interior, aes(x = XUTM, y = YUTM, color = Quota)) +\n#     scale_color_gradient(low = \"blue\", high = \"red\") +  # Customize the color scale\n#     labs(color = \"Quota\") +\n#     theme_ipsum()\n  \n#   # Show the plot\n#   print(p)  \n  \n# }\n\n# plotter(Bas, Basquota32)\n# # plotter(Cal, Calabriaquota32)"
   },
   {
     "objectID": "test.html",
@@ -634,7 +634,7 @@
     "href": "C0calculusI/home_calculusI.html#slides-and-notebooks",
     "title": "Calculus I",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\nFunctions\nTest"
+    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\n\nFunctions"
   },
   {
     "objectID": "C0calculusI/lectures/test.html",
@@ -732,7 +732,7 @@
     "href": "C0calculusI/lectures/1functions.html#plotting-functions",
     "title": "Functions",
     "section": "Plotting functions",
-    "text": "Plotting functions\n\ndef centeraxes():\n  \"\"\"Centers axes in the middle\"\"\"\n  ax = plt.gca()\n  ax.spines['top'].set_color('none')\n  ax.spines['left'].set_position('zero')\n  ax.spines['right'].set_color('none')\n  ax.spines['bottom'].set_position('zero')\n  return ax\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndomain = np.linspace(-5,5, 1000)\nfunc = domain**2\nfunc2 = domain**3\nfunc3 = np.cos(domain)\n\n\n# plt.plot(domain, func)\n# plt.plot(domain, func2)\nplt.plot(domain, func3)\n\ncenteraxes()\n\nplt.show()"
+    "text": "Plotting functions\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef centeraxes():\n  \"\"\"Centers axes in the middle\"\"\"\n  ax = plt.gca()\n  ax.spines['top'].set_color('none')\n  ax.spines['left'].set_position('zero')\n  ax.spines['right'].set_color('none')\n  ax.spines['bottom'].set_position('zero')\n  return ax\n\nWe can plot a single function as follows:\n\ndomain = np.linspace(-5,5, 1000)\nfunc = np.sqrt(domain)\n\n# plt.plot(domain, func)\n# plt.plot(domain, func2)\nplt.plot(domain, func)\nplt.gca().set_aspect('equal')\n\ncenteraxes()\n\nplt.show()\n\n/tmp/ipykernel_520646/1562034490.py:2: RuntimeWarning: invalid value encountered in sqrt\n  func = np.sqrt(domain)\n\n\n\n\n\nBut we can also plot multiple functions, although this is not necessarily the neatest way, Matplotlib changes colors by default (but we can control it too):\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndomain = np.linspace(-1,1, 1000)\nfunc = domain**2\nfunc2 = domain**3\nfunc3 = np.cos(domain)\nfunc4 = np.sqrt(domain)\n\nplt.plot(domain, func)\nplt.plot(domain, func2)\nplt.plot(domain, func3)\nplt.plot(domain, func4)\nplt.gca().set_aspect('equal')\n\ncenteraxes()\n\nplt.show()\n\n/tmp/ipykernel_520646/3654791602.py:8: RuntimeWarning: invalid value encountered in sqrt\n  func4 = np.sqrt(domain)"
   },
   {
     "objectID": "index.html#contact",
@@ -747,5 +747,12 @@
     "title": "Calculus II",
     "section": "Teaching Assistants",
     "text": "Teaching Assistants\nIn case of queries regarding attendance, quizzes, and assignments to:\nMr. Hassan Ali\nEmail: hassan.ali@giki.edu.pk\nMr. Aamir Shehzad\nEmail: aamir.shehzad@giki.edu.pk"
+  },
+  {
+    "objectID": "C0calculusII/notebooks/temp/test.html",
+    "href": "C0calculusII/notebooks/temp/test.html",
+    "title": "Rough work",
+    "section": "",
+    "text": "import matplotlib.pyplot as plt\nimport pandas as pd\nimport numpy as np\n## Using numpy\nfrom numpy import sin, cos, tan\n\nt = [0, 12]\nt = np.linspace(t[0],t[1],1000)\n\nx = t* np.sin(np.pi*t/2)\ny = t* np.cos(np.pi*t/2) \n\npd.DataFrame([t,x,y]).T\n\nplt.plot(x,y)\nplt.gca().set_aspect('equal')"
   }
 ]

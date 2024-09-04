@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Worldlines - Calculus I</title>
+<title>Worldlines - Rough work</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,9 +127,9 @@ function openCity(evt, cityName) {
 
 
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
+<link rel="stylesheet" href="../../../css/buttons.css">
+<link rel="stylesheet" href="../../../css/tabs.css">
+<link rel="stylesheet" href="../../../css/callouts.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -105,7 +139,7 @@ function openCity(evt, cityName) {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -116,11 +150,11 @@ function openCity(evt, cityName) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -134,7 +168,7 @@ function openCity(evt, cityName) {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Courses</a></li><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Calculus I</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Rough work</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -148,8 +182,8 @@ function openCity(evt, cityName) {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../../index.html" class="sidebar-logo-link">
+      <img src="../../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -170,13 +204,13 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus II</span></a>
   </div>
 </li>
@@ -193,37 +227,37 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Mechanics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topology</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
@@ -235,25 +269,14 @@ function openCity(evt, cityName) {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#announcements" id="toc-announcements" class="nav-link active" data-scroll-target="#announcements">Announcements</a></li>
-  <li><a href="#quizzes-and-assignments" id="toc-quizzes-and-assignments" class="nav-link" data-scroll-target="#quizzes-and-assignments">Quizzes and Assignments</a></li>
-  <li><a href="#slides-and-notebooks" id="toc-slides-and-notebooks" class="nav-link" data-scroll-target="#slides-and-notebooks">Slides and Notebooks</a></li>
-  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course Outline</a></li>
-  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other Resources</a></li>
-  <li><a href="#contacts" id="toc-contacts" class="nav-link" data-scroll-target="#contacts">Contacts</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Calculus I</h1>
+<h1 class="title">Rough work</h1>
 </div>
 
 
@@ -268,54 +291,29 @@ function openCity(evt, cityName) {
 
 </header>
 
-<p>This is the home page for calculus I (MT-101). All assignments, announcements, and other relevant materials will be posted here.</p>
-<section id="announcements" class="level2">
-<h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
-<!-- ## Course Assignments
-[Assignments](assignments.qmd) -->
-<!-- 
-## Lectures 
-[History](lectures/C0history.qmd)\
-[Limits and Continuity](lectures/C0limits.qmd)\
-[Download test](notebooks/_test.ipynb){download=""} -->
-</section>
-<section id="quizzes-and-assignments" class="level2">
-<h2 class="anchored" data-anchor-id="quizzes-and-assignments">Quizzes and Assignments</h2>
-<p>We will most likely have three quizzes. Tentatively:</p>
-<ul>
-<li>Quiz 1 (5 marks, 4th week)<br>
-</li>
-<li>Quiz 2 (10 marks, 7th week)<br>
-</li>
-<li>Quiz 3 (10 marks, 13th week)<br>
-</li>
-</ul>
-<p><em>N.B.:</em> If you can’t take the quiz for some reason, you need to inform us in advance.</p>
-</section>
-<section id="slides-and-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-notebooks">Slides and Notebooks</h2>
-<p>Note: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.</p>
-<p>If you want a quick solution, then you can use sympy on Google colab as shown <a href="https://colab.research.google.com/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-5-Sympy.ipynb">here</a></p>
-<!-- - [Functions](notebooks/01functions.ipynb) -->
-<ul>
-<li><a href="../C0calculusI/lectures/1functions.html">Functions</a></li>
-</ul>
-</section>
-<section id="course-outline" class="level2">
-<h2 class="anchored" data-anchor-id="course-outline">Course Outline</h2>
-<p><a href="coursematerial/MT101 - Course Outline - Fall 2024.pdf">Outline (pdf)</a></p>
-</section>
-<section id="other-resources" class="level2">
-<h2 class="anchored" data-anchor-id="other-resources">Other Resources</h2>
-</section>
-<section id="contacts" class="level2">
-<h2 class="anchored" data-anchor-id="contacts">Contacts</h2>
-<p>TA: Ms.&nbsp;Iqra Anjum<br>
-Email: ges2319@giki.edu.pk</p>
-<p>Please direct all queries regarding attendance, quizzes, and assignments to Ms.&nbsp;Anjum.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Using numpy</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> numpy <span class="im">import</span> sin, cos, tan</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">12</span>]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(t[<span class="dv">0</span>],t[<span class="dv">1</span>],<span class="dv">1000</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> t<span class="op">*</span> np.sin(np.pi<span class="op">*</span>t<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> t<span class="op">*</span> np.cos(np.pi<span class="op">*</span>t<span class="op">/</span><span class="dv">2</span>) </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>pd.DataFrame([t,x,y]).T</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">'equal'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="test_files/figure-html/cell-2-output-1.png" width="401" height="411"></p>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
