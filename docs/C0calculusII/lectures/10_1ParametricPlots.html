@@ -291,6 +291,25 @@ function openCity(evt, cityName) {
 
 </header>
 
+<div class="ddm">
+<section id="basic-parametrizations" class="level3 ddm-head" onclick="toggleBox(this)">
+<h3 class="anchored" data-anchor-id="basic-parametrizations">Basic parametrizations</h3>
+</section>
+<div class="ddm-box">
+<section id="parabola" class="level3">
+<h3 class="anchored" data-anchor-id="parabola">Parabola</h3>
+</section>
+<section id="circle-and-ellipse" class="level3">
+<h3 class="anchored" data-anchor-id="circle-and-ellipse">Circle and Ellipse</h3>
+</section>
+<section id="hyperpola" class="level3">
+<h3 class="anchored" data-anchor-id="hyperpola">Hyperpola</h3>
+</section>
+<section id="other-plots" class="level2">
+<h2 class="anchored" data-anchor-id="other-plots">Other plots</h2>
+</section>
+</div>
+</div>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Non-parametric version</summary>
@@ -366,14 +385,14 @@ function openCity(evt, cityName) {
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>sm.plot(f, g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>&lt;lambdifygenerated-23&gt;:2: RuntimeWarning: invalid value encountered in sqrt
+<pre><code>&lt;lambdifygenerated-3&gt;:2: RuntimeWarning: invalid value encountered in sqrt
   return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="10_1ParametricPlots_files/figure-html/cell-3-output-2.png" width="662" height="470"></p>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="14">
-<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14e154a54160&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14a45c480eb0&gt;</code></pre>
 </div>
 </div>
 <p>The bottom wings are missing. Most likely some part of the equation is missing. You can experiment with the equations if you want.</p>
