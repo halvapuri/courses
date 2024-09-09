@@ -285,9 +285,11 @@ function openCity(evt, cityName) {
   <li><a href="#rational-functions" id="toc-rational-functions" class="nav-link" data-scroll-target="#rational-functions">Rational functions</a></li>
   <li><a href="#algebraic-functions" id="toc-algebraic-functions" class="nav-link" data-scroll-target="#algebraic-functions">Algebraic functions</a></li>
   <li><a href="#trigonometric-functions" id="toc-trigonometric-functions" class="nav-link" data-scroll-target="#trigonometric-functions">Trigonometric functions</a></li>
+  <li><a href="#inverse-trigonometric" id="toc-inverse-trigonometric" class="nav-link" data-scroll-target="#inverse-trigonometric">Inverse Trigonometric</a></li>
   <li><a href="#exponential-functions" id="toc-exponential-functions" class="nav-link" data-scroll-target="#exponential-functions">Exponential functions</a></li>
   <li><a href="#logarithmic-functions" id="toc-logarithmic-functions" class="nav-link" data-scroll-target="#logarithmic-functions">Logarithmic functions</a></li>
   <li><a href="#transcendental-functions" id="toc-transcendental-functions" class="nav-link" data-scroll-target="#transcendental-functions">Transcendental functions</a></li>
+  <li><a href="#piecewise" id="toc-piecewise" class="nav-link" data-scroll-target="#piecewise">Piecewise</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -366,7 +368,7 @@ function openCity(evt, cityName) {
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_520646/1562034490.py:2: RuntimeWarning: invalid value encountered in sqrt
+<pre><code>/tmp/ipykernel_218466/1562034490.py:2: RuntimeWarning: invalid value encountered in sqrt
   func = np.sqrt(domain)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -394,7 +396,7 @@ function openCity(evt, cityName) {
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/tmp/ipykernel_520646/3654791602.py:8: RuntimeWarning: invalid value encountered in sqrt
+<pre><code>/tmp/ipykernel_218466/3654791602.py:8: RuntimeWarning: invalid value encountered in sqrt
   func4 = np.sqrt(domain)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -424,6 +426,64 @@ function openCity(evt, cityName) {
 </section>
 <section id="trigonometric-functions" class="level3">
 <h3 class="anchored" data-anchor-id="trigonometric-functions">Trigonometric functions</h3>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the variable</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sp.Symbol(<span class="st">'x'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>func1 <span class="op">=</span> sp.cos(x)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>func2 <span class="op">=</span> sp.sec(x)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>func3 <span class="op">=</span> sp.sin(x)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>func4 <span class="op">=</span> sp.csc(x)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>func5 <span class="op">=</span> sp.tan(x)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>func6 <span class="op">=</span> sp.cot(x)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the piecewise function</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the piecewise function</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>sp.plot(func2, func3, (x,<span class="op">-</span><span class="dv">4</span><span class="op">*</span>sp.pi,<span class="dv">4</span><span class="op">*</span>sp.pi), ylim <span class="op">=</span> (<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>sp.plot(func5, (x,<span class="op">-</span><span class="dv">4</span><span class="op">*</span>sp.pi,<span class="dv">4</span><span class="op">*</span>sp.pi), ylim <span class="op">=</span> (<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="1functions_files/figure-html/cell-5-output-1.png" width="662" height="470"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="1functions_files/figure-html/cell-5-output-2.png" width="662" height="470"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x146bc48345e0&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="inverse-trigonometric" class="level3">
+<h3 class="anchored" data-anchor-id="inverse-trigonometric">Inverse Trigonometric</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the variable</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sp.Symbol(<span class="st">'x'</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>func1 <span class="op">=</span> sp.acos(x)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>func2 <span class="op">=</span> sp.asec(x)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>func3 <span class="op">=</span> sp.asin(x)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>func4 <span class="op">=</span> sp.acsc(x)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>func5 <span class="op">=</span> sp.atan(x)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>func6 <span class="op">=</span> sp.acot(x)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the piecewise function</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the piecewise function</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>sp.plot(func2, func3, (x,<span class="op">-</span><span class="dv">4</span><span class="op">*</span>sp.pi,<span class="dv">4</span><span class="op">*</span>sp.pi), ylim <span class="op">=</span> (<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="1functions_files/figure-html/cell-6-output-1.png" width="662" height="470"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x146bc4850910&gt;</code></pre>
+</div>
+</div>
 </section>
 <section id="exponential-functions" class="level3">
 <h3 class="anchored" data-anchor-id="exponential-functions">Exponential functions</h3>
@@ -433,6 +493,31 @@ function openCity(evt, cityName) {
 </section>
 <section id="transcendental-functions" class="level3">
 <h3 class="anchored" data-anchor-id="transcendental-functions">Transcendental functions</h3>
+</section>
+<section id="piecewise" class="level3">
+<h3 class="anchored" data-anchor-id="piecewise">Piecewise</h3>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the variable</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sp.Symbol(<span class="st">'x'</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the piecewise function</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>piecewise_func <span class="op">=</span> sp.Piecewise(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    (x<span class="op">**</span><span class="dv">2</span>, x <span class="op">&lt;</span> <span class="dv">0</span>),        <span class="co"># x^2 when x &lt; 0</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    (x <span class="op">+</span> <span class="dv">1</span>, (x <span class="op">&gt;=</span> <span class="dv">0</span>) <span class="op">&amp;</span> (x <span class="op">&lt;=</span> <span class="dv">2</span>)),  <span class="co"># x + 1 when 0 &lt;= x &lt;= 2</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    (x<span class="op">**</span><span class="dv">3</span>, x <span class="op">&gt;</span> <span class="dv">2</span>)         <span class="co"># x^3 when x &gt; 2</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the piecewise function</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>sp.plot(piecewise_func, (x,<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="1functions_files/figure-html/cell-7-output-1.png" width="662" height="468"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x146bc4850700&gt;</code></pre>
+</div>
+</div>
 
 
 </section>
