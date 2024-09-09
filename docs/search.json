@@ -193,7 +193,7 @@
     "href": "C0calculusI/home_calculusI.html#other-resources",
     "title": "Calculus I",
     "section": "Other Resources",
-    "text": "Other Resources"
+    "text": "Other Resources\n\nPython related\n\nCalculus I in python"
   },
   {
     "objectID": "C0calculusII/home_calculusII.html",
@@ -655,7 +655,7 @@
     "href": "C0calculusII/home_calculusII.html#slides-and-notebooks",
     "title": "Calculus II",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\nParametric Curves"
+    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\nParametric Curves\nParametric Curves Calculus"
   },
   {
     "objectID": "C0calculusII/home_calculusII.html#course-outline",
@@ -669,7 +669,7 @@
     "href": "C0calculusII/lectures/10_1ParametricPlots.html",
     "title": "Parametric Plots",
     "section": "",
-    "text": "Basic parametrizations\n\n\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef plotter(x, y, create = False):\n    if create: plt.figure(figsize=(6, 6))\n    plt.plot(x, y)\n    plt.gca().set_aspect('equal', adjustable='box')\n\n    return\n\ndef centeraxes():\n    ax = plt.gca()\n    # Move left y-axis and bottom x-axis to centre, passing through (0,0)\n\n    ax.spines['left'].set_position('zero')\n    ax.spines['bottom'].set_position('zero')\n\n    # Eliminate upper and right axes\n    ax.spines['right'].set_color('none')\n    ax.spines['top'].set_color('none')\n\n    # Show ticks in the left and lower axes only\n    ax.xaxis.set_ticks_position('bottom')\n    ax.yaxis.set_ticks_position('left')\n    return\n\n\nParabola\n\n\nCircle and Ellipse\n\nt = np.linspace(0, 2 * np.pi, 400)\n\nx = np.cos(t)\ny = np.sin(t)\nplotter(x,y, create = True)\n\nx = 2* np.cos(t)\ny = np.sin(t)\nplotter(x,y)\ncenteraxes()\nplt.show()\n\n\n\n\n\n\nHyperpola\n\nt = np.linspace(0.1, 10, 400)\n\nx = t + 1/t\ny = t - 1/t\nplotter(x,y)\ncenteraxes()\n\nplt.show()\n\n\n\n\n\n\nCycloid\n\n\nBrachistochrone and Tautochrone\n\n\n\n\n\nNon-parametric version\nimport numpy as np\nimport matplotlib.pyplot as plt\nx = np.linspace(-6,6,1000)\n\ndef sf(x):\n    return np.sqrt(1-x**2)                           # semicircle\ndef ef(x):\n    return 3*sf(x/7)                             # ellipse\ndef sh(x):\n    return 4.2 - .5*x -2.8*sf(.5*x -.5)          # shoulders\ndef bf(x):\n    return sf(abs(2 - x) - 1) - x**2/11 + .5*x -3 # bottom\n\ncl_x = [0,0.5,0.8,1]\ncl_xn = [-x for x in cl_x]\ncl_y = [1.7, 1.7, 2.6, 0.9]\n\ndef p(f,xmin,xmax, flipy = False):\n    \"symmetric plot across y-axis\"\n    \n    x = np.linspace(xmin, xmax, 100)\n    y = f(x)\n    if flipy: \n        y = -y\n    p1 = plt.plot(x, y)\n    \n    x = [-i for i in x]\n    ax = plt.plot(x, y)\n    \n    return ax\n\np(ef,3,7) \np(ef,4,7, flipy = True) \np(sh,1,3)\np(bf,0,4) \nplt.plot(cl_x, cl_y)\nplt.plot(cl_xn, cl_y)\nplt.show()\n\n\n\n\n\nBelow is a parametrized version of the plot.\n\n\nParametric version\nimport sympy as sm\n\n\nx = sm.symbols('x', real=True)\nh_ = sm.symbols('h_')\n\nw = 3 * sm.sqrt(1 - (x / 7)**2)\nl = ((x + 3) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x + 1)**2) +\n        sm.S(6) / 7 * sm.sqrt(10))\nr = ((3 - x) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x - 1)**2) +\n        sm.S(6) / 7 * sm.sqrt(10))\nh = (3*(sm.Abs(x - sm.S.Half) + sm.Abs(x + sm.S.Half) + 6) -\n                11*(sm.Abs(x - sm.S(3)/4) + sm.Abs(x + sm.S(3)/4)))/2 \nf = ((h - l) * sm.Heaviside(x + 1, 0) +\n        (r - h) * sm.Heaviside(x - 1, 0) +\n        (l - w) * sm.Heaviside(x + 3, 0) +\n        (w - r) * sm.Heaviside(x - 3, 0) + \n        w)\ng = (sm.S(1) / 2 * (sm.Abs(x / 2) + sm.sqrt(1 - (sm.Abs(sm.Abs(x) - 2) -\n        1)**2) - sm.S(1) / 112 * (3 * sm.sqrt(33) - 7) * x**2 + 3 *\n        sm.sqrt(1 - (sm.S(1) / 7 * x)**2) - 3) * ((x + 4) / sm.Abs(x + 4) -\n        (x - 4) / sm.Abs(x - 4)) - 3 * sm.sqrt(1 - (x / 7)**2))\nsm.plot(f, g)\n\n\n&lt;lambdifygenerated-3&gt;:2: RuntimeWarning: invalid value encountered in sqrt\n  return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x15540889ec40&gt;\n\n\nThe bottom wings are missing. Most likely some part of the equation is missing. You can experiment with the equations if you want.\n\n\n\nTaken from Math World"
+    "text": "Basic parametrizations\n\n\n\n\nSome plotting routines. Click to expand\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef plotter(x, y, create = False):\n    if create: plt.figure(figsize=(6, 6))\n    plt.plot(x, y)\n    plt.gca().set_aspect('equal', adjustable='box')\n\n    return\n\ndef centeraxes():\n    ax = plt.gca()\n    # Move left y-axis and bottom x-axis to centre, passing through (0,0)\n\n    ax.spines['left'].set_position('zero')\n    ax.spines['bottom'].set_position('zero')\n\n    # Eliminate upper and right axes\n    ax.spines['right'].set_color('none')\n    ax.spines['top'].set_color('none')\n\n    # Show ticks in the left and lower axes only\n    ax.xaxis.set_ticks_position('bottom')\n    ax.yaxis.set_ticks_position('left')\n    return\n\n\n\nParabola\n\n\nCircle and Ellipse\n\nt = np.linspace(0, 2 * np.pi, 400)\n\nx = np.cos(t)\ny = np.sin(t)\nplotter(x,y, create = True)\n\nx = 2* np.cos(t)\ny = np.sin(t)\nplotter(x,y)\ncenteraxes()\nplt.show()\n\n\n\n\n\n\nHyperpola\n\nt = np.linspace(0.1, 10, 400)\n\nx = t + 1/t\ny = t - 1/t\nplotter(x,y)\ncenteraxes()\n\nplt.show()\n\n\n\n\n\n\nCycloid\n\n\nBrachistochrone and Tautochrone\n\n\n\n\n\nMiscellaneous\n\n\nDrawing the Batman curve.\n\n\nNon-parametric version\nimport numpy as np\nimport matplotlib.pyplot as plt\nx = np.linspace(-6,6,1000)\n\ndef sf(x):\n    return np.sqrt(1-x**2)                           # semicircle\ndef ef(x):\n    return 3*sf(x/7)                             # ellipse\ndef sh(x):\n    return 4.2 - .5*x -2.8*sf(.5*x -.5)          # shoulders\ndef bf(x):\n    return sf(abs(2 - x) - 1) - x**2/11 + .5*x -3 # bottom\n\ncl_x = [0,0.5,0.8,1]\ncl_xn = [-x for x in cl_x]\ncl_y = [1.7, 1.7, 2.6, 0.9]\n\ndef p(f,xmin,xmax, flipy = False):\n    \"symmetric plot across y-axis\"\n    \n    x = np.linspace(xmin, xmax, 100)\n    y = f(x)\n    if flipy: \n        y = -y\n    p1 = plt.plot(x, y)\n    \n    x = [-i for i in x]\n    ax = plt.plot(x, y)\n    \n    return ax\n\np(ef,3,7) \np(ef,4,7, flipy = True) \np(sh,1,3)\np(bf,0,4) \nplt.plot(cl_x, cl_y)\nplt.plot(cl_xn, cl_y)\nplt.show()\n\n\n\n\n\nBelow is a parametrized version of the plot.\n\n\nParametric version\nimport sympy as sm\n\n\nx = sm.symbols('x', real=True)\nh_ = sm.symbols('h_')\n\nw = 3 * sm.sqrt(1 - (x / 7)**2)\nl = ((x + 3) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x + 1)**2) +\n        sm.S(6) / 7 * sm.sqrt(10))\nr = ((3 - x) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x - 1)**2) +\n        sm.S(6) / 7 * sm.sqrt(10))\nh = (3*(sm.Abs(x - sm.S.Half) + sm.Abs(x + sm.S.Half) + 6) -\n                11*(sm.Abs(x - sm.S(3)/4) + sm.Abs(x + sm.S(3)/4)))/2 \nf = ((h - l) * sm.Heaviside(x + 1, 0) +\n        (r - h) * sm.Heaviside(x - 1, 0) +\n        (l - w) * sm.Heaviside(x + 3, 0) +\n        (w - r) * sm.Heaviside(x - 3, 0) + \n        w)\ng = (sm.S(1) / 2 * (sm.Abs(x / 2) + sm.sqrt(1 - (sm.Abs(sm.Abs(x) - 2) -\n        1)**2) - sm.S(1) / 112 * (3 * sm.sqrt(33) - 7) * x**2 + 3 *\n        sm.sqrt(1 - (sm.S(1) / 7 * x)**2) - 3) * ((x + 4) / sm.Abs(x + 4) -\n        (x - 4) / sm.Abs(x - 4)) - 3 * sm.sqrt(1 - (x / 7)**2))\nsm.plot(f, g)\n\n\n&lt;lambdifygenerated-3&gt;:2: RuntimeWarning: invalid value encountered in sqrt\n  return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x1486c0c5bf10&gt;\n\n\nThe bottom wings are missing. Most likely some part of the equation is missing. You can experiment with the equations if you want.\n\n\n\nTaken from Math World"
   },
   {
     "objectID": "C0calculusII/notebooks/10_1aParametricCurvesAnimated.html",
@@ -725,7 +725,7 @@
     "href": "C0calculusI/home_calculusI.html#contacts",
     "title": "Calculus I",
     "section": "Contacts",
-    "text": "Contacts\nTA: Ms. Iqra Anjum\nEmail: ges2319@giki.edu.pk\nPlease direct all queries regarding attendance, quizzes, and assignments to Ms. Anjum."
+    "text": "Contacts\nIn case of queries regarding attendance, quizzes, and assignments contact:\nMr. Hassan Ali\nEmail: hassan.ali@giki.edu.pk\nMr. Aamir Shehzad\nEmail: aamir.shehzad@giki.edu.pk"
   },
   {
     "objectID": "C0calculusI/lectures/1functions.html#plotting-functions",
@@ -746,7 +746,7 @@
     "href": "C0calculusII/home_calculusII.html#teaching-assistants",
     "title": "Calculus II",
     "section": "Teaching Assistants",
-    "text": "Teaching Assistants\nIn case of queries regarding attendance, quizzes, and assignments to:\nMr. Hassan Ali\nEmail: hassan.ali@giki.edu.pk\nMr. Aamir Shehzad\nEmail: aamir.shehzad@giki.edu.pk"
+    "text": "Teaching Assistants\nIn case of queries regarding attendance, quizzes, and assignments contact:\nMs. Iqra Anjum\nEmail: ges2319@giki.edu.pk"
   },
   {
     "objectID": "C0calculusII/notebooks/temp/test.html",
@@ -754,5 +754,40 @@
     "title": "Rough work",
     "section": "",
     "text": "import matplotlib.pyplot as plt\nimport pandas as pd\nimport numpy as np\n## Using numpy\nfrom numpy import sin, cos, tan\n\nt = [0, 12]\nt = np.linspace(t[0],t[1],1000)\n\nx = t* np.sin(np.pi*t/2)\ny = t* np.cos(np.pi*t/2) \n\npd.DataFrame([t,x,y]).T\n\nplt.plot(x,y)\nplt.gca().set_aspect('equal')"
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_2ParametricCalculus.html",
+    "href": "C0calculusII/lectures/10_2ParametricCalculus.html",
+    "title": "Calculus with Parametric Curves",
+    "section": "",
+    "text": "Some plotting routines. Click to expand\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sympy import plot_parametric, symbols\nfrom functools import partial\n\n## This is a 'partial function' so that we don't have to set figure size and aspect ratio every time.\nsplot = partial(plot_parametric, aspect_ratio = (1,1),size=(4,4),axis_center = (0,0))\n\n\n\ndef plotter(x, y, create = False):\n    if create: plt.figure(figsize=(6, 6))\n    plt.plot(x, y)\n    plt.gca().set_aspect('equal', adjustable='box')\n\n    return\n\ndef centeraxes():\n    ax = plt.gca()\n    # Move left y-axis and bottom x-axis to centre, passing through (0,0)\n\n    ax.spines['left'].set_position('zero')\n    ax.spines['bottom'].set_position('zero')\n\n    # Eliminate upper and right axes\n    ax.spines['right'].set_color('none')\n    ax.spines['top'].set_color('none')\n\n    # Show ticks in the left and lower axes only\n    ax.xaxis.set_ticks_position('bottom')\n    ax.yaxis.set_ticks_position('left')\n    return"
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_2ParametricCalculus.html#integration-and-differentiation-via-python",
+    "href": "C0calculusII/lectures/10_2ParametricCalculus.html#integration-and-differentiation-via-python",
+    "title": "Calculus with Parametric Curves",
+    "section": "Integration and Differentiation via python",
+    "text": "Integration and Differentiation via python\nA quick reminder, you can perform differentiation and integration (definite or indefinite) as follows:\n\nimport sympy as sp\nx, y, z = sp.symbols('x y z')\n\nf = sp.cos(x)**3\n\nresult = sp.diff(f)\nresult\n## To evaluate a function, substitute the value of x.\n# result.subs(x,sp.pi/3)\n\n\\(\\displaystyle - 3 \\sin{\\left(x \\right)} \\cos^{2}{\\left(x \\right)}\\)\n\n\n\ninf = sp.oo\n\nimport sympy as sp\nx, y, z = sp.symbols('x y z')\n\n# Indefinite integrals\nf = sp.ln(x)\nsp.integrate(f,x)\n\n# Definite integrals\nsp.integrate(sp.exp(-x), (x, 0, inf))\n\n\\(\\displaystyle 1\\)\n\n\n\n\n\n\n\n\nWarning\n\n\n\n\n\nIf integrate is unable to compute an integral, it returns an unevaluated Integral object."
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_2ParametricCalculus.html#tangent-lines",
+    "href": "C0calculusII/lectures/10_2ParametricCalculus.html#tangent-lines",
+    "title": "Calculus with Parametric Curves",
+    "section": "Tangent Lines",
+    "text": "Tangent Lines\n\nExample 1:\nFind the tangent to the line \\(x = sec(t), y = tan(t)\\) at \\((\\sqrt(2),1)\\) where \\(t=\\pi/4\\).\n\nt = symbols('t')\n\nf = sp.sec(t)\ng = sp.tan(t)\n\nsplot((f, g), (t, -sp.pi/3, sp.pi/3))\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14c3a2087d90&gt;\n\n\nNow we need to find the slope:\n\nevalat = sp.pi/4\n\ndy_dx = sp.diff(g)/sp.diff(f)\nslope = dy_dx.subs(t, evalat)\n\ndisplay(dy_dx)\ndisplay(slope)\n\n\\(\\displaystyle \\frac{\\tan^{2}{\\left(t \\right)} + 1}{\\tan{\\left(t \\right)} \\sec{\\left(t \\right)}}\\)\n\n\n\\(\\displaystyle \\sqrt{2}\\)\n\n\nSo our tangent is a line passing through \\((\\sqrt{2},1)\\) with slope {python} slope. Let’s plot the curve and this tangent line together.\n\n# From question\nx0, y0 = sp.sqrt(2), 1\n\n## Parametric representation of a line\nx   = t\ny_t = slope * (t - x0) + y0\n\n## Plot both the curve and the tangent.\nsplot((f, g,    (t, -sp.pi/3, sp.pi/3)), \n      (t, y_t,  (t, 0, 2)),\n      )\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14c3a219f460&gt;\n\n\nStep 1 Find \\(dy/dx\\) at the said point.\n\\[\n\\frac{dy}{dx} = \\frac{\\sec{t}}{\\tan{t}} = \\csc{t}\n\\]"
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_2ParametricCalculus.html#areas",
+    "href": "C0calculusII/lectures/10_2ParametricCalculus.html#areas",
+    "title": "Calculus with Parametric Curves",
+    "section": "Areas",
+    "text": "Areas"
+  },
+  {
+    "objectID": "C0calculusII/home_calculusII.html#other-resources",
+    "href": "C0calculusII/home_calculusII.html#other-resources",
+    "title": "Calculus II",
+    "section": "Other Resources",
+    "text": "Other Resources\n\nPython related\n\nCalculus I in python\nCalculus II in python"
   }
 ]

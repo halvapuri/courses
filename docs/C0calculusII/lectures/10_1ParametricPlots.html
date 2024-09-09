@@ -297,6 +297,8 @@ function openCity(evt, cityName) {
 </section>
 <div class="ddm-box">
 <div class="cell" data-execution_count="1">
+<details>
+<summary>Some plotting routines. Click to expand</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -322,6 +324,7 @@ function openCity(evt, cityName) {
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_ticks_position(<span class="st">'bottom'</span>)</span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_ticks_position(<span class="st">'left'</span>)</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="parabola" class="level3">
 <h3 class="anchored" data-anchor-id="parabola">Parabola</h3>
@@ -369,6 +372,12 @@ function openCity(evt, cityName) {
 </section>
 </div>
 </div>
+<div class="ddm">
+<section id="miscellaneous" class="level3 ddm-head" onclick="toggleBox(this)">
+<h3 class="anchored" data-anchor-id="miscellaneous">Miscellaneous</h3>
+</section>
+<div class="ddm-box">
+<p>Drawing the Batman curve.</p>
 <div class="cell" data-execution_count="4">
 <details>
 <summary>Non-parametric version</summary>
@@ -451,7 +460,7 @@ function openCity(evt, cityName) {
 <p><img src="10_1ParametricPlots_files/figure-html/cell-6-output-2.png" width="662" height="470"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x15540889ec40&gt;</code></pre>
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x1486c0c5bf10&gt;</code></pre>
 </div>
 </div>
 <p>The bottom wings are missing. Most likely some part of the equation is missing. You can experiment with the equations if you want.</p>
@@ -460,6 +469,8 @@ function openCity(evt, cityName) {
 <p><img src="../figs/batman.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Taken from Math World</figcaption>
 </figure>
+</div>
+</div>
 </div>
 
 
