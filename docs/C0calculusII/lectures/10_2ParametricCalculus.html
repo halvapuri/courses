@@ -275,12 +275,18 @@ function openCity(evt, cityName) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#integration-and-differentiation-via-python" id="toc-integration-and-differentiation-via-python" class="nav-link active" data-scroll-target="#integration-and-differentiation-via-python">Integration and Differentiation via python</a></li>
-  <li><a href="#tangent-lines" id="toc-tangent-lines" class="nav-link" data-scroll-target="#tangent-lines">Tangent Lines</a>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#integration-and-differentiation-via-python" id="toc-integration-and-differentiation-via-python" class="nav-link" data-scroll-target="#integration-and-differentiation-via-python">Integration and Differentiation via python</a></li>
+  <li><a href="#tangents-to-parametric-curves" id="toc-tangents-to-parametric-curves" class="nav-link" data-scroll-target="#tangents-to-parametric-curves">Tangents to Parametric Curves</a>
   <ul class="collapse">
-  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example 1:</a></li>
+  <li><a href="#example-1-first-derivative" id="toc-example-1-first-derivative" class="nav-link" data-scroll-target="#example-1-first-derivative">Example 1 (First derivative):</a></li>
+  <li><a href="#example-2-second-derivatives" id="toc-example-2-second-derivatives" class="nav-link" data-scroll-target="#example-2-second-derivatives">Example 2 (Second derivatives):</a></li>
   </ul></li>
-  <li><a href="#areas" id="toc-areas" class="nav-link" data-scroll-target="#areas">Areas</a></li>
+  <li><a href="#areas-of-parametric-cruves" id="toc-areas-of-parametric-cruves" class="nav-link" data-scroll-target="#areas-of-parametric-cruves">Areas of Parametric Cruves</a>
+  <ul class="collapse">
+  <li><a href="#example-3-area-of-astroid" id="toc-example-3-area-of-astroid" class="nav-link" data-scroll-target="#example-3-area-of-astroid">Example 3 (Area of astroid)</a></li>
+  </ul></li>
+  <li><a href="#length-of-parametric-curves" id="toc-length-of-parametric-curves" class="nav-link" data-scroll-target="#length-of-parametric-curves">Length of Parametric Curves</a></li>
   </ul>
 </nav>
     </div>
@@ -304,43 +310,57 @@ function openCity(evt, cityName) {
 
 </header>
 
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
 <div class="cell" data-execution_count="1">
 <details>
 <summary>Some plotting routines. Click to expand</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> plot_parametric, symbols</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> partial</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">## This is a 'partial function' so that we don't have to set figure size and aspect ratio every time.</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>splot <span class="op">=</span> partial(plot_parametric, aspect_ratio <span class="op">=</span> (<span class="dv">1</span>,<span class="dv">1</span>),size<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">4</span>),axis_center <span class="op">=</span> (<span class="dv">0</span>,<span class="dv">0</span>))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Markdown</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> partial</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">## This is a 'partial function' so that we don't have to set figure size and aspect ratio every time.</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>splot <span class="op">=</span> partial(plot_parametric, aspect_ratio <span class="op">=</span> (<span class="dv">1</span>,<span class="dv">1</span>),size<span class="op">=</span>(<span class="dv">4</span>,<span class="dv">4</span>),axis_center <span class="op">=</span> (<span class="dv">0</span>,<span class="dv">0</span>))</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plotter(x, y, create <span class="op">=</span> <span class="va">False</span>):</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> create: plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, y)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    plt.gca().set_aspect(<span class="st">'equal'</span>, adjustable<span class="op">=</span><span class="st">'box'</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> centeraxes():</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.gca()</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Move left y-axis and bottom x-axis to centre, passing through (0,0)</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'left'</span>].set_position(<span class="st">'zero'</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'bottom'</span>].set_position(<span class="st">'zero'</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Eliminate upper and right axes</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'right'</span>].set_color(<span class="st">'none'</span>)</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'top'</span>].set_color(<span class="st">'none'</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show ticks in the left and lower axes only</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_ticks_position(<span class="st">'bottom'</span>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_ticks_position(<span class="st">'left'</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _plotter(x, y, create <span class="op">=</span> <span class="va">False</span>):</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> create: plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, y)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    plt.gca().set_aspect(<span class="st">'equal'</span>, adjustable<span class="op">=</span><span class="st">'box'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _centeraxes():</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.gca()</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Move left y-axis and bottom x-axis to centre, passing through (0,0)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'left'</span>].set_position(<span class="st">'zero'</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'bottom'</span>].set_position(<span class="st">'zero'</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Eliminate upper and right axes</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'right'</span>].set_color(<span class="st">'none'</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    ax.spines[<span class="st">'top'</span>].set_color(<span class="st">'none'</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show ticks in the left and lower axes only</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_ticks_position(<span class="st">'bottom'</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_ticks_position(<span class="st">'left'</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _displayM(text, expr):</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">  Display text and expression inline. </span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">  """</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  display(Markdown(<span class="st">'</span><span class="sc">{}</span><span class="st"> </span><span class="sc">{}</span><span class="st">'</span>.<span class="bu">format</span>(</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>            text,</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            sp.latex(expr, mode<span class="op">=</span><span class="st">'inline'</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>          ))</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</section>
 <section id="integration-and-differentiation-via-python" class="level2">
 <h2 class="anchored" data-anchor-id="integration-and-differentiation-via-python">Integration and Differentiation via python</h2>
 <p>A quick reminder, you can perform differentiation and integration (definite or indefinite) as follows:</p>
@@ -354,23 +374,22 @@ function openCity(evt, cityName) {
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>result</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">## To evaluate a function, substitute the value of x.</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># result.subs(x,sp.pi/3)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <p><span class="math inline">\(\displaystyle - 3 \sin{\left(x \right)} \cos^{2}{\left(x \right)}\)</span></p>
 </div>
 </div>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>inf <span class="op">=</span> sp.oo</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> sp.symbols(<span class="st">'x y z'</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Indefinite integrals</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sp.ln(x)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>sp.integrate(f,x)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Definite integrals</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>sp.integrate(sp.exp(<span class="op">-</span>x), (x, <span class="dv">0</span>, inf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> sp.symbols(<span class="st">'x y z'</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Indefinite integrals</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sp.ln(x)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sp.integrate(f,x)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Definite integrals</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>sp.integrate(sp.exp(<span class="op">-</span>x), (x, <span class="dv">0</span>, inf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
 <p><span class="math inline">\(\displaystyle 1\)</span></p>
 </div>
 </div>
@@ -391,10 +410,15 @@ Warning
 </div>
 </div>
 </section>
-<section id="tangent-lines" class="level2">
-<h2 class="anchored" data-anchor-id="tangent-lines">Tangent Lines</h2>
-<section id="example-1" class="level3">
-<h3 class="anchored" data-anchor-id="example-1">Example 1:</h3>
+<section id="tangents-to-parametric-curves" class="level2">
+<h2 class="anchored" data-anchor-id="tangents-to-parametric-curves">Tangents to Parametric Curves</h2>
+<p>Steps:</p>
+<ul>
+<li>For curve <span class="math inline">\(C = (x(t), y(t))\)</span>, find <span class="math inline">\(\frac{dy}{dt}\)</span> and <span class="math inline">\(\frac{dx}{dt}\)</span>.</li>
+<li>Find <span class="math inline">\(\frac{dy}{dx}\)</span></li>
+</ul>
+<section id="example-1-first-derivative" class="level3">
+<h3 class="anchored" data-anchor-id="example-1-first-derivative">Example 1 (First derivative):</h3>
 <p><em>Find the tangent to the line <span class="math inline">\(x = sec(t), y = tan(t)\)</span> at <span class="math inline">\((\sqrt(2),1)\)</span> where <span class="math inline">\(t=\pi/4\)</span>.</em></p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>)</span>
@@ -406,8 +430,8 @@ Warning
 <div class="cell-output cell-output-display">
 <p><img src="10_2ParametricCalculus_files/figure-html/cell-5-output-1.png" width="252" height="374"></p>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="29">
-<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14c3a2087d90&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x145ca4253670&gt;</code></pre>
 </div>
 </div>
 <p>Now we need to find the slope:</p>
@@ -442,18 +466,122 @@ Warning
 <div class="cell-output cell-output-display">
 <p><img src="10_2ParametricCalculus_files/figure-html/cell-7-output-1.png" width="249" height="374"></p>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="31">
-<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14c3a219f460&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x145ca192b910&gt;</code></pre>
 </div>
 </div>
-<p><em>Step 1</em> Find <span class="math inline">\(dy/dx\)</span> at the said point.</p>
-<p><span class="math display">\[
-\frac{dy}{dx} = \frac{\sec{t}}{\tan{t}} = \csc{t}
+</section>
+<section id="example-2-second-derivatives" class="level3">
+<h3 class="anchored" data-anchor-id="example-2-second-derivatives">Example 2 (Second derivatives):</h3>
+<p>Find <span class="math inline">\(\frac{d^{2}y}{dx^{2}}\)</span> as a function of <span class="math inline">\(t\)</span> if: <span class="math display">\[
+x = t − t^2;\quad y = t − t^3
 \]</span></p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramterizations</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> t <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> t <span class="op">-</span> t<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot curve</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>splot((f, g), (t, <span class="op">-</span><span class="dv">1</span>, <span class="fl">1.5</span>))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Find first and second derivates to curve</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>dy_dx <span class="op">=</span> sp.diff(g)<span class="op">/</span>sp.diff(f)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>d2y_dx <span class="op">=</span> sp.simplify(sp.diff(dy_dx)<span class="op">/</span>sp.diff(f))</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Display resulting equations</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'First derivative:'</span>, dy_dx)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'Second derivative:'</span>, d2y_dx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="10_2ParametricCalculus_files/figure-html/cell-8-output-1.png" width="373" height="374"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p>First derivative: <span class="math inline">\(\frac{1 - 3 t^{2}}{1 - 2 t}\)</span></p>
+</div>
+<div class="cell-output cell-output-display">
+<p>Second derivative: <span class="math inline">\(\frac{2 \left(3 t^{2} - 3 t \left(2 t - 1\right) - 1\right)}{\left(2 t - 1\right)^{3}}\)</span></p>
+</div>
+</div>
+<p>Now we need to find the slope:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>evalat <span class="op">=</span> <span class="op">-</span><span class="fl">0.75</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> f.subs(t, evalat)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y0 <span class="op">=</span> g.subs(t, evalat)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>slope <span class="op">=</span> dy_dx.subs(t, evalat)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="ss">f"Slope at t = </span><span class="sc">{</span>evalat<span class="sc">}</span><span class="ss"> is:"</span>, slope)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p>Slope at t = -0.75 is: <span class="math inline">\(-0.275\)</span></p>
+</div>
+</div>
+<p>Let’s replot the curve with the tangent.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x   <span class="op">=</span> t</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>y_t <span class="op">=</span> slope <span class="op">*</span> (t <span class="op">-</span> x0) <span class="op">+</span> y0</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot both the curve and the tangent.</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>splot((f, g,    (t, <span class="op">-</span>sp.pi<span class="op">/</span><span class="dv">3</span>, sp.pi<span class="op">/</span><span class="dv">3</span>)), </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      (t, y_t,  (t, evalat <span class="op">-</span> <span class="dv">1</span>, evalat <span class="op">+</span> <span class="dv">1</span>)),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="10_2ParametricCalculus_files/figure-html/cell-10-output-1.png" width="374" height="189"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x145ca1633670&gt;</code></pre>
+</div>
+</div>
 </section>
 </section>
-<section id="areas" class="level2">
-<h2 class="anchored" data-anchor-id="areas">Areas</h2>
+<section id="areas-of-parametric-cruves" class="level2">
+<h2 class="anchored" data-anchor-id="areas-of-parametric-cruves">Areas of Parametric Cruves</h2>
+<section id="example-3-area-of-astroid" class="level3">
+<h3 class="anchored" data-anchor-id="example-3-area-of-astroid">Example 3 (Area of astroid)</h3>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramterizations</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sp.cos(t)<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sp.sin(t)<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot curve</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>splot((f, g), (t, <span class="dv">0</span>, <span class="dv">2</span><span class="op">*</span> sp.pi))</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">## Find first and second derivates to curve</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>dy_dx <span class="op">=</span> sp.diff(g)<span class="op">/</span>sp.diff(f)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>d2y_dx <span class="op">=</span> sp.simplify(sp.diff(dy_dx)<span class="op">/</span>sp.diff(f))</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Display resulting equations</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'First derivative:'</span>, dy_dx)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'Second derivative:'</span>, d2y_dx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="10_2ParametricCalculus_files/figure-html/cell-11-output-1.png" width="373" height="373"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p>First derivative: <span class="math inline">\(- \sin{\left(t \right)} / \cos{\left(t \right)}\)</span></p>
+</div>
+<div class="cell-output cell-output-display">
+<p>Second derivative: <span class="math inline">\(\frac{1}{3 \sin{\left(t \right)} \cos^{4}{\left(t \right)}}\)</span></p>
+</div>
+</div>
+<p>To find the area we make use of the symmetry of the object. We integrate <span class="math inline">\(y\)</span> from <span class="math inline">\(x=[0,1]\)</span> and multiply it by 4:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> sp.diff(f, t)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> g</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">"Integrand:"</span>, y<span class="op">*</span>dx)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>sp.integrate(<span class="dv">4</span><span class="op">*</span>y<span class="op">*</span>dx, (t, sp.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p>Integrand: <span class="math inline">\(- 3 \sin^{4}{\left(t \right)} \cos^{2}{\left(t \right)}\)</span></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<p><span class="math inline">\(\displaystyle \frac{3 \pi}{8}\)</span></p>
+</div>
+</div>
+</section>
+</section>
+<section id="length-of-parametric-curves" class="level2">
+<h2 class="anchored" data-anchor-id="length-of-parametric-curves">Length of Parametric Curves</h2>
 
 
 </section>

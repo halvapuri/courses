@@ -366,6 +366,21 @@ function openCity(evt, cityName) {
 </section>
 <section id="cycloid" class="level3">
 <h3 class="anchored" data-anchor-id="cycloid">Cycloid</h3>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">8</span><span class="op">*</span>np.pi, <span class="dv">400</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> a <span class="op">*</span> (t <span class="op">-</span> np.sin(t))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> a <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> np.cos(t))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>plotter(x,y)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>centeraxes()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="10_1ParametricPlots_files/figure-html/cell-5-output-1.png" width="540" height="84"></p>
+</div>
+</div>
 </section>
 <section id="brachistochrone-and-tautochrone" class="level3">
 <h3 class="anchored" data-anchor-id="brachistochrone-and-tautochrone">Brachistochrone and Tautochrone</h3>
@@ -378,89 +393,89 @@ function openCity(evt, cityName) {
 </section>
 <div class="ddm-box">
 <p>Drawing the Batman curve.</p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="5">
 <details>
 <summary>Non-parametric version</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">1000</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sf(x):</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(<span class="dv">1</span><span class="op">-</span>x<span class="op">**</span><span class="dv">2</span>)                           <span class="co"># semicircle</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ef(x):</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">3</span><span class="op">*</span>sf(x<span class="op">/</span><span class="dv">7</span>)                             <span class="co"># ellipse</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sh(x):</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">4.2</span> <span class="op">-</span> <span class="fl">.5</span><span class="op">*</span>x <span class="op">-</span><span class="fl">2.8</span><span class="op">*</span>sf(<span class="fl">.5</span><span class="op">*</span>x <span class="op">-</span><span class="fl">.5</span>)          <span class="co"># shoulders</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bf(x):</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sf(<span class="bu">abs</span>(<span class="dv">2</span> <span class="op">-</span> x) <span class="op">-</span> <span class="dv">1</span>) <span class="op">-</span> x<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">11</span> <span class="op">+</span> <span class="fl">.5</span><span class="op">*</span>x <span class="op">-</span><span class="dv">3</span> <span class="co"># bottom</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>cl_x <span class="op">=</span> [<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="fl">0.8</span>,<span class="dv">1</span>]</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>cl_xn <span class="op">=</span> [<span class="op">-</span>x <span class="cf">for</span> x <span class="kw">in</span> cl_x]</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>cl_y <span class="op">=</span> [<span class="fl">1.7</span>, <span class="fl">1.7</span>, <span class="fl">2.6</span>, <span class="fl">0.9</span>]</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> p(f,xmin,xmax, flipy <span class="op">=</span> <span class="va">False</span>):</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"symmetric plot across y-axis"</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(xmin, xmax, <span class="dv">100</span>)</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> f(x)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> flipy: </span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="op">-</span>y</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> plt.plot(x, y)</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [<span class="op">-</span>i <span class="cf">for</span> i <span class="kw">in</span> x]</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.plot(x, y)</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ax</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>p(ef,<span class="dv">3</span>,<span class="dv">7</span>) </span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>p(ef,<span class="dv">4</span>,<span class="dv">7</span>, flipy <span class="op">=</span> <span class="va">True</span>) </span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>p(sh,<span class="dv">1</span>,<span class="dv">3</span>)</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>p(bf,<span class="dv">0</span>,<span class="dv">4</span>) </span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>plt.plot(cl_x, cl_y)</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>plt.plot(cl_xn, cl_y)</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">1000</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sf(x):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sqrt(<span class="dv">1</span><span class="op">-</span>x<span class="op">**</span><span class="dv">2</span>)                           <span class="co"># semicircle</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ef(x):</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">3</span><span class="op">*</span>sf(x<span class="op">/</span><span class="dv">7</span>)                             <span class="co"># ellipse</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sh(x):</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">4.2</span> <span class="op">-</span> <span class="fl">.5</span><span class="op">*</span>x <span class="op">-</span><span class="fl">2.8</span><span class="op">*</span>sf(<span class="fl">.5</span><span class="op">*</span>x <span class="op">-</span><span class="fl">.5</span>)          <span class="co"># shoulders</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bf(x):</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sf(<span class="bu">abs</span>(<span class="dv">2</span> <span class="op">-</span> x) <span class="op">-</span> <span class="dv">1</span>) <span class="op">-</span> x<span class="op">**</span><span class="dv">2</span><span class="op">/</span><span class="dv">11</span> <span class="op">+</span> <span class="fl">.5</span><span class="op">*</span>x <span class="op">-</span><span class="dv">3</span> <span class="co"># bottom</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>cl_x <span class="op">=</span> [<span class="dv">0</span>,<span class="fl">0.5</span>,<span class="fl">0.8</span>,<span class="dv">1</span>]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>cl_xn <span class="op">=</span> [<span class="op">-</span>x <span class="cf">for</span> x <span class="kw">in</span> cl_x]</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>cl_y <span class="op">=</span> [<span class="fl">1.7</span>, <span class="fl">1.7</span>, <span class="fl">2.6</span>, <span class="fl">0.9</span>]</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> p(f,xmin,xmax, flipy <span class="op">=</span> <span class="va">False</span>):</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">"symmetric plot across y-axis"</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(xmin, xmax, <span class="dv">100</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> f(x)</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> flipy: </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> <span class="op">-</span>y</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    p1 <span class="op">=</span> plt.plot(x, y)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [<span class="op">-</span>i <span class="cf">for</span> i <span class="kw">in</span> x]</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    ax <span class="op">=</span> plt.plot(x, y)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ax</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>p(ef,<span class="dv">3</span>,<span class="dv">7</span>) </span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>p(ef,<span class="dv">4</span>,<span class="dv">7</span>, flipy <span class="op">=</span> <span class="va">True</span>) </span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>p(sh,<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>p(bf,<span class="dv">0</span>,<span class="dv">4</span>) </span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>plt.plot(cl_x, cl_y)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>plt.plot(cl_xn, cl_y)</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<p><img src="10_1ParametricPlots_files/figure-html/cell-5-output-1.png" width="569" height="411"></p>
+<p><img src="10_1ParametricPlots_files/figure-html/cell-6-output-1.png" width="569" height="411"></p>
 </div>
 </div>
 <p>Below is a parametrized version of the plot.</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="6">
 <details>
 <summary>Parametric version</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sm</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sm.symbols(<span class="st">'x'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>h_ <span class="op">=</span> sm.symbols(<span class="st">'h_'</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (x <span class="op">/</span> <span class="dv">7</span>)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> ((x <span class="op">+</span> <span class="dv">3</span>) <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> sm.S(<span class="dv">3</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>) <span class="op">*</span> sm.sqrt(<span class="dv">4</span> <span class="op">-</span> (x <span class="op">+</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        sm.S(<span class="dv">6</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> ((<span class="dv">3</span> <span class="op">-</span> x) <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> sm.S(<span class="dv">3</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>) <span class="op">*</span> sm.sqrt(<span class="dv">4</span> <span class="op">-</span> (x <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        sm.S(<span class="dv">6</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>))</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> (<span class="dv">3</span><span class="op">*</span>(sm.Abs(x <span class="op">-</span> sm.S.Half) <span class="op">+</span> sm.Abs(x <span class="op">+</span> sm.S.Half) <span class="op">+</span> <span class="dv">6</span>) <span class="op">-</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                <span class="dv">11</span><span class="op">*</span>(sm.Abs(x <span class="op">-</span> sm.S(<span class="dv">3</span>)<span class="op">/</span><span class="dv">4</span>) <span class="op">+</span> sm.Abs(x <span class="op">+</span> sm.S(<span class="dv">3</span>)<span class="op">/</span><span class="dv">4</span>)))<span class="op">/</span><span class="dv">2</span> </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> ((h <span class="op">-</span> l) <span class="op">*</span> sm.Heaviside(x <span class="op">+</span> <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        (r <span class="op">-</span> h) <span class="op">*</span> sm.Heaviside(x <span class="op">-</span> <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        (l <span class="op">-</span> w) <span class="op">*</span> sm.Heaviside(x <span class="op">+</span> <span class="dv">3</span>, <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        (w <span class="op">-</span> r) <span class="op">*</span> sm.Heaviside(x <span class="op">-</span> <span class="dv">3</span>, <span class="dv">0</span>) <span class="op">+</span> </span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        w)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> (sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> (sm.Abs(x <span class="op">/</span> <span class="dv">2</span>) <span class="op">+</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (sm.Abs(sm.Abs(x) <span class="op">-</span> <span class="dv">2</span>) <span class="op">-</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">112</span> <span class="op">*</span> (<span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">33</span>) <span class="op">-</span> <span class="dv">7</span>) <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> x)<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> <span class="dv">3</span>) <span class="op">*</span> ((x <span class="op">+</span> <span class="dv">4</span>) <span class="op">/</span> sm.Abs(x <span class="op">+</span> <span class="dv">4</span>) <span class="op">-</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        (x <span class="op">-</span> <span class="dv">4</span>) <span class="op">/</span> sm.Abs(x <span class="op">-</span> <span class="dv">4</span>)) <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (x <span class="op">/</span> <span class="dv">7</span>)<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>sm.plot(f, g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sm</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sm.symbols(<span class="st">'x'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>h_ <span class="op">=</span> sm.symbols(<span class="st">'h_'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (x <span class="op">/</span> <span class="dv">7</span>)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> ((x <span class="op">+</span> <span class="dv">3</span>) <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> sm.S(<span class="dv">3</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>) <span class="op">*</span> sm.sqrt(<span class="dv">4</span> <span class="op">-</span> (x <span class="op">+</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        sm.S(<span class="dv">6</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> ((<span class="dv">3</span> <span class="op">-</span> x) <span class="op">/</span> <span class="dv">2</span> <span class="op">-</span> sm.S(<span class="dv">3</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>) <span class="op">*</span> sm.sqrt(<span class="dv">4</span> <span class="op">-</span> (x <span class="op">-</span> <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        sm.S(<span class="dv">6</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> sm.sqrt(<span class="dv">10</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>h <span class="op">=</span> (<span class="dv">3</span><span class="op">*</span>(sm.Abs(x <span class="op">-</span> sm.S.Half) <span class="op">+</span> sm.Abs(x <span class="op">+</span> sm.S.Half) <span class="op">+</span> <span class="dv">6</span>) <span class="op">-</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                <span class="dv">11</span><span class="op">*</span>(sm.Abs(x <span class="op">-</span> sm.S(<span class="dv">3</span>)<span class="op">/</span><span class="dv">4</span>) <span class="op">+</span> sm.Abs(x <span class="op">+</span> sm.S(<span class="dv">3</span>)<span class="op">/</span><span class="dv">4</span>)))<span class="op">/</span><span class="dv">2</span> </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> ((h <span class="op">-</span> l) <span class="op">*</span> sm.Heaviside(x <span class="op">+</span> <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        (r <span class="op">-</span> h) <span class="op">*</span> sm.Heaviside(x <span class="op">-</span> <span class="dv">1</span>, <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        (l <span class="op">-</span> w) <span class="op">*</span> sm.Heaviside(x <span class="op">+</span> <span class="dv">3</span>, <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        (w <span class="op">-</span> r) <span class="op">*</span> sm.Heaviside(x <span class="op">-</span> <span class="dv">3</span>, <span class="dv">0</span>) <span class="op">+</span> </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        w)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> (sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> (sm.Abs(x <span class="op">/</span> <span class="dv">2</span>) <span class="op">+</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (sm.Abs(sm.Abs(x) <span class="op">-</span> <span class="dv">2</span>) <span class="op">-</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">112</span> <span class="op">*</span> (<span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">33</span>) <span class="op">-</span> <span class="dv">7</span>) <span class="op">*</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>        sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (sm.S(<span class="dv">1</span>) <span class="op">/</span> <span class="dv">7</span> <span class="op">*</span> x)<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> <span class="dv">3</span>) <span class="op">*</span> ((x <span class="op">+</span> <span class="dv">4</span>) <span class="op">/</span> sm.Abs(x <span class="op">+</span> <span class="dv">4</span>) <span class="op">-</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>        (x <span class="op">-</span> <span class="dv">4</span>) <span class="op">/</span> sm.Abs(x <span class="op">-</span> <span class="dv">4</span>)) <span class="op">-</span> <span class="dv">3</span> <span class="op">*</span> sm.sqrt(<span class="dv">1</span> <span class="op">-</span> (x <span class="op">/</span> <span class="dv">7</span>)<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>sm.plot(f, g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;lambdifygenerated-3&gt;:2: RuntimeWarning: invalid value encountered in sqrt
   return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="10_1ParametricPlots_files/figure-html/cell-6-output-2.png" width="662" height="470"></p>
+<p><img src="10_1ParametricPlots_files/figure-html/cell-7-output-2.png" width="662" height="470"></p>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x1486c0c5bf10&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x1515a06c8be0&gt;</code></pre>
 </div>
 </div>
 <p>The bottom wings are missing. Most likely some part of the equation is missing. You can experiment with the equations if you want.</p>
