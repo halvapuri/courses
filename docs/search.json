@@ -634,7 +634,7 @@
     "href": "C0calculusI/home_calculusI.html#slides-and-notebooks",
     "title": "Calculus I",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\n\nFunctions"
+    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\n\nFunctions\nLimits and Continuity"
   },
   {
     "objectID": "C0calculusI/lectures/test.html",
@@ -852,5 +852,33 @@
     "title": "Sympy Basics (almost)",
     "section": "Expressions",
     "text": "Expressions\n\n\nSubstitutions\nfrom sympy import symbols, sin, cos\n\n# Define symbols\nx, y = symbols('x y')\n\n# Define the original expression\nexpr = sin(2*x) + cos(2*x)\n\n# Define the substitution for x\nsubstitution = {x: y + 2}\n\n# Apply the substitution\nexpr_substituted = expr.subs(substitution)\n\n# Print the result\nprint(expr_substituted)\n\n\nsin(2*y + 4) + cos(2*y + 4)\n\n\n\n\nCheck if two expressions are the same\nx = symbols('x')\n\nexpr1 = 9/8 - 9 * sp.cos(4*x)/8\nexpr2 = 9 * sp.sin(x)**2 * sp.cos(x)**2\n\nexpr1.equals(expr2)\n\n\nTrue"
+  },
+  {
+    "objectID": "C0calculusII/home_calculusII.html#quizzes",
+    "href": "C0calculusII/home_calculusII.html#quizzes",
+    "title": "Calculus II",
+    "section": "",
+    "text": "We will most likely have three quizzes. Tentatively:\nQuiz 1 (5 marks, 4th week)\nQuiz 2 (10 marks, 7th week)\nQuiz 3 (10 marks, 13th week)"
+  },
+  {
+    "objectID": "C0calculusII/home_calculusII.html#assignments",
+    "href": "C0calculusII/home_calculusII.html#assignments",
+    "title": "Calculus II",
+    "section": "Assignments",
+    "text": "Assignments\nAssignment 1, due Oct 1"
+  },
+  {
+    "objectID": "C0calculusI/home_calculusI.html#quizzes",
+    "href": "C0calculusI/home_calculusI.html#quizzes",
+    "title": "Calculus I",
+    "section": "Quizzes",
+    "text": "Quizzes\nWe will most likely have three quizzes. Tentatively:\n\nQuiz 1 (5 marks, 4th week)\n\nQuiz 2 (10 marks, 7th week)\n\nQuiz 3 (10 marks, 13th week)\n\n\nN.B.: If you can’t take the quiz for some reason, you need to inform us in advance."
+  },
+  {
+    "objectID": "C0calculusI/home_calculusI.html#assignments",
+    "href": "C0calculusI/home_calculusI.html#assignments",
+    "title": "Calculus I",
+    "section": "Assignments",
+    "text": "Assignments\nAssignment 1, due Oct 1"
   }
 ]
