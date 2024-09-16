@@ -280,6 +280,8 @@ function openCity(evt, cityName) {
   <li><a href="#limits" id="toc-limits" class="nav-link" data-scroll-target="#limits">Limits</a>
   <ul class="collapse">
   <li><a href="#of-rational-functions" id="toc-of-rational-functions" class="nav-link" data-scroll-target="#of-rational-functions">Of rational functions</a></li>
+  <li><a href="#example---limit-with-denominator-0" id="toc-example---limit-with-denominator-0" class="nav-link" data-scroll-target="#example---limit-with-denominator-0">Example - Limit with denominator 0</a></li>
+  <li><a href="#sandwich-theorem" id="toc-sandwich-theorem" class="nav-link" data-scroll-target="#sandwich-theorem">Sandwich theorem</a></li>
   <li><a href="#one-sided-limits" id="toc-one-sided-limits" class="nav-link" data-scroll-target="#one-sided-limits">One-sided limits</a></li>
   <li><a href="#limits-rigorous-definition" id="toc-limits-rigorous-definition" class="nav-link" data-scroll-target="#limits-rigorous-definition">Limits (Rigorous definition)</a></li>
   <li><a href="#limits-involving-infinity" id="toc-limits-involving-infinity" class="nav-link" data-scroll-target="#limits-involving-infinity">Limits involving infinity</a></li>
@@ -387,7 +389,7 @@ function openCity(evt, cityName) {
 <p><img src="2limitscontinuity_files/figure-html/cell-4-output-1.png" width="662" height="467"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x148f22ed8f40&gt;</code></pre>
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14ecb699f8e0&gt;</code></pre>
 </div>
 </div>
 <p>We can also evaluate this numerically:</p>
@@ -416,7 +418,53 @@ function openCity(evt, cityName) {
 <p><img src="2limitscontinuity_files/figure-html/cell-5-output-1.png" width="662" height="470"></p>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x148eedf48ee0&gt;</code></pre>
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14ecb4709d00&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="example---limit-with-denominator-0" class="level3">
+<h3 class="anchored" data-anchor-id="example---limit-with-denominator-0">Example - Limit with denominator 0</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sp.symbols(<span class="st">'x'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> (sp.sqrt(x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">100</span>) <span class="op">-</span> <span class="dv">10</span>)<span class="op">/</span> x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>sp.plot(f, (x, <span class="op">-</span><span class="dv">1</span> , <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2limitscontinuity_files/figure-html/cell-6-output-1.png" width="662" height="470"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14ecb4678f40&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="sandwich-theorem" class="level3">
+<h3 class="anchored" data-anchor-id="sandwich-theorem">Sandwich theorem</h3>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sp.symbols(<span class="st">'x'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>xi, xf <span class="op">=</span> <span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> sp.sin(<span class="dv">1</span><span class="op">/</span>x<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>upper <span class="op">=</span> x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>lower <span class="op">=</span> <span class="op">-</span>x<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>sp.plot(f, (x, xi , xf))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>sp.plot((f, (x, xi , xf)),</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        (upper, (x,xi, xf)),</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        (lower, (x, xi, xf))</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2limitscontinuity_files/figure-html/cell-7-output-1.png" width="662" height="470"></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="2limitscontinuity_files/figure-html/cell-7-output-2.png" width="662" height="470"></p>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14ecb45ec610&gt;</code></pre>
 </div>
 </div>
 </section>
