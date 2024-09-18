@@ -971,5 +971,117 @@
     "title": "Limits and Continuity",
     "section": "Limits",
     "text": "Limits\n\nOf rational functions\n\n# Limits of rational functions\n\nx = sp.symbols('x')\np = x**3 + 4*x**2 - 3\nq = x**2 + 5\n\nrp = p/q\n\nevalat = -1\nresult = sp.limit(rp, x, evalat)\n\n# sp.plot(rp, (x, -2,0))\nmarker['args'] = [evalat, result]\n\nsp.plot(rp, (x, -2,0), markers = marker)\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14ecb4709d00&gt;\n\n\n\n\nExample - Limit with denominator 0\n\nimport sympy as sp\nx = sp.symbols('x')\n\nf = (sp.sqrt(x**2 + 100) - 10)/ x**2\n\nsp.plot(f, (x, -1 , 1))\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14ecb4678f40&gt;\n\n\n\n\nSandwich theorem\n\nimport sympy as sp\nx = sp.symbols('x')\n\nxi, xf = -1,1\n\nf = x**2 * sp.sin(1/x**2)\nupper = x**2\nlower = -x**2\n\nsp.plot(f, (x, xi , xf))\n\nsp.plot((f, (x, xi , xf)),\n        (upper, (x,xi, xf)),\n        (lower, (x, xi, xf))\n)\n\n\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x14ecb45ec610&gt;\n\n\n\n\nOne-sided limits\n\n\nLimits (Rigorous definition)\n\n\nLimits involving infinity\n\nOblique asymptotes"
+  },
+  {
+    "objectID": "C0history/1_conics.html",
+    "href": "C0history/1_conics.html",
+    "title": "Conics (A History)",
+    "section": "",
+    "text": "Conic sections, the curves obtained by slicing a cone at various angles, have a long and rich history in mathematics, dating back to Ancient Greece. These curves include ellipses, parabolas, and hyperbolas, and have been studied for over 2,000 years due to their theoretical beauty and practical applications. Here’s an overview of their historical development and key applications:"
+  },
+  {
+    "objectID": "C0history/1_conics.html#ancient-greece-circa-4th-century-bce",
+    "href": "C0history/1_conics.html#ancient-greece-circa-4th-century-bce",
+    "title": "Conics (A History)",
+    "section": "1 Ancient Greece (circa 4th century BCE)",
+    "text": "1 Ancient Greece (circa 4th century BCE)\nThe first known study of conic sections was by Menaechmus, a student of Plato in the 4th century BCE. He discovered the curves while investigating solutions to geometric problems, specifically the famous Delian problem (doubling the cube). His work established the basic forms of the conic sections, showing that by cutting a cone with a plane at different angles, one could derive different curves:\nEllipse (cutting the cone at an angle less than the slope of the cone).\nParabola (cutting parallel to the cone’s slope).\nHyperbola (cutting steeper than the cone’s slope)."
+  },
+  {
+    "objectID": "C0history/1_conics.html#apollonius-of-perga-circa-262190-bce",
+    "href": "C0history/1_conics.html#apollonius-of-perga-circa-262190-bce",
+    "title": "Conics (A History)",
+    "section": "2 Apollonius of Perga (circa 262–190 BCE)",
+    "text": "2 Apollonius of Perga (circa 262–190 BCE)\nOne of the most influential figures in the study of conic sections was Apollonius of Perga, who is often referred to as the “Great Geometer.” His treatise, Conics, is a comprehensive text that systematically explored these curves. Apollonius is credited with giving the conic sections their modern names and rigorously analyzing their properties. He studied the intersections, tangents, and focus-directrix properties of these curves. His work laid the foundation for much of the later study in mathematics and astronomy."
+  },
+  {
+    "objectID": "C0history/1_conics.html#archimedes-circa-287212-bce",
+    "href": "C0history/1_conics.html#archimedes-circa-287212-bce",
+    "title": "Conics (A History)",
+    "section": "3 Archimedes (circa 287–212 BCE)",
+    "text": "3 Archimedes (circa 287–212 BCE)\nArchimedes applied conic sections in various practical and theoretical contexts. He used parabolas in his work on quadrature (the problem of determining the area under a curve) and explored their use in physics. Archimedes calculated the area enclosed by a parabola using geometric methods, a precursor to integral calculus."
+  },
+  {
+    "objectID": "C0history/1_conics.html#middle-ages-and-the-islamic-golden-age",
+    "href": "C0history/1_conics.html#middle-ages-and-the-islamic-golden-age",
+    "title": "Conics (A History)",
+    "section": "4 Middle Ages and the Islamic Golden Age",
+    "text": "4 Middle Ages and the Islamic Golden Age\nDuring the Islamic Golden Age (circa 8th–14th centuries), scholars such as Ibn al-Haytham (Alhazen) and Omar Khayyam built on the work of the Greeks. Alhazen explored the optics of lenses and mirrors using conic sections, especially parabolas, which are important in the study of light reflection. Khayyam extended the study of conic sections to solve algebraic problems, such as cubic equations."
+  },
+  {
+    "objectID": "C0history/1_conics.html#renaissance-and-early-modern-period",
+    "href": "C0history/1_conics.html#renaissance-and-early-modern-period",
+    "title": "Conics (A History)",
+    "section": "5 Renaissance and Early Modern Period",
+    "text": "5 Renaissance and Early Modern Period\nConic sections gained new attention during the Renaissance, when European scholars rediscovered and translated ancient Greek and Arabic works. Johannes Kepler (1571–1630) used conic sections in his laws of planetary motion, revolutionizing astronomy. He demonstrated that planetary orbits are ellipses, with the Sun at one of the foci. Kepler’s laws formed a cornerstone of Newton’s theory of gravitation.\nRené Descartes (1596–1650) and Pierre de Fermat (1601–1665) furthered the study of conic sections by developing the early forms of analytic geometry, allowing these curves to be described using algebraic equations. This shifted the study of geometry into a more algebraic framework, simplifying the representation and manipulation of conic sections."
+  },
+  {
+    "objectID": "C0history/1_conics.html#isaac-newton-16421727",
+    "href": "C0history/1_conics.html#isaac-newton-16421727",
+    "title": "Conics (A History)",
+    "section": "6 Isaac Newton (1642–1727)",
+    "text": "6 Isaac Newton (1642–1727)\nIsaac Newton used conic sections in his work on gravitation and mechanics. In his Philosophiæ Naturalis Principia Mathematica, Newton derived the trajectories of objects under gravity and demonstrated that these paths could be parabolas, hyperbolas, or ellipses, depending on the object’s velocity and distance from the Sun."
+  },
+  {
+    "objectID": "C0history/1_conics.html#modern-applications",
+    "href": "C0history/1_conics.html#modern-applications",
+    "title": "Conics (A History)",
+    "section": "7 Modern Applications",
+    "text": "7 Modern Applications\nConic sections continue to be of critical importance in various fields today:\nAstronomy: The orbits of planets, comets, and other celestial bodies are elliptical (Kepler’s laws).\nPhysics: Parabolic reflectors and antennas, such as those used in telescopes and satellite dishes, are shaped by the properties of parabolas to focus signals and light.\nEngineering: Hyperbolas are used in navigation systems, such as LORAN and GPS, to determine location based on the difference in distances to multiple fixed points.\nArchitecture: The curves are used in the design of arches, bridges, and buildings to distribute loads efficiently.\nConic sections are an enduring element of geometry and mathematics, and their utility spans centuries, from classical problems to modern technology."
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_5ConicSections.html",
+    "href": "C0calculusII/lectures/10_5ConicSections.html",
+    "title": "Conic Sections",
+    "section": "",
+    "text": "Some plotting routines. Click to expand\nimport numpy as np\nimport sympy as sp\nimport matplotlib.pyplot as plt\nfrom sympy import plot_parametric, symbols\nfrom IPython.display import display, Markdown\nfrom functools import partial\n\n## This is a 'partial function' so that we don't have to set figure size and aspect ratio every time.\nsplot = partial(plot_parametric, aspect_ratio = (1,1),size=(4,4),axis_center = (0,0))\n\n\n\ndef _plotter(x, y, create = False):\n    if create: plt.figure(figsize=(6, 6))\n    plt.plot(x, y)\n    plt.gca().set_aspect('equal', adjustable='box')\n\n    return\n\ndef _centeraxes():\n    ax = plt.gca()\n    # Move left y-axis and bottom x-axis to centre, passing through (0,0)\n\n    ax.spines['left'].set_position('zero')\n    ax.spines['bottom'].set_position('zero')\n\n    # Eliminate upper and right axes\n    ax.spines['right'].set_color('none')\n    ax.spines['top'].set_color('none')\n\n    # Show ticks in the left and lower axes only\n    ax.xaxis.set_ticks_position('bottom')\n    ax.yaxis.set_ticks_position('left')\n    return\n\ndef _displayM(text, expr):\n  \"\"\"\n  Display text and expression inline. \n  \"\"\"\n  display(Markdown('{} {}'.format(\n            text,\n            sp.latex(expr, mode='inline')\n          ))\n  )"
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_5ConicSections.html#section",
+    "href": "C0calculusII/lectures/10_5ConicSections.html#section",
+    "title": "Conic Sections",
+    "section": "",
+    "text": "Some plotting routines. Click to expand\nimport numpy as np\nimport sympy as sp\nimport matplotlib.pyplot as plt\nfrom sympy import plot_parametric, symbols\nfrom IPython.display import display, Markdown\nfrom functools import partial\n\n## This is a 'partial function' so that we don't have to set figure size and aspect ratio every time.\nsplot = partial(plot_parametric, aspect_ratio = (1,1),size=(4,4),axis_center = (0,0))\n\n\n\ndef _plotter(x, y, create = False):\n    if create: plt.figure(figsize=(6, 6))\n    plt.plot(x, y)\n    plt.gca().set_aspect('equal', adjustable='box')\n\n    return\n\ndef _centeraxes():\n    ax = plt.gca()\n    # Move left y-axis and bottom x-axis to centre, passing through (0,0)\n\n    ax.spines['left'].set_position('zero')\n    ax.spines['bottom'].set_position('zero')\n\n    # Eliminate upper and right axes\n    ax.spines['right'].set_color('none')\n    ax.spines['top'].set_color('none')\n\n    # Show ticks in the left and lower axes only\n    ax.xaxis.set_ticks_position('bottom')\n    ax.yaxis.set_ticks_position('left')\n    return\n\ndef _displayM(text, expr):\n  \"\"\"\n  Display text and expression inline. \n  \"\"\"\n  display(Markdown('{} {}'.format(\n            text,\n            sp.latex(expr, mode='inline')\n          ))\n  )"
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_5ConicSections.html#parabola",
+    "href": "C0calculusII/lectures/10_5ConicSections.html#parabola",
+    "title": "Conic Sections",
+    "section": "Parabola",
+    "text": "Parabola\n\n%matplotlib inline\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef conic(x, tp = 'parabola', p = {}):\n  \"\"\"\n  x = values at which to compute\n  tp = type of conic\n  p = parameters\n  \"\"\"\n  if tp == 'parabola': \n    y = p['a'] * (x - p['h'])**2 + p['k']\n    focus = {'x': p['h'], \n              'y': p['k'] + 1/(4 * p['a'])}\n\n  if tp == 'circle':\n    circle_x = p['c_x'] + p['r'] * np.cos(x)\n    circle_y = p['c_y'] + p['r'] * np.sin(x)\n\n    return circle_x, circle_y\n\n\n  return y, focus\n\n## Generate parabola\nx = np.linspace(-2, 2, 400)\nparams = {'a': 1, 'h': 0, 'k': 0}\ny, focus = conic(x, 'parabola', p = params)\n\n## Point of observation\nind = 300\npb_x, pb_y = np.abs(x[ind]), np.abs(y[ind])\n\n# Plot\nplt.figure(figsize=(8, 8))\nplt.plot(x, y, label='$y = x^2$', color='blue')\nplt.scatter(focus['x'], focus['y'], color='green', zorder=5, s=100)\nplt.text(focus['x'] + 0.1, focus['y'], 'F')\n\nplt.text(focus['x'] -1.95, -focus['y']-0.13, 'Directrix', fontsize= 15)\n\nplt.scatter(pb_x, pb_y, color='green', zorder = 3, s = 100)\n\n## Plot settings\nplt.xlim(-2, 2)\nplt.ylim(-2, 2)\nplt.grid(True)\nplt.axhline(-focus['y'], color='red', linewidth=2, ls = '--')\nplt.axhline(0, color='black', linewidth=1)\nplt.axvline(0, color='black', linewidth=1)\n\n#__________________________________________\n\n#==================================\n### DO NOT DELETE (Uncomment to show circles)\n#==================================\n\n# ##=============== Circles \n# radius = np.sqrt((focus['x'] - pb_x)**2 + (focus['y'] - pb_y)**2)\n\n# theta = np.linspace(0, 2 * np.pi, 400)\n\n# ## Circle A\n# params = {'c_x': focus['x'], 'c_y': focus['y'], 'r': radius}\n# theta = np.linspace(0, 2 * np.pi, 400)\n# circle_x, circle_y = conic(theta, 'circle', p = params)\n\n# plt.plot(circle_x, circle_y, color='red')\n\n\n# ## Circle B\n# params = {'c_x': pb_x, 'c_y': -focus['y'], 'r': radius}\n# circle_2x, circle_2y = conic(theta, 'circle', p = params)\n\n# plt.plot(circle_2x, circle_2y, color='red')\n\n# ## Lines\n# plt.plot([pb_x, pb_x], [-focus['y'], pb_y], '--') #vertical dashed line\n# plt.plot([0, pb_x], [focus['y'], pb_y], '--') #line from focus to parabola \n\n#__________________________\n\n\nplt.show()\n\n\n\n\nWe can animate the circles to show how the distances from the focus to a point on the parabola, and a circle on directrix directly under the parabola are the same.\n\n\nParabola Animation\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.animation import FuncAnimation\nfrom IPython.display import HTML\n\n# Use the notebook backend for interactive plots\n%matplotlib notebook\n\n# Set up the figure and axes\nfig, ax = plt.subplots(figsize = [4,4])\nxdata, ydata = [], []\ncircleA, = plt.plot([], [], 'r-')\ncircleB, = plt.plot([], [], 'r-')\npoint,   = plt.plot([], [], 'bo', zorder = 10, markersize = 10)\n\nlinev,   = plt.plot([], [], '--') #vertical dashed line\nlinef,   = plt.plot([], [], '--') #line from focus to parabola \n\n# Initialize the plot\ndef init():\n    ax.set_xlim(0, 2 * np.pi)\n    ax.set_ylim(-1, 1)\n\n    #Create parabola, foci etc. \n    ## Generate parabola\n    x = np.linspace(-2, 2, 400)\n    params = {'a': 1, 'h': 0, 'k': 0}\n    y, focus = conic(x, 'parabola', p = params)\n\n    ## Plot Focus\n    plt.plot(x, y, label='$y = x^2$', color='blue')\n    plt.scatter(focus['x'], focus['y'], color='green', zorder=5, s=80)\n    plt.text(focus['x'] + 0.1, focus['y'], 'F')\n\n    ## Plot settings\n    plt.xlim(-2, 2)\n    plt.ylim(-2, 2)\n    plt.grid(True)\n    plt.axhline(-focus['y'], color='black', linewidth=1)\n    plt.axvline(0, color='black', linewidth=1)\n    return plt\n\n# Update function for animation\ndef update(frames):\n\n\n    ## Point of observation\n    ind = frames \n    pb_x, pb_y = np.abs(x[ind]), np.abs(y[ind])\n    point.set_data(pb_x, pb_y)\n    \n\n    ##=============== Circles \n    radius = np.sqrt((focus['x'] - pb_x)**2 + (focus['y'] - pb_y)**2)\n    theta = np.linspace(0, 2 * np.pi, 400)\n\n    ## Circle A\n    params = {'c_x': focus['x'], 'c_y': focus['y'], 'r': radius}\n    circle_x, circle_y = conic(theta, 'circle', p = params)\n   \n    circleA.set_data(circle_x, circle_y)\n\n    ## Circle B\n    params = {'c_x': pb_x, 'c_y': -focus['y'], 'r': radius}\n    circle_2x, circle_2y = conic(theta, 'circle', p = params)\n\n    circleB.set_data(circle_2x, circle_2y)\n\n    ##============== Lines\n    linev.set_data([pb_x, pb_x], [-focus['y'], pb_y])\n    linef.set_data([0, pb_x], [focus['y'], pb_y])\n\n\n    return \n\n# Create the animation\nani = FuncAnimation(\n    fig, update, frames=list(range(200)),\n    init_func=init, blit=True, interval=20\n)\n\n# Display the animation\nHTML(ani.to_html5_video())\n\n\n\n\n\n\n\n\n/tmp/ipykernel_563525/2707575446.py:50: MatplotlibDeprecationWarning: Setting data with a non sequence type is deprecated since 3.7 and will be remove two minor releases later\n  point.set_data(pb_x, pb_y)\n\n\n\n  \n  Your browser does not support the video tag."
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_5ConicSections.html#ellipse",
+    "href": "C0calculusII/lectures/10_5ConicSections.html#ellipse",
+    "title": "Conic Sections",
+    "section": "Ellipse",
+    "text": "Ellipse"
+  },
+  {
+    "objectID": "C0calculusII/lectures/10_5ConicSections.html#hyperbola",
+    "href": "C0calculusII/lectures/10_5ConicSections.html#hyperbola",
+    "title": "Conic Sections",
+    "section": "Hyperbola",
+    "text": "Hyperbola"
+  },
+  {
+    "objectID": "C0QuickReference/matplotlib/01animate.html",
+    "href": "C0QuickReference/matplotlib/01animate.html",
+    "title": "Animation",
+    "section": "",
+    "text": "Working example that works for quarto\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.animation import FuncAnimation\nfrom IPython.display import HTML\n\n# Use the notebook backend for interactive plots\n%matplotlib notebook\n\n# Set up the figure and axes\nfig, ax = plt.subplots()\nxdata, ydata = [], []\nln, = plt.plot([], [], 'r-')\n\n# Initialize the plot\ndef init():\n    ax.set_xlim(0, 2 * np.pi)\n    ax.set_ylim(-1, 1)\n    return ln,\n\n# Update function for animation\ndef update(frame):\n    xdata.append(frame)\n    ydata.append(np.sin(frame))\n    ln.set_data(xdata, ydata)\n    return ln,\n\n# Create the animation\nani = FuncAnimation(\n    fig, update, frames=np.linspace(0, 2 * np.pi, 128),\n    init_func=init, blit=True, interval=50\n)\n\n# Display the animation\nHTML(ani.to_html5_video())\n\n\n\n\n\n\n\n\n  \n  Your browser does not support the video tag."
+  },
+  {
+    "objectID": "C0QuickReference/matplotlib/01animate.html#simple-example-funcanimation",
+    "href": "C0QuickReference/matplotlib/01animate.html#simple-example-funcanimation",
+    "title": "Animation",
+    "section": "",
+    "text": "Working example that works for quarto\n\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.animation import FuncAnimation\nfrom IPython.display import HTML\n\n# Use the notebook backend for interactive plots\n%matplotlib notebook\n\n# Set up the figure and axes\nfig, ax = plt.subplots()\nxdata, ydata = [], []\nln, = plt.plot([], [], 'r-')\n\n# Initialize the plot\ndef init():\n    ax.set_xlim(0, 2 * np.pi)\n    ax.set_ylim(-1, 1)\n    return ln,\n\n# Update function for animation\ndef update(frame):\n    xdata.append(frame)\n    ydata.append(np.sin(frame))\n    ln.set_data(xdata, ydata)\n    return ln,\n\n# Create the animation\nani = FuncAnimation(\n    fig, update, frames=np.linspace(0, 2 * np.pi, 128),\n    init_func=init, blit=True, interval=50\n)\n\n# Display the animation\nHTML(ani.to_html5_video())\n\n\n\n\n\n\n\n\n  \n  Your browser does not support the video tag."
+  },
+  {
+    "objectID": "C0history/home_history.html",
+    "href": "C0history/home_history.html",
+    "title": "History of Mathematics",
+    "section": "",
+    "text": "Caution\n\n\n\nUse of generative AI might abound in the following links. Use with caution.\n\n\nConics"
   }
 ]

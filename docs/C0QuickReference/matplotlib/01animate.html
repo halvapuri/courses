@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Worldlines - Animation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+function toggleBox(header) {
+  // Use jQuery to find the associated container and toggle its visibility
+  $(header).next('.dd-box').slideToggle();
+  $(header).next('.ddm-box').slideToggle();
+}
+</script>
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+
+</script>
+
+
+
+
+
+
+
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Worldlines</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Animation</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Courses</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus II</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Under development</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Differential Geometry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topology</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Differential Geometry</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#simple-example-funcanimation" id="toc-simple-example-funcanimation" class="nav-link active" data-scroll-target="#simple-example-funcanimation">Simple example (FuncAnimation)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Animation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="simple-example-funcanimation" class="level2">
+<h2 class="anchored" data-anchor-id="simple-example-funcanimation">Simple example (FuncAnimation)</h2>
+<p>Working example that works for quarto</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.animation <span class="im">import</span> FuncAnimation</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> HTML</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the notebook backend for interactive plots</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib notebook</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the figure and axes</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>xdata, ydata <span class="op">=</span> [], []</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ln, <span class="op">=</span> plt.plot([], [], <span class="st">'r-'</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the plot</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> init():</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ax.set_xlim(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    ax.set_ylim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ln,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Update function for animation</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> update(frame):</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    xdata.append(frame)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    ydata.append(np.sin(frame))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    ln.set_data(xdata, ydata)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ln,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the animation</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>ani <span class="op">=</span> FuncAnimation(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    fig, update, frames<span class="op">=</span>np.linspace(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi, <span class="dv">128</span>),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    init_func<span class="op">=</span>init, blit<span class="op">=</span><span class="va">True</span>, interval<span class="op">=</span><span class="dv">50</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the animation</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>HTML(ani.to_html5_video())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<script type="application/javascript">
+/* Put everything inside the global mpl namespace */
+/* global mpl */
+window.mpl = {};
+
+mpl.get_websocket_type = function () {
+    if (typeof WebSocket !== 'undefined') {
+        return WebSocket;
+    } else if (typeof MozWebSocket !== 'undefined') {
+        return MozWebSocket;
+    } else {
+        alert(
+            'Your browser does not have WebSocket support. ' +
+                'Please try Chrome, Safari or Firefox ≥ 6. ' +
+                'Firefox 4 and 5 are also supported but you ' +
+                'have to enable WebSockets in about:config.'
+        );
+    }
+};
+
+mpl.figure = function (figure_id, websocket, ondownload, parent_element) {
+    this.id = figure_id;
+
+    this.ws = websocket;
+
+    this.supports_binary = this.ws.binaryType !== undefined;
+
+    if (!this.supports_binary) {
+        var warnings = document.getElementById('mpl-warnings');
+        if (warnings) {
+            warnings.style.display = 'block';
+            warnings.textContent =
+                'This browser does not support binary websocket messages. ' +
+                'Performance may be slow.';
+        }
+    }
+
+    this.imageObj = new Image();
+
+    this.context = undefined;
+    this.message = undefined;
+    this.canvas = undefined;
+    this.rubberband_canvas = undefined;
+    this.rubberband_context = undefined;
+    this.format_dropdown = undefined;
+
+    this.image_mode = 'full';
+
+    this.root = document.createElement('div');
+    this.root.setAttribute('style', 'display: inline-block');
+    this._root_extra_style(this.root);
+
+    parent_element.appendChild(this.root);
+
+    this._init_header(this);
+    this._init_canvas(this);
+    this._init_toolbar(this);
+
+    var fig = this;
+
+    this.waiting = false;
+
+    this.ws.onopen = function () {
+        fig.send_message('supports_binary', { value: fig.supports_binary });
+        fig.send_message('send_image_mode', {});
+        if (fig.ratio !== 1) {
+            fig.send_message('set_device_pixel_ratio', {
+                device_pixel_ratio: fig.ratio,
+            });
+        }
+        fig.send_message('refresh', {});
+    };
+
+    this.imageObj.onload = function () {
+        if (fig.image_mode === 'full') {
+            // Full images could contain transparency (where diff images
+            // almost always do), so we need to clear the canvas so that
+            // there is no ghosting.
+            fig.context.clearRect(0, 0, fig.canvas.width, fig.canvas.height);
+        }
+        fig.context.drawImage(fig.imageObj, 0, 0);
+    };
+
+    this.imageObj.onunload = function () {
+        fig.ws.close();
+    };
+
+    this.ws.onmessage = this._make_on_message_function(this);
+
+    this.ondownload = ondownload;
+};
+
+mpl.figure.prototype._init_header = function () {
+    var titlebar = document.createElement('div');
+    titlebar.classList =
+        'ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix';
+    var titletext = document.createElement('div');
+    titletext.classList = 'ui-dialog-title';
+    titletext.setAttribute(
+        'style',
+        'width: 100%; text-align: center; padding: 3px;'
+    );
+    titlebar.appendChild(titletext);
+    this.root.appendChild(titlebar);
+    this.header = titletext;
+};
+
+mpl.figure.prototype._canvas_extra_style = function (_canvas_div) {};
+
+mpl.figure.prototype._root_extra_style = function (_canvas_div) {};
+
+mpl.figure.prototype._init_canvas = function () {
+    var fig = this;
+
+    var canvas_div = (this.canvas_div = document.createElement('div'));
+    canvas_div.setAttribute('tabindex', '0');
+    canvas_div.setAttribute(
+        'style',
+        'border: 1px solid #ddd;' +
+            'box-sizing: content-box;' +
+            'clear: both;' +
+            'min-height: 1px;' +
+            'min-width: 1px;' +
+            'outline: 0;' +
+            'overflow: hidden;' +
+            'position: relative;' +
+            'resize: both;' +
+            'z-index: 2;'
+    );
+
+    function on_keyboard_event_closure(name) {
+        return function (event) {
+            return fig.key_event(event, name);
+        };
+    }
+
+    canvas_div.addEventListener(
+        'keydown',
+        on_keyboard_event_closure('key_press')
+    );
+    canvas_div.addEventListener(
+        'keyup',
+        on_keyboard_event_closure('key_release')
+    );
+
+    this._canvas_extra_style(canvas_div);
+    this.root.appendChild(canvas_div);
+
+    var canvas = (this.canvas = document.createElement('canvas'));
+    canvas.classList.add('mpl-canvas');
+    canvas.setAttribute(
+        'style',
+        'box-sizing: content-box;' +
+            'pointer-events: none;' +
+            'position: relative;' +
+            'z-index: 0;'
+    );
+
+    this.context = canvas.getContext('2d');
+
+    var backingStore =
+        this.context.backingStorePixelRatio ||
+        this.context.webkitBackingStorePixelRatio ||
+        this.context.mozBackingStorePixelRatio ||
+        this.context.msBackingStorePixelRatio ||
+        this.context.oBackingStorePixelRatio ||
+        this.context.backingStorePixelRatio ||
+        1;
+
+    this.ratio = (window.devicePixelRatio || 1) / backingStore;
+
+    var rubberband_canvas = (this.rubberband_canvas = document.createElement(
+        'canvas'
+    ));
+    rubberband_canvas.setAttribute(
+        'style',
+        'box-sizing: content-box;' +
+            'left: 0;' +
+            'pointer-events: none;' +
+            'position: absolute;' +
+            'top: 0;' +
+            'z-index: 1;'
+    );
+
+    // Apply a ponyfill if ResizeObserver is not implemented by browser.
+    if (this.ResizeObserver === undefined) {
+        if (window.ResizeObserver !== undefined) {
+            this.ResizeObserver = window.ResizeObserver;
+        } else {
+            var obs = _JSXTOOLS_RESIZE_OBSERVER({});
+            this.ResizeObserver = obs.ResizeObserver;
+        }
+    }
+
+    this.resizeObserverInstance = new this.ResizeObserver(function (entries) {
+        var nentries = entries.length;
+        for (var i = 0; i < nentries; i++) {
+            var entry = entries[i];
+            var width, height;
+            if (entry.contentBoxSize) {
+                if (entry.contentBoxSize instanceof Array) {
+                    // Chrome 84 implements new version of spec.
+                    width = entry.contentBoxSize[0].inlineSize;
+                    height = entry.contentBoxSize[0].blockSize;
+                } else {
+                    // Firefox implements old version of spec.
+                    width = entry.contentBoxSize.inlineSize;
+                    height = entry.contentBoxSize.blockSize;
+                }
+            } else {
+                // Chrome <84 implements even older version of spec.
+                width = entry.contentRect.width;
+                height = entry.contentRect.height;
+            }
+
+            // Keep the size of the canvas and rubber band canvas in sync with
+            // the canvas container.
+            if (entry.devicePixelContentBoxSize) {
+                // Chrome 84 implements new version of spec.
+                canvas.setAttribute(
+                    'width',
+                    entry.devicePixelContentBoxSize[0].inlineSize
+                );
+                canvas.setAttribute(
+                    'height',
+                    entry.devicePixelContentBoxSize[0].blockSize
+                );
+            } else {
+                canvas.setAttribute('width', width * fig.ratio);
+                canvas.setAttribute('height', height * fig.ratio);
+            }
+            /* This rescales the canvas back to display pixels, so that it
+             * appears correct on HiDPI screens. */
+            canvas.style.width = width + 'px';
+            canvas.style.height = height + 'px';
+
+            rubberband_canvas.setAttribute('width', width);
+            rubberband_canvas.setAttribute('height', height);
+
+            // And update the size in Python. We ignore the initial 0/0 size
+            // that occurs as the element is placed into the DOM, which should
+            // otherwise not happen due to the minimum size styling.
+            if (fig.ws.readyState == 1 && width != 0 && height != 0) {
+                fig.request_resize(width, height);
+            }
+        }
+    });
+    this.resizeObserverInstance.observe(canvas_div);
+
+    function on_mouse_event_closure(name) {
+        /* User Agent sniffing is bad, but WebKit is busted:
+         * https://bugs.webkit.org/show_bug.cgi?id=144526
+         * https://bugs.webkit.org/show_bug.cgi?id=181818
+         * The worst that happens here is that they get an extra browser
+         * selection when dragging, if this check fails to catch them.
+         */
+        var UA = navigator.userAgent;
+        var isWebKit = /AppleWebKit/.test(UA) && !/Chrome/.test(UA);
+        if(isWebKit) {
+            return function (event) {
+                /* This prevents the web browser from automatically changing to
+                 * the text insertion cursor when the button is pressed. We
+                 * want to control all of the cursor setting manually through
+                 * the 'cursor' event from matplotlib */
+                event.preventDefault()
+                return fig.mouse_event(event, name);
+            };
+        } else {
+            return function (event) {
+                return fig.mouse_event(event, name);
+            };
+        }
+    }
+
+    canvas_div.addEventListener(
+        'mousedown',
+        on_mouse_event_closure('button_press')
+    );
+    canvas_div.addEventListener(
+        'mouseup',
+        on_mouse_event_closure('button_release')
+    );
+    canvas_div.addEventListener(
+        'dblclick',
+        on_mouse_event_closure('dblclick')
+    );
+    // Throttle sequential mouse events to 1 every 20ms.
+    canvas_div.addEventListener(
+        'mousemove',
+        on_mouse_event_closure('motion_notify')
+    );
+
+    canvas_div.addEventListener(
+        'mouseenter',
+        on_mouse_event_closure('figure_enter')
+    );
+    canvas_div.addEventListener(
+        'mouseleave',
+        on_mouse_event_closure('figure_leave')
+    );
+
+    canvas_div.addEventListener('wheel', function (event) {
+        if (event.deltaY < 0) {
+            event.step = 1;
+        } else {
+            event.step = -1;
+        }
+        on_mouse_event_closure('scroll')(event);
+    });
+
+    canvas_div.appendChild(canvas);
+    canvas_div.appendChild(rubberband_canvas);
+
+    this.rubberband_context = rubberband_canvas.getContext('2d');
+    this.rubberband_context.strokeStyle = '#000000';
+
+    this._resize_canvas = function (width, height, forward) {
+        if (forward) {
+            canvas_div.style.width = width + 'px';
+            canvas_div.style.height = height + 'px';
+        }
+    };
+
+    // Disable right mouse context menu.
+    canvas_div.addEventListener('contextmenu', function (_e) {
+        event.preventDefault();
+        return false;
+    });
+
+    function set_focus() {
+        canvas.focus();
+        canvas_div.focus();
+    }
+
+    window.setTimeout(set_focus, 100);
+};
+
+mpl.figure.prototype._init_toolbar = function () {
+    var fig = this;
+
+    var toolbar = document.createElement('div');
+    toolbar.classList = 'mpl-toolbar';
+    this.root.appendChild(toolbar);
+
+    function on_click_closure(name) {
+        return function (_event) {
+            return fig.toolbar_button_onclick(name);
+        };
+    }
+
+    function on_mouseover_closure(tooltip) {
+        return function (event) {
+            if (!event.currentTarget.disabled) {
+                return fig.toolbar_button_onmouseover(tooltip);
+            }
+        };
+    }
+
+    fig.buttons = {};
+    var buttonGroup = document.createElement('div');
+    buttonGroup.classList = 'mpl-button-group';
+    for (var toolbar_ind in mpl.toolbar_items) {
+        var name = mpl.toolbar_items[toolbar_ind][0];
+        var tooltip = mpl.toolbar_items[toolbar_ind][1];
+        var image = mpl.toolbar_items[toolbar_ind][2];
+        var method_name = mpl.toolbar_items[toolbar_ind][3];
+
+        if (!name) {
+            /* Instead of a spacer, we start a new button group. */
+            if (buttonGroup.hasChildNodes()) {
+                toolbar.appendChild(buttonGroup);
+            }
+            buttonGroup = document.createElement('div');
+            buttonGroup.classList = 'mpl-button-group';
+            continue;
+        }
+
+        var button = (fig.buttons[name] = document.createElement('button'));
+        button.classList = 'mpl-widget';
+        button.setAttribute('role', 'button');
+        button.setAttribute('aria-disabled', 'false');
+        button.addEventListener('click', on_click_closure(method_name));
+        button.addEventListener('mouseover', on_mouseover_closure(tooltip));
+
+        var icon_img = document.createElement('img');
+        icon_img.src = '_images/' + image + '.png';
+        icon_img.srcset = '_images/' + image + '_large.png 2x';
+        icon_img.alt = tooltip;
+        button.appendChild(icon_img);
+
+        buttonGroup.appendChild(button);
+    }
+
+    if (buttonGroup.hasChildNodes()) {
+        toolbar.appendChild(buttonGroup);
+    }
+
+    var fmt_picker = document.createElement('select');
+    fmt_picker.classList = 'mpl-widget';
+    toolbar.appendChild(fmt_picker);
+    this.format_dropdown = fmt_picker;
+
+    for (var ind in mpl.extensions) {
+        var fmt = mpl.extensions[ind];
+        var option = document.createElement('option');
+        option.selected = fmt === mpl.default_extension;
+        option.innerHTML = fmt;
+        fmt_picker.appendChild(option);
+    }
+
+    var status_bar = document.createElement('span');
+    status_bar.classList = 'mpl-message';
+    toolbar.appendChild(status_bar);
+    this.message = status_bar;
+};
+
+mpl.figure.prototype.request_resize = function (x_pixels, y_pixels) {
+    // Request matplotlib to resize the figure. Matplotlib will then trigger a resize in the client,
+    // which will in turn request a refresh of the image.
+    this.send_message('resize', { width: x_pixels, height: y_pixels });
+};
+
+mpl.figure.prototype.send_message = function (type, properties) {
+    properties['type'] = type;
+    properties['figure_id'] = this.id;
+    this.ws.send(JSON.stringify(properties));
+};
+
+mpl.figure.prototype.send_draw_message = function () {
+    if (!this.waiting) {
+        this.waiting = true;
+        this.ws.send(JSON.stringify({ type: 'draw', figure_id: this.id }));
+    }
+};
+
+mpl.figure.prototype.handle_save = function (fig, _msg) {
+    var format_dropdown = fig.format_dropdown;
+    var format = format_dropdown.options[format_dropdown.selectedIndex].value;
+    fig.ondownload(fig, format);
+};
+
+mpl.figure.prototype.handle_resize = function (fig, msg) {
+    var size = msg['size'];
+    if (size[0] !== fig.canvas.width || size[1] !== fig.canvas.height) {
+        fig._resize_canvas(size[0], size[1], msg['forward']);
+        fig.send_message('refresh', {});
+    }
+};
+
+mpl.figure.prototype.handle_rubberband = function (fig, msg) {
+    var x0 = msg['x0'] / fig.ratio;
+    var y0 = (fig.canvas.height - msg['y0']) / fig.ratio;
+    var x1 = msg['x1'] / fig.ratio;
+    var y1 = (fig.canvas.height - msg['y1']) / fig.ratio;
+    x0 = Math.floor(x0) + 0.5;
+    y0 = Math.floor(y0) + 0.5;
+    x1 = Math.floor(x1) + 0.5;
+    y1 = Math.floor(y1) + 0.5;
+    var min_x = Math.min(x0, x1);
+    var min_y = Math.min(y0, y1);
+    var width = Math.abs(x1 - x0);
+    var height = Math.abs(y1 - y0);
+
+    fig.rubberband_context.clearRect(
+        0,
+        0,
+        fig.canvas.width / fig.ratio,
+        fig.canvas.height / fig.ratio
+    );
+
+    fig.rubberband_context.strokeRect(min_x, min_y, width, height);
+};
+
+mpl.figure.prototype.handle_figure_label = function (fig, msg) {
+    // Updates the figure title.
+    fig.header.textContent = msg['label'];
+};
+
+mpl.figure.prototype.handle_cursor = function (fig, msg) {
+    fig.canvas_div.style.cursor = msg['cursor'];
+};
+
+mpl.figure.prototype.handle_message = function (fig, msg) {
+    fig.message.textContent = msg['message'];
+};
+
+mpl.figure.prototype.handle_draw = function (fig, _msg) {
+    // Request the server to send over a new figure.
+    fig.send_draw_message();
+};
+
+mpl.figure.prototype.handle_image_mode = function (fig, msg) {
+    fig.image_mode = msg['mode'];
+};
+
+mpl.figure.prototype.handle_history_buttons = function (fig, msg) {
+    for (var key in msg) {
+        if (!(key in fig.buttons)) {
+            continue;
+        }
+        fig.buttons[key].disabled = !msg[key];
+        fig.buttons[key].setAttribute('aria-disabled', !msg[key]);
+    }
+};
+
+mpl.figure.prototype.handle_navigate_mode = function (fig, msg) {
+    if (msg['mode'] === 'PAN') {
+        fig.buttons['Pan'].classList.add('active');
+        fig.buttons['Zoom'].classList.remove('active');
+    } else if (msg['mode'] === 'ZOOM') {
+        fig.buttons['Pan'].classList.remove('active');
+        fig.buttons['Zoom'].classList.add('active');
+    } else {
+        fig.buttons['Pan'].classList.remove('active');
+        fig.buttons['Zoom'].classList.remove('active');
+    }
+};
+
+mpl.figure.prototype.updated_canvas_event = function () {
+    // Called whenever the canvas gets updated.
+    this.send_message('ack', {});
+};
+
+// A function to construct a web socket function for onmessage handling.
+// Called in the figure constructor.
+mpl.figure.prototype._make_on_message_function = function (fig) {
+    return function socket_on_message(evt) {
+        if (evt.data instanceof Blob) {
+            var img = evt.data;
+            if (img.type !== 'image/png') {
+                /* FIXME: We get "Resource interpreted as Image but
+                 * transferred with MIME type text/plain:" errors on
+                 * Chrome.  But how to set the MIME type?  It doesn't seem
+                 * to be part of the websocket stream */
+                img.type = 'image/png';
+            }
+
+            /* Free the memory for the previous frames */
+            if (fig.imageObj.src) {
+                (window.URL || window.webkitURL).revokeObjectURL(
+                    fig.imageObj.src
+                );
+            }
+
+            fig.imageObj.src = (window.URL || window.webkitURL).createObjectURL(
+                img
+            );
+            fig.updated_canvas_event();
+            fig.waiting = false;
+            return;
+        } else if (
+            typeof evt.data === 'string' &&
+            evt.data.slice(0, 21) === 'data:image/png;base64'
+        ) {
+            fig.imageObj.src = evt.data;
+            fig.updated_canvas_event();
+            fig.waiting = false;
+            return;
+        }
+
+        var msg = JSON.parse(evt.data);
+        var msg_type = msg['type'];
+
+        // Call the  "handle_{type}" callback, which takes
+        // the figure and JSON message as its only arguments.
+        try {
+            var callback = fig['handle_' + msg_type];
+        } catch (e) {
+            console.log(
+                "No handler for the '" + msg_type + "' message type: ",
+                msg
+            );
+            return;
+        }
+
+        if (callback) {
+            try {
+                // console.log("Handling '" + msg_type + "' message: ", msg);
+                callback(fig, msg);
+            } catch (e) {
+                console.log(
+                    "Exception inside the 'handler_" + msg_type + "' callback:",
+                    e,
+                    e.stack,
+                    msg
+                );
+            }
+        }
+    };
+};
+
+function getModifiers(event) {
+    var mods = [];
+    if (event.ctrlKey) {
+        mods.push('ctrl');
+    }
+    if (event.altKey) {
+        mods.push('alt');
+    }
+    if (event.shiftKey) {
+        mods.push('shift');
+    }
+    if (event.metaKey) {
+        mods.push('meta');
+    }
+    return mods;
+}
+
+/*
+ * return a copy of an object with only non-object keys
+ * we need this to avoid circular references
+ * https://stackoverflow.com/a/24161582/3208463
+ */
+function simpleKeys(original) {
+    return Object.keys(original).reduce(function (obj, key) {
+        if (typeof original[key] !== 'object') {
+            obj[key] = original[key];
+        }
+        return obj;
+    }, {});
+}
+
+mpl.figure.prototype.mouse_event = function (event, name) {
+    if (name === 'button_press') {
+        this.canvas.focus();
+        this.canvas_div.focus();
+    }
+
+    // from https://stackoverflow.com/q/1114465
+    var boundingRect = this.canvas.getBoundingClientRect();
+    var x = (event.clientX - boundingRect.left) * this.ratio;
+    var y = (event.clientY - boundingRect.top) * this.ratio;
+
+    this.send_message(name, {
+        x: x,
+        y: y,
+        button: event.button,
+        step: event.step,
+        modifiers: getModifiers(event),
+        guiEvent: simpleKeys(event),
+    });
+
+    return false;
+};
+
+mpl.figure.prototype._key_event_extra = function (_event, _name) {
+    // Handle any extra behaviour associated with a key event
+};
+
+mpl.figure.prototype.key_event = function (event, name) {
+    // Prevent repeat events
+    if (name === 'key_press') {
+        if (event.key === this._key) {
+            return;
+        } else {
+            this._key = event.key;
+        }
+    }
+    if (name === 'key_release') {
+        this._key = null;
+    }
+
+    var value = '';
+    if (event.ctrlKey && event.key !== 'Control') {
+        value += 'ctrl+';
+    }
+    else if (event.altKey && event.key !== 'Alt') {
+        value += 'alt+';
+    }
+    else if (event.shiftKey && event.key !== 'Shift') {
+        value += 'shift+';
+    }
+
+    value += 'k' + event.key;
+
+    this._key_event_extra(event, name);
+
+    this.send_message(name, { key: value, guiEvent: simpleKeys(event) });
+    return false;
+};
+
+mpl.figure.prototype.toolbar_button_onclick = function (name) {
+    if (name === 'download') {
+        this.handle_save(this, null);
+    } else {
+        this.send_message('toolbar_button', { name: name });
+    }
+};
+
+mpl.figure.prototype.toolbar_button_onmouseover = function (tooltip) {
+    this.message.textContent = tooltip;
+};
+
+///////////////// REMAINING CONTENT GENERATED BY embed_js.py /////////////////
+// prettier-ignore
+var _JSXTOOLS_RESIZE_OBSERVER=function(A){var t,i=new WeakMap,n=new WeakMap,a=new WeakMap,r=new WeakMap,o=new Set;function s(e){if(!(this instanceof s))throw new TypeError("Constructor requires 'new' operator");i.set(this,e)}function h(){throw new TypeError("Function is not a constructor")}function c(e,t,i,n){e=0 in arguments?Number(arguments[0]):0,t=1 in arguments?Number(arguments[1]):0,i=2 in arguments?Number(arguments[2]):0,n=3 in arguments?Number(arguments[3]):0,this.right=(this.x=this.left=e)+(this.width=i),this.bottom=(this.y=this.top=t)+(this.height=n),Object.freeze(this)}function d(){t=requestAnimationFrame(d);var s=new WeakMap,p=new Set;o.forEach((function(t){r.get(t).forEach((function(i){var r=t instanceof window.SVGElement,o=a.get(t),d=r?0:parseFloat(o.paddingTop),f=r?0:parseFloat(o.paddingRight),l=r?0:parseFloat(o.paddingBottom),u=r?0:parseFloat(o.paddingLeft),g=r?0:parseFloat(o.borderTopWidth),m=r?0:parseFloat(o.borderRightWidth),w=r?0:parseFloat(o.borderBottomWidth),b=u+f,F=d+l,v=(r?0:parseFloat(o.borderLeftWidth))+m,W=g+w,y=r?0:t.offsetHeight-W-t.clientHeight,E=r?0:t.offsetWidth-v-t.clientWidth,R=b+v,z=F+W,M=r?t.width:parseFloat(o.width)-R-E,O=r?t.height:parseFloat(o.height)-z-y;if(n.has(t)){var k=n.get(t);if(k[0]===M&&k[1]===O)return}n.set(t,[M,O]);var S=Object.create(h.prototype);S.target=t,S.contentRect=new c(u,d,M,O),s.has(i)||(s.set(i,[]),p.add(i)),s.get(i).push(S)}))})),p.forEach((function(e){i.get(e).call(e,s.get(e),e)}))}return s.prototype.observe=function(i){if(i instanceof window.Element){r.has(i)||(r.set(i,new Set),o.add(i),a.set(i,window.getComputedStyle(i)));var n=r.get(i);n.has(this)||n.add(this),cancelAnimationFrame(t),t=requestAnimationFrame(d)}},s.prototype.unobserve=function(i){if(i instanceof window.Element&&r.has(i)){var n=r.get(i);n.has(this)&&(n.delete(this),n.size||(r.delete(i),o.delete(i))),n.size||r.delete(i),o.size||cancelAnimationFrame(t)}},A.DOMRectReadOnly=c,A.ResizeObserver=s,A.ResizeObserverEntry=h,A}; // eslint-disable-line
+mpl.toolbar_items = [["Home", "Reset original view", "fa fa-home", "home"], ["Back", "Back to previous view", "fa fa-arrow-left", "back"], ["Forward", "Forward to next view", "fa fa-arrow-right", "forward"], ["", "", "", ""], ["Pan", "Left button pans, Right button zooms\nx/y fixes axis, CTRL fixes aspect", "fa fa-arrows", "pan"], ["Zoom", "Zoom to rectangle\nx/y fixes axis", "fa fa-square-o", "zoom"], ["", "", "", ""], ["Download", "Download plot", "fa fa-floppy-o", "download"]];
+
+mpl.extensions = ["eps", "jpeg", "pgf", "pdf", "png", "ps", "raw", "svg", "tif", "webp"];
+
+mpl.default_extension = "png";/* global mpl */
+
+var comm_websocket_adapter = function (comm) {
+    // Create a "websocket"-like object which calls the given IPython comm
+    // object with the appropriate methods. Currently this is a non binary
+    // socket, so there is still some room for performance tuning.
+    var ws = {};
+
+    ws.binaryType = comm.kernel.ws.binaryType;
+    ws.readyState = comm.kernel.ws.readyState;
+    function updateReadyState(_event) {
+        if (comm.kernel.ws) {
+            ws.readyState = comm.kernel.ws.readyState;
+        } else {
+            ws.readyState = 3; // Closed state.
+        }
+    }
+    comm.kernel.ws.addEventListener('open', updateReadyState);
+    comm.kernel.ws.addEventListener('close', updateReadyState);
+    comm.kernel.ws.addEventListener('error', updateReadyState);
+
+    ws.close = function () {
+        comm.close();
+    };
+    ws.send = function (m) {
+        //console.log('sending', m);
+        comm.send(m);
+    };
+    // Register the callback with on_msg.
+    comm.on_msg(function (msg) {
+        //console.log('receiving', msg['content']['data'], msg);
+        var data = msg['content']['data'];
+        if (data['blob'] !== undefined) {
+            data = {
+                data: new Blob(msg['buffers'], { type: data['blob'] }),
+            };
+        }
+        // Pass the mpl event to the overridden (by mpl) onmessage function.
+        ws.onmessage(data);
+    });
+    return ws;
+};
+
+mpl.mpl_figure_comm = function (comm, msg) {
+    // This is the function which gets called when the mpl process
+    // starts-up an IPython Comm through the "matplotlib" channel.
+
+    var id = msg.content.data.id;
+    // Get hold of the div created by the display call when the Comm
+    // socket was opened in Python.
+    var element = document.getElementById(id);
+    var ws_proxy = comm_websocket_adapter(comm);
+
+    function ondownload(figure, _format) {
+        window.open(figure.canvas.toDataURL());
+    }
+
+    var fig = new mpl.figure(id, ws_proxy, ondownload, element);
+
+    // Call onopen now - mpl needs it, as it is assuming we've passed it a real
+    // web socket which is closed, not our websocket->open comm proxy.
+    ws_proxy.onopen();
+
+    fig.parent_element = element;
+    fig.cell_info = mpl.find_output_cell("<div id='" + id + "'></div>");
+    if (!fig.cell_info) {
+        console.error('Failed to find cell for figure', id, fig);
+        return;
+    }
+    fig.cell_info[0].output_area.element.on(
+        'cleared',
+        { fig: fig },
+        fig._remove_fig_handler
+    );
+};
+
+mpl.figure.prototype.handle_close = function (fig, msg) {
+    var width = fig.canvas.width / fig.ratio;
+    fig.cell_info[0].output_area.element.off(
+        'cleared',
+        fig._remove_fig_handler
+    );
+    fig.resizeObserverInstance.unobserve(fig.canvas_div);
+
+    // Update the output cell to use the data from the current canvas.
+    fig.push_to_output();
+    var dataURL = fig.canvas.toDataURL();
+    // Re-enable the keyboard manager in IPython - without this line, in FF,
+    // the notebook keyboard shortcuts fail.
+    IPython.keyboard_manager.enable();
+    fig.parent_element.innerHTML =
+        '<img src="' + dataURL + '" width="' + width + '">';
+    fig.close_ws(fig, msg);
+};
+
+mpl.figure.prototype.close_ws = function (fig, msg) {
+    fig.send_message('closing', msg);
+    // fig.ws.close()
+};
+
+mpl.figure.prototype.push_to_output = function (_remove_interactive) {
+    // Turn the data on the canvas into data in the output cell.
+    var width = this.canvas.width / this.ratio;
+    var dataURL = this.canvas.toDataURL();
+    this.cell_info[1]['text/html'] =
+        '<img src="' + dataURL + '" width="' + width + '">';
+};
+
+mpl.figure.prototype.updated_canvas_event = function () {
+    // Tell IPython that the notebook contents must change.
+    IPython.notebook.set_dirty(true);
+    this.send_message('ack', {});
+    var fig = this;
+    // Wait a second, then push the new image to the DOM so
+    // that it is saved nicely (might be nice to debounce this).
+    setTimeout(function () {
+        fig.push_to_output();
+    }, 1000);
+};
+
+mpl.figure.prototype._init_toolbar = function () {
+    var fig = this;
+
+    var toolbar = document.createElement('div');
+    toolbar.classList = 'btn-toolbar';
+    this.root.appendChild(toolbar);
+
+    function on_click_closure(name) {
+        return function (_event) {
+            return fig.toolbar_button_onclick(name);
+        };
+    }
+
+    function on_mouseover_closure(tooltip) {
+        return function (event) {
+            if (!event.currentTarget.disabled) {
+                return fig.toolbar_button_onmouseover(tooltip);
+            }
+        };
+    }
+
+    fig.buttons = {};
+    var buttonGroup = document.createElement('div');
+    buttonGroup.classList = 'btn-group';
+    var button;
+    for (var toolbar_ind in mpl.toolbar_items) {
+        var name = mpl.toolbar_items[toolbar_ind][0];
+        var tooltip = mpl.toolbar_items[toolbar_ind][1];
+        var image = mpl.toolbar_items[toolbar_ind][2];
+        var method_name = mpl.toolbar_items[toolbar_ind][3];
+
+        if (!name) {
+            /* Instead of a spacer, we start a new button group. */
+            if (buttonGroup.hasChildNodes()) {
+                toolbar.appendChild(buttonGroup);
+            }
+            buttonGroup = document.createElement('div');
+            buttonGroup.classList = 'btn-group';
+            continue;
+        }
+
+        button = fig.buttons[name] = document.createElement('button');
+        button.classList = 'btn btn-default';
+        button.href = '#';
+        button.title = name;
+        button.innerHTML = '<i class="fa ' + image + ' fa-lg"></i>';
+        button.addEventListener('click', on_click_closure(method_name));
+        button.addEventListener('mouseover', on_mouseover_closure(tooltip));
+        buttonGroup.appendChild(button);
+    }
+
+    if (buttonGroup.hasChildNodes()) {
+        toolbar.appendChild(buttonGroup);
+    }
+
+    // Add the status bar.
+    var status_bar = document.createElement('span');
+    status_bar.classList = 'mpl-message pull-right';
+    toolbar.appendChild(status_bar);
+    this.message = status_bar;
+
+    // Add the close button to the window.
+    var buttongrp = document.createElement('div');
+    buttongrp.classList = 'btn-group inline pull-right';
+    button = document.createElement('button');
+    button.classList = 'btn btn-mini btn-primary';
+    button.href = '#';
+    button.title = 'Stop Interaction';
+    button.innerHTML = '<i class="fa fa-power-off icon-remove icon-large"></i>';
+    button.addEventListener('click', function (_evt) {
+        fig.handle_close(fig, {});
+    });
+    button.addEventListener(
+        'mouseover',
+        on_mouseover_closure('Stop Interaction')
+    );
+    buttongrp.appendChild(button);
+    var titlebar = this.root.querySelector('.ui-dialog-titlebar');
+    titlebar.insertBefore(buttongrp, titlebar.firstChild);
+};
+
+mpl.figure.prototype._remove_fig_handler = function (event) {
+    var fig = event.data.fig;
+    if (event.target !== this) {
+        // Ignore bubbled events from children.
+        return;
+    }
+    fig.close_ws(fig, {});
+};
+
+mpl.figure.prototype._root_extra_style = function (el) {
+    el.style.boxSizing = 'content-box'; // override notebook setting of border-box.
+};
+
+mpl.figure.prototype._canvas_extra_style = function (el) {
+    // this is important to make the div 'focusable
+    el.setAttribute('tabindex', 0);
+    // reach out to IPython and tell the keyboard manager to turn it's self
+    // off when our div gets focus
+
+    // location in version 3
+    if (IPython.notebook.keyboard_manager) {
+        IPython.notebook.keyboard_manager.register_events(el);
+    } else {
+        // location in version 2
+        IPython.keyboard_manager.register_events(el);
+    }
+};
+
+mpl.figure.prototype._key_event_extra = function (event, _name) {
+    // Check for shift+enter
+    if (event.shiftKey && event.which === 13) {
+        this.canvas_div.blur();
+        // select the cell after this one
+        var index = IPython.notebook.find_cell_index(this.cell_info[0]);
+        IPython.notebook.select(index + 1);
+    }
+};
+
+mpl.figure.prototype.handle_save = function (fig, _msg) {
+    fig.ondownload(fig, null);
+};
+
+mpl.find_output_cell = function (html_output) {
+    // Return the cell and output element which can be found *uniquely* in the notebook.
+    // Note - this is a bit hacky, but it is done because the "notebook_saving.Notebook"
+    // IPython event is triggered only after the cells have been serialised, which for
+    // our purposes (turning an active figure into a static one), is too late.
+    var cells = IPython.notebook.get_cells();
+    var ncells = cells.length;
+    for (var i = 0; i < ncells; i++) {
+        var cell = cells[i];
+        if (cell.cell_type === 'code') {
+            for (var j = 0; j < cell.output_area.outputs.length; j++) {
+                var data = cell.output_area.outputs[j];
+                if (data.data) {
+                    // IPython >= 3 moved mimebundle to data attribute of output
+                    data = data.data;
+                }
+                if (data['text/html'] === html_output) {
+                    return [cell, data, j];
+                }
+            }
+        }
+    }
+};
+
+// Register the function which deals with the matplotlib target/channel.
+// The kernel may be null if the page has been refreshed.
+if (IPython.notebook.kernel !== null) {
+    IPython.notebook.kernel.comm_manager.register_target(
+        'matplotlib',
+        mpl.mpl_figure_comm
+    );
+}
+
+</script>
+</div>
+<div class="cell-output cell-output-display">
+<div id="17fdf1d3-b4ea-4650-b396-d6ba280e88d0"></div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<video width="672" height="480" controls="" autoplay="" loop="">
+  <source type="video/mp4" src="data:video/mp4;base64,AAAAIGZ0eXBNNFYgAAACAE00ViBpc29taXNvMmF2YzEAAAAIZnJlZQAANcdtZGF0AAACrgYF//+q
+3EXpvebZSLeWLNgg2SPu73gyNjQgLSBjb3JlIDE2MyByMzA2MCA1ZGI2YWE2IC0gSC4yNjQvTVBF
+Ry00IEFWQyBjb2RlYyAtIENvcHlsZWZ0IDIwMDMtMjAyMSAtIGh0dHA6Ly93d3cudmlkZW9sYW4u
+b3JnL3gyNjQuaHRtbCAtIG9wdGlvbnM6IGNhYmFjPTEgcmVmPTMgZGVibG9jaz0xOjA6MCBhbmFs
+eXNlPTB4MzoweDExMyBtZT1oZXggc3VibWU9NyBwc3k9MSBwc3lfcmQ9MS4wMDowLjAwIG1peGVk
+X3JlZj0xIG1lX3JhbmdlPTE2IGNocm9tYV9tZT0xIHRyZWxsaXM9MSA4eDhkY3Q9MSBjcW09MCBk
+ZWFkem9uZT0yMSwxMSBmYXN0X3Bza2lwPTEgY2hyb21hX3FwX29mZnNldD0tMiB0aHJlYWRzPTYg
+bG9va2FoZWFkX3RocmVhZHM9MSBzbGljZWRfdGhyZWFkcz0wIG5yPTAgZGVjaW1hdGU9MSBpbnRl
+cmxhY2VkPTAgYmx1cmF5X2NvbXBhdD0wIGNvbnN0cmFpbmVkX2ludHJhPTAgYmZyYW1lcz0zIGJf
+cHlyYW1pZD0yIGJfYWRhcHQ9MSBiX2JpYXM9MCBkaXJlY3Q9MSB3ZWlnaHRiPTEgb3Blbl9nb3A9
+MCB3ZWlnaHRwPTIga2V5aW50PTI1MCBrZXlpbnRfbWluPTIwIHNjZW5lY3V0PTQwIGludHJhX3Jl
+ZnJlc2g9MCByY19sb29rYWhlYWQ9NDAgcmM9Y3JmIG1idHJlZT0xIGNyZj0yMy4wIHFjb21wPTAu
+NjAgcXBtaW49MCBxcG1heD02OSBxcHN0ZXA9NCBpcF9yYXRpbz0xLjQwIGFxPTE6MS4wMACAAAAM
+3WWIhAA3//728P4FNjuY0JcRzeidMx+/Fbi6NDe9zgAAAwAAAwAAAwBkyEoUZ5axJHkAAAMAB/AB
+0tv4d824grQEpJidh4edeAq24slYAP481DSd/XEqVB9XnxNweGS8bAfYwFtFwJqnbrLx9+tvRtlk
+uUmc2CSL6znwak4ldIEDPqkUmKXRhmJiSbLUG6erG6+4wsfhU1bYBTvwwvx7HHxyx3MZvkesltUE
+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
+AAYAAAAAAQAAAgAAAAABAAAGAAAAAAEAAAIAAAAAAQAABgAAAAABAAACAAAAAAEAAAoAAAAAAQAA
+BAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAK
+AAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIA
+AAAAAQAABgAAAAABAAACAAAAAAEAAAQAAAAAAQAACAAAAAACAAACAAAAAAIAAAQAAAAAAQAABgAA
+AAABAAACAAAAAAEAAAYAAAAAAQAAAgAAAAABAAAGAAAAAAEAAAIAAAAAAQAABgAAAAABAAACAAAA
+AAEAAAYAAAAAAQAAAgAAAAABAAAGAAAAAAEAAAIAAAAAAQAABAAAAAABAAAGAAAAAAEAAAIAAAAA
+AgAABAAAAAABAAAGAAAAAAEAAAIAAAAAAQAABgAAAAABAAACAAAAAAEAAAQAAAAAAQAABgAAAAAB
+AAACAAAAAAIAAAQAAAAAAQAACAAAAAACAAACAAAAAAIAAAQAAAAAAQAABgAAAAABAAACAAAAAAEA
+AAoAAAAAAQAABAAAAAABAAAAAAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAA
+AgAAAAABAAAKAAAAAAEAAAQAAAAAAQAAAAAAAAABAAACAAAAAAEAAAoAAAAAAQAABAAAAAABAAAA
+AAAAAAEAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAABAAAEAAAAAAEAAAYA
+AAAAAQAAAgAAAAABAAAGAAAAAAEAAAIAAAAAAQAABgAAAAABAAACAAAAAAEAAAQAAAAAAQAACAAA
+AAACAAACAAAAAAIAAAQAAAAAAQAABgAAAAABAAACAAAAAAEAAAYAAAAAAQAAAgAAAAABAAAIAAAA
+AAIAAAIAAAAAAQAACgAAAAABAAAEAAAAAAEAAAAAAAAAAQAAAgAAAAACAAAEAAAAABxzdHNjAAAA
+AAAAAAEAAAABAAAAgAAAAAEAAAIUc3RzegAAAAAAAAAAAAAAgAAAD5MAAACnAAAA5QAAACgAAACg
+AAAAIgAAACEAAABEAAAAnwAAACwAAAAhAAAAKAAAAHUAAAAsAAAAIgAAAHwAAAArAAAAXAAAACIA
+AACBAAAAIQAAAJIAAAAfAAAAaQAAACAAAADWAAAALQAAACAAAAAyAAAAXAAAAB4AAAAhAAAAGAAA
+AH4AAAAgAAAAGAAAACwAAADdAAAAMQAAACgAAAAoAAAAiQAAADUAAAA5AAAA3AAAACMAAAAsAAAA
+OgAAAEcAAACCAAAAIQAAAHMAAAAdAAAAigAAACYAAAB7AAAAIwAAAG8AAAAsAAAAWwAAACQAAAAw
+AAAAcAAAACQAAABBAAAAVgAAAGYAAAAkAAAAZgAAACQAAABDAAAAaQAAACUAAABcAAAAUQAAAIUA
+AAAnAAAAHgAAAEcAAABUAAAAiQAAACYAAAD1AAAAOQAAABwAAAAoAAAAzAAAAD4AAAAeAAAAJQAA
+ALQAAAA3AAAALQAAACsAAABoAAAAMwAAACUAAAAmAAAAsQAAADYAAAApAAAAJQAAAGcAAAB9AAAA
+JQAAAIAAAAAkAAAAkAAAACYAAABGAAAAyQAAACgAAAAeAAAAPQAAAD0AAABsAAAAKAAAAIUAAAAq
+AAAAlQAAACoAAAAjAAAAaQAAACsAAAAcAAAALwAAAFYAAABJAAAAFHN0Y28AAAAAAAAAAQAAADAA
+AABidWR0YQAAAFptZXRhAAAAAAAAACFoZGxyAAAAAAAAAABtZGlyYXBwbAAAAAAAAAAAAAAAAC1p
+bHN0AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4Ljc2LjEwMA==
+">
+  Your browser does not support the video tag.
+</video>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
