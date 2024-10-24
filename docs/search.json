@@ -1181,5 +1181,12 @@
     "title": "Applications of Derivatives",
     "section": "Maxima/Minima",
     "text": "Maxima/Minima\n\nx = sp.symbols('x')\nequation = x*sp.exp(-x**2/10)\n\nfirstDeriv = equation.diff(x)\nsecondDeriv = firstDeriv.diff(x)\n\ncriticalPoints = list(sp.solveset(firstDeriv, x))\ncriticalPointsY = [equation.subs(x, a) for a in criticalPoints]\n\nxx = np.linspace(-10, 10, 1000)\nyy = sp.lambdify(x, [equation, firstDeriv, secondDeriv])(xx)\nplt.plot(xx, np.transpose(yy))\nplt.plot(criticalPoints, criticalPointsY, 'k*')\nplt.legend(['f', \"f'\", \"f''\"])\nplt.show()"
+  },
+  {
+    "objectID": "C0calculusI/home_calculusI.html#midterm",
+    "href": "C0calculusI/home_calculusI.html#midterm",
+    "title": "Calculus I",
+    "section": "Midterm",
+    "text": "Midterm\nThe midterm will include everything studied in class up till (and including) section 4.1."
   }
 ]
