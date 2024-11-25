@@ -865,7 +865,7 @@
     "href": "C0calculusII/home_calculusII.html#assignments",
     "title": "Calculus II",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3"
+    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4"
   },
   {
     "objectID": "C0calculusI/home_calculusI.html#quizzes",
@@ -879,7 +879,7 @@
     "href": "C0calculusI/home_calculusI.html#assignments",
     "title": "Calculus I",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3"
+    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4"
   },
   {
     "objectID": "C0calculusII/notebooks/test.html",
@@ -1188,5 +1188,40 @@
     "title": "Calculus I",
     "section": "Midterm",
     "text": "Midterm\nThe midterm will include everything studied in class up till (and including) section 4.1."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/home_topmat.html",
+    "href": "C0TopologicalMaterials/home_topmat.html",
+    "title": "Topological Materials",
+    "section": "",
+    "text": "SSH to Floquet"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html",
+    "href": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html",
+    "title": "SSH to Floquet",
+    "section": "",
+    "text": "Highlights\n\nDescribes a 1D lattice.\nHopping amplitudes are staggered\nTopologicla Invariant: Winding number which results in edge states."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#su-schrieffer-heeger-ssh-model",
+    "href": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#su-schrieffer-heeger-ssh-model",
+    "title": "SSH to Floquet",
+    "section": "",
+    "text": "Highlights\n\nDescribes a 1D lattice.\nHopping amplitudes are staggered\nTopologicla Invariant: Winding number which results in edge states."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#haldane-model",
+    "href": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#haldane-model",
+    "title": "SSH to Floquet",
+    "section": "Haldane Model",
+    "text": "Haldane Model\n\n2D, tight-binding model\nTopological Invariant: Chern number associated with edge states.\n\n\\(C &gt; 0 \\implies\\) two gapped curves, except for the cross-over at 0."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#floquet-topological-insulators",
+    "href": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#floquet-topological-insulators",
+    "title": "SSH to Floquet",
+    "section": "Floquet Topological Insulators",
+    "text": "Floquet Topological Insulators\n\nBehave like Topological Insulators (TI) due to periodic driving.\nFloquet spectra (equivalent of eigenvalue spectra)\n\n\nRudner Model\n\n\nGraphene-Light Model"
   }
 ]
