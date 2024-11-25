@@ -655,7 +655,7 @@
     "href": "C0calculusII/home_calculusII.html#slides-and-notebooks",
     "title": "Calculus II",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\nParametric Curves\nParametric Curves Calculus\nParametric Curves Polar\nConic Sections\nVectors\nQuadric Surfaces"
+    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\nParametric Curves\nParametric Curves Calculus\nParametric Curves Polar\nConic Sections\nVectors\nQuadric Surfaces\nPartial Derivatives\nDouble Integrals"
   },
   {
     "objectID": "C0calculusII/home_calculusII.html#course-outline",
@@ -1223,5 +1223,12 @@
     "title": "SSH to Floquet",
     "section": "Floquet Topological Insulators",
     "text": "Floquet Topological Insulators\n\nBehave like Topological Insulators (TI) due to periodic driving.\nFloquet spectra (equivalent of eigenvalue spectra)\n\n\nRudner Model\n\n\nGraphene-Light Model"
+  },
+  {
+    "objectID": "C0calculusII/lectures/14_2DoubleIntegrals.html",
+    "href": "C0calculusII/lectures/14_2DoubleIntegrals.html",
+    "title": "Partial Derivatives",
+    "section": "",
+    "text": "#Example 4: Section 14.1, Thomas 15th edition.\nfrom sympy import symbols, integrate\n\n# Define the variables\nx, y = symbols('x y')\n\n# Define the function to integrate\nf = 16 - x**2 - y**2\n\n# Define the bounds\nx_lower = y**2 / 4\nx_upper = (y + 2)/4\ny_lower = 0\ny_upper = 2\n\n# Compute the double integral\nres = integrate(f, (x, x_lower, x_upper))\nresult = integrate(res, (y, y_lower, y_upper))\n\n# Display the result\ndisplay(res)\nprint('Now integrating over y')\ndisplay(result)\n\n\\(\\displaystyle \\frac{y^{6}}{192} - \\frac{y^{2} \\left(16 - y^{2}\\right)}{4} + \\left(16 - y^{2}\\right) \\left(\\frac{y}{4} + \\frac{1}{2}\\right) - \\frac{\\left(\\frac{y}{4} + \\frac{1}{2}\\right)^{3}}{3}\\)\n\n\nNow integrating over y\n\n\n\\(\\displaystyle \\frac{20803}{1680}\\)"
   }
 ]
