@@ -200,7 +200,7 @@
     "href": "C0calculusII/home_calculusII.html",
     "title": "Calculus II",
     "section": "",
-    "text": "We will most likely have three quizzes:\n\nQuiz 1 [5 Marks]\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
+    "text": "As announced in class, there will be a project.\nThe task: Reproduce 3 figures (two 2D and one 3D) from your textbook.\nNote that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.\nFurthermore:\n\nThe project will be done in groups of 3.\nThe marks will be credited as bonus (i.e. they will not have a separate category)\nThere will be a viva in the 15th week.\nThe individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.)"
   },
   {
     "objectID": "C0calculusII/notebooks/11_2,3,4DotCrossProduct.html",
@@ -857,8 +857,8 @@
     "objectID": "C0calculusII/home_calculusII.html#quizzes",
     "href": "C0calculusII/home_calculusII.html#quizzes",
     "title": "Calculus II",
-    "section": "",
-    "text": "We will most likely have three quizzes:\n\nQuiz 1 [5 Marks]\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
+    "section": "Quizzes",
+    "text": "Quizzes\nWe will most likely have three quizzes:\n\nQuiz 1 [5 Marks]\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nDecember 10 (Tuesday), 6:00pm at LH4, FES \nFrom chapters 13 & 14"
   },
   {
     "objectID": "C0calculusII/home_calculusII.html#assignments",
@@ -872,7 +872,7 @@
     "href": "C0calculusI/home_calculusI.html#quizzes",
     "title": "Calculus I",
     "section": "Quizzes",
-    "text": "Quizzes\nWe will most likely have three quizzes. Tentatively:\n\nQuiz 1 [5 Marks]\nQuiz 2 (10 marks, 8th week)\n\n\nOctober 22 (Tuesday), 6:15pm at LH4, FES \nFrom chapters 1, 2 & 3 (up till & including 3.6) \n\n\nQuiz 3 (10 marks, 13th week)* Quiz 3 (10 marks, 13th week)\n\n\nN.B.: If you can’t take the quiz for some reason, you need to inform us in advance."
+    "text": "Quizzes\nWe will most likely have three quizzes. Tentatively:\n\nQuiz 1 [5 Marks]\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nDecember 10 (Tuesday), 6:00pm at LH4, FES \n4.3 to 4.5, 5.1 to 5.6 (as studied in class), 6.1, 6.2\n\n\nN.B.: If you can’t take the quiz for some reason, you need to inform us in advance."
   },
   {
     "objectID": "C0calculusI/home_calculusI.html#assignments",
@@ -1230,5 +1230,12 @@
     "title": "Partial Derivatives",
     "section": "",
     "text": "#Example 4: Section 14.1, Thomas 15th edition.\nfrom sympy import symbols, integrate\n\n# Define the variables\nx, y = symbols('x y')\n\n# Define the function to integrate\nf = 16 - x**2 - y**2\n\n# Define the bounds\nx_lower = y**2 / 4\nx_upper = (y + 2)/4\ny_lower = 0\ny_upper = 2\n\n# Compute the double integral\nres = integrate(f, (x, x_lower, x_upper))\nresult = integrate(res, (y, y_lower, y_upper))\n\n# Display the result\ndisplay(res)\nprint('Now integrating over y')\ndisplay(result)\n\n\\(\\displaystyle \\frac{y^{6}}{192} - \\frac{y^{2} \\left(16 - y^{2}\\right)}{4} + \\left(16 - y^{2}\\right) \\left(\\frac{y}{4} + \\frac{1}{2}\\right) - \\frac{\\left(\\frac{y}{4} + \\frac{1}{2}\\right)^{3}}{3}\\)\n\n\nNow integrating over y\n\n\n\\(\\displaystyle \\frac{20803}{1680}\\)"
+  },
+  {
+    "objectID": "C0calculusII/home_calculusII.html#project",
+    "href": "C0calculusII/home_calculusII.html#project",
+    "title": "Calculus II",
+    "section": "",
+    "text": "As announced in class, there will be a project.\nThe task: Reproduce 3 figures (two 2D and one 3D) from your textbook.\nNote that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.\nFurthermore:\n\nThe project will be done in groups of 3.\nThe marks will be credited as bonus (i.e. they will not have a separate category)\nThere will be a viva in the 15th week.\nThe individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.)"
   }
 ]
