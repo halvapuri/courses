@@ -865,7 +865,7 @@
     "href": "C0calculusII/home_calculusII.html#assignments",
     "title": "Calculus II",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4"
+    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5"
   },
   {
     "objectID": "C0calculusI/home_calculusI.html#quizzes",
@@ -879,7 +879,7 @@
     "href": "C0calculusI/home_calculusI.html#assignments",
     "title": "Calculus I",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4"
+    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5"
   },
   {
     "objectID": "C0calculusII/notebooks/test.html",
@@ -1237,5 +1237,12 @@
     "title": "Calculus II",
     "section": "",
     "text": "As announced in class, there will be a project.\nThe task: Reproduce 3 figures (two 2D and one 3D) from your textbook.\nNote that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.\nFurthermore:\n\nThe project will be done in groups of 3.\nThe marks will be credited as bonus (i.e. they will not have a separate category)\nThere will be a viva in the 15th week.\nThe individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.)"
+  },
+  {
+    "objectID": "C0calculusII/lectures/14_6SphericalCylindrical.html",
+    "href": "C0calculusII/lectures/14_6SphericalCylindrical.html",
+    "title": "Spherical and Cylindrical Coodrinates",
+    "section": "",
+    "text": "import plotly.graph_objects as go\nimport numpy as np\n\n# Function to generate spherical coordinates\ndef sphere(radius, resolution=100):\n    phi = np.linspace(0, np.pi, resolution)  # Latitude\n    theta = np.linspace(0, 2 * np.pi, resolution)  # Longitude\n    phi, theta = np.meshgrid(phi, theta)\n\n    # Parametric equations for the sphere\n    x = radius * np.sin(phi) * np.cos(theta)\n    y = radius * np.sin(phi) * np.sin(theta)\n    z = radius * np.cos(phi)\n    \n    return x, y, z\n\n# Function to generate cone coordinates\ndef cone(angle, height=2, resolution=100):\n    # Angle in radians\n    angle = np.radians(angle)\n    \n    # Generating the cone surface\n    z = np.linspace(0, height, resolution)  # Height of the cone\n    theta = np.linspace(0, 2 * np.pi, resolution)  # Angle around the cone\n    Z, Theta = np.meshgrid(z, theta)\n    \n    # Radius at each height level (linear tapering from the base to the apex)\n    R = (height - Z) * np.tan(angle)  # Radius varies with height\n\n    # Parametric equations for the cone\n    X = R * np.cos(Theta)\n    Y = R * np.sin(Theta)\n    \n    return X, Y, Z\n\n# Create the figure\nfig = go.Figure()\n\n# Add sphere to the plot\nradius_slider_value = 1.0  # Initial radius\nx_sphere, y_sphere, z_sphere = sphere(radius_slider_value)\nfig.add_trace(go.Surface(x=x_sphere, y=y_sphere, z=z_sphere, colorscale='Viridis', opacity=0.5, showscale=False))\n\n# Add cone to the plot\nangle_slider_value = 30  # Initial angle of the cone\nx_cone, y_cone, z_cone = cone(angle_slider_value)\nfig.add_trace(go.Surface(x=x_cone, y=y_cone, z=z_cone, colorscale='YlOrRd', opacity=0.6, showscale=False))\n\n# Set the layout with sliders for radius and cone angle\nfig.update_layout(\n    sliders=[dict(\n        yanchor=\"top\",\n        xanchor=\"left\",\n        currentvalue=dict(\n            visible=True,\n            xanchor=\"center\",\n            font=dict(size=20),\n        ),\n        steps=[\n            dict(\n                label=f\"Radius {r:.1f}\",\n                method=\"relayout\",\n                args=[{\"scene.camera\": {\"eye\": {\"x\": 1.25 * r, \"y\": 1.25 * r, \"z\": 1.25 * r}}}]  \n            )\n            for r in np.arange(0.5, 3.1, 0.5)\n        ]\n    )]\n)\nfig.show()"
   }
 ]
