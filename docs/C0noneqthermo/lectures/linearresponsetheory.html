@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Worldlines - Non-equilibrium Thermodynamics</title>
+<title>Worldlines - Linear Response Theory</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -92,20 +92,22 @@ function openCity(evt, cityName) {
 
 
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -116,11 +118,11 @@ function openCity(evt, cityName) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -134,7 +136,7 @@ function openCity(evt, cityName) {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Courses</a></li><li class="breadcrumb-item"><a href="../C0noneqthermo/home_noneqthermo.html">Non-equilibrium Thermodynamics</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Linear Response Theory</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -148,8 +150,8 @@ function openCity(evt, cityName) {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -170,26 +172,14 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus II</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ODEs &amp; Lin. Alg.</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
   </div>
 </li>
       </ul>
@@ -205,31 +195,37 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Mechanics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topology</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
@@ -245,25 +241,16 @@ function openCity(evt, cityName) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#text-and-reference-books" id="toc-text-and-reference-books" class="nav-link active" data-scroll-target="#text-and-reference-books">Text and Reference Books</a></li>
-  <li><a href="#topics-subject-to-change" id="toc-topics-subject-to-change" class="nav-link" data-scroll-target="#topics-subject-to-change">Topics (Subject to change)</a></li>
-  <li><a href="#progression" id="toc-progression" class="nav-link" data-scroll-target="#progression">Progression</a>
-  <ul class="collapse">
-  <li><a href="#week-1-3" id="toc-week-1-3" class="nav-link" data-scroll-target="#week-1-3">Week 1-3</a></li>
-  <li><a href="#week-4-6" id="toc-week-4-6" class="nav-link" data-scroll-target="#week-4-6">Week 4-6</a></li>
-  <li><a href="#week-7-8" id="toc-week-7-8" class="nav-link" data-scroll-target="#week-7-8">Week 7-8</a></li>
-  <li><a href="#week-9" id="toc-week-9" class="nav-link" data-scroll-target="#week-9">Week 9+</a></li>
-  <li><a href="#week-10" id="toc-week-10" class="nav-link" data-scroll-target="#week-10">Week 10+</a></li>
-  </ul></li>
+  <li><a href="#stationary-states" id="toc-stationary-states" class="nav-link active" data-scroll-target="#stationary-states">Stationary States</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Non-equilibrium Thermodynamics</h1>
+<h1 class="title">Linear Response Theory</h1>
 </div>
 
 
@@ -278,86 +265,173 @@ function openCity(evt, cityName) {
 
 </header>
 
-<p>Both the Fokker-Planck and Langevin equations describe the Brownian motion. In general, they also explain the behavior of a system in presence of a random noise and its evolution toward a stationary state i.e., they could also be applied to thermalization processes of non-equilibrium systems.</p>
-<section id="text-and-reference-books" class="level2">
-<h2 class="anchored" data-anchor-id="text-and-reference-books">Text and Reference Books</h2>
-<p>Some texts, online or otherwise are given below:</p>
-<ul>
-<li>Linda Reichl: A Course in Modern Statistical Physics.
-<ul>
-<li>Chapter 7 is about Brownian Motion and Fluctuation Dissipation</li>
-</ul></li>
-<li>Kerson Huang: Introduction to Statistical Physics
-<ul>
-<li>See chapter 14</li>
-</ul></li>
-<li>Bikkin, Lyapilin: Non-equilibrium thermodynamics and physical kinetics</li>
-<li>Attard: Non-Equilibrium Thermodynamics and Statistical Mechanics</li>
-<li>Balakrishnan:</li>
-<li>Pottier: Non-Equilibrium Statistical Physics</li>
-<li>Ropke: Non-Equilibrium Statistical Physics</li>
-<li>Peliti &amp; Pigolotti: Stochastic Thermodynamics
-<ul>
-<li>See Chapter 4: Jarzynski and Crooks relations</li>
-</ul></li>
-</ul>
-<p>Other texts</p>
-<ul>
-<li>Woyczyński - Diffusion Processes, Jump Processes, and Stochastic Differential Equations</li>
-<li>David Tong: Lectures on Kinetic Theory</li>
-<li>Kardar: Statistical Theory of Particles</li>
-</ul>
-</section>
-<section id="topics-subject-to-change" class="level2">
-<h2 class="anchored" data-anchor-id="topics-subject-to-change">Topics (Subject to change)</h2>
-<ul>
-<li>Review of phenomenological thermodynamics</li>
-<li>Brownian motion</li>
-<li>Langevin and Fokker Planck equation</li>
-<li>Master equations</li>
-<li>Jarzynski and Crooks relations</li>
-<li>Boltzmann (Transport) Equation</li>
-<li>H theorem</li>
-<li>GKLS Equations</li>
-<li>Open quantum systems</li>
-</ul>
-<p><a href="../C0noneqthermo/lectures/langevin.html">Langevin equation</a><br>
-<a href="../C0noneqthermo/lectures/fokkerplanck.html">Fokker Planck equation</a><br>
-<a href="../C0noneqthermo/lectures/linearresponsetheory.html">Linear Response Theory</a><br>
-</p>
-</section>
-<section id="progression" class="level2">
-<h2 class="anchored" data-anchor-id="progression">Progression</h2>
-<section id="week-1-3" class="level3">
-<h3 class="anchored" data-anchor-id="week-1-3">Week 1-3</h3>
-<p>Langevin and Fokker Planck Equations</p>
-<p>Possibly lead to GSKL equations following Banerjee.</p>
-<p>Texts:</p>
-<ul>
-<li>Balakrishnan (Chapters 1-6)</li>
-<li>Zwanzig (Chapters 1-3)</li>
-<li>Banerjee: Open Quantum Systems (Chapter 3)</li>
-</ul>
-</section>
-<section id="week-4-6" class="level3">
-<h3 class="anchored" data-anchor-id="week-4-6">Week 4-6</h3>
-<p>Brownian Motion &amp; Diffusion</p>
-</section>
-<section id="week-7-8" class="level3">
-<h3 class="anchored" data-anchor-id="week-7-8">Week 7-8</h3>
-<p>Boltzmann Equation and H-theorem</p>
-<p>BBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases</p>
-</section>
-<section id="week-9" class="level3">
-<h3 class="anchored" data-anchor-id="week-9">Week 9+</h3>
-<p>SDEs</p>
-</section>
-<section id="week-10" class="level3">
-<h3 class="anchored" data-anchor-id="week-10">Week 10+</h3>
-<p>Jarzynski, Crooks?</p>
+<p>Non-equilibrium thermodynamics uses a phenomenological approach since enough information is not really available.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 328.33 284.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 280.8)">
+<title>
+G
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-280.8 324.33,-280.8 324.33,4 -4,4"></polygon> <text text-anchor="middle" x="160.17" y="-8.2" font-family="EB Garamond" font-size="14.00">Formalism</text> <!-- 1st + 2nd Law --> <g id="node1" class="node">
+<title>
+1st + 2nd Law
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="69.78" cy="-258.8" rx="66.78" ry="18"></ellipse> <text text-anchor="middle" x="69.78" y="-254.6" font-family="EB Garamond" font-size="14.00">1st + 2nd Law</text> </g> <!-- Gibbs equation --> <g id="node2" class="node">
+<title>
+Gibbs equation
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="69.78" cy="-186.8" rx="69.55" ry="18"></ellipse> <text text-anchor="middle" x="69.78" y="-182.6" font-family="EB Garamond" font-size="14.00">Gibbs equation</text> </g> <!-- 1st + 2nd Law&#45;&gt;Gibbs equation --> <g id="edge1" class="edge">
+<title>
+1st + 2nd Law-&gt;Gibbs equation
+</title>
+<path fill="none" stroke="black" d="M69.78,-240.5C69.78,-232.78 69.78,-223.51 69.78,-214.91"></path> <polygon fill="black" stroke="black" points="73.28,-214.9 69.78,-204.9 66.28,-214.9 73.28,-214.9"></polygon> </g> <!-- Rate of Entropy Production --> <g id="node3" class="node">
+<title>
+Rate of Entropy Production
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="153.78" cy="-114.8" rx="117.53" ry="18"></ellipse> <text text-anchor="middle" x="153.78" y="-110.6" font-family="EB Garamond" font-size="14.00">Rate of Entropy Production</text> </g> <!-- Gibbs equation&#45;&gt;Rate of Entropy Production --> <g id="edge2" class="edge">
+<title>
+Gibbs equation-&gt;Rate of Entropy Production
+</title>
+<path fill="none" stroke="black" d="M89.68,-169.21C100.4,-160.28 113.81,-149.1 125.59,-139.29"></path> <polygon fill="black" stroke="black" points="127.99,-141.85 133.43,-132.76 123.5,-136.47 127.99,-141.85"></polygon> </g> <!-- Level of Energy Dissipation --> <g id="node5" class="node">
+<title>
+Level of Energy Dissipation
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="153.78" cy="-42.8" rx="120.37" ry="18"></ellipse> <text text-anchor="middle" x="153.78" y="-38.6" font-family="EB Garamond" font-size="14.00">Level of Energy Dissipation</text> </g> <!-- Rate of Entropy Production&#45;&gt;Level of Energy Dissipation --> <g id="edge4" class="edge">
+<title>
+Rate of Entropy Production-&gt;Level of Energy Dissipation
+</title>
+<path fill="none" stroke="black" d="M153.78,-96.5C153.78,-88.78 153.78,-79.51 153.78,-70.91"></path> <polygon fill="black" stroke="black" points="157.28,-70.9 153.78,-60.9 150.28,-70.9 157.28,-70.9"></polygon> </g> <!-- Balance equations --> <g id="node4" class="node">
+<title>
+Balance equations
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="238.78" cy="-186.8" rx="81.62" ry="18"></ellipse> <text text-anchor="middle" x="238.78" y="-182.6" font-family="EB Garamond" font-size="14.00">Balance equations</text> </g> <!-- Balance equations&#45;&gt;Rate of Entropy Production --> <g id="edge3" class="edge">
+<title>
+Balance equations-&gt;Rate of Entropy Production
+</title>
+<path fill="none" stroke="black" d="M218.63,-169.21C207.78,-160.28 194.21,-149.1 182.3,-139.29"></path> <polygon fill="black" stroke="black" points="184.31,-136.41 174.36,-132.76 179.86,-141.82 184.31,-136.41"></polygon> </g> </g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The Gibbs equation combines the first and second laws of thermodynamics. Together with the general balance equations under local thermodynamic equilibrium, the rate of entropy production can be obtained. This leads to the level of energy dissipation during a process, and in describing coupled phenomena.</p>
+</div></div><p>We will not go far from equilibrium. The transport and rate equations will be expressed in linear forms, and the Onsager reciprocal relations are valid.</p>
+<section id="stationary-states" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="stationary-states">Stationary States</h2>
+<p>Intensive properties that specify the state of a <strong>substance</strong> are time independent in equilibrium systems and in nonequilibrium stationary states (which only happens in non-isolated systems of course).</p>
+<p>Extensive properties specifying the state of a <strong>system</strong> with boundaries are also independent of time, and the boundaries are stationary in a coordinate system.</p>
+<p>The stationary state of a <em>substance</em> at any point is related to the stationary state of the <em>system</em></p>
+<p>The total entropy will not change:</p>
+<p><span class="math display">\[
+\frac{dS}{dt} = \frac{dS_e}{dt} + \frac{dS_i}{dt} = 0
+\]</span></p>
+<p>Also in terms of entropy currents (in and out) a continuity equation can be written:</p>
+<p><span class="math display">\[
+\frac{dS_i}{dt} + (J_{s,in} - J_{s,out}) = 0
+\]</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><span class="math display">\[
+\begin{align}
+\frac{dS_e}{dt} &amp;= \text{Entropy exchange between system and surroundings} \\
+\frac{dS_i}{dt} &amp;= \text{Entropy production inside}
+\end{align}
+\]</span></p>
+</div></div><p>Entropy production (<span class="math inline">\(dS_i \geq 0\)</span>) and since <span class="math inline">\(dS_e/dt\)</span> is greater than 0 (system need not be isolated):</p>
+<p><span class="math display">\[
+\frac{dS_e}{dt} = -\frac{dS_i}{dt} = (J_{s,in} - J_{s,out}) &lt; 0
+\]</span></p>
+<div class="dd">
+<div class="dd-head" onclick="toggleBox(this)">
+<p>Entropy exchange with the environment is negative</p>
+</div>
+<div class="dd-box">
+<p>The stationary state is maintained through the decrease in entropy exchanged between the system and its surrounding.</p>
+<p>The total entropy produced within the system must be discharged across the boundary at stationary state.</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 999.66 212.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 208.8)">
+<title>
+D
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-208.8 995.66,-208.8 995.66,4 -4,4"></polygon> <text text-anchor="middle" x="495.83" y="-8.2" font-family="EB Garamond" font-size="14.00">Formalism</text> <!-- Stationary state --> <g id="node1" class="node">
+<title>
+Stationary state
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="187.52" cy="-186.8" rx="70.68" ry="18"></ellipse> <text text-anchor="middle" x="187.52" y="-182.6" font-family="EB Garamond" font-size="14.00">Stationary state</text> </g> <!-- Boundary conditions do not change with time --> <g id="node2" class="node">
+<title>
+Boundary conditions do not change with time
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="187.52" cy="-114.8" rx="187.53" ry="18"></ellipse> <text text-anchor="middle" x="187.52" y="-110.6" font-family="EB Garamond" font-size="14.00">Boundary conditions do not change with time</text> </g> <!-- Stationary state&#45;&gt;Boundary conditions do not change with time --> <g id="edge1" class="edge">
+<title>
+Stationary state-&gt;Boundary conditions do not change with time
+</title>
+<path fill="none" stroke="black" d="M187.52,-168.5C187.52,-160.78 187.52,-151.51 187.52,-142.91"></path> <polygon fill="black" stroke="black" points="191.02,-142.9 187.52,-132.9 184.02,-142.9 191.02,-142.9"></polygon> </g> <!-- Isolated system --> <g id="node3" class="node">
+<title>
+Isolated system
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="443.52" cy="-186.8" rx="70.69" ry="18"></ellipse> <text text-anchor="middle" x="443.52" y="-182.6" font-family="EB Garamond" font-size="14.00">Isolated system</text> </g> <!-- Steady state not possible --> <g id="node4" class="node">
+<title>
+Steady state not possible
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="499.52" cy="-114.8" rx="106.01" ry="18"></ellipse> <text text-anchor="middle" x="499.52" y="-110.6" font-family="EB Garamond" font-size="14.00">Steady state not possible</text> </g> <!-- Isolated system&#45;&gt;Steady state not possible --> <g id="edge2" class="edge">
+<title>
+Isolated system-&gt;Steady state not possible
+</title>
+<path fill="none" stroke="black" d="M457.07,-168.85C463.78,-160.47 472.02,-150.18 479.44,-140.9"></path> <polygon fill="black" stroke="black" points="482.18,-143.07 485.7,-133.08 476.72,-138.7 482.18,-143.07"></polygon> </g> <!-- dS_e/dt = 0 --> <g id="node5" class="node">
+<title>
+dS_e/dt = 0
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="311.52" cy="-42.8" rx="55.8" ry="18"></ellipse> <text text-anchor="middle" x="311.52" y="-38.6" font-family="EB Garamond" font-size="14.00">dS_e/dt = 0</text> </g> <!-- Steady state not possible&#45;&gt;dS_e/dt = 0 --> <g id="edge3" class="edge">
+<title>
+Steady state not possible-&gt;dS_e/dt = 0
+</title>
+<path fill="none" stroke="black" d="M457.33,-98.09C427.24,-86.89 386.85,-71.85 356.21,-60.44"></path> <polygon fill="black" stroke="black" points="357.23,-57.08 346.63,-56.88 354.78,-63.64 357.23,-57.08"></polygon> </g> <!-- Entropy created cannot be discharged to maintain steady state (dS_e/dt = 0) --> <g id="node7" class="node">
+<title>
+Entropy created cannot be discharged to maintain steady state (dS_e/dt = 0)
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="688.52" cy="-42.8" rx="303.29" ry="18"></ellipse> <text text-anchor="middle" x="688.52" y="-38.6" font-family="EB Garamond" font-size="14.00">Entropy created cannot be discharged to maintain steady state (dS_e/dt = 0)</text> </g> <!-- Steady state not possible&#45;&gt;Entropy created cannot be discharged to maintain steady state (dS_e/dt = 0) --> <g id="edge5" class="edge">
+<title>
+Steady state not possible-&gt;Entropy created cannot be discharged to maintain steady state (dS_e/dt = 0)
+</title>
+<path fill="none" stroke="black" d="M541.93,-98.09C568.92,-88.1 604.15,-75.05 633.31,-64.25"></path> <polygon fill="black" stroke="black" points="634.78,-67.43 642.94,-60.68 632.35,-60.87 634.78,-67.43"></polygon> </g> <!-- Adiabatic system --> <g id="node6" class="node">
+<title>
+Adiabatic system
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="610.52" cy="-186.8" rx="77.63" ry="18"></ellipse> <text text-anchor="middle" x="610.52" y="-182.6" font-family="EB Garamond" font-size="14.00">Adiabatic system</text> </g> <!-- Adiabatic system&#45;&gt;Steady state not possible --> <g id="edge4" class="edge">
+<title>
+Adiabatic system-&gt;Steady state not possible
+</title>
+<path fill="none" stroke="black" d="M585.05,-169.74C570.04,-160.27 550.83,-148.16 534.42,-137.81"></path> <polygon fill="black" stroke="black" points="535.96,-134.64 525.63,-132.27 532.23,-140.57 535.96,-134.64"></polygon> </g> <!-- Equilibrium --> <g id="node8" class="node">
+<title>
+Equilibrium
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="804.52" cy="-186.8" rx="57.92" ry="18"></ellipse> <text text-anchor="middle" x="804.52" y="-182.6" font-family="EB Garamond" font-size="14.00">Equilibrium</text> </g> <!-- dS/dt = dS_e/dt = dS_i/dt = 0 --> <g id="node9" class="node">
+<title>
+dS/dt = dS_e/dt = dS_i/dt = 0
+</title>
+<ellipse fill="LightCoral" stroke="LightCoral" cx="804.52" cy="-114.8" rx="124.49" ry="18"></ellipse> <text text-anchor="middle" x="804.52" y="-110.6" font-family="EB Garamond" font-size="14.00">dS/dt = dS_e/dt = dS_i/dt = 0</text> </g> <!-- Equilibrium&#45;&gt;dS/dt = dS_e/dt = dS_i/dt = 0 --> <g id="edge6" class="edge">
+<title>
+Equilibrium-&gt;dS/dt = dS_e/dt = dS_i/dt = 0
+</title>
+<path fill="none" stroke="black" d="M804.52,-168.5C804.52,-160.78 804.52,-151.51 804.52,-142.91"></path> <polygon fill="black" stroke="black" points="808.02,-142.9 804.52,-132.9 801.02,-142.9 808.02,-142.9"></polygon> </g> </g>
+</svg>
+</div>
+</div>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

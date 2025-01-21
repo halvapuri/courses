@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Course Hub",
     "section": "",
-    "text": "Content relevant to your course will be posted on the corresponding course pages which you can access from the list below or using side panel.\nNote that  it is your responsiblity to keep yourself updated  with any new developments and/or announcements.\nCalculus I - MT101\nCalculus II - MT202"
+    "text": "Content relevant to your course will be posted on the corresponding course pages which you can access from the list below or using side panel.\nNote that  it is your responsiblity to keep yourself updated  with any new developments and/or announcements."
   },
   {
     "objectID": "C0TimeSeriesandGIS/home_timeseriesandGIS.html",
@@ -270,7 +270,7 @@
     "href": "C0noneqthermo/home_noneqthermo.html",
     "title": "Non-equilibrium Thermodynamics",
     "section": "",
-    "text": "Langevin equation\nFokker Planck equation\nLinear Response Theory"
+    "text": "Both the Fokker-Planck and Langevin equations describe the Brownian motion. In general, they also explain the behavior of a system in presence of a random noise and its evolution toward a stationary state i.e., they could also be applied to thermalization processes of non-equilibrium systems."
   },
   {
     "objectID": "0courses.html",
@@ -1244,5 +1244,194 @@
     "title": "Spherical and Cylindrical Coodrinates",
     "section": "",
     "text": "import plotly.graph_objects as go\nimport numpy as np\n\n# Function to generate spherical coordinates\ndef sphere(radius, resolution=100):\n    phi = np.linspace(0, np.pi, resolution)  # Latitude\n    theta = np.linspace(0, 2 * np.pi, resolution)  # Longitude\n    phi, theta = np.meshgrid(phi, theta)\n\n    # Parametric equations for the sphere\n    x = radius * np.sin(phi) * np.cos(theta)\n    y = radius * np.sin(phi) * np.sin(theta)\n    z = radius * np.cos(phi)\n    \n    return x, y, z\n\n# Function to generate cone coordinates\ndef cone(angle, height=2, resolution=100):\n    # Angle in radians\n    angle = np.radians(angle)\n    \n    # Generating the cone surface\n    z = np.linspace(0, height, resolution)  # Height of the cone\n    theta = np.linspace(0, 2 * np.pi, resolution)  # Angle around the cone\n    Z, Theta = np.meshgrid(z, theta)\n    \n    # Radius at each height level (linear tapering from the base to the apex)\n    R = (height - Z) * np.tan(angle)  # Radius varies with height\n\n    # Parametric equations for the cone\n    X = R * np.cos(Theta)\n    Y = R * np.sin(Theta)\n    \n    return X, Y, Z\n\n# Create the figure\nfig = go.Figure()\n\n# Add sphere to the plot\nradius_slider_value = 1.0  # Initial radius\nx_sphere, y_sphere, z_sphere = sphere(radius_slider_value)\nfig.add_trace(go.Surface(x=x_sphere, y=y_sphere, z=z_sphere, colorscale='Viridis', opacity=0.5, showscale=False))\n\n# Add cone to the plot\nangle_slider_value = 30  # Initial angle of the cone\nx_cone, y_cone, z_cone = cone(angle_slider_value)\nfig.add_trace(go.Surface(x=x_cone, y=y_cone, z=z_cone, colorscale='YlOrRd', opacity=0.6, showscale=False))\n\n# Set the layout with sliders for radius and cone angle\nfig.update_layout(\n    sliders=[dict(\n        yanchor=\"top\",\n        xanchor=\"left\",\n        currentvalue=dict(\n            visible=True,\n            xanchor=\"center\",\n            font=dict(size=20),\n        ),\n        steps=[\n            dict(\n                label=f\"Radius {r:.1f}\",\n                method=\"relayout\",\n                args=[{\"scene.camera\": {\"eye\": {\"x\": 1.25 * r, \"y\": 1.25 * r, \"z\": 1.25 * r}}}]  \n            )\n            for r in np.arange(0.5, 3.1, 0.5)\n        ]\n    )]\n)\nfig.show()"
+  },
+  {
+    "objectID": "C0noneqthermo/home_noneqthermo.html#text-and-reference-books",
+    "href": "C0noneqthermo/home_noneqthermo.html#text-and-reference-books",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Text and Reference Books",
+    "text": "Text and Reference Books\nSome texts, online or otherwise are given below:\n\nLinda Reichl: A Course in Modern Statistical Physics.\n\nChapter 7 is about Brownian Motion and Fluctuation Dissipation\n\nKerson Huang: Introduction to Statistical Physics\n\nSee chapter 14\n\nBikkin, Lyapilin: Non-equilibrium thermodynamics and physical kinetics\nAttard: Non-Equilibrium Thermodynamics and Statistical Mechanics\nBalakrishnan:\nPottier: Non-Equilibrium Statistical Physics\nRopke: Non-Equilibrium Statistical Physics\nPeliti & Pigolotti: Stochastic Thermodynamics\n\nSee Chapter 4: Jarzynski and Crooks relations\n\n\nOther texts\n\nWoyczyński - Diffusion Processes, Jump Processes, and Stochastic Differential Equations\nDavid Tong: Lectures on Kinetic Theory\nKardar: Statistical Theory of Particles"
+  },
+  {
+    "objectID": "C0noneqthermo/home_noneqthermo.html#topics",
+    "href": "C0noneqthermo/home_noneqthermo.html#topics",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Topics",
+    "text": "Topics\n\nReview of phenomenological thermodynamics\nBrownian motion\nLangevin and Fokker Planck equation\nJarzynski and Crooks relations\n\nLangevin equation\nFokker Planck equation\nLinear Response Theory"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevin.html",
+    "href": "C0noneqthermo/lectures/langevin.html",
+    "title": "Langevin Equation",
+    "section": "",
+    "text": "We are going to stochastically solve the Langevin Equation.\nWe take the Langevin equation. There is a stochastic force in there which is Gaussian in nature.\nWe will (1) use Euler’s method to generate a realization but for that we first need (2) a sampled Gaussian distribution.\nConsult Gerd Ropke’s text on non-equilibrium thermodynamics."
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevin.html#sampling-a-gaussian",
+    "href": "C0noneqthermo/lectures/langevin.html#sampling-a-gaussian",
+    "title": "Langevin Equation",
+    "section": "Sampling a Gaussian",
+    "text": "Sampling a Gaussian\n\nManually (Box-Fuller method)\nLet’s try the Box-Fuller method.\n\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n\ndef SampleGaussian(num = 1000):\n\n    u = np.random.rand(num)\n    u1 = u[:int(num/2)]\n    u2 = u[int(num/2):]\n\n    z0 = np.sqrt(-2*np.log(u1)) * np.cos(2 * np.pi* u1)\n    z1 = np.sqrt(-2*np.log(u1)) * np.sin(2 * np.pi* u2)\n    z = np.concatenate((z0,z1))\n    return z\n\n\nplt.hist(SampleGaussian(), bins = 10)\n\n(array([  8.,  20., 195., 196., 301., 119.,  72.,  52.,  29.,   8.]),\n array([-2.71806518, -2.09685307, -1.47564096, -0.85442884, -0.23321673,\n         0.38799538,  1.0092075 ,  1.63041961,  2.25163173,  2.87284384,\n         3.49405595]),\n &lt;BarContainer object of 10 artists&gt;)\n\n\n\n\n\n\n\nAutomatic (use some library)"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevin.html#numerical-solution-of-the-langevin-equation",
+    "href": "C0noneqthermo/lectures/langevin.html#numerical-solution-of-the-langevin-equation",
+    "title": "Langevin Equation",
+    "section": "Numerical solution of the Langevin equation",
+    "text": "Numerical solution of the Langevin equation\n\nUse the Euler method\n\\(v_k^{(m)} = v_{k-1}^{(m)} + h (-\\gamma v_{k-1}^{(m)} + r_{k-1}^{m})\\)\n$M = 1000 (Number of realizations), $ $N = 24000 time steps, $ $h = 0.025, $ \\(t_N - t_0 = 600 s,\\) \\(\\gamma = 5; D = 1\\)\n\n\nSolve it directly\n\nFor one realization: Create N random variables.\n\n\ndef eulerlangevin(vk_1, rk_1, h, gamma ):\n    return vk_1 + h * (-gamma * vk_1 + rk_1)\n\n\ndef langevinrealizations(h = 0.025, samples = 100, realizations = 10, v0 = 1, gamma = 5, D = 1):\n    \"\"\"\n    Create multiple langevin realizations\n    Arguments:\n        v0 = Initial velocity\n        h = time step\n        gamma = friction\n        D = Diffusion\n\n        time (not passed but total simulation time = h*samples)\n\n    \"\"\"\n\n    time = np.linspace(0,h*samples, samples)\n\n    allvk = np.empty((realizations, samples))\n    allgaussians = np.empty((realizations, samples))\n\n    for m in range(realizations):\n        gaussianrv = SampleGaussian(samples)\n        vk = np.array([])\n        for i in range(len(gaussianrv)):\n            if i == 0:\n                vk = np.array([v0]) #np.append(vk, eulerlangevin(v0, gaussianrv[0], h, gamma))\n            else:\n                vk = np.append(vk, eulerlangevin(vk[i-1], gaussianrv[i-1], h, gamma))\n\n        allvk[m] = vk\n        allgaussians[m] = gaussianrv\n\n    return time, allvk, allgaussians\ntime, allvk, allgaussians = langevinrealizations(samples = 1000, h = 0.025, gamma = 5, D = 1, realizations = 10)\n\nWe plot some realizations.\n\nn = 50\nplt.plot(time[:n], allvk[0][:n])\nplt.plot(time[:n], allvk[1][:n])\nplt.plot(time[:n], allvk[2][:n])"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/linearresponsetheory.html",
+    "href": "C0noneqthermo/lectures/linearresponsetheory.html",
+    "title": "Linear Response Theory",
+    "section": "",
+    "text": "Non-equilibrium thermodynamics uses a phenomenological approach since enough information is not really available.\nG\n\n Formalism  \n\n1st + 2nd Law\n\n 1st + 2nd Law   \n\nGibbs equation\n\n Gibbs equation   \n\n1st + 2nd Law-&gt;Gibbs equation\n\n    \n\nRate of Entropy Production\n\n Rate of Entropy Production   \n\nGibbs equation-&gt;Rate of Entropy Production\n\n    \n\nLevel of Energy Dissipation\n\n Level of Energy Dissipation   \n\nRate of Entropy Production-&gt;Level of Energy Dissipation\n\n    \n\nBalance equations\n\n Balance equations   \n\nBalance equations-&gt;Rate of Entropy Production\nWe will not go far from equilibrium. The transport and rate equations will be expressed in linear forms, and the Onsager reciprocal relations are valid."
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/linearresponsetheory.html#stationary-states",
+    "href": "C0noneqthermo/lectures/linearresponsetheory.html#stationary-states",
+    "title": "Linear Response Theory",
+    "section": "Stationary States",
+    "text": "Stationary States\nIntensive properties that specify the state of a substance are time independent in equilibrium systems and in nonequilibrium stationary states (which only happens in non-isolated systems of course).\nExtensive properties specifying the state of a system with boundaries are also independent of time, and the boundaries are stationary in a coordinate system.\nThe stationary state of a substance at any point is related to the stationary state of the system\nThe total entropy will not change:\n\\[\n\\frac{dS}{dt} = \\frac{dS_e}{dt} + \\frac{dS_i}{dt} = 0\n\\]\nAlso in terms of entropy currents (in and out) a continuity equation can be written:\n\\[\n\\frac{dS_i}{dt} + (J_{s,in} - J_{s,out}) = 0\n\\]\n\n\n\\[\n\\begin{align}\n\\frac{dS_e}{dt} &= \\text{Entropy exchange between system and surroundings} \\\\\n\\frac{dS_i}{dt} &= \\text{Entropy production inside}\n\\end{align}\n\\]\nEntropy production (\\(dS_i \\geq 0\\)) and since \\(dS_e/dt\\) is greater than 0 (system need not be isolated):\n\\[\n\\frac{dS_e}{dt} = -\\frac{dS_i}{dt} = (J_{s,in} - J_{s,out}) &lt; 0\n\\]\n\n\nEntropy exchange with the environment is negative\n\n\nThe stationary state is maintained through the decrease in entropy exchanged between the system and its surrounding.\nThe total entropy produced within the system must be discharged across the boundary at stationary state.\n\n\n\n\n\n\n\n\n\nD\n\n Formalism  \n\nStationary state\n\n Stationary state   \n\nBoundary conditions do not change with time\n\n Boundary conditions do not change with time   \n\nStationary state-&gt;Boundary conditions do not change with time\n\n    \n\nIsolated system\n\n Isolated system   \n\nSteady state not possible\n\n Steady state not possible   \n\nIsolated system-&gt;Steady state not possible\n\n    \n\ndS_e/dt = 0\n\n dS_e/dt = 0   \n\nSteady state not possible-&gt;dS_e/dt = 0\n\n    \n\nEntropy created cannot be discharged to maintain steady state (dS_e/dt = 0)\n\n Entropy created cannot be discharged to maintain steady state (dS_e/dt = 0)   \n\nSteady state not possible-&gt;Entropy created cannot be discharged to maintain steady state (dS_e/dt = 0)\n\n    \n\nAdiabatic system\n\n Adiabatic system   \n\nAdiabatic system-&gt;Steady state not possible\n\n    \n\nEquilibrium\n\n Equilibrium   \n\ndS/dt = dS_e/dt = dS_i/dt = 0\n\n dS/dt = dS_e/dt = dS_i/dt = 0   \n\nEquilibrium-&gt;dS/dt = dS_e/dt = dS_i/dt = 0"
+  },
+  {
+    "objectID": "C0ode/home_ode.html#quizzes",
+    "href": "C0ode/home_ode.html#quizzes",
+    "title": "Ordinary Differential Equations",
+    "section": "Quizzes",
+    "text": "Quizzes\nWe will three quizzes:\n\nQuiz 1 (5 Marks)\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
+  },
+  {
+    "objectID": "C0ode/home_ode.html#assignments",
+    "href": "C0ode/home_ode.html#assignments",
+    "title": "Ordinary Differential Equations",
+    "section": "Assignments",
+    "text": "Assignments"
+  },
+  {
+    "objectID": "C0ode/home_ode.html#slides-and-notebooks",
+    "href": "C0ode/home_ode.html#slides-and-notebooks",
+    "title": "Ordinary Differential Equations",
+    "section": "Slides and Notebooks",
+    "text": "Slides and Notebooks"
+  },
+  {
+    "objectID": "C0ode/home_ode.html#course-outline",
+    "href": "C0ode/home_ode.html#course-outline",
+    "title": "Ordinary Differential Equations",
+    "section": "Course Outline",
+    "text": "Course Outline\nOutline (pdf)"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevinandfokkerplanck.html",
+    "href": "C0noneqthermo/lectures/langevinandfokkerplanck.html",
+    "title": "Langevin & Fokker-Planck Equation",
+    "section": "",
+    "text": "Based on the report by Parham Radpay.\nBoth the Fokker-Planck and Langevin equations describe the Brownian motion. In general, they also explain the behavior of a system in presence of a random noise and its evolution toward a stationary state i.e., they could also be applied to thermalization processes of non-equilibrium systems."
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevinandfokkerplanck.html#history",
+    "href": "C0noneqthermo/lectures/langevinandfokkerplanck.html#history",
+    "title": "Langevin & Fokker-Planck Equation",
+    "section": "History",
+    "text": "History"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevinandfokkerplanck.html#kramers-moyal-expansion",
+    "href": "C0noneqthermo/lectures/langevinandfokkerplanck.html#kramers-moyal-expansion",
+    "title": "Langevin & Fokker-Planck Equation",
+    "section": "Kramers-Moyal Expansion",
+    "text": "Kramers-Moyal Expansion\nKarmers-Moyal expansion (KME) is a useful tool for investigating the FPE. The KME is: - an expansion - of the time development of a time-dependent probability distribution - in terms of the moments of the transition probability.\nOur starting point is the probability density \\(W\\) and the transition probability \\(P\\). We can relate the probability density at time \\(t\\) and at time \\(t+\\tau\\) via:\n\\[\nW(x, t+\\tau) = \\int P(x, t+\\tau|x',t) \\cdot W(x',t) dx'\n\\]\nwhere the integral is carried over all \\(x\\). We can define moments for the transition probability which in our case depend on the initial time \\(t\\), initial position (could be any random variable) \\(x\\), and the time for the transition \\(\\tau\\).\n\\[\nM_n(x', t, \\tau) = \\langle x(t+\\tau)  - x(t) \\rangle|_x' = x(t) = \\int (x-x')^n P(x,t+\\tau| x,t) dx'\n\\]\n\\(P(x, t+\\tau|x',t)\\) can be expressed as the convolution integral of Dirac deltas which we can then replace by its Taylor expansion around \\(x'-x\\): \\[\n\\begin{align*}\nP(x, t+\\tau|x',t) &= \\int \\delta(x-y) P(y, t+\\tau|x',t) dx\\\\\n&=\\sum_{n=0}^\\infty \\int \\frac{(y-x')^n}{n!} (\\frac{-\\partial}{\\partial x})^n \\delta(x'-x)P(y, t+\\tau|x',t) dx'\\\\\n\\end{align*}\n\\]\nThe order of integration and summation has been swapped since the result converges to \\(P(x, t+\\tau|x',t)\\). We now have:\n\\[\n\\begin{align*}\nP(x, t+\\tau|x',t) &= \\bigg[\\sum_{n=0}^\\infty \\frac{1}{n!}\\bigg(\\frac{-\\partial}{\\partial x}\\bigg)^n M_n(x,t,\\tau)\\bigg]\\delta(x'-x]\\\\\n&=[1 + \\sum_{n=1}{\\infty}\\frac{1}{n!}\\bigg(\\frac{-\\partial}{\\partial x}\\bigg)^n M_n(x,t,\\tau)]\\delta(x'-x)\n\\end{align*}\n\\]\n\nBackward KM Expansion\n\n\nMore on the Kramers-Moyal Expansion\n\n\n\nkramersmoyal is a python package for evaluating Kramers-Moyal coeffiecients."
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevinandfokkerplanck.html#langevin-equation",
+    "href": "C0noneqthermo/lectures/langevinandfokkerplanck.html#langevin-equation",
+    "title": "Langevin & Fokker-Planck Equation",
+    "section": "Langevin Equation",
+    "text": "Langevin Equation\n\nBrownian Motion\n\n\nNon-Linear Langevin Equation"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevinandfokkerplanck.html#fokker-planck-equation",
+    "href": "C0noneqthermo/lectures/langevinandfokkerplanck.html#fokker-planck-equation",
+    "title": "Langevin & Fokker-Planck Equation",
+    "section": "Fokker-Planck Equation",
+    "text": "Fokker-Planck Equation\n\nWiener and Ornstein-Uhlenbeck Processes"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevinandfokkerplanck.html#solutions",
+    "href": "C0noneqthermo/lectures/langevinandfokkerplanck.html#solutions",
+    "title": "Langevin & Fokker-Planck Equation",
+    "section": "Solutions",
+    "text": "Solutions"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/langevinandfokkerplanck.html#relativistic-ornstein-uhlenbeck-process",
+    "href": "C0noneqthermo/lectures/langevinandfokkerplanck.html#relativistic-ornstein-uhlenbeck-process",
+    "title": "Langevin & Fokker-Planck Equation",
+    "section": "Relativistic Ornstein-Uhlenbeck Process",
+    "text": "Relativistic Ornstein-Uhlenbeck Process"
+  },
+  {
+    "objectID": "C0noneqthermo/home_noneqthermo.html#progression",
+    "href": "C0noneqthermo/home_noneqthermo.html#progression",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Progression",
+    "text": "Progression\n\nWeek 1-3\nLangevin and Fokker Planck Equations\nPossibly lead to GSKL equations following Banerjee.\nTexts:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)\n\n\n\nWeek 4-6\nBrownian Motion & Diffusion\n\n\nWeek 7-8\nBoltzmann Equation and H-theorem\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\n\nWeek 9+\nSDEs\n\n\nWeek 10+\nJarzynski, Crooks?"
+  },
+  {
+    "objectID": "C0ode/coursematerial/01.html",
+    "href": "C0ode/coursematerial/01.html",
+    "title": "Differential Equations",
+    "section": "",
+    "text": "asd"
+  },
+  {
+    "objectID": "C0noneqthermo/home_noneqthermo.html#topics-subject-to-change",
+    "href": "C0noneqthermo/home_noneqthermo.html#topics-subject-to-change",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Topics (Subject to change)",
+    "text": "Topics (Subject to change)\n\nReview of phenomenological thermodynamics\nBrownian motion\nLangevin and Fokker Planck equation\nMaster equations\nJarzynski and Crooks relations\nBoltzmann (Transport) Equation\nH theorem\nGKLS Equations\nOpen quantum systems\n\nLangevin equation\nFokker Planck equation\nLinear Response Theory"
+  },
+  {
+    "objectID": "C0noneqthermo/coursematerial/homeworks.html",
+    "href": "C0noneqthermo/coursematerial/homeworks.html",
+    "title": "Homework",
+    "section": "",
+    "text": "Prove Balakrishnan equations 2.1 to 2.5\n[python] Plot the distribution in 2.1"
+  },
+  {
+    "objectID": "C0noneqthermo/coursematerial/homeworks.html#section",
+    "href": "C0noneqthermo/coursematerial/homeworks.html#section",
+    "title": "Homework",
+    "section": "",
+    "text": "Prove Balakrishnan equations 2.1 to 2.5\n[python] Plot the distribution in 2.1"
+  },
+  {
+    "objectID": "C0ode/coursematerial/01-MatricesJulia.html",
+    "href": "C0ode/coursematerial/01-MatricesJulia.html",
+    "title": "Matrix operations with Julia",
+    "section": "",
+    "text": "You can define a matrix in Julia.\n\nJuliaPython\n\n\n\nusing LinearAlgebra \n\nA = [1 2 3; 4 1 6; 7 8 1]\nA\n\n3×3 Matrix{Int64}:\n 1  2  3\n 4  1  6\n 7  8  1\n\n\nYou can do some basic operations:\n\nprintln(\"Trace is: \", tr(A));\nprintln(\"Determinant is: \", det(A));\nprintln(\"Inverse is: \");\ninv(A)\n\nTrace is: 3\nDeterminant is: 104.0\nInverse is: \n\n\n3×3 Matrix{Float64}:\n -0.451923   0.211538    0.0865385\n  0.365385  -0.192308    0.0576923\n  0.240385   0.0576923  -0.0673077\n\n\n\n\nimport numpy as np\n\n# Define the matrix\nmatrix = np.array([[2, 4, 6],\n                   [1, 3, 5],\n                   [9, 7, 8]])\n\n# Compute the trace of the matrix\nmatrix_trace = np.trace(matrix)\n\n# Compute the inverse of the matrix\nmatrix_inverse = np.linalg.inv(matrix)\n\n# Compute the transpose of the matrix\nmatrix_transpose = np.transpose(matrix)\n\n# Print the results\nprint(\"Matrix:\")\nprint(matrix)\n\nprint(\"\\nTrace of the matrix:\")\nprint(matrix_trace)\n\nprint(\"\\nInverse of the matrix:\")\nprint(matrix_inverse)\n\nprint(\"\\nTranspose of the matrix:\")\nprint(matrix_transpose)\n\n\n\n\nFor more info see julia docs"
+  },
+  {
+    "objectID": "index.html#undergraduate",
+    "href": "index.html#undergraduate",
+    "title": "Course Hub",
+    "section": "Undergraduate",
+    "text": "Undergraduate\nCalculus I - MT101\nDifferential Equations & Linear Algebra - MT102\nCalculus II - MT202"
+  },
+  {
+    "objectID": "index.html#graduate",
+    "href": "index.html#graduate",
+    "title": "Course Hub",
+    "section": "Graduate",
+    "text": "Graduate\nNon-equilibrium Thermodynamics - ES696"
+  },
+  {
+    "objectID": "C0ode/coursematerial/01-MatricesJulia.html#python",
+    "href": "C0ode/coursematerial/01-MatricesJulia.html#python",
+    "title": "Matrix operations with Julia",
+    "section": "Python",
+    "text": "Python\n\nimport numpy as np\n\n# Define the matrix\nmatrix = np.array([[2, 4, 6],\n                   [1, 3, 5],\n                   [9, 7, 8]])\n\n# Compute the trace of the matrix\nmatrix_trace = np.trace(matrix)\n\n# Compute the inverse of the matrix\nmatrix_inverse = np.linalg.inv(matrix)\n\n# Compute the transpose of the matrix\nmatrix_transpose = np.transpose(matrix)\n\n# Print the results\nprint(\"Matrix:\")\nprint(matrix)\n\nprint(\"\\nTrace of the matrix:\")\nprint(matrix_trace)\n\nprint(\"\\nInverse of the matrix:\")\nprint(matrix_inverse)\n\nprint(\"\\nTranspose of the matrix:\")\nprint(matrix_transpose)\n\nMatrix:\n[[2 4 6]\n [1 3 5]\n [9 7 8]]\n\nTrace of the matrix:\n13\n\nInverse of the matrix:\n[[-1.83333333  1.66666667  0.33333333]\n [ 6.16666667 -6.33333333 -0.66666667]\n [-3.33333333  3.66666667  0.33333333]]\n\nTranspose of the matrix:\n[[2 1 9]\n [4 3 7]\n [6 5 8]]\n\n\n\nFor more info see julia docs"
   }
 ]
