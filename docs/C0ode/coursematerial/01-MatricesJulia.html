@@ -126,6 +126,8 @@ function openCity(evt, cityName) {
 
 
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../css/buttons.css">
 <link rel="stylesheet" href="../../css/tabs.css">
@@ -275,7 +277,13 @@ function openCity(evt, cityName) {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#solving-linear-equations" id="toc-solving-linear-equations" class="nav-link active" data-scroll-target="#solving-linear-equations">Solving linear equations</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -307,7 +315,7 @@ function openCity(evt, cityName) {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span>; <span class="fl">4</span> <span class="fl">1</span> <span class="fl">6</span>; <span class="fl">7</span> <span class="fl">8</span> <span class="fl">1</span>]</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>3×3 Matrix{Int64}:
  1  2  3
  4  1  6
@@ -325,7 +333,7 @@ function openCity(evt, cityName) {
 Determinant is: 104.0
 Inverse is: </code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>3×3 Matrix{Float64}:
  -0.451923   0.211538    0.0865385
   0.365385  -0.192308    0.0576923
@@ -367,8 +375,38 @@ print(matrix_transpose)
 </div>
 </div>
 <p>For more info see <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/">julia docs</a></p>
+<section id="solving-linear-equations" class="level2">
+<h2 class="anchored" data-anchor-id="solving-linear-equations">Solving linear equations</h2>
+<p>Say we have a linear system of equations. How do we find out in advance whether there is a solution to the system or not.</p>
+<p>The determinant ‘determines’ it for us (hence the name):</p>
+<p><span class="math display">\[\begin{align}
+1x + 2y + 3z = 6\\
+2x + 4y + 6z = 12\\
+3x + 6y + 9z = 18\\
+\end{align}\]</span></p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using LinearSolve</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the coefficient matrix A and the right-hand side vector b</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1</span>  <span class="fl">2</span>  <span class="fl">3</span>;</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fl">2</span>  <span class="fl">4</span>  <span class="fl">6</span>;</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fl">3</span>  <span class="fl">6</span>  <span class="fl">9</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="fl">6</span>, <span class="fl">12</span>, <span class="fl">18</span>]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the determinant of A</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>det_A <span class="op">=</span> <span class="fu">det</span>(A)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Determinant of A: </span><span class="sc">$</span>det_A<span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Determinant of A: 0.0</code></pre>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

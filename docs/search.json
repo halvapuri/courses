@@ -1313,7 +1313,7 @@
     "href": "C0ode/home_ode.html#slides-and-notebooks",
     "title": "Ordinary Differential Equations",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks"
+    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R.\nIf you need to set any of these up, either see me or the TA."
   },
   {
     "objectID": "C0ode/home_ode.html#course-outline",
@@ -1411,7 +1411,7 @@
     "href": "C0ode/coursematerial/01-MatricesJulia.html",
     "title": "Matrix operations with Julia",
     "section": "",
-    "text": "You can define a matrix in Julia.\n\nJuliaPython\n\n\n\nusing LinearAlgebra \n\nA = [1 2 3; 4 1 6; 7 8 1]\nA\n\n3×3 Matrix{Int64}:\n 1  2  3\n 4  1  6\n 7  8  1\n\n\nYou can do some basic operations:\n\nprintln(\"Trace is: \", tr(A));\nprintln(\"Determinant is: \", det(A));\nprintln(\"Inverse is: \");\ninv(A)\n\nTrace is: 3\nDeterminant is: 104.0\nInverse is: \n\n\n3×3 Matrix{Float64}:\n -0.451923   0.211538    0.0865385\n  0.365385  -0.192308    0.0576923\n  0.240385   0.0576923  -0.0673077\n\n\n\n\nimport numpy as np\n\n# Define the matrix\nmatrix = np.array([[2, 4, 6],\n                   [1, 3, 5],\n                   [9, 7, 8]])\n\n# Compute the trace of the matrix\nmatrix_trace = np.trace(matrix)\n\n# Compute the inverse of the matrix\nmatrix_inverse = np.linalg.inv(matrix)\n\n# Compute the transpose of the matrix\nmatrix_transpose = np.transpose(matrix)\n\n# Print the results\nprint(\"Matrix:\")\nprint(matrix)\n\nprint(\"\\nTrace of the matrix:\")\nprint(matrix_trace)\n\nprint(\"\\nInverse of the matrix:\")\nprint(matrix_inverse)\n\nprint(\"\\nTranspose of the matrix:\")\nprint(matrix_transpose)\n\n\n\n\nFor more info see julia docs"
+    "text": "You can define a matrix in Julia.\nFor more info see julia docs"
   },
   {
     "objectID": "index.html#undergraduate",
@@ -1433,5 +1433,19 @@
     "title": "Matrix operations with Julia",
     "section": "Python",
     "text": "Python\n\nimport numpy as np\n\n# Define the matrix\nmatrix = np.array([[2, 4, 6],\n                   [1, 3, 5],\n                   [9, 7, 8]])\n\n# Compute the trace of the matrix\nmatrix_trace = np.trace(matrix)\n\n# Compute the inverse of the matrix\nmatrix_inverse = np.linalg.inv(matrix)\n\n# Compute the transpose of the matrix\nmatrix_transpose = np.transpose(matrix)\n\n# Print the results\nprint(\"Matrix:\")\nprint(matrix)\n\nprint(\"\\nTrace of the matrix:\")\nprint(matrix_trace)\n\nprint(\"\\nInverse of the matrix:\")\nprint(matrix_inverse)\n\nprint(\"\\nTranspose of the matrix:\")\nprint(matrix_transpose)\n\nMatrix:\n[[2 4 6]\n [1 3 5]\n [9 7 8]]\n\nTrace of the matrix:\n13\n\nInverse of the matrix:\n[[-1.83333333  1.66666667  0.33333333]\n [ 6.16666667 -6.33333333 -0.66666667]\n [-3.33333333  3.66666667  0.33333333]]\n\nTranspose of the matrix:\n[[2 1 9]\n [4 3 7]\n [6 5 8]]\n\n\n\nFor more info see julia docs"
+  },
+  {
+    "objectID": "C0ode/coursematerial/01-MatricesJulia.html#solving-linear-equations",
+    "href": "C0ode/coursematerial/01-MatricesJulia.html#solving-linear-equations",
+    "title": "Matrix operations with Julia",
+    "section": "Solving linear equations",
+    "text": "Solving linear equations\nSay we have a linear system of equations. How do we find out in advance whether there is a solution to the system or not.\nThe determinant ‘determines’ it for us (hence the name):\n\\[\\begin{align}\n1x + 2y + 3z = 6\\\\\n2x + 4y + 6z = 12\\\\\n3x + 6y + 9z = 18\\\\\n\\end{align}\\]\n\nusing LinearAlgebra\n# using LinearSolve\n\n# Define the coefficient matrix A and the right-hand side vector b\nA = [\n    1  2  3;\n    2  4  6;\n    3  6  9\n]\n\nb = [6, 12, 18]\n\n# Calculate the determinant of A\ndet_A = det(A)\nprintln(\"Determinant of A: $det_A\")\n\nDeterminant of A: 0.0"
+  },
+  {
+    "objectID": "C0ode/home_ode.html#other-info",
+    "href": "C0ode/home_ode.html#other-info",
+    "title": "Ordinary Differential Equations",
+    "section": "Other info",
+    "text": "Other info\nCourse TA: Ms. Misbah Shaheen Email: misbah.shaheen [at] giki.edu.pk"
   }
 ]
