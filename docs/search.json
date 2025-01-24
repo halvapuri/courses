@@ -1313,7 +1313,7 @@
     "href": "C0ode/home_ode.html#slides-and-notebooks",
     "title": "Ordinary Differential Equations",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R.\nIf you need to set any of these up, either see me or the TA."
+    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nGaussian Elimination"
   },
   {
     "objectID": "C0ode/home_ode.html#course-outline",
@@ -1447,5 +1447,33 @@
     "title": "Ordinary Differential Equations",
     "section": "Other info",
     "text": "Other info\nCourse TA: Ms. Misbah Shaheen Email: misbah.shaheen [at] giki.edu.pk"
+  },
+  {
+    "objectID": "C0ode/coursematerial/01-GaussElimination.html",
+    "href": "C0ode/coursematerial/01-GaussElimination.html",
+    "title": "Gaussian Elimination",
+    "section": "",
+    "text": "We can either create a matrix randomly or feed one:\n\n# A = rand(1:10, 4,4)\nA  = [1 -1 1 0; -1 1 -1 0; 0 10 -1 90; 20 10 0 80]\n\n4×4 Matrix{Int64}:\n  1  -1   1   0\n -1   1  -1   0\n  0  10  -1  90\n 20  10   0  80\n\n\nFirst we use row 1 as pivot and eliminate the rest of the non-zero entries in the first column:\n\nA[2, :] = A[2, :] + A[1, :]\nA\n\n4×4 Matrix{Int64}:\n  1  -1   1   0\n  0   0   0   0\n  0  10  -1  90\n 20  10   0  80\n\n\n\nA[4, :] = A[4, :] - 20 * A[1, :]\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1   0\n 0   0    0   0\n 0  10   -1  90\n 0  30  -20  80\n\n\nNow we need to swap the rows:\n\nA[[2,3,4], :] = A[[3,4,2], :];\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1   0\n 0  10   -1  90\n 0  30  -20  80\n 0   0    0   0\n\n\nNow we can use row 2 as the pivot and remove all the non-zero entries below:\n\nA[3, :] = A[3, :] - 3 * A[2, :];\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1     0\n 0  10   -1    90\n 0   0  -17  -190\n 0   0    0     0\n\n\n\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1     0\n 0  10   -1    90\n 0   0  -17  -190\n 0   0    0     0"
+  },
+  {
+    "objectID": "C0ode/lectures/01-GaussElimination.html",
+    "href": "C0ode/lectures/01-GaussElimination.html",
+    "title": "Gaussian Elimination",
+    "section": "",
+    "text": "We can either create a matrix randomly or feed one:\n\n# A = rand(1:10, 4,4)\nA  = [1 -1 1 0; -1 1 -1 0; 0 10 -1 90; 20 10 0 80]\n\n4×4 Matrix{Int64}:\n  1  -1   1   0\n -1   1  -1   0\n  0  10  -1  90\n 20  10   0  80\n\n\nFirst we use row 1 as pivot and eliminate the rest of the non-zero entries in the first column:\n\nA[2, :] = A[2, :] + A[1, :]\nA\n\n4×4 Matrix{Int64}:\n  1  -1   1   0\n  0   0   0   0\n  0  10  -1  90\n 20  10   0  80\n\n\n\nA[4, :] = A[4, :] - 20 * A[1, :]\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1   0\n 0   0    0   0\n 0  10   -1  90\n 0  30  -20  80\n\n\nNow we need to swap the rows:\n\nA[[2,3,4], :] = A[[3,4,2], :];\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1   0\n 0  10   -1  90\n 0  30  -20  80\n 0   0    0   0\n\n\nNow we can use row 2 as the pivot and remove all the non-zero entries below:\n\nA[3, :] = A[3, :] - 3 * A[2, :];\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1     0\n 0  10   -1    90\n 0   0  -17  -190\n 0   0    0     0\n\n\n\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1     0\n 0  10   -1    90\n 0   0  -17  -190\n 0   0    0     0"
+  },
+  {
+    "objectID": "C0ode/lectures/01-MatricesJulia.html",
+    "href": "C0ode/lectures/01-MatricesJulia.html",
+    "title": "Matrix operations with Julia",
+    "section": "",
+    "text": "You can define a matrix in Julia.\nFor more info see julia docs"
+  },
+  {
+    "objectID": "C0ode/lectures/01-MatricesJulia.html#solving-linear-equations",
+    "href": "C0ode/lectures/01-MatricesJulia.html#solving-linear-equations",
+    "title": "Matrix operations with Julia",
+    "section": "Solving linear equations",
+    "text": "Solving linear equations\nSay we have a linear system of equations. How do we find out in advance whether there is a solution to the system or not.\nThe determinant ‘determines’ it for us (hence the name):\n\\[\\begin{align}\n1x + 2y + 3z = 6\\\\\n2x + 4y + 6z = 12\\\\\n3x + 6y + 9z = 18\\\\\n\\end{align}\\]\n\nusing LinearAlgebra\n# using LinearSolve\n\n# Define the coefficient matrix A and the right-hand side vector b\nA = [\n    1  2  3;\n    2  4  6;\n    3  6  9\n]\n\nb = [6, 12, 18]\n\n# Calculate the determinant of A\ndet_A = det(A)\nprintln(\"Determinant of A: $det_A\")\n\nDeterminant of A: 0.0"
   }
 ]

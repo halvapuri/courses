@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Worldlines - Ordinary Differential Equations</title>
+<title>Worldlines - Matrix operations with Julia</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -92,10 +126,12 @@ function openCity(evt, cityName) {
 
 
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -105,7 +141,7 @@ function openCity(evt, cityName) {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -116,11 +152,11 @@ function openCity(evt, cityName) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -134,7 +170,7 @@ function openCity(evt, cityName) {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Courses</a></li><li class="breadcrumb-item"><a href="../C0ode/home_ode.html">ODEs &amp; Lin. Alg.</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Matrix operations with Julia</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -148,8 +184,8 @@ function openCity(evt, cityName) {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -170,25 +206,25 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0ode/home_ode.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ODEs &amp; Lin. Alg.</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
   </div>
 </li>
@@ -205,31 +241,31 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Mechanics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topology</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
@@ -245,12 +281,7 @@ function openCity(evt, cityName) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project" id="toc-project" class="nav-link active" data-scroll-target="#project">Project</a></li>
-  <li><a href="#quizzes" id="toc-quizzes" class="nav-link" data-scroll-target="#quizzes">Quizzes</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#slides-and-notebooks" id="toc-slides-and-notebooks" class="nav-link" data-scroll-target="#slides-and-notebooks">Slides and Notebooks</a></li>
-  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course Outline</a></li>
-  <li><a href="#other-info" id="toc-other-info" class="nav-link" data-scroll-target="#other-info">Other info</a></li>
+  <li><a href="#solving-linear-equations" id="toc-solving-linear-equations" class="nav-link active" data-scroll-target="#solving-linear-equations">Solving linear equations</a></li>
   </ul>
 </nav>
     </div>
@@ -259,7 +290,7 @@ function openCity(evt, cityName) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ordinary Differential Equations</h1>
+<h1 class="title">Matrix operations with Julia</h1>
 </div>
 
 
@@ -274,53 +305,105 @@ function openCity(evt, cityName) {
 
 </header>
 
-<section id="project" class="level2">
-<h2 class="anchored" data-anchor-id="project">Project</h2>
-<!-- As announced in class, there will be a project. 
+<p>You can define a matrix in Julia.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Julia</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span>; <span class="fl">4</span> <span class="fl">1</span> <span class="fl">6</span>; <span class="fl">7</span> <span class="fl">8</span> <span class="fl">1</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>3×3 Matrix{Int64}:
+ 1  2  3
+ 4  1  6
+ 7  8  1</code></pre>
+</div>
+</div>
+<p>You can do some basic operations:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Trace is: "</span>, <span class="fu">tr</span>(A));</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Determinant is: "</span>, <span class="fu">det</span>(A));</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Inverse is: "</span>);</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">inv</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Trace is: 3
+Determinant is: 104.0
+Inverse is: </code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>3×3 Matrix{Float64}:
+ -0.451923   0.211538    0.0865385
+  0.365385  -0.192308    0.0576923
+  0.240385   0.0576923  -0.0673077</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<pre class="{python}"><code>import numpy as np
 
-The task: Reproduce 3 figures (two 2D and one 3D) from your textbook. 
+# Define the matrix
+matrix = np.array([[2, 4, 6],
+                   [1, 3, 5],
+                   [9, 7, 8]])
 
-Note that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.
+# Compute the trace of the matrix
+matrix_trace = np.trace(matrix)
 
-Furthermore:
+# Compute the inverse of the matrix
+matrix_inverse = np.linalg.inv(matrix)
 
-* The project will be done in groups of 3. 
-* The marks will be credited as bonus (i.e. they will not have a separate category)
-* There will be a viva in the 15th week. 
-* The individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.) -->
-</section>
-<section id="quizzes" class="level2">
-<h2 class="anchored" data-anchor-id="quizzes">Quizzes</h2>
-<p>We will three quizzes:</p>
-<ul>
-<li>Quiz 1 (5 Marks)</li>
-<li>Quiz 2 (10 marks, 8th week)</li>
-<li>Quiz 3 (10 marks, 13th week)<br>
-</li>
-</ul>
-</section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<!-- [Assignment 1](coursematerial/Assignments/MT202Assignment_I.pdf)\
-[Assignment 2](coursematerial/Assignments/MT202Assignment_II.pdf)\
-[Assignment 3](coursematerial/Assignments/MT202Assignment_III.pdf)\
-[Assignment 4](coursematerial/Assignments/MT202Assignment_IV.pdf)\
-[Assignment 5](coursematerial/Assignments/MT202Assignment_V.pdf)\ -->
-</section>
-<section id="slides-and-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-notebooks">Slides and Notebooks</h2>
-<p>You can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.</p>
-<ul>
-<li><a href="../C0ode/lectures/01-GaussElimination.html">Gaussian Elimination</a></li>
-</ul>
-</section>
-<section id="course-outline" class="level2">
-<h2 class="anchored" data-anchor-id="course-outline">Course Outline</h2>
-<p><a href="coursematerial/outline.pdf">Outline (pdf)</a></p>
-</section>
-<section id="other-info" class="level2">
-<h2 class="anchored" data-anchor-id="other-info">Other info</h2>
-<p>Course TA: Ms.&nbsp;Misbah Shaheen Email: misbah.shaheen [at] giki.edu.pk</p>
+# Compute the transpose of the matrix
+matrix_transpose = np.transpose(matrix)
+
+# Print the results
+print("Matrix:")
+print(matrix)
+
+print("\nTrace of the matrix:")
+print(matrix_trace)
+
+print("\nInverse of the matrix:")
+print(matrix_inverse)
+
+print("\nTranspose of the matrix:")
+print(matrix_transpose)
+</code></pre>
+</div>
+</div>
+</div>
+<p>For more info see <a href="https://docs.julialang.org/en/v1/stdlib/LinearAlgebra/">julia docs</a></p>
+<section id="solving-linear-equations" class="level2">
+<h2 class="anchored" data-anchor-id="solving-linear-equations">Solving linear equations</h2>
+<p>Say we have a linear system of equations. How do we find out in advance whether there is a solution to the system or not.</p>
+<p>The determinant ‘determines’ it for us (hence the name):</p>
+<p><span class="math display">\[\begin{align}
+1x + 2y + 3z = 6\\
+2x + 4y + 6z = 12\\
+3x + 6y + 9z = 18\\
+\end{align}\]</span></p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using LinearSolve</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the coefficient matrix A and the right-hand side vector b</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> [</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1</span>  <span class="fl">2</span>  <span class="fl">3</span>;</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fl">2</span>  <span class="fl">4</span>  <span class="fl">6</span>;</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fl">3</span>  <span class="fl">6</span>  <span class="fl">9</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="fl">6</span>, <span class="fl">12</span>, <span class="fl">18</span>]</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the determinant of A</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>det_A <span class="op">=</span> <span class="fu">det</span>(A)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"Determinant of A: </span><span class="sc">$</span>det_A<span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Determinant of A: 0.0</code></pre>
+</div>
+</div>
 
 
 </section>
