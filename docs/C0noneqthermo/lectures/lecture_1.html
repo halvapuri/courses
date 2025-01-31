@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Worldlines - Non-equilibrium Thermodynamics</title>
+<title>Worldlines - Lecture 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,9 +93,9 @@ function openCity(evt, cityName) {
 
 
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -105,7 +105,7 @@ function openCity(evt, cityName) {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -116,11 +116,11 @@ function openCity(evt, cityName) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -134,7 +134,7 @@ function openCity(evt, cityName) {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Courses</a></li><li class="breadcrumb-item"><a href="../C0noneqthermo/home_noneqthermo.html">Non-equilibrium Thermodynamics</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Lecture 1</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -148,8 +148,8 @@ function openCity(evt, cityName) {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -170,25 +170,25 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ODEs &amp; Lin. Alg.</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
   </div>
 </li>
@@ -205,31 +205,31 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Mechanics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topology</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
@@ -245,21 +245,11 @@ function openCity(evt, cityName) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#text-and-reference-books" id="toc-text-and-reference-books" class="nav-link active" data-scroll-target="#text-and-reference-books">Text and Reference Books</a></li>
-  <li><a href="#topics-subject-to-change" id="toc-topics-subject-to-change" class="nav-link" data-scroll-target="#topics-subject-to-change">Topics (Subject to change)</a>
+  <li><a href="#session-a" id="toc-session-a" class="nav-link active" data-scroll-target="#session-a">Session A:</a>
   <ul class="collapse">
-  <li><a href="#brownian-motion" id="toc-brownian-motion" class="nav-link" data-scroll-target="#brownian-motion">Brownian Motion</a></li>
-  <li><a href="#transport-phenomenaboltzmann-equation" id="toc-transport-phenomenaboltzmann-equation" class="nav-link" data-scroll-target="#transport-phenomenaboltzmann-equation">Transport Phenomena/Boltzmann Equation</a></li>
-  <li><a href="#open-quantum-systems" id="toc-open-quantum-systems" class="nav-link" data-scroll-target="#open-quantum-systems">Open Quantum Systems</a></li>
+  <li><a href="#notes" id="toc-notes" class="nav-link" data-scroll-target="#notes">Notes:</a></li>
   </ul></li>
-  <li><a href="#progression" id="toc-progression" class="nav-link" data-scroll-target="#progression">Progression</a>
-  <ul class="collapse">
-  <li><a href="#week-1-3" id="toc-week-1-3" class="nav-link" data-scroll-target="#week-1-3">Week 1-3</a></li>
-  <li><a href="#week-4-6" id="toc-week-4-6" class="nav-link" data-scroll-target="#week-4-6">Week 4-6</a></li>
-  <li><a href="#week-7-8" id="toc-week-7-8" class="nav-link" data-scroll-target="#week-7-8">Week 7-8</a></li>
-  <li><a href="#week-9" id="toc-week-9" class="nav-link" data-scroll-target="#week-9">Week 9+</a></li>
-  <li><a href="#week-10" id="toc-week-10" class="nav-link" data-scroll-target="#week-10">Week 10+</a></li>
-  </ul></li>
+  <li><a href="#session-b" id="toc-session-b" class="nav-link" data-scroll-target="#session-b">Session B:</a></li>
   </ul>
 </nav>
     </div>
@@ -268,7 +258,7 @@ function openCity(evt, cityName) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Non-equilibrium Thermodynamics</h1>
+<h1 class="title">Lecture 1</h1>
 </div>
 
 
@@ -283,122 +273,80 @@ function openCity(evt, cityName) {
 
 </header>
 
-<p>Both the Fokker-Planck and Langevin equations describe the Brownian motion. In general, they also explain the behavior of a system in presence of a random noise and its evolution toward a stationary state i.e., they could also be applied to thermalization processes of non-equilibrium systems.</p>
-<section id="text-and-reference-books" class="level2">
-<h2 class="anchored" data-anchor-id="text-and-reference-books">Text and Reference Books</h2>
-<p>Some texts, online or otherwise are given below:</p>
+<section id="session-a" class="level2">
+<h2 class="anchored" data-anchor-id="session-a">Session A:</h2>
 <ul>
-<li>Linda Reichl: A Course in Modern Statistical Physics.
-<ul>
-<li>Chapter 7 is about Brownian Motion and Fluctuation Dissipation</li>
-</ul></li>
-<li>Kerson Huang: Introduction to Statistical Physics
-<ul>
-<li>See chapter 14</li>
-</ul></li>
-<li>Bikkin, Lyapilin: Non-equilibrium thermodynamics and physical kinetics</li>
-<li>Attard: Non-Equilibrium Thermodynamics and Statistical Mechanics</li>
-<li>Balakrishnan:</li>
-<li>Pottier: Non-Equilibrium Statistical Physics</li>
-<li>Ropke: Non-Equilibrium Statistical Physics</li>
-<li>Peliti &amp; Pigolotti: Stochastic Thermodynamics
-<ul>
-<li>See Chapter 4: Jarzynski and Crooks relations</li>
-</ul></li>
+<li>Liouville theorem and Liouville operator</li>
+<li>Langevin and Fokker-Planck Equations</li>
+<li>Kramers-Moyal Expansion</li>
 </ul>
-<p>Other texts</p>
+<p>Possibly review: - Hamilton’s equations</p>
+<section id="notes" class="level3">
+<h3 class="anchored" data-anchor-id="notes">Notes:</h3>
+<section id="langevin-equation" class="level4">
+<h4 class="anchored" data-anchor-id="langevin-equation">Langevin Equation</h4>
 <ul>
-<li>Woyczyński - Diffusion Processes, Jump Processes, and Stochastic Differential Equations</li>
-<li>David Tong: Lectures on Kinetic Theory</li>
-<li>Kardar: Statistical Theory of Particles</li>
+<li>appealing approach to nonequilibrium statistical mechanics that is physically transparent</li>
+<li>equation-of-motion method or, more accurately, the Langevin equation approach.</li>
+<li>write an appropriate equation of motion for a subsystem, in which its interaction with the other degrees of freedom of the system is modeled in terms of a stochastic or random ‘force’ with suitable statistical properties.</li>
+<li>The task then is to <em>extract the statistical properties</em> of the subsystem of interest, starting from its equation of motion</li>
+<li>Langevin equation method in its original or simplest form turns out to be too drastic an approximation to be applicable, as it stands, to this case. At the molecular level, the behavior of fluids poses a complicated many-body problem.</li>
+<li>Hence the more rigorous approach is the BBGKY hierarchy.</li>
 </ul>
-</section>
-<section id="topics-subject-to-change" class="level2">
-<h2 class="anchored" data-anchor-id="topics-subject-to-change">Topics (Subject to change)</h2>
-<section id="brownian-motion" class="level3">
-<h3 class="anchored" data-anchor-id="brownian-motion">Brownian Motion</h3>
-<p>Langevin, Fokker-Planck, Master Equation:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 241.69 282.40" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 278.4)">
+<title>
+BBGKY_Hierarchy
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-278.4 237.69,-278.4 237.69,4 -4,4"></polygon> <!-- BBGKY --> <g id="node1" class="node">
+<title>
+BBGKY
+</title>
+<polygon fill="lightblue" stroke="black" points="233.54,-274.2 0.15,-274.2 0.15,-233 233.54,-233 233.54,-274.2"></polygon> <text text-anchor="middle" x="116.85" y="-257.8" font-family="Times,serif" font-size="14.00">BBGKY Hierarchy</text> <text text-anchor="middle" x="116.85" y="-241" font-family="Times,serif" font-size="14.00">(Infinite integro-differential equations)</text> </g> <!-- Simplified --> <g id="node2" class="node">
+<title>
+Simplified
+</title>
+<polygon fill="lightblue" stroke="black" points="214.34,-196.6 19.35,-196.6 19.35,-155.4 214.34,-155.4 214.34,-196.6"></polygon> <text text-anchor="middle" x="116.85" y="-180.2" font-family="Times,serif" font-size="14.00">Simplified System of Equations</text> <text text-anchor="middle" x="116.85" y="-163.4" font-family="Times,serif" font-size="14.00">(Under certain conditions)</text> </g> <!-- BBGKY&#45;&gt;Simplified --> <g id="edge1" class="edge">
+<title>
+BBGKY-&gt;Simplified
+</title>
+<path fill="none" stroke="black" d="M116.85,-232.74C116.85,-224.84 116.85,-215.58 116.85,-206.9"></path> <polygon fill="black" stroke="black" points="120.35,-206.73 116.85,-196.73 113.35,-206.73 120.35,-206.73"></polygon> </g> <!-- Boltzmann --> <g id="node3" class="node">
+<title>
+Boltzmann
+</title>
+<polygon fill="lightblue" stroke="black" points="205.97,-119 27.72,-119 27.72,-77.8 205.97,-77.8 205.97,-119"></polygon> <text text-anchor="middle" x="116.85" y="-102.6" font-family="Times,serif" font-size="14.00">Boltzmann Equation</text> <text text-anchor="middle" x="116.85" y="-85.8" font-family="Times,serif" font-size="14.00">(A convenient starting point)</text> </g> <!-- Simplified&#45;&gt;Boltzmann --> <g id="edge2" class="edge">
+<title>
+Simplified-&gt;Boltzmann
+</title>
+<path fill="none" stroke="black" d="M116.85,-155.14C116.85,-147.24 116.85,-137.98 116.85,-129.3"></path> <polygon fill="black" stroke="black" points="120.35,-129.13 116.85,-119.13 113.35,-129.13 120.35,-129.13"></polygon> </g> <!-- FokkerPlanck --> <g id="node4" class="node">
+<title>
+FokkerPlanck
+</title>
+<polygon fill="lightblue" stroke="black" points="228.42,-41.4 5.27,-41.4 5.27,-0.2 228.42,-0.2 228.42,-41.4"></polygon> <text text-anchor="middle" x="116.85" y="-25" font-family="Times,serif" font-size="14.00">Fokker-Planck Equation</text> <text text-anchor="middle" x="116.85" y="-8.2" font-family="Times,serif" font-size="14.00">(More tractable in specific instances)</text> </g> <!-- Boltzmann&#45;&gt;FokkerPlanck --> <g id="edge3" class="edge">
+<title>
+Boltzmann-&gt;FokkerPlanck
+</title>
+<path fill="none" stroke="black" d="M116.85,-77.54C116.85,-69.64 116.85,-60.38 116.85,-51.7"></path> <polygon fill="black" stroke="black" points="120.35,-51.53 116.85,-41.53 113.35,-51.53 120.35,-51.53"></polygon> </g> </g>
+</svg>
+</div>
+</div>
+</div>
+</div>
 <ul>
-<li>Balakrishnan (Chapters 1-6)</li>
-<li>Zwanzig (Chapters 1-3)</li>
-<li>Banerjee: Open Quantum Systems (Chapter 3)</li>
-</ul>
-</section>
-<section id="transport-phenomenaboltzmann-equation" class="level3">
-<h3 class="anchored" data-anchor-id="transport-phenomenaboltzmann-equation">Transport Phenomena/Boltzmann Equation</h3>
-<ul>
-<li>Marder, Condensed Matter Physics, Chapter 17.</li>
-<li><a href="https://courses.physics.ucsd.edu/2010/Winter/physics211b/LECTURES/CH01.pdf">Link</a></li>
-</ul>
-<p>BBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases</p>
-</section>
-<section id="open-quantum-systems" class="level3">
-<h3 class="anchored" data-anchor-id="open-quantum-systems">Open Quantum Systems</h3>
-<ul>
-<li>Review of phenomenological thermodynamics</li>
-<li>Brownian motion</li>
-<li>Jarzynski and Crooks relations</li>
-<li>Boltzmann (Transport) Equation</li>
-<li>H theorem</li>
-<li>GKLS Equations</li>
-<li>Open quantum systems</li>
-</ul>
-<p><a href="../C0noneqthermo/lectures/langevin.html">Langevin equation</a><br>
-<a href="../C0noneqthermo/lectures/fokkerplanck.html">Fokker Planck equation</a><br>
-<a href="../C0noneqthermo/lectures/linearresponsetheory.html">Linear Response Theory</a><br>
-</p>
-</section>
-</section>
-<section id="progression" class="level2">
-<h2 class="anchored" data-anchor-id="progression">Progression</h2>
-<section id="week-1-3" class="level3">
-<h3 class="anchored" data-anchor-id="week-1-3">Week 1-3</h3>
-<p><em>Strand A: Stochastic thermodynamics</em></p>
-<p>We will develop the Langevin and Fokker Planck Equations. Ultimately we will head towards the GSKL equations following Banerjee. Specifically you might hear:</p>
-<ul>
-<li>Langevin Equation</li>
-<li>Fokker Planck Equation</li>
-<li>Liouville theorem</li>
-<li>Smoluchowski equation</li>
-<li>Kramers Moyal expansion</li>
-</ul>
-<p>Texts:</p>
-<ul>
-<li>Balakrishnan (Chapters 1-6)</li>
-<li>Zwanzig (Chapters 1-3)</li>
-<li>Banerjee: Open Quantum Systems (Chapter 3)</li>
-</ul>
-<p><em>Strand B: Transport phenomena</em></p>
-<p>In tandem we will develop the Boltzmann equation. Some concepts:</p>
-<ul>
-<li>Boltzmann equation</li>
-<li>Relaxation time approximation.</li>
-</ul>
-<p>Texts:</p>
-<ul>
-<li>Marder, Condensed Matter Physics (Chapter 17)</li>
-<li><a href="https://courses.physics.ucsd.edu/2010/Winter/physics211b/LECTURES/CH01.pdf">Link</a></li>
+<li>the FPE approximation is valid (in the context of the fluid system) for the description of the motion of a particle of mass m in a fluid consisting of molecules of mass m_mol &lt;&lt; m.</li>
+<li>the Fokker-Planck equation is just another facet of the Langevin equation</li>
 </ul>
 </section>
-<section id="week-4-6" class="level3">
-<h3 class="anchored" data-anchor-id="week-4-6">Week 4-6</h3>
-<p>Brownian Motion &amp; Diffusion</p>
 </section>
-<section id="week-7-8" class="level3">
-<h3 class="anchored" data-anchor-id="week-7-8">Week 7-8</h3>
-<p>Boltzmann Equation and H-theorem</p>
-<p>BBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases</p>
 </section>
-<section id="week-9" class="level3">
-<h3 class="anchored" data-anchor-id="week-9">Week 9+</h3>
-<p>SDEs</p>
-</section>
-<section id="week-10" class="level3">
-<h3 class="anchored" data-anchor-id="week-10">Week 10+</h3>
-<p>Jarzynski, Crooks?</p>
+<section id="session-b" class="level2">
+<h2 class="anchored" data-anchor-id="session-b">Session B:</h2>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

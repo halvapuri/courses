@@ -1313,7 +1313,7 @@
     "href": "C0ode/home_ode.html#slides-and-notebooks",
     "title": "Ordinary Differential Equations",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nGaussian Elimination"
+    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nPractice questions\nGaussian Elimination"
   },
   {
     "objectID": "C0ode/home_ode.html#course-outline",
@@ -1376,7 +1376,7 @@
     "href": "C0noneqthermo/home_noneqthermo.html#progression",
     "title": "Non-equilibrium Thermodynamics",
     "section": "Progression",
-    "text": "Progression\n\nWeek 1-3\nLangevin and Fokker Planck Equations\nPossibly lead to GSKL equations following Banerjee.\nTexts:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)\n\n\n\nWeek 4-6\nBrownian Motion & Diffusion\n\n\nWeek 7-8\nBoltzmann Equation and H-theorem\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\n\nWeek 9+\nSDEs\n\n\nWeek 10+\nJarzynski, Crooks?"
+    "text": "Progression\n\nWeek 1-3\nStrand A: Stochastic thermodynamics\nWe will develop the Langevin and Fokker Planck Equations. Ultimately we will head towards the GSKL equations following Banerjee. Specifically you might hear:\n\nLangevin Equation\nFokker Planck Equation\nLiouville theorem\nSmoluchowski equation\nKramers Moyal expansion\n\nTexts:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)\n\nStrand B: Transport phenomena\nIn tandem we will develop the Boltzmann equation. Some concepts:\n\nBoltzmann equation\nRelaxation time approximation.\n\nTexts:\n\nMarder, Condensed Matter Physics (Chapter 17)\nLink\n\n\n\nWeek 4-6\nBrownian Motion & Diffusion\n\n\nWeek 7-8\nBoltzmann Equation and H-theorem\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\n\nWeek 9+\nSDEs\n\n\nWeek 10+\nJarzynski, Crooks?"
   },
   {
     "objectID": "C0ode/coursematerial/01.html",
@@ -1390,7 +1390,7 @@
     "href": "C0noneqthermo/home_noneqthermo.html#topics-subject-to-change",
     "title": "Non-equilibrium Thermodynamics",
     "section": "Topics (Subject to change)",
-    "text": "Topics (Subject to change)\n\nReview of phenomenological thermodynamics\nBrownian motion\nLangevin and Fokker Planck equation\nMaster equations\nJarzynski and Crooks relations\nBoltzmann (Transport) Equation\nH theorem\nGKLS Equations\nOpen quantum systems\n\nLangevin equation\nFokker Planck equation\nLinear Response Theory"
+    "text": "Topics (Subject to change)\n\nBrownian Motion\nLangevin, Fokker-Planck, Master Equation:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)\n\n\n\nTransport Phenomena/Boltzmann Equation\n\nMarder, Condensed Matter Physics, Chapter 17.\nLink\n\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\n\nOpen Quantum Systems\n\nReview of phenomenological thermodynamics\nBrownian motion\nJarzynski and Crooks relations\nBoltzmann (Transport) Equation\nH theorem\nGKLS Equations\nOpen quantum systems\n\nLangevin equation\nFokker Planck equation\nLinear Response Theory"
   },
   {
     "objectID": "C0noneqthermo/coursematerial/homeworks.html",
@@ -1460,7 +1460,7 @@
     "href": "C0ode/lectures/01-GaussElimination.html",
     "title": "Gaussian Elimination",
     "section": "",
-    "text": "We can either create a matrix randomly or feed one:\n\n# A = rand(1:10, 4,4)\nA  = [1 -1 1 0; -1 1 -1 0; 0 10 -1 90; 20 10 0 80]\n\n4×4 Matrix{Int64}:\n  1  -1   1   0\n -1   1  -1   0\n  0  10  -1  90\n 20  10   0  80\n\n\nFirst we use row 1 as pivot and eliminate the rest of the non-zero entries in the first column:\n\nA[2, :] = A[2, :] + A[1, :]\nA\n\n4×4 Matrix{Int64}:\n  1  -1   1   0\n  0   0   0   0\n  0  10  -1  90\n 20  10   0  80\n\n\n\nA[4, :] = A[4, :] - 20 * A[1, :]\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1   0\n 0   0    0   0\n 0  10   -1  90\n 0  30  -20  80\n\n\nNow we need to swap the rows:\n\nA[[2,3,4], :] = A[[3,4,2], :];\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1   0\n 0  10   -1  90\n 0  30  -20  80\n 0   0    0   0\n\n\nNow we can use row 2 as the pivot and remove all the non-zero entries below:\n\nA[3, :] = A[3, :] - 3 * A[2, :];\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1     0\n 0  10   -1    90\n 0   0  -17  -190\n 0   0    0     0\n\n\n\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1     0\n 0  10   -1    90\n 0   0  -17  -190\n 0   0    0     0"
+    "text": "We can either create a matrix randomly or feed one:\n# A = rand(1:10, 4,4)\nA  = [1 -1 1 0; -1 1 -1 0; 0 10 -1 90; 20 10 0 80]\n\n4×4 Matrix{Int64}:\n  1  -1   1   0\n -1   1  -1   0\n  0  10  -1  90\n 20  10   0  80\nFirst we use row 1 as pivot and eliminate the rest of the non-zero entries in the first column:\nA[2, :] = A[2, :] + A[1, :]\nA\n\n4×4 Matrix{Int64}:\n  1  -1   1   0\n  0   0   0   0\n  0  10  -1  90\n 20  10   0  80\nA[4, :] = A[4, :] - 20 * A[1, :]\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1   0\n 0   0    0   0\n 0  10   -1  90\n 0  30  -20  80\nNow we need to swap the rows:\nA[[2,3,4], :] = A[[3,4,2], :];\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1   0\n 0  10   -1  90\n 0  30  -20  80\n 0   0    0   0\nNow we can use row 2 as the pivot and remove all the non-zero entries below:\nA[3, :] = A[3, :] - 3 * A[2, :];\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1     0\n 0  10   -1    90\n 0   0  -17  -190\n 0   0    0     0\nA\n\n4×4 Matrix{Int64}:\n 1  -1    1     0\n 0  10   -1    90\n 0   0  -17  -190\n 0   0    0     0"
   },
   {
     "objectID": "C0ode/lectures/01-MatricesJulia.html",
@@ -1475,5 +1475,54 @@
     "title": "Matrix operations with Julia",
     "section": "Solving linear equations",
     "text": "Solving linear equations\nSay we have a linear system of equations. How do we find out in advance whether there is a solution to the system or not.\nThe determinant ‘determines’ it for us (hence the name):\n\\[\\begin{align}\n1x + 2y + 3z = 6\\\\\n2x + 4y + 6z = 12\\\\\n3x + 6y + 9z = 18\\\\\n\\end{align}\\]\n\nusing LinearAlgebra\n# using LinearSolve\n\n# Define the coefficient matrix A and the right-hand side vector b\nA = [\n    1  2  3;\n    2  4  6;\n    3  6  9\n]\n\nb = [6, 12, 18]\n\n# Calculate the determinant of A\ndet_A = det(A)\nprintln(\"Determinant of A: $det_A\")\n\nDeterminant of A: 0.0"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/01_basics.html",
+    "href": "C0TopologicalMaterials/lectures/01_basics.html",
+    "title": "Topological Insulators",
+    "section": "",
+    "text": "Some quick questions:\nTopologically trivial vs. non-trivial: A “topologically trivial” material is one whose electronic band structure can be continuously deformed into a simple, standard state [e.g. atomic state] without encountering any topological barriers, meaning its properties can be easily changed by local perturbations.\nA “topologically non-trivial” material has a unique, protected electronic structure that cannot be smoothly transformed into a trivial state, often exhibiting robust surface states that are insensitive to local disturbances like defects or impurities\nTopological phase transition:"
+  },
+  {
+    "objectID": "C0ode/lectures/01-GaussElimination.html#infinitely-many-solutions",
+    "href": "C0ode/lectures/01-GaussElimination.html#infinitely-many-solutions",
+    "title": "Gaussian Elimination",
+    "section": "Infinitely many solutions",
+    "text": "Infinitely many solutions\nWhen the number of equations is fewer than the number of unknowns, infinitely many solutions exist.\n\nusing LinearAlgebra;\n\n# Define the augmented matrix (coefficients) and right-hand side vector\nA = [\n    3.0   2.0   2.0  -5.0;\n    0.6   1.5   1.5  -5.4;\n    1.2  -0.3  -0.3   2.4\n];\n\nb = [8.0; 2.7; 2.1];\n\n# Solve the system to find a particular solution\nx_particular = A \\ b;\n\nprintln(\"Particular solution: \", x_particular);\n\nParticular solution: [2.000000000000001, 0.5000000000000006, 0.5000000000000006, 2.0653174743575485e-16]\n\n\nNote that julia has given one solution (not infinite).\n\n# Compute the null space of A\nN = nullspace(A)\n\nprintln(\"\\nNull space of A:\")\nprintln(N)\n\n# Check the dimensions of the null space\nprintln(\"\\nNumber of free parameters (nullity of A): \", size(N, 2))\n\n# Generate a general solution using free parameters\nc = [1.0, 0.0]  # Example free parameters for the null space\nx_general = x_particular .+ N * c\n\nprintln(\"\\nGeneral solution with c = [1.0, 0.0]: \", x_general)\n\n# Verify the solution\nprintln(\"\\nVerification: A * x_general ≈ b\")\nprintln(A * x_general)\n\n\nNull space of A:\n[-0.2607387739647174 0.17892817483944756; 0.9215731099604074 0.2251732732761658; 0.12138198589846322 -0.940885972633956; 0.26073877396471784 -0.1789281748394475]\n\nNumber of free parameters (nullity of A): 2\n\nGeneral solution with c = [1.0, 0.0]: [1.7392612260352835, 1.4215731099604079, 0.6213819858984637, 0.26073877396471806]\n\nVerification: A * x_general ≈ b\n[8.000000000000004, 2.7, 2.1000000000000023]"
+  },
+  {
+    "objectID": "C0ode/lectures/01-GaussElimination.html#row-echelon-form",
+    "href": "C0ode/lectures/01-GaussElimination.html#row-echelon-form",
+    "title": "Gaussian Elimination",
+    "section": "Row echelon form",
+    "text": "Row echelon form\n\nfunction reduced_row_echelon_form(A)\n    A = float(copy(A))  # Make a copy to avoid mutating the original matrix\n    rows, cols = size(A)\n    pivot_row = 1\n    \n    for col in 1:cols\n        # Find the pivot in the current column\n        pivot = argmax(abs.(A[pivot_row:rows, col])) + pivot_row - 1\n        if A[pivot, col] ≈ 0\n            continue  # Skip this column if all entries are zero\n        end\n        \n        # Swap the pivot row with the current row\n        A[[pivot_row, pivot], :] = A[[pivot, pivot_row], :]\n        \n        # Normalize the pivot row\n        A[pivot_row, :] ./= A[pivot_row, col]\n        \n        # Eliminate entries below the pivot\n        for r in (pivot_row + 1):rows\n            A[r, :] .-= A[r, col] * A[pivot_row, :]\n        end\n        \n        # Move to the next row\n        pivot_row += 1\n        if pivot_row &gt; rows\n            break\n        end\n    end\n    \n    return A\nend\n\nA = [3 2 1 3; 2 1 1 0; 6 2 4 6]\nreduced_row_echelon_form(A)\n\n3×4 Matrix{Float64}:\n 1.0  0.333333   0.666667   1.0\n 0.0  1.0       -1.0        0.0\n 0.0  0.0        1.0       -1.80144e16"
+  },
+  {
+    "objectID": "C0ode/lectures/00-PracticeQuestions.html",
+    "href": "C0ode/lectures/00-PracticeQuestions.html",
+    "title": "Practice Questions",
+    "section": "",
+    "text": "Kreyszig is limited in terms of practice questions and some of you have asked for alternatives.\nTwo books you can use to circumvent that are:\n\nDennis G. Zill’s Advanced Engineering Mathematics\nDean G. Duffy’s Advanced Engineering Mathematics\n\nZill’s book in particular has a lot of practice problems.\nNotwithstanding, you can use julia to create your own problems. All you need is a way to create a matrix.\nThe following creates a 4x3 matrix with numbers randomly filled from 1 to 10.\n\nmat = rand(1:10, 4, 3)\n\n4×3 Matrix{Int64}:\n  9   7  10\n  1  10   1\n 10   6   9\n  2   1   4\n\n\nYou can make changes to it and generate as many questions as you want."
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/lecture_1.html",
+    "href": "C0noneqthermo/lectures/lecture_1.html",
+    "title": "Lecture 1",
+    "section": "",
+    "text": "Liouville theorem and Liouville operator\nLangevin and Fokker-Planck Equations\nKramers-Moyal Expansion\n\nPossibly review: - Hamilton’s equations\n\n\n\n\n\nappealing approach to nonequilibrium statistical mechanics that is physically transparent\nequation-of-motion method or, more accurately, the Langevin equation approach.\nwrite an appropriate equation of motion for a subsystem, in which its interaction with the other degrees of freedom of the system is modeled in terms of a stochastic or random ‘force’ with suitable statistical properties.\nThe task then is to extract the statistical properties of the subsystem of interest, starting from its equation of motion\nLangevin equation method in its original or simplest form turns out to be too drastic an approximation to be applicable, as it stands, to this case. At the molecular level, the behavior of fluids poses a complicated many-body problem.\nHence the more rigorous approach is the BBGKY hierarchy.\n\n\n\n\n\n\n\n\nBBGKY_Hierarchy\n\n  \n\nBBGKY\n\n BBGKY Hierarchy (Infinite integro-differential equations)   \n\nSimplified\n\n Simplified System of Equations (Under certain conditions)   \n\nBBGKY-&gt;Simplified\n\n    \n\nBoltzmann\n\n Boltzmann Equation (A convenient starting point)   \n\nSimplified-&gt;Boltzmann\n\n    \n\nFokkerPlanck\n\n Fokker-Planck Equation (More tractable in specific instances)   \n\nBoltzmann-&gt;FokkerPlanck\n\n   \n\n\n\n\n\n\nthe FPE approximation is valid (in the context of the fluid system) for the description of the motion of a particle of mass m in a fluid consisting of molecules of mass m_mol &lt;&lt; m.\nthe Fokker-Planck equation is just another facet of the Langevin equation"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/lecture_1.html#session-a",
+    "href": "C0noneqthermo/lectures/lecture_1.html#session-a",
+    "title": "Lecture 1",
+    "section": "",
+    "text": "Liouville theorem and Liouville operator\nLangevin and Fokker-Planck Equations\nKramers-Moyal Expansion\n\nPossibly review: - Hamilton’s equations\n\n\n\n\n\nappealing approach to nonequilibrium statistical mechanics that is physically transparent\nequation-of-motion method or, more accurately, the Langevin equation approach.\nwrite an appropriate equation of motion for a subsystem, in which its interaction with the other degrees of freedom of the system is modeled in terms of a stochastic or random ‘force’ with suitable statistical properties.\nThe task then is to extract the statistical properties of the subsystem of interest, starting from its equation of motion\nLangevin equation method in its original or simplest form turns out to be too drastic an approximation to be applicable, as it stands, to this case. At the molecular level, the behavior of fluids poses a complicated many-body problem.\nHence the more rigorous approach is the BBGKY hierarchy.\n\n\n\n\n\n\n\n\nBBGKY_Hierarchy\n\n  \n\nBBGKY\n\n BBGKY Hierarchy (Infinite integro-differential equations)   \n\nSimplified\n\n Simplified System of Equations (Under certain conditions)   \n\nBBGKY-&gt;Simplified\n\n    \n\nBoltzmann\n\n Boltzmann Equation (A convenient starting point)   \n\nSimplified-&gt;Boltzmann\n\n    \n\nFokkerPlanck\n\n Fokker-Planck Equation (More tractable in specific instances)   \n\nBoltzmann-&gt;FokkerPlanck\n\n   \n\n\n\n\n\n\nthe FPE approximation is valid (in the context of the fluid system) for the description of the motion of a particle of mass m in a fluid consisting of molecules of mass m_mol &lt;&lt; m.\nthe Fokker-Planck equation is just another facet of the Langevin equation"
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/lecture_1.html#session-b",
+    "href": "C0noneqthermo/lectures/lecture_1.html#session-b",
+    "title": "Lecture 1",
+    "section": "Session B:",
+    "text": "Session B:"
   }
 ]
