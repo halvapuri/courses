@@ -1250,7 +1250,7 @@
     "href": "C0noneqthermo/home_noneqthermo.html#text-and-reference-books",
     "title": "Non-equilibrium Thermodynamics",
     "section": "Text and Reference Books",
-    "text": "Text and Reference Books\nSome texts, online or otherwise are given below:\n\nLinda Reichl: A Course in Modern Statistical Physics.\n\nChapter 7 is about Brownian Motion and Fluctuation Dissipation\n\nKerson Huang: Introduction to Statistical Physics\n\nSee chapter 14\n\nBikkin, Lyapilin: Non-equilibrium thermodynamics and physical kinetics\nAttard: Non-Equilibrium Thermodynamics and Statistical Mechanics\nBalakrishnan:\nPottier: Non-Equilibrium Statistical Physics\nRopke: Non-Equilibrium Statistical Physics\nPeliti & Pigolotti: Stochastic Thermodynamics\n\nSee Chapter 4: Jarzynski and Crooks relations\n\n\nOther texts\n\nWoyczyński - Diffusion Processes, Jump Processes, and Stochastic Differential Equations\nDavid Tong: Lectures on Kinetic Theory\nKardar: Statistical Theory of Particles"
+    "text": "Text and Reference Books\nSome texts, online or otherwise are given below:\n\nLinda Reichl: A Course in Modern Statistical Physics.\n\nChapter 7 is about Brownian Motion and Fluctuation Dissipation\n\nKerson Huang: Introduction to Statistical Physics\n\nSee chapter 14\n\nBikkin, Lyapilin: Non-equilibrium thermodynamics and physical kinetics\nAttard: Non-Equilibrium Thermodynamics and Statistical Mechanics\nBalakrishnan:\nPottier: Non-Equilibrium Statistical Physics\nRopke: Non-Equilibrium Statistical Physics\nPeliti & Pigolotti: Stochastic Thermodynamics\n\nSee Chapter 4: Jarzynski and Crooks relations\n\nBanerjee: Open Quantum Systems\n\nOther texts\n\nWoyczyński - Diffusion Processes, Jump Processes, and Stochastic Differential Equations\nDavid Tong: Lectures on Kinetic Theory\nKardar: Statistical Theory of Particles"
   },
   {
     "objectID": "C0noneqthermo/home_noneqthermo.html#topics",
@@ -1298,15 +1298,15 @@
     "objectID": "C0ode/home_ode.html#quizzes",
     "href": "C0ode/home_ode.html#quizzes",
     "title": "Ordinary Differential Equations",
-    "section": "Quizzes",
-    "text": "Quizzes\nWe will three quizzes:\n\nQuiz 1 (5 Marks)\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
+    "section": "",
+    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\n\nFebruary 18 (Tuesday), 5:45pm \nVenue: To be finalized later\n\nSyllabus: Chapter 7, Kreyszig (10th edition)\n\n\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
   },
   {
     "objectID": "C0ode/home_ode.html#assignments",
     "href": "C0ode/home_ode.html#assignments",
     "title": "Ordinary Differential Equations",
     "section": "Assignments",
-    "text": "Assignments"
+    "text": "Assignments\nAssignment 1"
   },
   {
     "objectID": "C0ode/home_ode.html#slides-and-notebooks",
@@ -1376,7 +1376,7 @@
     "href": "C0noneqthermo/home_noneqthermo.html#progression",
     "title": "Non-equilibrium Thermodynamics",
     "section": "Progression",
-    "text": "Progression\n\nWeek 1-3\nStrand A: Stochastic thermodynamics\nWe will develop the Langevin and Fokker Planck Equations. Ultimately we will head towards the GSKL equations following Banerjee. Specifically you might hear:\n\nLangevin Equation\nFokker Planck Equation\nLiouville theorem\nSmoluchowski equation\nKramers Moyal expansion\n\nTexts:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)\n\nStrand B: Transport phenomena\nIn tandem we will develop the Boltzmann equation. Some concepts:\n\nBoltzmann equation\nRelaxation time approximation.\n\nTexts:\n\nMarder, Condensed Matter Physics (Chapter 17)\nLink\n\n\n\nWeek 4-6\nBrownian Motion & Diffusion\n\n\nWeek 7-8\nBoltzmann Equation and H-theorem\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\n\nWeek 9+\nSDEs\n\n\nWeek 10+\nJarzynski, Crooks?"
+    "text": "Progression\n\nWeek 1-2\nStrand A: Stochastic thermodynamics\nWe will develop the Langevin and Fokker Planck Equations. Ultimately we will head towards the GSKL equations following Banerjee. Specifically you might hear:\n\nLangevin Equation\nFokker Planck Equation\nLiouville theorem\nSmoluchowski equation\nKramers Moyal expansion\n\nTexts:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)"
   },
   {
     "objectID": "C0ode/coursematerial/01.html",
@@ -1390,7 +1390,7 @@
     "href": "C0noneqthermo/home_noneqthermo.html#topics-subject-to-change",
     "title": "Non-equilibrium Thermodynamics",
     "section": "Topics (Subject to change)",
-    "text": "Topics (Subject to change)\n\nBrownian Motion\nLangevin, Fokker-Planck, Master Equation:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)\n\n\n\nTransport Phenomena/Boltzmann Equation\n\nMarder, Condensed Matter Physics, Chapter 17.\nLink\n\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\n\nOpen Quantum Systems\n\nReview of phenomenological thermodynamics\nBrownian motion\nJarzynski and Crooks relations\nBoltzmann (Transport) Equation\nH theorem\nGKLS Equations\nOpen quantum systems\n\nLangevin equation\nFokker Planck equation\nLinear Response Theory"
+    "text": "Topics (Subject to change)\n\nBrownian Motion\nLangevin, Fokker-Planck, Master Equation:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)\n\n\n\nTransport Phenomena/Boltzmann Equation\n\nMarder, Condensed Matter Physics, Chapter 17.\nLink\n\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\nReview of phenomenological thermodynamics\nBrownian motion\nJarzynski and Crooks relations\nBoltzmann (Transport) Equation\n\n\n\nOpen Quantum Systems\n\nH theorem\nGKLS Equations\nOpen quantum systems\n\nLangevin equation\nFokker Planck equation\nLinear Response Theory"
   },
   {
     "objectID": "C0noneqthermo/coursematerial/homeworks.html",
@@ -1524,5 +1524,19 @@
     "title": "Lecture 1",
     "section": "Session B:",
     "text": "Session B:"
+  },
+  {
+    "objectID": "C0noneqthermo/home_noneqthermo.html#week-3",
+    "href": "C0noneqthermo/home_noneqthermo.html#week-3",
+    "title": "Non-equilibrium Thermodynamics",
+    "section": "Week 3",
+    "text": "Week 3\nStrand B: Transport phenomena\nIn tandem we will develop the Boltzmann equation. Some concepts:\n\nBoltzmann equation\nRelaxation time approximation.\n\nTexts:\n\nMarder, Condensed Matter Physics (Chapter 17)\nLink\n\n\nWeek 4-6\nBrownian Motion & Diffusion\n\n\nWeek 7-8\nBoltzmann Equation and H-theorem\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\n\nWeek 9+\nSDEs\n\n\nWeek 10+\nJarzynski, Crooks?"
+  },
+  {
+    "objectID": "C0ode/home_ode.html",
+    "href": "C0ode/home_ode.html",
+    "title": "Ordinary Differential Equations",
+    "section": "",
+    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\n\nFebruary 18 (Tuesday), 5:45pm \nVenue: To be finalized later\n\nSyllabus: Chapter 7, Kreyszig (10th edition)\n\n\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
   }
 ]
