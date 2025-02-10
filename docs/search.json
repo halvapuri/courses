@@ -1299,7 +1299,7 @@
     "href": "C0ode/home_ode.html#quizzes",
     "title": "Ordinary Differential Equations",
     "section": "",
-    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\n\nFebruary 18 (Tuesday), 5:45pm \nVenue: To be finalized later\n\nSyllabus: Chapter 7, Kreyszig (10th edition)\n\n\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
+    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\n\nFebruary 18 (Tuesday), 5:45pm \nVenue: Brabers building (Subject to availability)\n\nSyllabus: Chapter 7, Kreyszig (10th edition)\n\n\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
   },
   {
     "objectID": "C0ode/home_ode.html#assignments",
@@ -1313,7 +1313,7 @@
     "href": "C0ode/home_ode.html#slides-and-notebooks",
     "title": "Ordinary Differential Equations",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nPractice questions\nGaussian Elimination"
+    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nPractice questions\nJulia: Quick reference for matrices\nGaussian Elimination"
   },
   {
     "objectID": "C0ode/home_ode.html#course-outline",
@@ -1537,6 +1537,34 @@
     "href": "C0ode/home_ode.html",
     "title": "Ordinary Differential Equations",
     "section": "",
-    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\n\nFebruary 18 (Tuesday), 5:45pm \nVenue: To be finalized later\n\nSyllabus: Chapter 7, Kreyszig (10th edition)\n\n\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
+    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\n\nFebruary 18 (Tuesday), 5:45pm \nVenue: Brabers building (Subject to availability)\n\nSyllabus: Chapter 7, Kreyszig (10th edition)\n\n\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
+  },
+  {
+    "objectID": "C0QuickReference/julia/matrices.html",
+    "href": "C0QuickReference/julia/matrices.html",
+    "title": "Julia and Matrices",
+    "section": "",
+    "text": "For the most part we’ll use LinearAlgebra package.\nusing LinearAlgebra"
+  },
+  {
+    "objectID": "C0QuickReference/julia/matrices.html#initializing-matrices",
+    "href": "C0QuickReference/julia/matrices.html#initializing-matrices",
+    "title": "Julia and Matrices",
+    "section": "Initializing matrices",
+    "text": "Initializing matrices\n\nSetting type\nYou can initialize a float 64 matrix in the following way.\n\nm = Matrix{Float64}([1 1;2 2])\n\n2×2 Matrix{Float64}:\n 1.0  1.0\n 2.0  2.0\n\n\n\n\nIdentity and diagonal matrices\nI represents an identity matrix. You don’t really need to specify its dimensions.\n\n3* I + [1 1 1; 1 1 1; 1 1 1]\n\n3×3 Matrix{Int64}:\n 4  1  1\n 1  4  1\n 1  1  4\n\n\nFor a diagonal matrix with different entries along the diagonal:"
+  },
+  {
+    "objectID": "C0QuickReference/julia/matrices.html#extraction-from-matrices",
+    "href": "C0QuickReference/julia/matrices.html#extraction-from-matrices",
+    "title": "Julia and Matrices",
+    "section": "Extraction from matrices",
+    "text": "Extraction from matrices\nYou can extract the diagonal from a matrix. Note that c[2,1] is 0. Note the lack of commas.\n\nc  = Diagonal([1 2 3; 2 3 4; 3 7 8])\nc[2,1]\n\n0\n\n\nTo convert a vector (note the commas) into a diagonal matrix use diagm:\n\na = [1, 2, 3, 4]\nDiagonal(a)\n\n4×4 Diagonal{Int64, Vector{Int64}}:\n 1  ⋅  ⋅  ⋅\n ⋅  2  ⋅  ⋅\n ⋅  ⋅  3  ⋅\n ⋅  ⋅  ⋅  4\n\n\nFor a true diagonal matrix (again, no commas)\n\ndiagm(a)\n\n4×4 Matrix{Int64}:\n 1  0  0  0\n 0  2  0  0\n 0  0  3  0\n 0  0  0  4"
+  },
+  {
+    "objectID": "C0QuickReference/julia/matrices.html#list-comprehension",
+    "href": "C0QuickReference/julia/matrices.html#list-comprehension",
+    "title": "Julia and Matrices",
+    "section": "List comprehension",
+    "text": "List comprehension"
   }
 ]

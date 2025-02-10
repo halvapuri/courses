@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Worldlines - Ordinary Differential Equations</title>
+<title>Worldlines - Julia and Matrices</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,59 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -93,9 +127,9 @@ function openCity(evt, cityName) {
 
 
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -105,7 +139,7 @@ function openCity(evt, cityName) {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -116,11 +150,11 @@ function openCity(evt, cityName) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -134,7 +168,7 @@ function openCity(evt, cityName) {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Courses</a></li><li class="breadcrumb-item"><a href="../C0ode/home_ode.html">ODEs &amp; Lin. Alg.</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Julia and Matrices</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -148,8 +182,8 @@ function openCity(evt, cityName) {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -170,25 +204,25 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0ode/home_ode.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ODEs &amp; Lin. Alg.</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
   </div>
 </li>
@@ -205,31 +239,31 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Mechanics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topology</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
@@ -245,11 +279,13 @@ function openCity(evt, cityName) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quizzes" id="toc-quizzes" class="nav-link active" data-scroll-target="#quizzes">Quizzes</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#slides-and-notebooks" id="toc-slides-and-notebooks" class="nav-link" data-scroll-target="#slides-and-notebooks">Slides and Notebooks</a></li>
-  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course Outline</a></li>
-  <li><a href="#other-info" id="toc-other-info" class="nav-link" data-scroll-target="#other-info">Other info</a></li>
+  <li><a href="#initializing-matrices" id="toc-initializing-matrices" class="nav-link active" data-scroll-target="#initializing-matrices">Initializing matrices</a>
+  <ul class="collapse">
+  <li><a href="#setting-type" id="toc-setting-type" class="nav-link" data-scroll-target="#setting-type">Setting type</a></li>
+  <li><a href="#identity-and-diagonal-matrices" id="toc-identity-and-diagonal-matrices" class="nav-link" data-scroll-target="#identity-and-diagonal-matrices">Identity and diagonal matrices</a></li>
+  </ul></li>
+  <li><a href="#extraction-from-matrices" id="toc-extraction-from-matrices" class="nav-link" data-scroll-target="#extraction-from-matrices">Extraction from matrices</a></li>
+  <li><a href="#list-comprehension" id="toc-list-comprehension" class="nav-link" data-scroll-target="#list-comprehension">List comprehension</a></li>
   </ul>
 </nav>
     </div>
@@ -258,7 +294,7 @@ function openCity(evt, cityName) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ordinary Differential Equations</h1>
+<h1 class="title">Julia and Matrices</h1>
 </div>
 
 
@@ -273,57 +309,75 @@ function openCity(evt, cityName) {
 
 </header>
 
-<!-- ## Project -->
-<!-- As announced in class, there will be a project. 
-
-The task: Reproduce 3 figures (two 2D and one 3D) from your textbook. 
-
-Note that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.
-
-Furthermore:
-
-* The project will be done in groups of 3. 
-* The marks will be credited as bonus (i.e. they will not have a separate category)
-* There will be a viva in the 15th week. 
-* The individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.) -->
-<section id="quizzes" class="level2">
-<h2 class="anchored" data-anchor-id="quizzes">Quizzes</h2>
-<p>We will three quizzes:</p>
-<ul>
-<li>Quiz 1 (5 Marks)
-<ul>
-<li><span style="color:crimson;">February 18 (Tuesday), 5:45pm </span></li>
-<li><span style="color:crimson;">Venue: Brabers building (Subject to availability)</span><br>
-</li>
-<li><span style="color:crimson;">Syllabus: Chapter 7, Kreyszig (10th edition)</span><br>
-</li>
-</ul></li>
-<li>Quiz 2 (10 marks, 8th week)</li>
-<li>Quiz 3 (10 marks, 13th week)<br>
-</li>
-</ul>
+<p>For the most part we’ll use <code>LinearAlgebra</code> package.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="initializing-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="initializing-matrices">Initializing matrices</h2>
+<section id="setting-type" class="level3">
+<h3 class="anchored" data-anchor-id="setting-type">Setting type</h3>
+<p>You can initialize a float 64 matrix in the following way.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fu">Matrix</span><span class="dt">{Float64}</span>([<span class="fl">1</span> <span class="fl">1</span>;<span class="fl">2</span> <span class="fl">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>2×2 Matrix{Float64}:
+ 1.0  1.0
+ 2.0  2.0</code></pre>
+</div>
+</div>
 </section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<p><a href="coursematerial/Assignments/MT102Assignment_I.pdf">Assignment 1</a><br>
-<!-- [Assignment 2](coursematerial/Assignments/MT202Assignment_II.pdf)\ --> <!-- [Assignment 3](coursematerial/Assignments/MT202Assignment_III.pdf)\ --> <!-- [Assignment 4](coursematerial/Assignments/MT202Assignment_IV.pdf)\ --> <!-- [Assignment 5](coursematerial/Assignments/MT202Assignment_V.pdf)\ --></p>
+<section id="identity-and-diagonal-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="identity-and-diagonal-matrices">Identity and diagonal matrices</h3>
+<p><code>I</code> represents an identity matrix. You don’t really need to specify its dimensions.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fl">3</span><span class="op">*</span> I <span class="op">+</span> [<span class="fl">1</span> <span class="fl">1</span> <span class="fl">1</span>; <span class="fl">1</span> <span class="fl">1</span> <span class="fl">1</span>; <span class="fl">1</span> <span class="fl">1</span> <span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>3×3 Matrix{Int64}:
+ 4  1  1
+ 1  4  1
+ 1  1  4</code></pre>
+</div>
+</div>
+<p>For a diagonal matrix with different entries along the diagonal:</p>
 </section>
-<section id="slides-and-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-notebooks">Slides and Notebooks</h2>
-<p>You can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.</p>
-<ul>
-<li><a href="../C0ode/lectures/00-PracticeQuestions.html">Practice questions</a></li>
-<li><a href="../C0QuickReference/julia/matrices.html">Julia: Quick reference for matrices</a></li>
-<li><a href="../C0ode/lectures/01-GaussElimination.html">Gaussian Elimination</a></li>
-</ul>
 </section>
-<section id="course-outline" class="level2">
-<h2 class="anchored" data-anchor-id="course-outline">Course Outline</h2>
-<p><a href="coursematerial/outline.pdf">Outline (pdf)</a></p>
+<section id="extraction-from-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="extraction-from-matrices">Extraction from matrices</h2>
+<p>You can extract the diagonal from a matrix. Note that <code>c[2,1]</code> is 0. Note the lack of commas.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>c  <span class="op">=</span> <span class="fu">Diagonal</span>([<span class="fl">1</span> <span class="fl">2</span> <span class="fl">3</span>; <span class="fl">2</span> <span class="fl">3</span> <span class="fl">4</span>; <span class="fl">3</span> <span class="fl">7</span> <span class="fl">8</span>])</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>c[<span class="fl">2</span>,<span class="fl">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>0</code></pre>
+</div>
+</div>
+<p>To convert a vector (note the commas) into a diagonal matrix use <code>diagm</code>:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Diagonal</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>4×4 Diagonal{Int64, Vector{Int64}}:
+ 1  ⋅  ⋅  ⋅
+ ⋅  2  ⋅  ⋅
+ ⋅  ⋅  3  ⋅
+ ⋅  ⋅  ⋅  4</code></pre>
+</div>
+</div>
+<p>For a true diagonal matrix (again, no commas)</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diagm</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>4×4 Matrix{Int64}:
+ 1  0  0  0
+ 0  2  0  0
+ 0  0  3  0
+ 0  0  0  4</code></pre>
+</div>
+</div>
 </section>
-<section id="other-info" class="level2">
-<h2 class="anchored" data-anchor-id="other-info">Other info</h2>
-<p>Course TA: Ms.&nbsp;Misbah Shaheen Email: misbah.shaheen [at] giki.edu.pk</p>
+<section id="list-comprehension" class="level2">
+<h2 class="anchored" data-anchor-id="list-comprehension">List comprehension</h2>
 
 
 </section>
