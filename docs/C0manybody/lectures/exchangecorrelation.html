@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Worldlines - Ordinary Differential Equations</title>
+<title>Worldlines - Exchange &amp; Correlation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -92,10 +92,12 @@ function openCity(evt, cityName) {
 
 
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -105,7 +107,7 @@ function openCity(evt, cityName) {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -116,11 +118,11 @@ function openCity(evt, cityName) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
+    <a class="nav-link active" href="../../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -134,7 +136,7 @@ function openCity(evt, cityName) {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Courses</a></li><li class="breadcrumb-item"><a href="../C0ode/home_ode.html">ODEs &amp; Lin. Alg.</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Exchange &amp; Correlation</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -148,8 +150,8 @@ function openCity(evt, cityName) {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -170,25 +172,25 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus I</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calculus II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0ode/home_ode.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ODEs &amp; Lin. Alg.</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
   </div>
 </li>
@@ -205,37 +207,37 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Many-Body Systems</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Statistical Mechanics</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topology</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
+  <a href="../../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Differential Geometry</span></a>
   </div>
 </li>
@@ -251,11 +253,14 @@ function openCity(evt, cityName) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quizzes" id="toc-quizzes" class="nav-link active" data-scroll-target="#quizzes">Quizzes</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#slides-and-notebooks" id="toc-slides-and-notebooks" class="nav-link" data-scroll-target="#slides-and-notebooks">Slides and Notebooks</a></li>
-  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course Outline</a></li>
-  <li><a href="#other-info" id="toc-other-info" class="nav-link" data-scroll-target="#other-info">Other info</a></li>
+  <li><a href="#jellium-model" id="toc-jellium-model" class="nav-link active" data-scroll-target="#jellium-model">Jellium Model</a></li>
+  <li><a href="#two-limits" id="toc-two-limits" class="nav-link" data-scroll-target="#two-limits">Two limits</a></li>
+  <li><a href="#energy-contributions" id="toc-energy-contributions" class="nav-link" data-scroll-target="#energy-contributions">Energy Contributions</a>
+  <ul class="collapse">
+  <li><a href="#kinetic" id="toc-kinetic" class="nav-link" data-scroll-target="#kinetic">Kinetic</a></li>
+  <li><a href="#hartree" id="toc-hartree" class="nav-link" data-scroll-target="#hartree">Hartree</a></li>
+  <li><a href="#exchange" id="toc-exchange" class="nav-link" data-scroll-target="#exchange">Exchange</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -264,7 +269,7 @@ function openCity(evt, cityName) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ordinary Differential Equations</h1>
+<h1 class="title">Exchange &amp; Correlation</h1>
 </div>
 
 
@@ -279,55 +284,52 @@ function openCity(evt, cityName) {
 
 </header>
 
-<!-- ## Project -->
-<!-- As announced in class, there will be a project. 
-
-The task: Reproduce 3 figures (two 2D and one 3D) from your textbook. 
-
-Note that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.
-
-Furthermore:
-
-* The project will be done in groups of 3. 
-* The marks will be credited as bonus (i.e. they will not have a separate category)
-* There will be a viva in the 15th week. 
-* The individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.) -->
-<section id="quizzes" class="level2">
-<h2 class="anchored" data-anchor-id="quizzes">Quizzes</h2>
-<p>We will three quizzes:</p>
+<section id="jellium-model" class="level2">
+<h2 class="anchored" data-anchor-id="jellium-model">Jellium Model</h2>
+<p><span class="math display">\[
+\hat{H} = \sum_{\mathbf{k},\sigma} \frac{\hbar^2 k^2}{2m} c_{\mathbf{k},\sigma}^\dagger c_{\mathbf{k},\sigma}
++ \frac{1}{2} \sum_{\mathbf{q} \neq 0} v(\mathbf{q}) \sum_{\mathbf{k},\mathbf{k'},\sigma,\sigma'}
+c_{\mathbf{k+q},\sigma}^\dagger c_{\mathbf{k'-q},\sigma'}^\dagger c_{\mathbf{k'},\sigma'} c_{\mathbf{k},\sigma}
+\]</span></p>
+<p>where <span class="math inline">\(v(q) = 4 \pi e^2/q^2\)</span>.</p>
+<p>Two electronic properties - <em>Self energy of an electron of momentum p</em> - <em>Total Energy of the system</em>: Electrons averaged to obtain the total energy of the system. This average is done at zero temperature. Find: ground state energy per particle <span class="math inline">\(E_g = E_g(n_o)\)</span>.</p>
+<p>== Mahan, 5.4</p>
+<p>In the homogeneous electron gas, the average kinetic energy of the electrons is going to be proportional to EF ~ (K.E.) ~ k~, which, by dimensional analysis, is inversely proportional to the square of the characteristic length of the system, which is rs. Therefore (K.E.) ()( 1/“;. Similarly, dimensional analysis suggests that the average Coulomb energy per particle will be e’2 divided by the characteristic length, or (P.E.) ()( l/rs’ When the electron gas has suffi- ciently high density, which is small rs , the kinetic energy term will be larger than the potential energy term. In this case, the electrons will behave as free particles, since the potential energy is a perturbation on the dominant kinetic energy. In the high-density limit, the free-particle picture is expected to be valid</p>
+</section>
+<section id="two-limits" class="level2">
+<h2 class="anchored" data-anchor-id="two-limits">Two limits</h2>
 <ul>
-<li>Quiz 1 (5 Marks)</li>
-<li>Quiz 2 (10 marks, 8th week) <!-- + <span style="color:crimson;">March 11 (Tuesday)</span> --> <!-- + <span style="color:crimson;">Venue: Brabers building (Subject to availability)</span>    --> <!-- + <span style="color:crimson;">Syllabus: Everything studied till week 7</span>    --></li>
-<li>Quiz 3 (10 marks, 13th week)<br>
-</li>
+<li>High density limit: KE &gt;&gt; PE (free particle)</li>
+<li>Low density limit KE &lt; PE</li>
 </ul>
 </section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<p><a href="coursematerial/Assignments/MT102Assignment_I.pdf">Assignment 1</a><br>
-<a href="coursematerial/Assignments/MT102Assignment_II.pdf">Assignment 2</a><br>
-<a href="coursematerial/Assignments/MT102Assignment_III.pdf">Assignment 3</a><br>
-<!-- [Assignment 4](coursematerial/Assignments/MT102Assignment_IV.pdf)\ --> <!-- [Assignment 5](coursematerial/Assignments/MT102Assignment_V.pdf)\ --></p>
+<section id="energy-contributions" class="level2">
+<h2 class="anchored" data-anchor-id="energy-contributions">Energy Contributions</h2>
+<section id="kinetic" class="level3">
+<h3 class="anchored" data-anchor-id="kinetic">Kinetic</h3>
+<p>[Mahan 5.7]</p>
 </section>
-<section id="slides-and-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-notebooks">Slides and Notebooks</h2>
-<p>You can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.</p>
-<ul>
-<li><p><a href="../C0ode/lectures/00-PracticeQuestions.html">Practice questions</a></p></li>
-<li><p><a href="../C0QuickReference/julia/matrices.html">Julia: Quick reference for matrices</a></p></li>
-<li><p><a href="../C0ode/lectures/01-GaussElimination.html">Gaussian Elimination</a></p></li>
-<li><p><a href="../C0QuickReference/julia/ode.html">Julia: ODEs</a></p></li>
-</ul>
+<section id="hartree" class="level3">
+<h3 class="anchored" data-anchor-id="hartree">Hartree</h3>
+<p>All the remaining terms in the energy come from the Coulomb interaction between the particles. This contribution is not evaluated exactly. Instead, approximate expressions are used.</p>
+<p>Using perturbation theory: the first term which occurs is the Coulomb interaction between the electrons and the uniform positive background, which is called the <em>Hartree</em> interaction given by:</p>
+<p><span class="math display">\[
+N_e E_o = (e^2/2) \int \frac{d^3r_1 d^3r_2}{|r_1 - r_2|} [\rho_e(r_1) - \rho_i(r_1)][\rho_e(r_2) - \rho_i(r_2)]
+\]</span></p>
+<p>In the HEG: - the time-averaged electron density is uniform throughout the system, as is the positive background. - these equal and opposite charge densities exactly cancel, so that the net system is charge neutral. - Thus the Hartree energy is zero.</p>
 </section>
-<section id="course-outline" class="level2">
-<h2 class="anchored" data-anchor-id="course-outline">Course Outline</h2>
-<p><a href="coursematerial/outline.pdf">Outline (pdf)</a></p>
-</section>
-<section id="other-info" class="level2">
-<h2 class="anchored" data-anchor-id="other-info">Other info</h2>
-<p>Course TA: Ms.&nbsp;Misbah Shaheen Email: misbah.shaheen [at] giki.edu.pk</p>
+<section id="exchange" class="level3">
+<h3 class="anchored" data-anchor-id="exchange">Exchange</h3>
+<p>The Hartree term corresponds to the following pairing of the operators in (5.1)</p>
+<p>This term is called the exchange energy, or the Fock energy. Retaining both terms is called Hartree-Fock.</p>
+<p><em>Exchange energy: gives a contribution to the energy of an individual electron, as well as a contribution to the ground state energy of the collection of electrons:</em></p>
+<p>Hartree-Fock theory: Kinetic energy + the Hartree energy which is zero + the exchange energy</p>
+<p>Correlation energy: energy tenus beyond Hartree-Fock. The name is applied both to the additional energy tenus in the self-energy of an electron of wave vector k, and to the ground state energy obtained by averaging over all of the electrons</p>
+<p>[Mahan, 5.31] Ee = -0.094 + 0.06221n(rs) + O(rs)</p>
+<p>The tenu correlation energy is often applied to other quantities besides the total ground state energy. For example, the correlation energy of a particle of wave vector k are those tenus beyond Hartree-Fock:</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -1299,21 +1299,21 @@
     "href": "C0ode/home_ode.html#quizzes",
     "title": "Ordinary Differential Equations",
     "section": "",
-    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\n\nFebruary 18 (Tuesday), 5:45pm \nVenue: Brabers building (Subject to availability)\n\nSyllabus: Chapter 7, Kreyszig (10th edition)\n\n\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
+    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\nQuiz 2 (10 marks, 8th week)   \nQuiz 3 (10 marks, 13th week)"
   },
   {
     "objectID": "C0ode/home_ode.html#assignments",
     "href": "C0ode/home_ode.html#assignments",
     "title": "Ordinary Differential Equations",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1"
+    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3"
   },
   {
     "objectID": "C0ode/home_ode.html#slides-and-notebooks",
     "href": "C0ode/home_ode.html#slides-and-notebooks",
     "title": "Ordinary Differential Equations",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nPractice questions\nJulia: Quick reference for matrices\nGaussian Elimination"
+    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nPractice questions\nJulia: Quick reference for matrices\nGaussian Elimination\nJulia: ODEs"
   },
   {
     "objectID": "C0ode/home_ode.html#course-outline",
@@ -1537,7 +1537,7 @@
     "href": "C0ode/home_ode.html",
     "title": "Ordinary Differential Equations",
     "section": "",
-    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\n\nFebruary 18 (Tuesday), 5:45pm \nVenue: Brabers building (Subject to availability)\n\nSyllabus: Chapter 7, Kreyszig (10th edition)\n\n\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)"
+    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\nQuiz 2 (10 marks, 8th week)   \nQuiz 3 (10 marks, 13th week)"
   },
   {
     "objectID": "C0QuickReference/julia/matrices.html",
@@ -1566,5 +1566,131 @@
     "title": "Julia and Matrices",
     "section": "List comprehension",
     "text": "List comprehension"
+  },
+  {
+    "objectID": "C0ode/lectures/02-DiffEqJulia.html",
+    "href": "C0ode/lectures/02-DiffEqJulia.html",
+    "title": "Solving Differential Equations in Julia",
+    "section": "",
+    "text": "Julia provides a powerful and efficient way to solve differential equations using the DifferentialEquations.jl package. This tutorial will walk through solving and plotting a simple ordinary differential equation (ODE).\nTo begin, install the necessary packages if you haven’t already:\n\nusing Pkg\nPkg.add([\"DifferentialEquations\", \"Plots\"])\n\nNow, consider the first-order differential equation:\n\\[\ndy/dt = -2y\n\\]\nwith the initial condition y(0) = 1. The following Julia code sets up and solves this equation:\n\nusing DifferentialEquations, Plots\n\nfunction f!(dy, y, p, t)\n    dy[1] = -2y[1]  # dy/dt = -2y\nend\n\ny0 = [1.0]\ntspan = (0.0, 5.0)\n\nprob = ODEProblem(f!, y0, tspan)\nsol = solve(prob)\n\nplot(sol, xlabel=\"Time (t)\", ylabel=\"y(t)\", lw=2)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis will generate a plot of the exponential decay function y(t) = e^(-2t).\nNotice the indexing with [1] in dy[1] = -2y[1]. Julia’s DifferentialEquations.jl package requires state variables (y) and their derivatives (dy) to be stored in array-like structures rather than scalars. Even for a single equation, they are treated as vectors, allowing the same framework to handle systems of equations.\nFor example, if we had a system of two equations:\n\\[\ndy1/dt = -2y1 + y2\\\\\ndy2/dt = -y1 - y2\n\\]\nwe would define:\n\nfunction system!(dy, y, p, t)\n    dy[1] = -2y[1] + y[2]\n    dy[2] = -y[1] - y[2]\nend\n\nEven though we did not use the parameters p and time t in our simple example, they must still be included in the function definition. This is because DifferentialEquations.jl expects functions with the signature:\n\nf!(dy, y, p, t)\n\nKeeping p allows for easy parameterization of equations. For example, if the decay rate were variable:\n\nfunction f!(dy, y, p, t)\n    dy[1] = -p * y[1]\nend\n\nyou could pass p when defining the problem:\n\nprob = ODEProblem(f!, [1.0], (0.0, 5.0), 2.0)  # p = 2.0\n\nSimilarly, t is useful for time-dependent equations, such as:\n\nfunction f!(dy, y, p, t)\n    dy[1] = -2 * y[1] + sin(t)\nend\n\nThese conventions make it easy to extend the model for more complex scenarios while maintaining compatibility with Julia’s solver ecosystem."
+  },
+  {
+    "objectID": "C0QuickReference/julia/ode.html",
+    "href": "C0QuickReference/julia/ode.html",
+    "title": "Solving Differential Equations in Julia",
+    "section": "",
+    "text": "Julia provides a powerful and efficient way to solve differential equations using the DifferentialEquations.jl package. This tutorial will walk through solving and plotting a simple ordinary differential equation (ODE).\nTo begin, install the necessary packages if you haven’t already:\n\nusing Pkg\nPkg.add([\"DifferentialEquations\", \"Plots\"])\n\nNow, consider the first-order differential equation:\n\\[\ndy/dt = -2y\n\\]\nwith the initial condition y(0) = 1. The form of this differential equation is:\n\\[\n\\frac{dy}{dt} = f(y, p, t)\n\\]\nThe DifferentialEquations.jl package, expects the ODE to be defined in terms of a Julia function that takes the arguments y, p and t.\nThe following Julia code sets up and solves this equation:\n\nusing DifferentialEquations, Plots\n\nfunction f!(dy, y, p, t)\n    dy[1] = -2y[1]  # dy/dt = -2y\nend\n\ny0 = [1.0]\ntspan = (0.0, 5.0)\n\nprob = ODEProblem(f!, y0, tspan)\nsol = solve(prob)\n\nplot(sol, xlabel=\"Time (t)\", ylabel=\"y(t)\", lw=2)\n\n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n  \n    \n  \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis will generate a plot of the exponential decay function y(t) = e^(-2t).\nNote also the indexing with [1] in dy[1] = -2y[1]. Julia’s DifferentialEquations.jl package requires state variables (y) and their derivatives (dy) to be stored in array-like structures rather than scalars. Even for a single equation, they are treated as vectors, allowing the same framework to handle systems of equations.\nFor example, if we had a system of two equations:\n\\[\ndy1/dt = -2y1 + y2\\\\\ndy2/dt = -y1 - y2\n\\]\nwe would define:\n\nfunction system!(dy, y, p, t)\n    dy[1] = -2y[1] + y[2]\n    dy[2] = -y[1] - y[2]\nend\n\nEven though we did not use the parameters p and time t in our simple example, they must still be included in the function definition. This is because DifferentialEquations.jl expects functions with the signature:\n\nf!(dy, y, p, t)\n\nKeeping p allows for easy parameterization of equations. For example, if the decay rate were variable:\n\nfunction f!(dy, y, p, t)\n    dy[1] = -p * y[1]\nend\n\nyou could pass p when defining the problem:\n\nprob = ODEProblem(f!, [1.0], (0.0, 5.0), 2.0)  # p = 2.0\n\nSimilarly, t is useful for time-dependent equations, such as:\n\nfunction f!(dy, y, p, t)\n    dy[1] = -2 * y[1] + sin(t)\nend\n\nThese conventions make it easy to extend the model for more complex scenarios while maintaining compatibility with Julia’s solver ecosystem."
+  },
+  {
+    "objectID": "C0manyBody/home_manybody.html",
+    "href": "C0manyBody/home_manybody.html",
+    "title": "Many-Body Systems",
+    "section": "",
+    "text": "Green’s functions/Propagators\nLinear response"
+  },
+  {
+    "objectID": "C0manyBody/home_manybody.html#chapters",
+    "href": "C0manyBody/home_manybody.html#chapters",
+    "title": "Many-Body Systems",
+    "section": "",
+    "text": "Green’s functions/Propagators\nLinear response"
+  },
+  {
+    "objectID": "C0manyBody/lectures/kohnsham.html",
+    "href": "C0manyBody/lectures/kohnsham.html",
+    "title": "Kohn Sham Equations",
+    "section": "",
+    "text": "There is an analogy that I’d like to create between the many body quantum electronic hamiltonian and the Kohn-Sham equations.\nLike all analogies it would be woefully skimpy on details but when I first started out I thought it was a useful way of looking at things. That and the fact that I like to recast equations into stories.\nConsider the complete many-body electronic hamiltonian:\n\\[\nMany body hamiltonian\n\\]\nI like to think of this way. We have a society of electrons that we would like to describe. The society might occupy these buildings which do not move.\nOf course buildings do move, say in response to earthquakes but most are stationary.\nTo explain that society of electrons in toto we need to find out about each and every member of that society.\nThis is akin to doing a thorough census. Or say a novel with a third person omniscient view in which the author, writes a gigantic Tolstoyan work, going into the motivations of every character.\nThat would be a detailed work and it would tell us what the society is fundamentally like, its ground state energy.\nBut say you are only interested in this fundamental aspect of society, not in the story of every single electron. Well what can you do?\nExactly what Kohn and Sham did.\nTo describe what the common denominator of that society is, you can move to a first person point of view.\nYou find out how that one member of society relates to other members of the society (taking society in a smeared out, abstracted sense). You find out how that one person interacts with all the buildings.\nBut since you are now not taking all the members your results would have an uncertainty. You would have to make presumptions to take into account the unique quirks of that individual.\nYou lump all that in the \\(E_XC\\) term. But if you’re making assumptions about what that unique person is then society’s interaction with that individual electron are mediated through his quirky behavior. So you have to explore his character, reducing his unique traits to a minimum.\nWhen you’ve removed all those contributions, in a sensible way you will have all the different mental states and moods of the central character of your novel.\nKohn-Sham are essentially saying that if you pin down an individual’s unique traits and are able to negate them, you will have the same picture of what the society is fundamentally like; that you would have had if you’d taken the sum over all the individual members."
+  },
+  {
+    "objectID": "C0manybody/home_manybody.html",
+    "href": "C0manybody/home_manybody.html",
+    "title": "Many-Body Systems",
+    "section": "",
+    "text": "Green’s functions/Propagators\nLinear response"
+  },
+  {
+    "objectID": "C0manybody/home_manybody.html#chapters",
+    "href": "C0manybody/home_manybody.html#chapters",
+    "title": "Many-Body Systems",
+    "section": "",
+    "text": "Green’s functions/Propagators\nLinear response"
+  },
+  {
+    "objectID": "C0manybody/lectures/homogeneouselectrongas.html",
+    "href": "C0manybody/lectures/homogeneouselectrongas.html",
+    "title": "HEG/jellium",
+    "section": "",
+    "text": "For the study of electrons in solids, a popular basis set is plane waves. Eigenstates are described by \\((p, \\sigma)\\), where \\(\\sigma\\) is the spin index, which is ±1 for spin up or down. The Hamiltonian then has the form:\n[Mahan, 1.160] H = On site energy + Interaction b/w electionrs and atoms or ions + electron-electron interaction.\n\\[\n\\text{Electron Density Operator} = \\rho(q) = \\Sigma_{k\\sigma} c_{k+q\\sigma}^{\\dagger}c_{k\\sigma}\n\\]\nProblem: Too complicated a Hamiltonian.\nSolution: Use a simpler model e.g. HEG which gets rid of the middle term.\n[Mahan, 1.164] H_HEG = On site energy + electron-electron interaction.\nReplaces atoms with a uniform positive background charge of density \\(n_o\\). To preserve charge neutrality, the average particle density of the electron gas must also be \\(n_o\\).\nQuestion: What is \\(n_o\\), the average density:\nIt’s the \\(q=0\\) value of the density operator.\n\\[\nn_o = \\frac{1}{\\nu} \\langle \\rho (q=0) \\rangle = \\frac{1}{\\nu} \\Sigma_{p\\sigma}N_p = \\frac{N_e}{\\nu}\n\\]"
+  },
+  {
+    "objectID": "C0manybody/lectures/homogeneouselectrongas.html#sources",
+    "href": "C0manybody/lectures/homogeneouselectrongas.html#sources",
+    "title": "HEG/jellium",
+    "section": "Sources",
+    "text": "Sources\n\nMahan. Many Particle Physics."
+  },
+  {
+    "objectID": "C0manybody/lectures/kohnsham.html",
+    "href": "C0manybody/lectures/kohnsham.html",
+    "title": "Kohn Sham Equations",
+    "section": "",
+    "text": "There is an analogy that I’d like to create between the many body quantum electronic hamiltonian and the Kohn-Sham equations.\nLike all analogies it would be woefully skimpy on details but when I first started out I thought it was a useful way of looking at things. That and the fact that I like to recast equations into stories.\nConsider the complete many-body electronic hamiltonian:\n\\[\nMany body hamiltonian\n\\]\nI like to think of this way. We have a society of electrons that we would like to describe. The society might occupy these buildings which do not move.\nOf course buildings do move, say in response to earthquakes but most are stationary.\nTo explain that society of electrons in toto we need to find out about each and every member of that society.\nThis is akin to doing a thorough census. Or say a novel with a third person omniscient view in which the author, writes a gigantic Tolstoyan work, going into the motivations of every character.\nThat would be a detailed work and it would tell us what the society is fundamentally like, its ground state energy.\nBut say you are only interested in this fundamental aspect of society, not in the story of every single electron. Well what can you do?\nExactly what Kohn and Sham did.\nTo describe what the common denominator of that society is, you can move to a first person point of view.\nYou find out how that one member of society relates to other members of the society (taking society in a smeared out, abstracted sense). You find out how that one person interacts with all the buildings.\nBut since you are now not taking all the members your results would have an uncertainty. You would have to make presumptions to take into account the unique quirks of that individual.\nYou lump all that in the \\(E_XC\\) term. But if you’re making assumptions about what that unique person is then society’s interaction with that individual electron are mediated through his quirky behavior. So you have to explore his character, reducing his unique traits to a minimum.\nWhen you’ve removed all those contributions, in a sensible way you will have all the different mental states and moods of the central character of your novel.\nKohn-Sham are essentially saying that if you pin down an individual’s unique traits and are able to negate them, you will have the same picture of what the society is fundamentally like; that you would have had if you’d taken the sum over all the individual members."
+  },
+  {
+    "objectID": "C0manybody/lectures/greensfunctions.html",
+    "href": "C0manybody/lectures/greensfunctions.html",
+    "title": "Green’s Functions in Many-Body Theory",
+    "section": "",
+    "text": "One and two particle Green’s functions"
+  },
+  {
+    "objectID": "C0manybody/lectures/greensfunctions.html#correlation-functions",
+    "href": "C0manybody/lectures/greensfunctions.html#correlation-functions",
+    "title": "Green’s Functions in Many-Body Theory",
+    "section": "",
+    "text": "One and two particle Green’s functions"
+  },
+  {
+    "objectID": "C0manybody/lectures/greensfunctions.html#further-readings",
+    "href": "C0manybody/lectures/greensfunctions.html#further-readings",
+    "title": "Green’s Functions in Many-Body Theory",
+    "section": "Further Readings",
+    "text": "Further Readings"
+  },
+  {
+    "objectID": "C0manybody/lectures/greensfunctions.html#sources",
+    "href": "C0manybody/lectures/greensfunctions.html#sources",
+    "title": "Green’s Functions in Many-Body Theory",
+    "section": "Sources",
+    "text": "Sources\n\nMartin. Interacting Electrons."
+  },
+  {
+    "objectID": "C0manybody/lectures/exchangecorrelation.html",
+    "href": "C0manybody/lectures/exchangecorrelation.html",
+    "title": "Exchange & Correlation",
+    "section": "",
+    "text": "\\[\n\\hat{H} = \\sum_{\\mathbf{k},\\sigma} \\frac{\\hbar^2 k^2}{2m} c_{\\mathbf{k},\\sigma}^\\dagger c_{\\mathbf{k},\\sigma}\n+ \\frac{1}{2} \\sum_{\\mathbf{q} \\neq 0} v(\\mathbf{q}) \\sum_{\\mathbf{k},\\mathbf{k'},\\sigma,\\sigma'}\nc_{\\mathbf{k+q},\\sigma}^\\dagger c_{\\mathbf{k'-q},\\sigma'}^\\dagger c_{\\mathbf{k'},\\sigma'} c_{\\mathbf{k},\\sigma}\n\\]\nwhere \\(v(q) = 4 \\pi e^2/q^2\\).\nTwo electronic properties - Self energy of an electron of momentum p - Total Energy of the system: Electrons averaged to obtain the total energy of the system. This average is done at zero temperature. Find: ground state energy per particle \\(E_g = E_g(n_o)\\).\n== Mahan, 5.4\nIn the homogeneous electron gas, the average kinetic energy of the electrons is going to be proportional to EF ~ (K.E.) ~ k~, which, by dimensional analysis, is inversely proportional to the square of the characteristic length of the system, which is rs. Therefore (K.E.) ()( 1/“;. Similarly, dimensional analysis suggests that the average Coulomb energy per particle will be e’2 divided by the characteristic length, or (P.E.) ()( l/rs’ When the electron gas has suffi- ciently high density, which is small rs , the kinetic energy term will be larger than the potential energy term. In this case, the electrons will behave as free particles, since the potential energy is a perturbation on the dominant kinetic energy. In the high-density limit, the free-particle picture is expected to be valid"
+  },
+  {
+    "objectID": "C0manybody/lectures/exchangecorrelation.html#jellium-model",
+    "href": "C0manybody/lectures/exchangecorrelation.html#jellium-model",
+    "title": "Exchange & Correlation",
+    "section": "",
+    "text": "\\[\n\\hat{H} = \\sum_{\\mathbf{k},\\sigma} \\frac{\\hbar^2 k^2}{2m} c_{\\mathbf{k},\\sigma}^\\dagger c_{\\mathbf{k},\\sigma}\n+ \\frac{1}{2} \\sum_{\\mathbf{q} \\neq 0} v(\\mathbf{q}) \\sum_{\\mathbf{k},\\mathbf{k'},\\sigma,\\sigma'}\nc_{\\mathbf{k+q},\\sigma}^\\dagger c_{\\mathbf{k'-q},\\sigma'}^\\dagger c_{\\mathbf{k'},\\sigma'} c_{\\mathbf{k},\\sigma}\n\\]\nwhere \\(v(q) = 4 \\pi e^2/q^2\\).\nTwo electronic properties - Self energy of an electron of momentum p - Total Energy of the system: Electrons averaged to obtain the total energy of the system. This average is done at zero temperature. Find: ground state energy per particle \\(E_g = E_g(n_o)\\).\n== Mahan, 5.4\nIn the homogeneous electron gas, the average kinetic energy of the electrons is going to be proportional to EF ~ (K.E.) ~ k~, which, by dimensional analysis, is inversely proportional to the square of the characteristic length of the system, which is rs. Therefore (K.E.) ()( 1/“;. Similarly, dimensional analysis suggests that the average Coulomb energy per particle will be e’2 divided by the characteristic length, or (P.E.) ()( l/rs’ When the electron gas has suffi- ciently high density, which is small rs , the kinetic energy term will be larger than the potential energy term. In this case, the electrons will behave as free particles, since the potential energy is a perturbation on the dominant kinetic energy. In the high-density limit, the free-particle picture is expected to be valid"
+  },
+  {
+    "objectID": "C0manybody/lectures/exchangecorrelation.html#two-limits",
+    "href": "C0manybody/lectures/exchangecorrelation.html#two-limits",
+    "title": "Exchange & Correlation",
+    "section": "Two limits",
+    "text": "Two limits\n\nHigh density limit: KE &gt;&gt; PE (free particle)\nLow density limit KE &lt; PE"
+  },
+  {
+    "objectID": "C0manybody/lectures/exchangecorrelation.html#energy-contributions",
+    "href": "C0manybody/lectures/exchangecorrelation.html#energy-contributions",
+    "title": "Exchange & Correlation",
+    "section": "Energy Contributions",
+    "text": "Energy Contributions\n\nKinetic\n[Mahan 5.7]\n\n\nHartree\nAll the remaining terms in the energy come from the Coulomb interaction between the particles. This contribution is not evaluated exactly. Instead, approximate expressions are used.\nUsing perturbation theory: the first term which occurs is the Coulomb interaction between the electrons and the uniform positive background, which is called the Hartree interaction given by:\n\\[\nN_e E_o = (e^2/2) \\int \\frac{d^3r_1 d^3r_2}{|r_1 - r_2|} [\\rho_e(r_1) - \\rho_i(r_1)][\\rho_e(r_2) - \\rho_i(r_2)]\n\\]\nIn the HEG: - the time-averaged electron density is uniform throughout the system, as is the positive background. - these equal and opposite charge densities exactly cancel, so that the net system is charge neutral. - Thus the Hartree energy is zero.\n\n\nExchange\nThe Hartree term corresponds to the following pairing of the operators in (5.1)\nThis term is called the exchange energy, or the Fock energy. Retaining both terms is called Hartree-Fock.\nExchange energy: gives a contribution to the energy of an individual electron, as well as a contribution to the ground state energy of the collection of electrons:\nHartree-Fock theory: Kinetic energy + the Hartree energy which is zero + the exchange energy\nCorrelation energy: energy tenus beyond Hartree-Fock. The name is applied both to the additional energy tenus in the self-energy of an electron of wave vector k, and to the ground state energy obtained by averaging over all of the electrons\n[Mahan, 5.31] Ee = -0.094 + 0.06221n(rs) + O(rs)\nThe tenu correlation energy is often applied to other quantities besides the total ground state energy. For example, the correlation energy of a particle of wave vector k are those tenus beyond Hartree-Fock:"
   }
 ]
