@@ -1313,7 +1313,7 @@
     "href": "C0ode/home_ode.html#slides-and-notebooks",
     "title": "Ordinary Differential Equations",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nPractice questions\nJulia: Quick reference for matrices\nGaussian Elimination\nJulia: ODEs"
+    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nPractice questions\nJulia: Quick reference for matrices\nGaussian Elimination\nJulia: ODEs\nSummary of 1st order ODEs"
   },
   {
     "objectID": "C0ode/home_ode.html#course-outline",
@@ -1692,5 +1692,12 @@
     "title": "Exchange & Correlation",
     "section": "Energy Contributions",
     "text": "Energy Contributions\n\nKinetic\n[Mahan 5.7]\n\n\nHartree\nAll the remaining terms in the energy come from the Coulomb interaction between the particles. This contribution is not evaluated exactly. Instead, approximate expressions are used.\nUsing perturbation theory: the first term which occurs is the Coulomb interaction between the electrons and the uniform positive background, which is called the Hartree interaction given by:\n\\[\nN_e E_o = (e^2/2) \\int \\frac{d^3r_1 d^3r_2}{|r_1 - r_2|} [\\rho_e(r_1) - \\rho_i(r_1)][\\rho_e(r_2) - \\rho_i(r_2)]\n\\]\nIn the HEG: - the time-averaged electron density is uniform throughout the system, as is the positive background. - these equal and opposite charge densities exactly cancel, so that the net system is charge neutral. - Thus the Hartree energy is zero.\n\n\nExchange\nThe Hartree term corresponds to the following pairing of the operators in (5.1)\nThis term is called the exchange energy, or the Fock energy. Retaining both terms is called Hartree-Fock.\nExchange energy: gives a contribution to the energy of an individual electron, as well as a contribution to the ground state energy of the collection of electrons:\nHartree-Fock theory: Kinetic energy + the Hartree energy which is zero + the exchange energy\nCorrelation energy: energy tenus beyond Hartree-Fock. The name is applied both to the additional energy tenus in the self-energy of an electron of wave vector k, and to the ground state energy obtained by averaging over all of the electrons\n[Mahan, 5.31] Ee = -0.094 + 0.06221n(rs) + O(rs)\nThe tenu correlation energy is often applied to other quantities besides the total ground state energy. For example, the correlation energy of a particle of wave vector k are those tenus beyond Hartree-Fock:"
+  },
+  {
+    "objectID": "C0ode/lectures/02-Summaryof1stODE.html",
+    "href": "C0ode/lectures/02-Summaryof1stODE.html",
+    "title": "Summary of 1st Order ODEs",
+    "section": "",
+    "text": "See this for a summary of 1st order ODEs."
   }
 ]
