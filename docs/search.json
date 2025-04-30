@@ -1390,7 +1390,7 @@
     "href": "C0noneqthermo/home_noneqthermo.html#topics-subject-to-change",
     "title": "Non-equilibrium Thermodynamics",
     "section": "Topics (Subject to change)",
-    "text": "Topics (Subject to change)\n\nBrownian Motion\nLangevin, Fokker-Planck, Master Equation:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)\n\n\n\nTransport Phenomena/Boltzmann Equation\n\nMarder, Condensed Matter Physics, Chapter 17.\nLink\n\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\nReview of phenomenological thermodynamics\nBrownian motion\nJarzynski and Crooks relations\nBoltzmann (Transport) Equation\n\n\n\nOpen Quantum Systems\n\nH theorem\nGKLS Equations\nOpen quantum systems\n\nLangevin equation\nFokker Planck equation\nLinear Response Theory"
+    "text": "Topics (Subject to change)\n\nBrownian Motion\nLangevin, Fokker-Planck, Master Equation:\n\nBalakrishnan (Chapters 1-6)\nZwanzig (Chapters 1-3)\nBanerjee: Open Quantum Systems (Chapter 3)\n\n\n\nTransport Phenomena/Boltzmann Equation\n\nMarder, Condensed Matter Physics, Chapter 17.\nLink\n\nBBKGY Hierarchy - Kremer: An Introduction to the Boltzmann Equation and Transport Processes in Gases\n\n\nOpen Quantum Systems\n\nH theorem\nGKLS Equations\nOpen quantum systems\n\nLangevin equation\nFokker Planck equation\nLinear Response Theory"
   },
   {
     "objectID": "C0noneqthermo/coursematerial/homeworks.html",
@@ -1699,5 +1699,19 @@
     "title": "Summary of 1st Order ODEs",
     "section": "",
     "text": "See this for a summary of 1st order ODEs."
+  },
+  {
+    "objectID": "C0diffgeom/home_diffgeom.html",
+    "href": "C0diffgeom/home_diffgeom.html",
+    "title": "Differential Geometry",
+    "section": "",
+    "text": "Content related to DG."
+  },
+  {
+    "objectID": "C0diffgeom/home_diffgeom.html#lectures",
+    "href": "C0diffgeom/home_diffgeom.html#lectures",
+    "title": "Differential Geometry",
+    "section": "Lectures",
+    "text": "Lectures"
   }
 ]
