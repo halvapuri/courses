@@ -92,12 +92,58 @@ function openCity(evt, cityName) {
 
 
 
+<script>
+//Draws leader between 'from' and 'to' on 'stage'. Uses existing objects if ids exist, otherwise creates them according to given style parameter.
+//lineOptions to stylize.
+//Issues. May need to create id via html if container is to keep equations.
+function drawLeader({
+  
+  containerId = 'stage',
+  from = { id: 'from', text: '', className: '', style: {} },
+  to = { id: 'to', text: '', className: '', style: {} },
+  lineOptions = {}
+}) {
+  // Creates 'from' and 'to' in 'containerId'. Ignores creation if ids already exist and draws a leaderline between them.
+  window.addEventListener('load', () => {
+    const container = document.getElementById(containerId);
+    const elements = { from, to };
+    const createdDivs = {};
+
+    for (const key in elements) {
+      const { id, text, className, style } = elements[key];
+      let el = document.getElementById(id);
+
+      if (!el || !container.contains(el)) {
+        el = document.createElement('div');
+        el.id = id;
+        el.textContent = text;
+        el.className = className || 'anchor80-line';
+        Object.assign(el.style, {
+          position: 'relative',
+          ...style
+        });
+        container.appendChild(el);
+      }
+
+      createdDivs[key] = el;
+    }
+
+    new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
+  });
+}
+
+</script>
+
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../css/buttons.css">
 <link rel="stylesheet" href="../../css/tabs.css">
 <link rel="stylesheet" href="../../css/callouts.css">
+<link rel="stylesheet" href="../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../css/shapes.css">
+<link rel="stylesheet" href="../../css/leaders.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -125,8 +171,47 @@ function openCity(evt, cityName) {
     <a class="nav-link" href="../../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../C0calculusI/home_calculusI.html" rel="" target="">
+ <span class="dropdown-text">Calculus I</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0calculusII/home_calculusII.html" rel="" target="">
+ <span class="dropdown-text">Calculus II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0ode/home_ode.html" rel="" target="">
+ <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0noneqthermo/home_noneqthermo.html" rel="" target="">
+ <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
+        <li>
+    <a class="dropdown-item" href="../../D0abinit/home_abinit.html" rel="" target="">
+ <span class="dropdown-text">Ab initio calculation</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -182,6 +267,18 @@ function openCity(evt, cityName) {
  <span class="menu-text">Calculus II</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ODEs &amp; Lin. Alg.</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -195,6 +292,12 @@ function openCity(evt, cityName) {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Many-Body Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Probability Theory</span></a>
   </div>
@@ -202,13 +305,7 @@ function openCity(evt, cityName) {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Differential Geometry</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
+ <span class="menu-text">Stochastic Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -242,6 +339,14 @@ function openCity(evt, cityName) {
    
   <ul>
   <li><a href="#su-schrieffer-heeger-ssh-model" id="toc-su-schrieffer-heeger-ssh-model" class="nav-link active" data-scroll-target="#su-schrieffer-heeger-ssh-model">Su-Schrieffer-Heeger (SSH Model)</a></li>
+  <li><a href="#the-ssh-model-in-bloch-form" id="toc-the-ssh-model-in-bloch-form" class="nav-link" data-scroll-target="#the-ssh-model-in-bloch-form">The SSH Model (in Bloch Form)</a></li>
+  <li><a href="#real-space-ssh-hamiltonian" id="toc-real-space-ssh-hamiltonian" class="nav-link" data-scroll-target="#real-space-ssh-hamiltonian">Real-Space SSH Hamiltonian</a></li>
+  <li><a href="#blochs-theorem-and-fourier-transform" id="toc-blochs-theorem-and-fourier-transform" class="nav-link" data-scroll-target="#blochs-theorem-and-fourier-transform">Bloch’s Theorem and Fourier Transform</a>
+  <ul class="collapse">
+  <li><a href="#intra-cell-term" id="toc-intra-cell-term" class="nav-link" data-scroll-target="#intra-cell-term">Intra-cell Term</a></li>
+  <li><a href="#inter-cell-term" id="toc-inter-cell-term" class="nav-link" data-scroll-target="#inter-cell-term">Inter-cell Term</a></li>
+  </ul></li>
+  <li><a href="#bloch-hamiltonian-in-matrix-form" id="toc-bloch-hamiltonian-in-matrix-form" class="nav-link" data-scroll-target="#bloch-hamiltonian-in-matrix-form">Bloch Hamiltonian in Matrix Form</a></li>
   <li><a href="#haldane-model" id="toc-haldane-model" class="nav-link" data-scroll-target="#haldane-model">Haldane Model</a></li>
   <li><a href="#floquet-topological-insulators" id="toc-floquet-topological-insulators" class="nav-link" data-scroll-target="#floquet-topological-insulators">Floquet Topological Insulators</a>
   <ul class="collapse">
@@ -279,6 +384,71 @@ function openCity(evt, cityName) {
 <li>Hopping amplitudes are staggered</li>
 <li>Topologicla Invariant: Winding number which results in edge states.</li>
 </ul>
+</section>
+<section id="the-ssh-model-in-bloch-form" class="level2">
+<h2 class="anchored" data-anchor-id="the-ssh-model-in-bloch-form">The SSH Model (in Bloch Form)</h2>
+<p>The Su-Schrieffer–Heeger (SSH) model is a foundational 1D lattice model used to understand topological phases of matter. It describes a chain with alternating hopping amplitudes between two types of lattice sites, leading to non-trivial topological behavior such as protected edge states and quantized topological invariants.</p>
+</section>
+<section id="real-space-ssh-hamiltonian" class="level2">
+<h2 class="anchored" data-anchor-id="real-space-ssh-hamiltonian">Real-Space SSH Hamiltonian</h2>
+<p>The SSH model consists of a one-dimensional tight-binding chain with two sublattice sites, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, per unit cell. Electrons can hop:</p>
+<ul>
+<li>Between <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> within the same unit cell with amplitude <span class="math inline">\(t_1\)</span> (intra-cell hopping),</li>
+<li>From site <span class="math inline">\(B\)</span> in one unit cell to site <span class="math inline">\(A\)</span> in the next with amplitude <span class="math inline">\(t_2\)</span> (inter-cell hopping).</li>
+</ul>
+<p>Let <span class="math inline">\(\hat{a}_n^\dagger\)</span> and <span class="math inline">\(\hat{b}_n^\dagger\)</span> be creation operators for sublattices <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> in the <span class="math inline">\(n\)</span>-th unit cell. The real-space Hamiltonian is</p>
+<p><span class="math display">\[
+H = \sum_n \left( t_1 \hat{a}_n^\dagger \hat{b}_n + t_2 \hat{a}_{n+1}^\dagger \hat{b}_n + \text{h.c.} \right),
+\]</span></p>
+<p>where “h.c.” denotes the Hermitian conjugate.</p>
+</section>
+<section id="blochs-theorem-and-fourier-transform" class="level2">
+<h2 class="anchored" data-anchor-id="blochs-theorem-and-fourier-transform">Bloch’s Theorem and Fourier Transform</h2>
+<p>To take advantage of spatial periodicity, we transform the operators to momentum space using the discrete Fourier transform:</p>
+<p><span class="math display">\[
+\hat{a}_n = \frac{1}{\sqrt{N}} \sum_k e^{ikn} \hat{a}_k, \quad
+\hat{b}_n = \frac{1}{\sqrt{N}} \sum_k e^{ikn} \hat{b}_k,
+\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is the number of unit cells and <span class="math inline">\(k\)</span> is the crystal momentum.</p>
+<section id="intra-cell-term" class="level3">
+<h3 class="anchored" data-anchor-id="intra-cell-term">Intra-cell Term</h3>
+<p>Using the Fourier-transformed operators, the first term becomes</p>
+<p><span class="math display">\[
+\sum_n t_1 \hat{a}_n^\dagger \hat{b}_n = \sum_k t_1 \hat{a}_k^\dagger \hat{b}_k.
+\]</span></p>
+</section>
+<section id="inter-cell-term" class="level3">
+<h3 class="anchored" data-anchor-id="inter-cell-term">Inter-cell Term</h3>
+<p>Similarly, the second term becomes</p>
+<p><span class="math display">\[
+\sum_n t_2 \hat{a}_{n+1}^\dagger \hat{b}_n = \sum_k t_2 e^{-ik} \hat{a}_k^\dagger \hat{b}_k.
+\]</span></p>
+<p>Combining both:</p>
+<p><span class="math display">\[
+H = \sum_k \left( t_1 + t_2 e^{-ik} \right) \hat{a}_k^\dagger \hat{b}_k + \text{h.c.}
+\]</span></p>
+</section>
+</section>
+<section id="bloch-hamiltonian-in-matrix-form" class="level2">
+<h2 class="anchored" data-anchor-id="bloch-hamiltonian-in-matrix-form">Bloch Hamiltonian in Matrix Form</h2>
+<p>To express the Hamiltonian as a matrix, define the spinor</p>
+<p><span class="math display">\[
+\psi_k = \begin{pmatrix} \hat{a}_k \\ \hat{b}_k \end{pmatrix}.
+\]</span></p>
+<p>Then the Hamiltonian becomes</p>
+<p><span class="math display">\[
+H = \sum_k \psi_k^\dagger H(k) \psi_k,
+\]</span></p>
+<p>where the <span class="math inline">\(2 \times 2\)</span> Bloch Hamiltonian is</p>
+<p><span class="math display">\[
+H(k) =
+\begin{pmatrix}
+0 &amp; t_1 + t_2 e^{-ik} \\
+t_1 + t_2 e^{ik} &amp; 0
+\end{pmatrix}.
+\]</span></p>
+<p>Note how the initial <span class="math inline">\(n\times n\)</span> matrix gives way to a compact <span class="math inline">\(2 \times 2\)</span> form. This form compactly encodes the band structure and is a starting point for analyzing topological behavior.</p>
+<p>We thus have derived the momentum-space (Bloch) Hamiltonian for the SSH model. This formulation simplifies the analysis of periodic systems and lays the foundation for calculating energy bands, exploring winding numbers, and understanding bulk-boundary correspondence. We will see that the SSH model, though simple, is a rich playground for studying modern topological phases of matter.</p>
 </section>
 <section id="haldane-model" class="level2">
 <h2 class="anchored" data-anchor-id="haldane-model">Haldane Model</h2>
@@ -541,6 +711,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script src="../../scripts/leader-line-master/leader-line.min.js"></script>
 
 
 

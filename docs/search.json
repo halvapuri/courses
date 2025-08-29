@@ -326,7 +326,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "Disclaimer: \nSome of the content here was generated using LLMs and still needs curation. Use the content with caution."
   },
   {
     "objectID": "docs/C0stochastic/brownian.html",
@@ -1047,7 +1047,7 @@
     "href": "C0calculusII/lectures/10_5ConicSections.html#parabola",
     "title": "Conic Sections",
     "section": "Parabola",
-    "text": "Parabola\n\n%matplotlib inline\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef conic(x, tp = 'parabola', p = {}):\n  \"\"\"\n  x = values at which to compute\n  tp = type of conic\n  p = parameters\n  \"\"\"\n  if tp == 'parabola': \n    y = p['a'] * (x - p['h'])**2 + p['k']\n    focus = {'x': p['h'], \n              'y': p['k'] + 1/(4 * p['a'])}\n\n  if tp == 'circle':\n    circle_x = p['c_x'] + p['r'] * np.cos(x)\n    circle_y = p['c_y'] + p['r'] * np.sin(x)\n\n    return circle_x, circle_y\n\n\n  return y, focus\n\n## Generate parabola\nx = np.linspace(-2, 2, 400)\nparams = {'a': 1, 'h': 0, 'k': 0}\ny, focus = conic(x, 'parabola', p = params)\n\n## Point of observation\nind = 300\npb_x, pb_y = np.abs(x[ind]), np.abs(y[ind])\n\n# Plot\nplt.figure(figsize=(8, 8))\nplt.plot(x, y, label='$y = x^2$', color='blue')\nplt.scatter(focus['x'], focus['y'], color='green', zorder=5, s=100)\nplt.text(focus['x'] + 0.1, focus['y'], 'F')\n\nplt.text(focus['x'] -1.95, -focus['y']-0.13, 'Directrix', fontsize= 15)\n\nplt.scatter(pb_x, pb_y, color='green', zorder = 3, s = 100)\n\n## Plot settings\nplt.xlim(-2, 2)\nplt.ylim(-2, 2)\nplt.grid(True)\nplt.axhline(-focus['y'], color='red', linewidth=2, ls = '--')\nplt.axhline(0, color='black', linewidth=1)\nplt.axvline(0, color='black', linewidth=1)\n\n#__________________________________________\n\n#==================================\n### DO NOT DELETE (Uncomment to show circles)\n#==================================\n\n# ##=============== Circles \n# radius = np.sqrt((focus['x'] - pb_x)**2 + (focus['y'] - pb_y)**2)\n\n# theta = np.linspace(0, 2 * np.pi, 400)\n\n# ## Circle A\n# params = {'c_x': focus['x'], 'c_y': focus['y'], 'r': radius}\n# theta = np.linspace(0, 2 * np.pi, 400)\n# circle_x, circle_y = conic(theta, 'circle', p = params)\n\n# plt.plot(circle_x, circle_y, color='red')\n\n\n# ## Circle B\n# params = {'c_x': pb_x, 'c_y': -focus['y'], 'r': radius}\n# circle_2x, circle_2y = conic(theta, 'circle', p = params)\n\n# plt.plot(circle_2x, circle_2y, color='red')\n\n# ## Lines\n# plt.plot([pb_x, pb_x], [-focus['y'], pb_y], '--') #vertical dashed line\n# plt.plot([0, pb_x], [focus['y'], pb_y], '--') #line from focus to parabola \n\n#__________________________\n\n\nplt.show()\n\n\n\n\nWe can animate the circles to show how the distances from the focus to a point on the parabola, and a circle on directrix directly under the parabola are the same.\n\n\nParabola Animation\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.animation import FuncAnimation\nfrom IPython.display import HTML\n\n# Use the notebook backend for interactive plots\n%matplotlib notebook\n\n# Set up the figure and axes\nfig, ax = plt.subplots(figsize = [4,4])\nxdata, ydata = [], []\ncircleA, = plt.plot([], [], 'r-')\ncircleB, = plt.plot([], [], 'r-')\npoint,   = plt.plot([], [], 'bo', zorder = 10, markersize = 10)\n\nlinev,   = plt.plot([], [], '--') #vertical dashed line\nlinef,   = plt.plot([], [], '--') #line from focus to parabola \n\n# Initialize the plot\ndef init():\n    ax.set_xlim(0, 2 * np.pi)\n    ax.set_ylim(-1, 1)\n\n    #Create parabola, foci etc. \n    ## Generate parabola\n    x = np.linspace(-2, 2, 400)\n    params = {'a': 1, 'h': 0, 'k': 0}\n    y, focus = conic(x, 'parabola', p = params)\n\n    ## Plot Focus\n    plt.plot(x, y, label='$y = x^2$', color='blue')\n    plt.scatter(focus['x'], focus['y'], color='green', zorder=5, s=80)\n    plt.text(focus['x'] + 0.1, focus['y'], 'F')\n\n    ## Plot settings\n    plt.xlim(-2, 2)\n    plt.ylim(-2, 2)\n    plt.grid(True)\n    plt.axhline(-focus['y'], color='black', linewidth=1)\n    plt.axvline(0, color='black', linewidth=1)\n    return plt\n\n# Update function for animation\ndef update(frames):\n\n\n    ## Point of observation\n    ind = frames \n    pb_x, pb_y = np.abs(x[ind]), np.abs(y[ind])\n    point.set_data(pb_x, pb_y)\n    \n\n    ##=============== Circles \n    radius = np.sqrt((focus['x'] - pb_x)**2 + (focus['y'] - pb_y)**2)\n    theta = np.linspace(0, 2 * np.pi, 400)\n\n    ## Circle A\n    params = {'c_x': focus['x'], 'c_y': focus['y'], 'r': radius}\n    circle_x, circle_y = conic(theta, 'circle', p = params)\n   \n    circleA.set_data(circle_x, circle_y)\n\n    ## Circle B\n    params = {'c_x': pb_x, 'c_y': -focus['y'], 'r': radius}\n    circle_2x, circle_2y = conic(theta, 'circle', p = params)\n\n    circleB.set_data(circle_2x, circle_2y)\n\n    ##============== Lines\n    linev.set_data([pb_x, pb_x], [-focus['y'], pb_y])\n    linef.set_data([0, pb_x], [focus['y'], pb_y])\n\n\n    return \n\n# Create the animation\nani = FuncAnimation(\n    fig, update, frames=list(range(200)),\n    init_func=init, blit=True, interval=20\n)\n\n# Display the animation\nHTML(ani.to_html5_video())\n\n\n\n\n\n\n\n\n/tmp/ipykernel_23069/2707575446.py:50: MatplotlibDeprecationWarning:\n\nSetting data with a non sequence type is deprecated since 3.7 and will be remove two minor releases later\n\n\n\n\n  \n  Your browser does not support the video tag."
+    "text": "Parabola\n\n%matplotlib inline\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef conic(x, tp = 'parabola', p = {}):\n  \"\"\"\n  x = values at which to compute\n  tp = type of conic\n  p = parameters\n  \"\"\"\n  if tp == 'parabola': \n    y = p['a'] * (x - p['h'])**2 + p['k']\n    focus = {'x': p['h'], \n              'y': p['k'] + 1/(4 * p['a'])}\n\n  if tp == 'circle':\n    circle_x = p['c_x'] + p['r'] * np.cos(x)\n    circle_y = p['c_y'] + p['r'] * np.sin(x)\n\n    return circle_x, circle_y\n\n\n  return y, focus\n\n## Generate parabola\nx = np.linspace(-2, 2, 400)\nparams = {'a': 1, 'h': 0, 'k': 0}\ny, focus = conic(x, 'parabola', p = params)\n\n## Point of observation\nind = 300\npb_x, pb_y = np.abs(x[ind]), np.abs(y[ind])\n\n# Plot\nplt.figure(figsize=(8, 8))\nplt.plot(x, y, label='$y = x^2$', color='blue')\nplt.scatter(focus['x'], focus['y'], color='green', zorder=5, s=100)\nplt.text(focus['x'] + 0.1, focus['y'], 'F')\n\nplt.text(focus['x'] -1.95, -focus['y']-0.13, 'Directrix', fontsize= 15)\n\nplt.scatter(pb_x, pb_y, color='green', zorder = 3, s = 100)\n\n## Plot settings\nplt.xlim(-2, 2)\nplt.ylim(-2, 2)\nplt.grid(True)\nplt.axhline(-focus['y'], color='red', linewidth=2, ls = '--')\nplt.axhline(0, color='black', linewidth=1)\nplt.axvline(0, color='black', linewidth=1)\n\n#__________________________________________\n\n#==================================\n### DO NOT DELETE (Uncomment to show circles)\n#==================================\n\n# ##=============== Circles \n# radius = np.sqrt((focus['x'] - pb_x)**2 + (focus['y'] - pb_y)**2)\n\n# theta = np.linspace(0, 2 * np.pi, 400)\n\n# ## Circle A\n# params = {'c_x': focus['x'], 'c_y': focus['y'], 'r': radius}\n# theta = np.linspace(0, 2 * np.pi, 400)\n# circle_x, circle_y = conic(theta, 'circle', p = params)\n\n# plt.plot(circle_x, circle_y, color='red')\n\n\n# ## Circle B\n# params = {'c_x': pb_x, 'c_y': -focus['y'], 'r': radius}\n# circle_2x, circle_2y = conic(theta, 'circle', p = params)\n\n# plt.plot(circle_2x, circle_2y, color='red')\n\n# ## Lines\n# plt.plot([pb_x, pb_x], [-focus['y'], pb_y], '--') #vertical dashed line\n# plt.plot([0, pb_x], [focus['y'], pb_y], '--') #line from focus to parabola \n\n#__________________________\n\n\nplt.show()\n\n\n\n\n\n\n\n\nWe can animate the circles to show how the distances from the focus to a point on the parabola, and a circle on directrix directly under the parabola are the same.\n\n\nParabola Animation\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom matplotlib.animation import FuncAnimation\nfrom IPython.display import HTML\n\n# Use the notebook backend for interactive plots\n%matplotlib notebook\n\n# Set up the figure and axes\nfig, ax = plt.subplots(figsize = [4,4])\nxdata, ydata = [], []\ncircleA, = plt.plot([], [], 'r-')\ncircleB, = plt.plot([], [], 'r-')\npoint,   = plt.plot([], [], 'bo', zorder = 10, markersize = 10)\n\nlinev,   = plt.plot([], [], '--') #vertical dashed line\nlinef,   = plt.plot([], [], '--') #line from focus to parabola \n\n# Initialize the plot\ndef init():\n    ax.set_xlim(0, 2 * np.pi)\n    ax.set_ylim(-1, 1)\n\n    #Create parabola, foci etc. \n    ## Generate parabola\n    x = np.linspace(-2, 2, 400)\n    params = {'a': 1, 'h': 0, 'k': 0}\n    y, focus = conic(x, 'parabola', p = params)\n\n    ## Plot Focus\n    plt.plot(x, y, label='$y = x^2$', color='blue')\n    plt.scatter(focus['x'], focus['y'], color='green', zorder=5, s=80)\n    plt.text(focus['x'] + 0.1, focus['y'], 'F')\n\n    ## Plot settings\n    plt.xlim(-2, 2)\n    plt.ylim(-2, 2)\n    plt.grid(True)\n    plt.axhline(-focus['y'], color='black', linewidth=1)\n    plt.axvline(0, color='black', linewidth=1)\n    return plt\n\n# Update function for animation\ndef update(frames):\n\n\n    ## Point of observation\n    ind = frames \n    pb_x, pb_y = np.abs(x[ind]), np.abs(y[ind])\n    point.set_data(pb_x, pb_y)\n    \n\n    ##=============== Circles \n    radius = np.sqrt((focus['x'] - pb_x)**2 + (focus['y'] - pb_y)**2)\n    theta = np.linspace(0, 2 * np.pi, 400)\n\n    ## Circle A\n    params = {'c_x': focus['x'], 'c_y': focus['y'], 'r': radius}\n    circle_x, circle_y = conic(theta, 'circle', p = params)\n   \n    circleA.set_data(circle_x, circle_y)\n\n    ## Circle B\n    params = {'c_x': pb_x, 'c_y': -focus['y'], 'r': radius}\n    circle_2x, circle_2y = conic(theta, 'circle', p = params)\n\n    circleB.set_data(circle_2x, circle_2y)\n\n    ##============== Lines\n    linev.set_data([pb_x, pb_x], [-focus['y'], pb_y])\n    linef.set_data([0, pb_x], [focus['y'], pb_y])\n\n\n    return \n\n# Create the animation\nani = FuncAnimation(\n    fig, update, frames=list(range(200)),\n    init_func=init, blit=True, interval=20\n)\n\n# Display the animation\nHTML(ani.to_html5_video())\n\n\n\n\n\n\n\n\n/tmp/ipykernel_23069/2707575446.py:50: MatplotlibDeprecationWarning:\n\nSetting data with a non sequence type is deprecated since 3.7 and will be remove two minor releases later\n\n\n\n\n  \n  Your browser does not support the video tag."
   },
   {
     "objectID": "C0calculusII/lectures/10_5ConicSections.html#ellipse",
@@ -1306,7 +1306,7 @@
     "href": "C0ode/home_ode.html#assignments",
     "title": "Ordinary Differential Equations",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4"
+    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5"
   },
   {
     "objectID": "C0ode/home_ode.html#slides-and-notebooks",
@@ -1502,7 +1502,7 @@
     "href": "C0ode/lectures/00-PracticeQuestions.html",
     "title": "Practice Questions",
     "section": "",
-    "text": "Kreyszig is limited in terms of practice questions and some of you have asked for alternatives.\nTwo books you can use to circumvent that are:\n\nDennis G. Zill’s Advanced Engineering Mathematics\nDean G. Duffy’s Advanced Engineering Mathematics\n\nZill’s book in particular has a lot of practice problems.\nNotwithstanding, you can use julia to create your own problems. All you need is a way to create a matrix.\nThe following creates a 4x3 matrix with numbers randomly filled from 1 to 10.\n\nmat = rand(1:10, 4, 3)\n\n4×3 Matrix{Int64}:\n  9   7  10\n  1  10   1\n 10   6   9\n  2   1   4\n\n\nYou can make changes to it and generate as many questions as you want."
+    "text": "Kreyszig is limited in terms of practice questions and some of you have asked for alternatives.\nTwo books you can use to circumvent that are:\n\nDennis G. Zill’s Advanced Engineering Mathematics\nDean G. Duffy’s Advanced Engineering Mathematics\n\nZill’s book in particular has a lot of practice problems.\nNotwithstanding, you can use julia to create your own problems. All you need is a way to create a matrix.\nThe following creates a 4x3 matrix with numbers randomly filled from 1 to 10.\n\nmat = rand(1:10, 4, 3)\n\n4×3 Matrix{Int64}:\n 6  9   1\n 9  8  10\n 4  2  10\n 9  2   3\n\n\nYou can make changes to it and generate as many questions as you want."
   },
   {
     "objectID": "C0noneqthermo/lectures/lecture_1.html",
@@ -1712,6 +1712,951 @@
     "href": "C0diffgeom/home_diffgeom.html#lectures",
     "title": "Differential Geometry",
     "section": "Lectures",
-    "text": "Lectures"
+    "text": "Lectures\nDifferentiable Manifolds"
+  },
+  {
+    "objectID": "C0diffgeom/lectures/differentiablemanifolds.html",
+    "href": "C0diffgeom/lectures/differentiablemanifolds.html",
+    "title": "Differentiable Manifolds",
+    "section": "",
+    "text": "In a simplistic senses spacetime can be encoded as a set, the elements of which correspond to spacetime points (Isham 1999).\nAdditional structure must be imposed however. A topological space encapsulates the basic notions of nearness, without quantifying what that nearness is.\nBut ultimately we want to be bring our calculus toolkit to this set which represents our spacetime.\nUltimately we have two aims:\n\nTo be able to locate spacetime points via a set of real numbers.\nTo be able to perform calculus related operations to study the dynamical evolution of systems."
+  },
+  {
+    "objectID": "C0diffgeom/lectures/differentiablemanifolds.html#whats-the-fuss",
+    "href": "C0diffgeom/lectures/differentiablemanifolds.html#whats-the-fuss",
+    "title": "Differentiable Manifolds",
+    "section": "",
+    "text": "In a simplistic senses spacetime can be encoded as a set, the elements of which correspond to spacetime points (Isham 1999).\nAdditional structure must be imposed however. A topological space encapsulates the basic notions of nearness, without quantifying what that nearness is.\nBut ultimately we want to be bring our calculus toolkit to this set which represents our spacetime.\nUltimately we have two aims:\n\nTo be able to locate spacetime points via a set of real numbers.\nTo be able to perform calculus related operations to study the dynamical evolution of systems."
+  },
+  {
+    "objectID": "C0manybody/lectures/quasiparticles.html",
+    "href": "C0manybody/lectures/quasiparticles.html",
+    "title": "Quasiparticles and Fermi Liquid Theory",
+    "section": "",
+    "text": "One accusation laid against utopian views of society (communism, anarchism) or utopian views of humans (objectivism) is that the system they describe is unrealistic. That people do not lead the idealized lives that a theorist would have you believe in the tomes that he or she has put out.\nA similar charge may be leveraged against the Fermi gas perspective of metals. It may be said that the idealized image of non-interacting Fermions, leading separate lives is incorrect. It maybe akin to describing the world using a collection of individuals that do not interact.\nBut once you head out into the world, you see that reality is quite different. That people do interact and are shaped by those interactions.\nOne may imagine that individuals in a non-interacting world would be callous and self-centered; brazenly picking up what they see if it appeals to them, regardless of any respect for private property.\nYet society tends to shape our behavior. It seems that our bare naked psyche, that we would be possessing if we had no interactions with the world around us, seems to have been ‘dressed’.\nIt’s not altogether unusual to bring this anthropological perspective to electrons. We need a more sophisticated picture to understand the behavior of these apes that we call electrons. Indeed if we were after a pristine, idealized view of the universe, in which particles appeared as just that, particles; i.e. the electron was the electron in the Garden of Eden, we would be after a picture that more closely resembled QFT. But we want to be able to describe the soups and souffles that we have around us. We want to know how electrons interact.\nBut we don’t really want to leave behind the comfortable picture that we have of individuals (actually we will in some cases, when we resort to groups of individuals that we call families).\nThus our electron has been forced to renormalize his behavior in response to society’s pressures."
+  },
+  {
+    "objectID": "C0manybody/lectures/quasiparticles.html#interactions-are-complicated",
+    "href": "C0manybody/lectures/quasiparticles.html#interactions-are-complicated",
+    "title": "Quasiparticles and Fermi Liquid Theory",
+    "section": "Interactions are complicated",
+    "text": "Interactions are complicated\nInteractions are complicated. Any writer will tell you that. After all, why do many novels and movies seek to isolate their characters? That is why our heroes don’t have access to cell phones or relatives, because the constraint of having one creates so many possibilities that the writer will need great care to account for so many plot lines.\nInstead of throwing in all possible interactions, we introduce them one by one; and pay attention to what the characters of our play, these electrons actually do."
+  },
+  {
+    "objectID": "C0diffgeom/lectures/differentiablemanifolds.html#from-charts-to-atlases-to-differentiable-manifolds",
+    "href": "C0diffgeom/lectures/differentiablemanifolds.html#from-charts-to-atlases-to-differentiable-manifolds",
+    "title": "Differentiable Manifolds",
+    "section": "From charts to atlases to differentiable manifolds",
+    "text": "From charts to atlases to differentiable manifolds\nRemember that our calculus works on certain sets of real numbers called Euclidean Space. Hence we need mathematical machines that can lead us back and forth from the world of curved spaces to the flat Euclidean lands.\nLet’s take a top down approach.\nAn atlas is a family of coordinate charts. A coordinate chart is pair \\((U,\\phi)\\)\nA topological space is a differentiable manifold if it has a differential structure on it in the form of a complete atlas. Complete here simply means that the atlas is maximal i.e. not contained in any other atlas.\n\n\n\n\n\nManifold\n\n\nTopological space locally \\(R^n\\) covered by a family of\n\n\n\n\n\nManifold\n\n\nTopological space locally \\(R^n\\)\n\n\n\nbb"
+  },
+  {
+    "objectID": "C0diffgeom/lectures/differentiablemanifolds.html#q-from-charts-to-atlases-to-differentiable-manifolds",
+    "href": "C0diffgeom/lectures/differentiablemanifolds.html#q-from-charts-to-atlases-to-differentiable-manifolds",
+    "title": "Differentiable Manifolds",
+    "section": "Q From charts to atlases to differentiable manifolds",
+    "text": "Q From charts to atlases to differentiable manifolds\nRemember that our calculus works on certain sets of real numbers called Euclidean Space. Hence we need mathematical machines that can lead us back and forth from the world of curved spaces to the flat Euclidean lands."
+  },
+  {
+    "objectID": "C0noneqthermo/lectures/brownian-firstpassage.html",
+    "href": "C0noneqthermo/lectures/brownian-firstpassage.html",
+    "title": "Brownian Motion - First Passage Times",
+    "section": "",
+    "text": "Brownian particles have this tendency to visit every point on the x-axis with probability 1. First passage time is the random variable that represents the time taken by a particle starting from an arbitrary \\(x_0\\) to reach \\(x\\neq x_0\\) for the first time.\nAnd since it’s a random variable we want its PDF and moments, the whole works.\nLet \\(q(t,x|0,x_0)\\)"
+  },
+  {
+    "objectID": "C1utils/leaderlineexamples.html",
+    "href": "C1utils/leaderlineexamples.html",
+    "title": "Leaderlines",
+    "section": "",
+    "text": "Start\n\n\nEnd"
+  },
+  {
+    "objectID": "C0linalg/lectures/01-vectorspaces.html",
+    "href": "C0linalg/lectures/01-vectorspaces.html",
+    "title": "Vector Spaces",
+    "section": "",
+    "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector.\n\n\n\nLinear algebra is the study of linear maps on finite-dimensional vector spaces.\nSome more text."
+  },
+  {
+    "objectID": "C0linalg/coursematerial/01.html",
+    "href": "C0linalg/coursematerial/01.html",
+    "title": "Differential Equations",
+    "section": "",
+    "text": "asd"
+  },
+  {
+    "objectID": "C0linalg/home_linalg.html",
+    "href": "C0linalg/home_linalg.html",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "We will take two quizzes:\n\nQuiz 1 (10 marks, 8th week)\nQuiz 2 (10 marks, 13th week)"
+  },
+  {
+    "objectID": "C0linalg/home_linalg.html#quizzes",
+    "href": "C0linalg/home_linalg.html#quizzes",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "We will take two quizzes:\n\nQuiz 1 (10 marks, 8th week)\nQuiz 2 (10 marks, 13th week)"
+  },
+  {
+    "objectID": "C0linalg/home_linalg.html#assignments",
+    "href": "C0linalg/home_linalg.html#assignments",
+    "title": "Linear Algebra",
+    "section": "Assignments",
+    "text": "Assignments\nAssignment 1"
+  },
+  {
+    "objectID": "C0linalg/home_linalg.html#slides-and-notebooks",
+    "href": "C0linalg/home_linalg.html#slides-and-notebooks",
+    "title": "Linear Algebra",
+    "section": "Slides and Notebooks",
+    "text": "Slides and Notebooks"
+  },
+  {
+    "objectID": "C0linalg/home_linalg.html#course-outline",
+    "href": "C0linalg/home_linalg.html#course-outline",
+    "title": "Linear Algebra",
+    "section": "Course Outline",
+    "text": "Course Outline\nOutline (pdf)"
+  },
+  {
+    "objectID": "C0linalg/home_linalg.html#other-info",
+    "href": "C0linalg/home_linalg.html#other-info",
+    "title": "Linear Algebra",
+    "section": "Other info",
+    "text": "Other info"
+  },
+  {
+    "objectID": "C0linalg/figs/linmap.html",
+    "href": "C0linalg/figs/linmap.html",
+    "title": "Worldlines",
+    "section": "",
+    "text": "ℝ²\n\n\nℝ²"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/02_Berry.html",
+    "href": "C0TopologicalMaterials/lectures/02_Berry.html",
+    "title": "Berry Phase, Curvature, and Connection",
+    "section": "",
+    "text": "The general two state Hamiltonian can be written as:\n\\[\nH =\n\\begin{pmatrix}\n\\mathcal{E}_1  & \\beta - i \\gamma  \\\\\n\\beta + i \\gamma  &   \\mathcal{E}_2\\\\\n\\end{pmatrix}\n=\n\\begin{pmatrix}\n\\alpha+\\delta  & \\beta - i \\gamma  \\\\\n\\beta + i \\gamma  &   \\alpha-\\delta\\\\\n\\end{pmatrix}=\\alpha\\cdot\\sigma_0+(\\beta,\\gamma,\\delta)\\cdot\\vec{\\sigma}=\nh(\\vec{R})\\cdot\\vec{\\sigma}\n\\]\nWhere we have disregarded \\(\\alpha\\) in the last step and used a more general prefactor. With polar parametrization of \\(\\vec{R} = (\\sin \\theta \\cos \\phi, \\sin \\theta \\sin \\phi, \\cos \\theta)\\), you can verify that the Hamiltonian takes the following form with the corresponding eigenpairs (up to a phase):\n\\[\nH =\n\\begin{pmatrix}\n\\cos \\theta & \\sin \\theta e^{-i\\phi}\\\\\n\\sin{\\theta} e^{i\\phi}& -\\cos \\theta\n\\end{pmatrix}\n\\]\n\\[\n\\lambda _-|u_-\\rangle = -1\n\\begin{pmatrix}\n\\sin \\frac{\\theta}{2}e^{-i\\phi}\\\\\n\\cos \\frac{\\theta}{2}\n\\end{pmatrix}\n\\qquad\n\\lambda _+|u_+\\rangle = -1\n\\begin{pmatrix}\n\\cos \\frac{\\theta}{2}e^{-i\\phi}\\\\\n\\sin \\frac{\\theta}{2}\n\\end{pmatrix}\n\\]\n\n\nThe gauge choice here makes \\(|u_-\\rangle\\) unique in the vicinity of \\(\\theta=0\\) but ambiguous around \\(\\theta=\\pi\\) since \\(|u_-\\rangle= (e^{-i\\phi}, 0)\\).\nEquivalently the non-zero Chern index makes it impossible to construct a smooth and continuous gauge over the entire Bloch sphere S.\nWe can now calculate the Berry phase and curvature:\n\\[\n\\begin{align}\n&\\\\\n&\n\\end{align}\n\\]\n\n\n\n\n\n\n\n\nBerry Connection\nBerry Curvature\n\n\n\n\n\\[\\mathcal{A}_\\theta = \\langle u | i \\partial_\\theta u \\rangle = 0\\]\n\n\n\n\\[\\mathcal{A}_\\phi = \\langle u | i \\partial_\\phi u \\rangle = \\sin^2 \\frac{\\theta}{2}\\]"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/02_Berry.html#the-two-state-system",
+    "href": "C0TopologicalMaterials/lectures/02_Berry.html#the-two-state-system",
+    "title": "Berry Phase, Curvature, and Connection",
+    "section": "",
+    "text": "The general two state Hamiltonian can be written as:\n\\[\nH =\n\\begin{pmatrix}\n\\mathcal{E}_1  & \\beta - i \\gamma  \\\\\n\\beta + i \\gamma  &   \\mathcal{E}_2\\\\\n\\end{pmatrix}\n=\n\\begin{pmatrix}\n\\alpha+\\delta  & \\beta - i \\gamma  \\\\\n\\beta + i \\gamma  &   \\alpha-\\delta\\\\\n\\end{pmatrix}=\\alpha\\cdot\\sigma_0+(\\beta,\\gamma,\\delta)\\cdot\\vec{\\sigma}=\nh(\\vec{R})\\cdot\\vec{\\sigma}\n\\]\nWhere we have disregarded \\(\\alpha\\) in the last step and used a more general prefactor. With polar parametrization of \\(\\vec{R} = (\\sin \\theta \\cos \\phi, \\sin \\theta \\sin \\phi, \\cos \\theta)\\), you can verify that the Hamiltonian takes the following form with the corresponding eigenpairs (up to a phase):\n\\[\nH =\n\\begin{pmatrix}\n\\cos \\theta & \\sin \\theta e^{-i\\phi}\\\\\n\\sin{\\theta} e^{i\\phi}& -\\cos \\theta\n\\end{pmatrix}\n\\]\n\\[\n\\lambda _-|u_-\\rangle = -1\n\\begin{pmatrix}\n\\sin \\frac{\\theta}{2}e^{-i\\phi}\\\\\n\\cos \\frac{\\theta}{2}\n\\end{pmatrix}\n\\qquad\n\\lambda _+|u_+\\rangle = -1\n\\begin{pmatrix}\n\\cos \\frac{\\theta}{2}e^{-i\\phi}\\\\\n\\sin \\frac{\\theta}{2}\n\\end{pmatrix}\n\\]\n\n\nThe gauge choice here makes \\(|u_-\\rangle\\) unique in the vicinity of \\(\\theta=0\\) but ambiguous around \\(\\theta=\\pi\\) since \\(|u_-\\rangle= (e^{-i\\phi}, 0)\\).\nEquivalently the non-zero Chern index makes it impossible to construct a smooth and continuous gauge over the entire Bloch sphere S.\nWe can now calculate the Berry phase and curvature:\n\\[\n\\begin{align}\n&\\\\\n&\n\\end{align}\n\\]\n\n\n\n\n\n\n\n\nBerry Connection\nBerry Curvature\n\n\n\n\n\\[\\mathcal{A}_\\theta = \\langle u | i \\partial_\\theta u \\rangle = 0\\]\n\n\n\n\\[\\mathcal{A}_\\phi = \\langle u | i \\partial_\\phi u \\rangle = \\sin^2 \\frac{\\theta}{2}\\]"
+  },
+  {
+    "objectID": "D0abinit/home_abinit.html",
+    "href": "D0abinit/home_abinit.html",
+    "title": "Ab initio calculations",
+    "section": "",
+    "text": "Ab initio"
+  },
+  {
+    "objectID": "D0abinit/lectures/compute_ionic_conductivity.html",
+    "href": "D0abinit/lectures/compute_ionic_conductivity.html",
+    "title": "Investigating Ionic Conductivity in Molecular Systems",
+    "section": "",
+    "text": "This guide walks you through the key concepts and computational methods used to evaluate ionic conductivity in molecular materials, such as organic conductors, polymer electrolytes, and metal-organic frameworks."
+  },
+  {
+    "objectID": "D0abinit/lectures/compute_ionic_conductivity.html#understanding-ionic-conductivity",
+    "href": "D0abinit/lectures/compute_ionic_conductivity.html#understanding-ionic-conductivity",
+    "title": "Investigating Ionic Conductivity in Molecular Systems",
+    "section": "1. Understanding Ionic Conductivity",
+    "text": "1. Understanding Ionic Conductivity\nIonic conductivity \\(\\sigma\\) is governed by the Nernst-Einstein relation:\n\\[\n\\sigma = \\frac{n q^2 D}{k_B T}\n\\]\nWhere:\n\n( n ) = charge carrier concentration\n\n( q ) = ionic charge\n\n( D ) = diffusion coefficient\n\n( k_B ) = Boltzmann constant\n\n( T ) = temperature\n\nThus the goal is to maximize ( D ) and ( n ) for high conductivity."
+  },
+  {
+    "objectID": "D0abinit/lectures/compute_ionic_conductivity.html#computational-methods",
+    "href": "D0abinit/lectures/compute_ionic_conductivity.html#computational-methods",
+    "title": "Investigating Ionic Conductivity in Molecular Systems",
+    "section": "2. Computational Methods",
+    "text": "2. Computational Methods\nMultiple approaches may be taken.\n\nA. Ab Initio Molecular Dynamics (AIMD)\n\nUse DFT-based molecular dynamics (e.g., VASP, Quantum ESPRESSO, CP2K).\nSimulate at 300–800 K for ~20–100 ps.\nAnalyze mean squared displacement (MSD) to extract diffusion:\n\n\\[\nD = \\lim_{t \\to \\infty} \\frac{1}{6t} \\langle |r_i(t) - r_i(0)|^2 \\rangle\n\\]\n\nEstimate \\(\\sigma\\) using the Nernst-Einstein equation.\n\n\n\n\nB. Nudged Elastic Band (NEB)\n\nCalculate ion migration energy barriers between stable sites.\nUse to extract activation energy ( E_a ):\n\n\\[\n\\sigma(T) \\propto e^{-E_a/k_BT}\n\\]\nUseful for understanding temperature dependence of ionic conductivity.\n\n\n\nC. Classical Molecular Dynamics\n\nIdeal for larger systems or longer time simulations.\nSuitable for:\n\nPolymer electrolytes\nLiquid electrolytes\n\nUse force fields like GAFF, CHARMM, or OPLS-AA.\n\n\n\n\nD. Static DFT Analysis\n\nPerform:\n\nGeometry optimization\nCharge density analysis (Bader, ELF, Voronoi)\n\n\nHelps identify: - Preferred ion sites - Binding strength - Possible migration paths"
+  },
+  {
+    "objectID": "D0abinit/lectures/compute_ionic_conductivity.html#workflow-example",
+    "href": "D0abinit/lectures/compute_ionic_conductivity.html#workflow-example",
+    "title": "Investigating Ionic Conductivity in Molecular Systems",
+    "section": "3. Workflow Example",
+    "text": "3. Workflow Example\nGoal: Evaluate Li⁺ conductivity in an organic host\n\nBuild the structure (Li-doped molecular system).\nRelax geometry using DFT (e.g., PBE or optB88-vdW).\nRun AIMD at 300–600 K for ~20–50 ps.\nExtract MSD and compute diffusion coefficient ( D ).\nCalculate ionic conductivity ( ).\n(Optional) Use NEB to estimate migration barrier and predict behavior over temperature."
+  },
+  {
+    "objectID": "D0abinit/lectures/compute_ionic_conductivity.html#what-you-need",
+    "href": "D0abinit/lectures/compute_ionic_conductivity.html#what-you-need",
+    "title": "Investigating Ionic Conductivity in Molecular Systems",
+    "section": "4. What You Need",
+    "text": "4. What You Need\n\nA realistic structural model (crystal, amorphous, or polymeric).\nCorrect ion environment (e.g., solvation shell or coordinating ligands).\nUse DFT+U for TM-containing systems.\nConsider thermal effects in AIMD or phonon calculations."
+  },
+  {
+    "objectID": "D0abinit/lectures/compute_ionic_conductivity.html#comparison-to-experiment",
+    "href": "D0abinit/lectures/compute_ionic_conductivity.html#comparison-to-experiment",
+    "title": "Investigating Ionic Conductivity in Molecular Systems",
+    "section": "5. Comparison to Experiment",
+    "text": "5. Comparison to Experiment\n\nCompare to AC impedance spectroscopy data.\nAnalyze ionic transference number to isolate ionic from electronic conductivity.\nMatch activation energy from NEB with Arrhenius slope from experiments."
+  },
+  {
+    "objectID": "D0abinit/lectures/compute_ionic_conductivity.html#next-steps",
+    "href": "D0abinit/lectures/compute_ionic_conductivity.html#next-steps",
+    "title": "Investigating Ionic Conductivity in Molecular Systems",
+    "section": "Next Steps",
+    "text": "Next Steps\nLet me know: - What material or molecule are you investigating? - Which ion are you focusing on (e.g., Li⁺, H⁺, Na⁺)? - Do you prefer to use AIMD, NEB, or a full workflow?\n\nI can help set up input files for Quantum ESPRESSO, VASP, or CP2K—tailored to your system."
+  },
+  {
+    "objectID": "D0abinit/lectures/compute_ionic_conductivity.html#disclaimer-the-content-was-ai-generated-and-still-needs-curation.",
+    "href": "D0abinit/lectures/compute_ionic_conductivity.html#disclaimer-the-content-was-ai-generated-and-still-needs-curation.",
+    "title": "Investigating Ionic Conductivity in Molecular Systems",
+    "section": "",
+    "text": "This guide walks you through the key concepts and computational methods used to evaluate ionic conductivity in molecular materials, such as organic conductors, polymer electrolytes, and metal-organic frameworks."
+  },
+  {
+    "objectID": "D0abinit/lectures/HER.html",
+    "href": "D0abinit/lectures/HER.html",
+    "title": "Hydrogen Evolution Reaction for Water Splitting",
+    "section": "",
+    "text": "HER electrocatalysis can be well performed by Pt with a low overpotential close to zero and a Tafel slope of about 30 mV dec–1\nDue to electrocatalytic activity and electrochemical stability, transition metal compounds are the best options for HER electrocatalysts"
+  },
+  {
+    "objectID": "D0abinit/lectures/HER.html#references",
+    "href": "D0abinit/lectures/HER.html#references",
+    "title": "Hydrogen Evolution Reaction for Water Splitting",
+    "section": "References",
+    "text": "References\nhttps://pubs.acs.org/doi/10.1021/acsomega.3c07911"
+  },
+  {
+    "objectID": "D0abinit/lectures/HER.html#strategies",
+    "href": "D0abinit/lectures/HER.html#strategies",
+    "title": "Hydrogen Evolution Reaction for Water Splitting",
+    "section": "Strategies",
+    "text": "Strategies\ndoping, crystallization control, structural engineering, carbon nanomaterials, and increasing active sites by changing morphology are helpful to improve HER performance. Finally, the challenges and future perspectives in designing functional and stable electrocatalysts for HER in efficient hydrogen production from water-splitting electrolysis will be described."
+  },
+  {
+    "objectID": "D0abinit/lectures/HER.html#green-hydrogen-her-opportunities-and-challenges",
+    "href": "D0abinit/lectures/HER.html#green-hydrogen-her-opportunities-and-challenges",
+    "title": "Hydrogen Evolution Reaction for Water Splitting",
+    "section": "Green Hydrogen & HER: Opportunities and Challenges",
+    "text": "Green Hydrogen & HER: Opportunities and Challenges"
+  },
+  {
+    "objectID": "C0linalg/lectures/02-finitedimvecspaces.html",
+    "href": "C0linalg/lectures/02-finitedimvecspaces.html",
+    "title": "Finite Dimensional Vector Spaces",
+    "section": "",
+    "text": "We focus on finite-dimensional vector spaces.\nFor that we first consider linear combinations of lists of vectors."
+  },
+  {
+    "objectID": "C0linalg/lectures/02-finitedimvecspaces.html#span-and-linear-independence",
+    "href": "C0linalg/lectures/02-finitedimvecspaces.html#span-and-linear-independence",
+    "title": "Finite Dimensional Vector Spaces",
+    "section": "Span and Linear Independence",
+    "text": "Span and Linear Independence\n\nLinear Combinations and Span\nLists of \\(n\\) numbers surrounded by parentheses, and following certain rules, are elements of \\(\\textbf{F}\\), that we call vectors.\nWe now consider lists of vectors.\nVectors can be combined in linear combinations i.e.we consider:\n\\[\n\\sum_{i=1}^{m} a_i v_i\n\\]\nwhere \\(a_i\\) are scalars and \\(v_i\\) are vectors.\n\n\n\\(v_1=(3,4,6)\\)\n\n\n\\(v_2=(2,5,1)\\)\n\n\n\\(v_3=(0,7,9)\\)\n\n\n\\(v_4=(1,0,2)\\)\n\n\n\\(v_1=(3,4,6)\\)\n\n\n\\(v_2=(2,5,1)\\)\n\n\n\\(v_3=(0,7,9)\\)\n\n\n\\(v_4=(1,0,2)\\)\n\n\n\n\n\nLinear Independence"
+  },
+  {
+    "objectID": "C0linalg/lectures/02-finitedimvecspaces.html#bases",
+    "href": "C0linalg/lectures/02-finitedimvecspaces.html#bases",
+    "title": "Finite Dimensional Vector Spaces",
+    "section": "Bases",
+    "text": "Bases"
+  },
+  {
+    "objectID": "C0linalg/lectures/02-finitedimvecspaces.html#dimension",
+    "href": "C0linalg/lectures/02-finitedimvecspaces.html#dimension",
+    "title": "Finite Dimensional Vector Spaces",
+    "section": "Dimension",
+    "text": "Dimension"
+  },
+  {
+    "objectID": "C0diffgeom/lectures/differentiablemanifolds.html#differentiabl-mainfold",
+    "href": "C0diffgeom/lectures/differentiablemanifolds.html#differentiabl-mainfold",
+    "title": "Differentiable Manifolds",
+    "section": "Differentiabl mainfold",
+    "text": "Differentiabl mainfold\n\n\n\n\\[x+2=3\\]\n\n\n\nThe end"
+  },
+  {
+    "objectID": "C0diffgeom/lectures/differentiablemanifolds.html#differentiable-mainfold",
+    "href": "C0diffgeom/lectures/differentiablemanifolds.html#differentiable-mainfold",
+    "title": "Differentiable Manifolds",
+    "section": "Differentiable mainfold",
+    "text": "Differentiable mainfold\nThe end"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/03_hubbard.html",
+    "href": "C0TopologicalMaterials/lectures/03_hubbard.html",
+    "title": "Hubbard Model",
+    "section": "",
+    "text": "In Hubbard model:"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/03_hubbard.html#sources",
+    "href": "C0TopologicalMaterials/lectures/03_hubbard.html#sources",
+    "title": "Hubbard Model",
+    "section": "Sources",
+    "text": "Sources\nLink"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/03_hubbard.html#h.m.-mott-insulators",
+    "href": "C0TopologicalMaterials/lectures/03_hubbard.html#h.m.-mott-insulators",
+    "title": "Hubbard Model",
+    "section": "H.M. & Mott insulators",
+    "text": "H.M. & Mott insulators\nMott - Considered a 1d H atom chain. Mott’s Gedankenexperiment follows what happens if the lattice constant a is increased from its equilibrium value to larger interatomic sep- arations. This corresponds to increase the ratio between the Coulomb repulsion and the kinetic energy. According to band theory, this systems would always be a metal since the tight-binding valence s-band, which becomes narrower when increasing a, is always half filled (see Figure 1.1). This metallic state is indeed realized for small lattice spacings. In the opposite limit, the independent-electron picture clearly fails, since for very large interatomic distances the system will be composed by a set of neutral atoms, which is no more conducting. This happens because at large distances the overlap between the atomic wavefunctions is small, giving a very small energy gain due to the hopping of charges among the lattice. Since the kinetic term is very small, the dominant contribution, which is respon- sible of the localization of the electrons, comes from the Coulomb repulsion U of two electrons on the same lattice site. In this simple model, above a critical value of the lattice constant ac, the system becomes an insulator which cannot be de- scribed by the band theory approach: the Mott insulator. Its insulating character does not result in the lack of available states at low energies, as it occurs in con- ventional band insulators. In a Mott insulator the repulsion among electrons is the most relevant term and determines their localization on the different atoms.\nthe main ingredient which characterizes Mott insulators is the presence of a suf- ficiently narrow band for valence electrons. There are other classes of materials where correlation plays a fundamental role. These systems are generally characterized by partially-filled valence bands, with a consequent failure of the band-theory approach in predicting their properties. Indeed, most of these materials are insulators with a large gap, while the independent-electron approach would predict a metallic behavior.\n\n\n\n\nd bands are more localized\n\n\nWave function decays rapidly\n\n\n\n\nOverlap is small\n\n\nBand width depends on hopping parameter t which depends on overlap\n\n\n\n\nStrong correlations\n\n\nKE is small; e-e repulsion is large"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/03_hubbard.html#h.m.-superconductivity",
+    "href": "C0TopologicalMaterials/lectures/03_hubbard.html#h.m.-superconductivity",
+    "title": "Hubbard Model",
+    "section": "H.M. & superconductivity",
+    "text": "H.M. & superconductivity"
+  },
+  {
+    "objectID": "C0statmech/lectures/01ensembles.html",
+    "href": "C0statmech/lectures/01ensembles.html",
+    "title": "Ensembles",
+    "section": "",
+    "text": "Think of a family of five going on a hike. Each person has a position \\(x\\) along the trail and a momentum \\(p\\), which reflects their speed and direction. For person \\(i\\), their state at any moment can be described by the pair \\((x_i, p_i)\\).\nNow, imagine a 2D plot where the horizontal axis is position \\(x\\) and the vertical axis is momentum $ p $. Each person corresponds to a point \\((x_i, p_i)\\) on this plane. The full state of the family is then a set of points:\n\\[\n\\{(x_1, p_1), (x_2, p_2), \\dots, (x_5, p_5)\\}\n\\]\nThis space—the collection of all possible \\((x, p)\\) pairs—is called phase space. It represents all the physically allowed configurations of position and momentum.\nAs the hike continues, each person’s point \\((x_i(t), p_i(t))\\) moves along a trajectory in phase space, governed by the laws of motion. In classical mechanics, these follow Hamilton’s equations:\n\\[\n\\frac{dx_i}{dt} = \\frac{\\partial H}{\\partial p_i}, \\quad \\frac{dp_i}{dt} = -\\frac{\\partial H}{\\partial x_i}\n\\]\nwhere \\(H\\) is the Hamiltonian—the function describing the total energy of the system.\nSo phase space isn’t just a snapshot; it’s a dynamic canvas where the family’s hike unfolds in both space and motion, all at once."
+  },
+  {
+    "objectID": "C0statmech/lectures/01ensembles.html#phase-space",
+    "href": "C0statmech/lectures/01ensembles.html#phase-space",
+    "title": "Ensembles",
+    "section": "",
+    "text": "Think of a family of five going on a hike. Each person has a position \\(x\\) along the trail and a momentum \\(p\\), which reflects their speed and direction. For person \\(i\\), their state at any moment can be described by the pair \\((x_i, p_i)\\).\nNow, imagine a 2D plot where the horizontal axis is position \\(x\\) and the vertical axis is momentum $ p $. Each person corresponds to a point \\((x_i, p_i)\\) on this plane. The full state of the family is then a set of points:\n\\[\n\\{(x_1, p_1), (x_2, p_2), \\dots, (x_5, p_5)\\}\n\\]\nThis space—the collection of all possible \\((x, p)\\) pairs—is called phase space. It represents all the physically allowed configurations of position and momentum.\nAs the hike continues, each person’s point \\((x_i(t), p_i(t))\\) moves along a trajectory in phase space, governed by the laws of motion. In classical mechanics, these follow Hamilton’s equations:\n\\[\n\\frac{dx_i}{dt} = \\frac{\\partial H}{\\partial p_i}, \\quad \\frac{dp_i}{dt} = -\\frac{\\partial H}{\\partial x_i}\n\\]\nwhere \\(H\\) is the Hamiltonian—the function describing the total energy of the system.\nSo phase space isn’t just a snapshot; it’s a dynamic canvas where the family’s hike unfolds in both space and motion, all at once."
+  },
+  {
+    "objectID": "C0statmech/lectures/01ensembles.html#liouvilles-theorem",
+    "href": "C0statmech/lectures/01ensembles.html#liouvilles-theorem",
+    "title": "Ensembles",
+    "section": "Liouville’s Theorem",
+    "text": "Liouville’s Theorem"
+  },
+  {
+    "objectID": "C0statmech/lectures/01ensembles.html#microcanonical-ensemble",
+    "href": "C0statmech/lectures/01ensembles.html#microcanonical-ensemble",
+    "title": "Ensembles",
+    "section": "Microcanonical Ensemble",
+    "text": "Microcanonical Ensemble"
+  },
+  {
+    "objectID": "C0statmech/lectures/01ensembles.html#quantum-states-and-phase-space",
+    "href": "C0statmech/lectures/01ensembles.html#quantum-states-and-phase-space",
+    "title": "Ensembles",
+    "section": "Quantum States and Phase Space",
+    "text": "Quantum States and Phase Space"
+  },
+  {
+    "objectID": "C0statmech/lectures/01ensembles.html#canonical-ensemble",
+    "href": "C0statmech/lectures/01ensembles.html#canonical-ensemble",
+    "title": "Ensembles",
+    "section": "Canonical Ensemble",
+    "text": "Canonical Ensemble"
+  },
+  {
+    "objectID": "C0statmech/lectures/01ensembles.html#equipartition-and-virial-theorem",
+    "href": "C0statmech/lectures/01ensembles.html#equipartition-and-virial-theorem",
+    "title": "Ensembles",
+    "section": "Equipartition and Virial Theorem",
+    "text": "Equipartition and Virial Theorem"
+  },
+  {
+    "objectID": "C0statmech/lectures/01ensembles.html#statistics-of-paramagnetism",
+    "href": "C0statmech/lectures/01ensembles.html#statistics-of-paramagnetism",
+    "title": "Ensembles",
+    "section": "Statistics of Paramagnetism",
+    "text": "Statistics of Paramagnetism"
+  },
+  {
+    "objectID": "C0statmech/lectures/01ensembles.html#thermodynamics-of-magnetic-systems-negative-temperatures",
+    "href": "C0statmech/lectures/01ensembles.html#thermodynamics-of-magnetic-systems-negative-temperatures",
+    "title": "Ensembles",
+    "section": "Thermodynamics of Magnetic Systems: Negative Temperatures",
+    "text": "Thermodynamics of Magnetic Systems: Negative Temperatures"
+  },
+  {
+    "objectID": "C0statmech/lectures/chemical_potential.html",
+    "href": "C0statmech/lectures/chemical_potential.html",
+    "title": "Chemical Potential and Defects",
+    "section": "",
+    "text": "🔷 What is Chemical Potential?\n🔷 Why Does It Change with Growth Conditions?\nGrowth conditions (like temperature, pressure, or atmosphere composition) change the external chemical environment—which affects the chemical potential. Let’s explore how: 1. Elemental Reservoirs: Rich vs. Poor Conditions\nChanging chemical potentials affects:\n🔷 Summary Table Condition Type Affects Consequence Rich/Poor (Elemental) μ of elements Alters which defects are favored Temperature μ via entropy Drives species in/out of system Partial pressure μ of gases Important in oxides, nitrides, etc. External phases μ limited by competing phases Ensures thermodynamic consistency"
+  },
+  {
+    "objectID": "C0statmech/lectures/chemical_potential.html#understanding-chemical-potential-using-a-carrot-cake",
+    "href": "C0statmech/lectures/chemical_potential.html#understanding-chemical-potential-using-a-carrot-cake",
+    "title": "Chemical Potential and Defects",
+    "section": "Understanding Chemical Potential Using a Carrot Cake",
+    "text": "Understanding Chemical Potential Using a Carrot Cake\nThink of making a material like baking a carrot cake. You need ingredients—carrots, sugar, flour—and each one has a cost or availability. The chemical potential of an element is like the effort, cost, or availability of that ingredient.\nIf carrots are in season and easy to get, the “carrot chemical potential” is high—your kitchen is already full of them, so adding more isn’t particularly favorable. On the other hand, if carrots are rare and expensive, their chemical potential is low—it’s harder to get them, and adding one more carrot requires more effort or energy.\nGrowth conditions are like the local grocery situation. A carrot-rich condition means your environment has an abundance of carrots (high μ_carrot), while a carrot-poor condition means you’re scrambling to find any at all (low μ_carrot). The same metaphor applies to other ingredients (elements) in the cake (material).\nEven the kitchen temperature matters: if it’s too hot, some ingredients evaporate—mirroring how temperature affects the chemical potential of gases in real materials. A sealed or open kitchen is like changing the partial pressure, which controls how easily volatile ingredients escape. Chemical Potential in Growth Conditions\nIn materials science, the chemical potential (μ) is the energy change associated with adding or removing an atom of a particular species. It’s a measure of how available or scarce a species is in the thermodynamic environment.\nThe chemical potential of each element varies depending on the external growth conditions:\nElement-rich or element-poor: In a binary material AB, an A-rich condition means μ_A is close to its elemental (bulk) value, while μ_B must decrease to satisfy thermodynamic constraints (e.g., the formation enthalpy of AB). The system can't exceed the μ values of stable competing phases or pure elements.\n\nTemperature: At higher temperatures, entropy becomes more significant, and the chemical potentials of gases typically decrease. This can favor volatile loss or defect formation.\n\nPartial pressure: For gaseous elements like O₂ or N₂, the chemical potential depends on their partial pressure:\n\n\nμ(T,P)=μ0(T)+kBTln⁡(PP0)\nμ(T,P)=μ0(T)+kB​Tln(P0P​)\n\nA high oxygen pressure leads to a higher μ_O (O-rich), and a low pressure makes it O-poor.\nThese shifts directly affect phase stability, defect energetics, and surface terminations. In practice, growth environments are tuned (e.g., oxygen-rich vs. oxygen-poor) to control these properties. For example, in oxides, growing under O-rich conditions suppresses oxygen vacancies, while O-poor environments can enhance them.\nSummary: Chemical potential is like ingredient availability in a recipe—it determines how easy or difficult it is to add each species to your material. Growth conditions set those rules, and understanding them helps control everything from defects to phase purity in real materials."
+  },
+  {
+    "objectID": "C0statmech/lectures/phase_transitions.html",
+    "href": "C0statmech/lectures/phase_transitions.html",
+    "title": "Phase Transitions (& Renormalization)",
+    "section": "",
+    "text": "Renormalization plays a central role in our modern understanding of phase transitions, particularly those of the second order (continuous type). These transitions are characterized by diverging correlation lengths, large-scale fluctuations, and critical phenomena that cannot be adequately explained by simple models like mean-field theory. The renormalization group (RG) approach provides a powerful and unifying framework to understand these complex behaviors.\n\n\nOne of the most striking observations in the study of critical phenomena is universality: very different physical systems — such as magnets, fluids, or binary mixtures — exhibit identical behavior near their critical points. Specifically, they share the same critical exponents, which describe how physical quantities like specific heat, magnetization, and susceptibility diverge.\nRenormalization explains this by showing that microscopic details become irrelevant at large length scales near the critical point. Instead, only general features such as:\n\nspatial dimensionality,\n\nsymmetry, and\n\nrange of interactions\n\ndetermine the system’s critical behavior. Systems that share these features fall into the same universality class.\n\n\n\nNear a second-order transition, systems become scale-invariant — they look statistically similar at all length scales. RG formalism captures this by introducing a procedure of coarse-graining, in which short-distance details are averaged out to reveal long-distance, collective behavior.\nThis leads to flows in parameter space, where the system evolves under successive coarse-graining transformations. These flows approach fixed points, which define the system’s universal properties at criticality.\n\n\n\nThe renormalization group does more than explain qualitative features — it is quantitatively predictive. It allows the computation of critical exponents and scaling functions with high accuracy. RG analysis also identifies which parameters:\n\nare relevant (affect the long-range behavior),\nirrelevant (fade away), or\nmarginal (require further analysis).\n\nThis classification provides a systematic way to simplify complex systems by focusing on the parameters that actually matter at large scales.\n\n\n\nThere is a deep connection between renormalization in statistical physics and quantum field theory (QFT). Many techniques used in RG flow — such as regularization and rescaling — were originally developed in the context of QFT. This has created a unified language that links condensed matter systems, quantum fields, and even aspects of quantum gravity.\n\n\n\nIn summary, renormalization has revolutionized the theory of phase transitions. It:\n\nexplains why different systems behave similarly near critical points,\npredicts critical behavior accurately, and\nreveals the emergence of universal physics from microscopic interactions.\n\nIt is one of the foundational concepts of modern theoretical physics and remains essential for understanding collective behavior in complex systems."
+  },
+  {
+    "objectID": "C0statmech/lectures/phase_transitions.html#the-importance-of-renormalization-in-phase-transitions",
+    "href": "C0statmech/lectures/phase_transitions.html#the-importance-of-renormalization-in-phase-transitions",
+    "title": "Phase Transitions (& Renormalization)",
+    "section": "",
+    "text": "Renormalization plays a central role in our modern understanding of phase transitions, particularly those of the second order (continuous type). These transitions are characterized by diverging correlation lengths, large-scale fluctuations, and critical phenomena that cannot be adequately explained by simple models like mean-field theory. The renormalization group (RG) approach provides a powerful and unifying framework to understand these complex behaviors.\n\n\nOne of the most striking observations in the study of critical phenomena is universality: very different physical systems — such as magnets, fluids, or binary mixtures — exhibit identical behavior near their critical points. Specifically, they share the same critical exponents, which describe how physical quantities like specific heat, magnetization, and susceptibility diverge.\nRenormalization explains this by showing that microscopic details become irrelevant at large length scales near the critical point. Instead, only general features such as:\n\nspatial dimensionality,\n\nsymmetry, and\n\nrange of interactions\n\ndetermine the system’s critical behavior. Systems that share these features fall into the same universality class.\n\n\n\nNear a second-order transition, systems become scale-invariant — they look statistically similar at all length scales. RG formalism captures this by introducing a procedure of coarse-graining, in which short-distance details are averaged out to reveal long-distance, collective behavior.\nThis leads to flows in parameter space, where the system evolves under successive coarse-graining transformations. These flows approach fixed points, which define the system’s universal properties at criticality.\n\n\n\nThe renormalization group does more than explain qualitative features — it is quantitatively predictive. It allows the computation of critical exponents and scaling functions with high accuracy. RG analysis also identifies which parameters:\n\nare relevant (affect the long-range behavior),\nirrelevant (fade away), or\nmarginal (require further analysis).\n\nThis classification provides a systematic way to simplify complex systems by focusing on the parameters that actually matter at large scales.\n\n\n\nThere is a deep connection between renormalization in statistical physics and quantum field theory (QFT). Many techniques used in RG flow — such as regularization and rescaling — were originally developed in the context of QFT. This has created a unified language that links condensed matter systems, quantum fields, and even aspects of quantum gravity.\n\n\n\nIn summary, renormalization has revolutionized the theory of phase transitions. It:\n\nexplains why different systems behave similarly near critical points,\npredicts critical behavior accurately, and\nreveals the emergence of universal physics from microscopic interactions.\n\nIt is one of the foundational concepts of modern theoretical physics and remains essential for understanding collective behavior in complex systems."
+  },
+  {
+    "objectID": "C0statmech/lectures/phase_transitions.html#ehrenfest-classification",
+    "href": "C0statmech/lectures/phase_transitions.html#ehrenfest-classification",
+    "title": "Phase Transitions (& Renormalization)",
+    "section": "Ehrenfest Classification",
+    "text": "Ehrenfest Classification\nThe familiar fusion, vaporization, sublimation phase transitions in which matter switches from one of solid, liquid, and vapor to another are not the only kind of phase transitions. Indeed there are solid-solid transitions as well. The onset of superconductivity, superfluidity are also due to phase transitions.\nThe Ehrenfest classification scheme differentiates between 1st and 2nd order phase transitions.\n\n\n\n\nflowchart TD\n    Start[\"Phase transitions\"]\n    \n    %% Start --&gt; OrderParam[\"Order Parameter (e.g., magnetization, density)\"]\n\n    Start --&gt;|Discontinuous Jump| FirstOrder[\"1st Order Phase Transition\"]\n    Start --&gt;|Continuous| SecondOrder[\"2nd Order Phase Transition\"]\n\n    %% FirstOrder --&gt; FO_Features[\"Latent Heat Present\"]\n    FirstOrder --&gt; FO_Example[\"e.g., Ice ⇌ Water, Liquid ⇌ Gas\"]\n\n    %% SecondOrder --&gt; SO_Features[\"No Latent Heat\"]\n    SecondOrder --&gt; SO_Example[\"e.g., Ferromagnetic ⇌ Paramagnetic\"]\n\n    classDef first fill:#ffd1d1,stroke:#cc0000,stroke-width:2px\n    classDef second fill:#d1eaff,stroke:#0044cc,stroke-width:2px\n\n    class FirstOrder,FO_Features,FO_Example first\n    class SecondOrder,SO_Features,SO_Example second\n\n\n\n\n\n\n\n\n\nflowchart TD\n    Start[\"Thermodynamic System\"]\n    \n    Start --&gt; OrderParam[\"Order Parameter (e.g., magnetization, density)\"]\n\n    OrderParam --&gt;|Discontinuous Jump| FirstOrder[\"1st Order Phase Transition\"]\n    OrderParam --&gt;|Continuous| SecondOrder[\"2nd Order Phase Transition\"]\n\n    FirstOrder --&gt; FO_Features[\"Latent Heat Present\"]\n    FirstOrder --&gt; FO_Example[\"e.g., Ice ⇌ Water, Liquid ⇌ Gas\"]\n\n    SecondOrder --&gt; SO_Features[\"No Latent Heat\"]\n    SecondOrder --&gt; SO_Example[\"e.g., Ferromagnetic ⇌ Paramagnetic\"]\n\n    classDef first fill:#ffd1d1,stroke:#cc0000,stroke-width:2px\n    classDef second fill:#d1eaff,stroke:#0044cc,stroke-width:2px\n\n    class FirstOrder,FO_Features,FO_Example first\n    class SecondOrder,SO_Features,SO_Example second"
+  },
+  {
+    "objectID": "C0statmech/home_statmech.html#phase-transitions",
+    "href": "C0statmech/home_statmech.html#phase-transitions",
+    "title": "Statistical Mechanics",
+    "section": "Phase Transitions",
+    "text": "Phase Transitions\nResources\n\nLandau Theory\nPhase transitions and their classifications\nPhase transitions\nUniversality"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html",
+    "href": "C0statmech/lectures/PT_phase_tr.html",
+    "title": "Types of Phase Transitions",
+    "section": "",
+    "text": "Phase transitions are points in the parameter space where the thermodynamic potential becomes non-analytic. This is bound with the thermodynamic limit (\\(N \\rightarrow \\infty\\)) because the partition function of a finite system is finite sum of analytic functions of its parameters(Herbut 2007).\nHow do we classify phase transitions? A simple way is by whether the phase transitions are:\nProposed by Paul Ehrenfest in 1933, this scheme classifies phase transitions by the order of the derivative of the free energy that becomes discontinuous at the transition point.\nLet \\(F\\) be the Helmholtz free energy. The nature of the discontinuity in its derivatives determines the order of the phase transition:"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#ehrenfest-classification-of-phase-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#ehrenfest-classification-of-phase-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Ehrenfest Classification of Phase Transitions",
+    "text": "Ehrenfest Classification of Phase Transitions\nProposed by Paul Ehrenfest in 1933, this scheme classifies phase transitions by the order of the derivative of the free energy that becomes discontinuous at the transition point.\n\nKey Concept\nLet \\(F\\) be the Helmholtz free energy. The nature of the discontinuity in its derivatives determines the order of the phase transition:\n\n\n\n\n\n\n\n\n\nOrder of Transition\nDiscontinuity In\nPhysical Quantity\nExample\n\n\n\n\nFirst-order\n\\(\\frac{\\partial F}{\\partial T}\\), \\(\\frac{\\partial F}{\\partial P}\\)\nEntropy, Volume\nMelting, Boiling\n\n\nSecond-order\n\\(\\frac{\\partial^2 F}{\\partial T^2}\\), \\(\\frac{\\partial^2 F}{\\partial P^2}\\)\nSpecific Heat, Susceptibility\nFerromagnetic Transition\n\n\n\n\n\nFeatures\n\nFirst-order transitions: Involve latent heat and phase coexistence.\nSecond-order transitions: No latent heat; marked by diverging susceptibilities.\n\n\n\nLimitations\n\nDoes not capture continuous transitions with essential singularities (e.g., BKT transition).\nNot applicable to quantum or topological transitions lacking traditional discontinuities."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#landau-classification-of-phase-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#landau-classification-of-phase-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Landau Classification of Phase Transitions",
+    "text": "Landau Classification of Phase Transitions\nIntroduced by Lev Landau in 1937, this framework focuses on symmetry breaking and the behavior of an order parameter, which distinguishes different phases.\n\nKey Concepts\n\nAn order parameter is a measurable quantity that is zero in one phase and non-zero in another.\nThe phase transition corresponds to a change in symmetry of the system’s free energy landscape.\n\n\n\nClassification by Order Parameter\n\n\n\n\n\n\n\n\n\nType of Transition\nOrder Parameter Behavior\nSymmetry Breaking\nExample\n\n\n\n\nFirst-order\nDiscontinuous jump\nOften none\nWater ↔︎ Steam\n\n\nSecond-order\nContinuous onset from zero\nYes\nFerromagnet ↔︎ Paramagnet\n\n\n\n\n\nFeatures\n\nProvides a microscopic description using free energy expansions.\nEnables derivation of critical exponents and universality classes.\nExtended into renormalization group (RG) theory for precise predictions near critical points.\n\n\n\nLimitations\n\nAssumes local order parameters and symmetry breaking.\nCannot describe topologically ordered or non-local transitions."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#comparison-of-ehrenfest-and-landau-schemes",
+    "href": "C0statmech/lectures/PT_phase_tr.html#comparison-of-ehrenfest-and-landau-schemes",
+    "title": "Types of Phase Transitions",
+    "section": "Comparison of Ehrenfest and Landau Schemes",
+    "text": "Comparison of Ehrenfest and Landau Schemes\n\n\n\n\n\n\n\n\nFeature\nEhrenfest Classification\nLandau Classification\n\n\n\n\nBasis\nDiscontinuity in derivatives of \\(F\\)\nSymmetry and order parameter behavior\n\n\nTransition order\nDefined by derivative order\nInferred from order parameter behavior\n\n\nHandles topological transitions?\n❌\n❌\n\n\nCaptures critical scaling?\n❌\n✅ (with RG extensions)\n\n\nApplicability\nClassical, equilibrium systems\nClassical and some quantum systems"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#summary",
+    "href": "C0statmech/lectures/PT_phase_tr.html#summary",
+    "title": "Types of Phase Transitions",
+    "section": "Summary",
+    "text": "Summary\nPhase transitions are diverse phenomena characterized by abrupt or continuous changes in the macroscopic behavior of systems. The Ehrenfest classification is historically important for distinguishing transitions based on thermodynamic derivatives, while the Landau theory provides a deeper physical understanding rooted in symmetry and critical behavior.\nThese foundational frameworks form the basis for more advanced theories, such as renormalization group, quantum phase transitions, and topological order, which extend beyond the limits of classical thermodynamics."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#thermodynamic-phase-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#thermodynamic-phase-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Thermodynamic Phase Transitions",
+    "text": "Thermodynamic Phase Transitions\nThermodynamic transitions are the traditional class of phase transitions studied in equilibrium systems. They are typically driven by changes in temperature or pressure and are characterized by singularities in the derivatives of the free energy.\n\nFirst-order transitions: Involve latent heat and discontinuities in first derivatives of free energy (e.g., melting, boiling).\nSecond-order (continuous) transitions: No latent heat; second derivatives of the free energy (e.g., specific heat) diverge or become discontinuous. Examples include ferromagnetic and superconducting transitions.\n\nThese are well-described by Landau theory and classified using the Ehrenfest classification scheme."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#quantum-phase-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#quantum-phase-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Quantum Phase Transitions",
+    "text": "Quantum Phase Transitions\nQuantum phase transitions (QPTs) occur at zero temperature and are driven by quantum fluctuations rather than thermal energy. They are controlled by tuning a non-thermal parameter, such as magnetic field or interaction strength.\n\nQPTs often exhibit scaling laws and diverging correlation lengths, similar to classical second-order transitions.\nTheoretical tools include quantum field theory and renormalization group analysis.\n\nExample: Superfluid to Mott insulator transition in cold atom systems."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#topological-phase-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#topological-phase-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Topological Phase Transitions",
+    "text": "Topological Phase Transitions\nTopological transitions involve changes in the global properties of the system, such as topological invariants, without breaking a local symmetry or requiring a local order parameter.\n\nThese transitions do not involve singularities in the free energy in the traditional sense.\nOften characterized by changes in Chern numbers or Berry curvature.\n\nExamples: - Integer and fractional quantum Hall effects - Topological insulators - Berezinskii–Kosterlitz–Thouless (BKT) transition (infinite-order)"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#geometrical-percolation-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#geometrical-percolation-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Geometrical (Percolation) Transitions",
+    "text": "Geometrical (Percolation) Transitions\nThese transitions are driven by changes in connectivity or geometric structure, and not by energy or entropy.\n\nDescribed by percolation theory\nNo thermodynamic potential or order parameter in the traditional sense\nOften feature critical exponents and diverging cluster sizes\n\nExample: Percolation threshold in random networks."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#dynamical-phase-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#dynamical-phase-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Dynamical Phase Transitions",
+    "text": "Dynamical Phase Transitions\nThese occur in non-equilibrium systems and are associated with time evolution, often following a quench or sudden change in system parameters.\n\nCan be classified using tools like the Loschmidt echo or Kibble–Zurek mechanism\nMay or may not have a well-defined order parameter\n\nExamples: - Quench dynamics in spin chains - Glass transitions - Dynamical quantum phase transitions"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#topological-order-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#topological-order-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Topological Order Transitions",
+    "text": "Topological Order Transitions\nThese transitions occur between states distinguished by long-range quantum entanglement rather than symmetry.\n\nNot described by local order parameters\nCentral to understanding topologically ordered states like the toric code or fractional quantum Hall states\n\nFramework: Quantum information theory, entanglement entropy, and modular matrices."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#disorder-driven-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#disorder-driven-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Disorder-Driven Transitions",
+    "text": "Disorder-Driven Transitions\nRandomness or impurities can fundamentally alter phase behavior, leading to transitions not present in clean systems.\n\nOften studied using spin-glass models or Anderson localization\nCan exhibit glassy or non-ergodic behavior\n\nExamples: - Metal–insulator transition - Spin-glass to paramagnet transitions"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#multicritical-and-exotic-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#multicritical-and-exotic-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "Multicritical and Exotic Transitions",
+    "text": "Multicritical and Exotic Transitions\nSome systems exhibit multiple competing mechanisms, giving rise to complex transitions that don’t fit neatly into one category.\n\nDeconfined quantum critical points are a prominent example, lying outside the Landau symmetry-breaking paradigm."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#summary-table",
+    "href": "C0statmech/lectures/PT_phase_tr.html#summary-table",
+    "title": "Types of Phase Transitions",
+    "section": "Summary Table",
+    "text": "Summary Table\n\n\n\n\n\n\n\n\n\n\nCategory\nDriven By\nLocal Order Parameter\nFree Energy-Based\nCritical Behavior\n\n\n\n\nThermodynamic\nTemperature, Pressure\nYes\nYes\nYes\n\n\nQuantum\nQuantum Fluctuations\nOften\nAt ( T = 0 )\nYes\n\n\nTopological\nTopological Invariants\nNo\nNo\nSometimes\n\n\nGeometrical (Percolation)\nConnectivity\nNo\nNo\nYes\n\n\nDynamical (Non-Equilibrium)\nTime Evolution\nSometimes\nNo\nYes\n\n\nTopological Order\nLong-Range Entanglement\nNo\nNo\nYes\n\n\nDisorder-Driven\nRandomness/Impurities\nSometimes\nModified\nYes"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#conclusion",
+    "href": "C0statmech/lectures/PT_phase_tr.html#conclusion",
+    "title": "Types of Phase Transitions",
+    "section": "Conclusion",
+    "text": "Conclusion\nPhase transitions are not a monolithic concept confined to classical thermodynamics. Quantum, topological, geometrical, and dynamical frameworks reveal a vast diversity of critical behavior and emergent phenomena. Understanding these categories is essential for modern research in condensed matter physics, statistical mechanics, and quantum information science."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#emergence-from-microscopic-simplicity",
+    "href": "C0statmech/lectures/PT_phase_tr.html#emergence-from-microscopic-simplicity",
+    "title": "Types of Phase Transitions",
+    "section": "1. Emergence from Microscopic Simplicity",
+    "text": "1. Emergence from Microscopic Simplicity\nAt a phase transition, especially near a critical point, systems exhibit emergent collective behavior that cannot be predicted from their microscopic components alone.\n\nSimple interactions (e.g. in the Ising model) lead to complex, correlated behavior.\nFluctuations become long-ranged, and local rules give rise to macroscopic order."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#universality-different-systems-same-behavior",
+    "href": "C0statmech/lectures/PT_phase_tr.html#universality-different-systems-same-behavior",
+    "title": "Types of Phase Transitions",
+    "section": "2. Universality: Different Systems, Same Behavior",
+    "text": "2. Universality: Different Systems, Same Behavior\nOne of the most remarkable discoveries in statistical physics is universality:\n\nDifferent physical systems (e.g., magnets, fluids, binary alloys) exhibit identical critical behavior.\nThese belong to the same universality class, determined by:\n\nThe symmetry of the order parameter\nThe spatial dimensionality\nThe range of interactions\n\n\nThis means simple theoretical models can accurately describe entire families of real materials."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#diverging-length-and-time-scales",
+    "href": "C0statmech/lectures/PT_phase_tr.html#diverging-length-and-time-scales",
+    "title": "Types of Phase Transitions",
+    "section": "3. Diverging Length and Time Scales",
+    "text": "3. Diverging Length and Time Scales\nNear criticality:\n\nThe correlation length \\(\\xi\\) diverges:\n\\[ \\xi \\rightarrow \\infty \\]\nThe relaxation time also diverges (critical slowing down): \\[ \\tau \\sim \\xi^z \\]\n\nThese divergences produce scale invariance—fluctuations look the same at different length scales—and give rise to fractal-like structures."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#scaling-laws-and-renormalization-group-theory",
+    "href": "C0statmech/lectures/PT_phase_tr.html#scaling-laws-and-renormalization-group-theory",
+    "title": "Types of Phase Transitions",
+    "section": "4. Scaling Laws and Renormalization Group Theory",
+    "text": "4. Scaling Laws and Renormalization Group Theory\nPhase transitions prompted the development of the renormalization group (RG)—a powerful framework for understanding:\n\nHow system behavior changes under coarse-graining\nWhy universality classes emerge\nHow to compute critical exponents and scaling functions\n\nRG bridges statistical mechanics, quantum field theory, and complex systems."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#interdisciplinary-applications",
+    "href": "C0statmech/lectures/PT_phase_tr.html#interdisciplinary-applications",
+    "title": "Types of Phase Transitions",
+    "section": "5. Interdisciplinary Applications",
+    "text": "5. Interdisciplinary Applications\nThe concepts of phase transitions and critical phenomena extend beyond traditional physics:\n\n\n\nField\nAnalogous Phenomenon\n\n\n\n\nPercolation theory\nNetwork connectivity thresholds\n\n\nEpidemiology\nSpread of disease (epidemic thresholds)\n\n\nComputer science\nSAT/unsatisfiability transitions\n\n\nEconomics\nMarket crashes and tipping points\n\n\nNeuroscience\nBrain activity near criticality"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#experimental-control-and-discovery",
+    "href": "C0statmech/lectures/PT_phase_tr.html#experimental-control-and-discovery",
+    "title": "Types of Phase Transitions",
+    "section": "6. Experimental Control and Discovery",
+    "text": "6. Experimental Control and Discovery\nModern experiments allow precise tuning and observation of phase transitions:\n\nCold atom systems simulate quantum phase transitions.\nNeutron and X-ray scattering probe critical fluctuations.\nUltrafast optics captures real-time transitions.\n\nThese tools have uncovered new quantum phases, such as topological superconductors and quantum spin liquids."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#quantum-and-topological-transitions",
+    "href": "C0statmech/lectures/PT_phase_tr.html#quantum-and-topological-transitions",
+    "title": "Types of Phase Transitions",
+    "section": "7. Quantum and Topological Transitions",
+    "text": "7. Quantum and Topological Transitions\nClassical thermodynamic transitions are just one part of the story. Researchers now explore:\n\nQuantum phase transitions (QPTs):\nDriven by quantum fluctuations at zero temperature.\nTopological phase transitions:\nCharacterized by topological invariants rather than symmetry breaking.\n\nThese ideas are foundational for: - Quantum materials - Topological insulators - Quantum computation"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#mathematical-richness-and-beauty",
+    "href": "C0statmech/lectures/PT_phase_tr.html#mathematical-richness-and-beauty",
+    "title": "Types of Phase Transitions",
+    "section": "8. Mathematical Richness and Beauty",
+    "text": "8. Mathematical Richness and Beauty\nPhase transitions reveal deep mathematical structures:\n\nNon-analytic free energies\nCritical exponents and scaling relations\nConformal field theories (especially in 2D)\nFractal geometry of critical fluctuations\n\nStudying these systems blends physical insight with mathematical elegance."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_tr.html#summary-1",
+    "href": "C0statmech/lectures/PT_phase_tr.html#summary-1",
+    "title": "Types of Phase Transitions",
+    "section": "Summary",
+    "text": "Summary\n\nPhase transitions and critical phenomena offer a unique window into the emergence of collective behavior, the unity of physical law across disciplines, and the mathematics of scale and complexity.\nThey remain a cornerstone of both theoretical and experimental physics—and a gateway to understanding everything from boiling water to the quantum structure of matter."
+  },
+  {
+    "objectID": "C0statmech/lectures/lecture_.html",
+    "href": "C0statmech/lectures/lecture_.html",
+    "title": "Worldlines",
+    "section": "",
+    "text": "David Tong (Statistical Theory of Fields) What are phase transitions\nWhat is the Ehrenfest classification What are 2nd order phase transitions.\nUniversality, Scaling, Criticality\n–\nStatistical mechanics"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_landau_theory.html",
+    "href": "C0statmech/lectures/PT_landau_theory.html",
+    "title": "Worldlines",
+    "section": "",
+    "text": "https://phys.libretexts.org/Bookshelves/Thermodynamics_and_Statistical_Mechanics/Book%3A_Thermodynamics_and_Statistical_Mechanics_(Arovas)/07%3A_Mean_Field_Theory_of_Phase_Transitions/7.05%3A_Landau_Theory_of_Phase_Transitions"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_transitions.html",
+    "href": "C0statmech/lectures/PT_phase_transitions.html",
+    "title": "Phase Transitions (& Renormalization)",
+    "section": "",
+    "text": "Renormalization plays a central role in our modern understanding of phase transitions, particularly those of the second order (continuous type). These transitions are characterized by diverging correlation lengths, large-scale fluctuations, and critical phenomena that cannot be adequately explained by simple models like mean-field theory. The renormalization group (RG) approach provides a powerful and unifying framework to understand these complex behaviors.\n\n\nOne of the most striking observations in the study of critical phenomena is universality: very different physical systems — such as magnets, fluids, or binary mixtures — exhibit identical behavior near their critical points. Specifically, they share the same critical exponents, which describe how physical quantities like specific heat, magnetization, and susceptibility diverge.\nRenormalization explains this by showing that microscopic details become irrelevant at large length scales near the critical point. Instead, only general features such as:\n\nspatial dimensionality,\n\nsymmetry, and\n\nrange of interactions\n\ndetermine the system’s critical behavior. Systems that share these features fall into the same universality class.\n\n\n\nNear a second-order transition, systems become scale-invariant — they look statistically similar at all length scales. RG formalism captures this by introducing a procedure of coarse-graining, in which short-distance details are averaged out to reveal long-distance, collective behavior.\nThis leads to flows in parameter space, where the system evolves under successive coarse-graining transformations. These flows approach fixed points, which define the system’s universal properties at criticality.\n\n\n\nThe renormalization group does more than explain qualitative features — it is quantitatively predictive. It allows the computation of critical exponents and scaling functions with high accuracy. RG analysis also identifies which parameters:\n\nare relevant (affect the long-range behavior),\nirrelevant (fade away), or\nmarginal (require further analysis).\n\nThis classification provides a systematic way to simplify complex systems by focusing on the parameters that actually matter at large scales.\n\n\n\nThere is a deep connection between renormalization in statistical physics and quantum field theory (QFT). Many techniques used in RG flow — such as regularization and rescaling — were originally developed in the context of QFT. This has created a unified language that links condensed matter systems, quantum fields, and even aspects of quantum gravity.\n\n\n\nIn summary, renormalization has revolutionized the theory of phase transitions. It:\n\nexplains why different systems behave similarly near critical points,\npredicts critical behavior accurately, and\nreveals the emergence of universal physics from microscopic interactions.\n\nIt is one of the foundational concepts of modern theoretical physics and remains essential for understanding collective behavior in complex systems."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_transitions.html#the-importance-of-renormalization-in-phase-transitions",
+    "href": "C0statmech/lectures/PT_phase_transitions.html#the-importance-of-renormalization-in-phase-transitions",
+    "title": "Phase Transitions (& Renormalization)",
+    "section": "",
+    "text": "Renormalization plays a central role in our modern understanding of phase transitions, particularly those of the second order (continuous type). These transitions are characterized by diverging correlation lengths, large-scale fluctuations, and critical phenomena that cannot be adequately explained by simple models like mean-field theory. The renormalization group (RG) approach provides a powerful and unifying framework to understand these complex behaviors.\n\n\nOne of the most striking observations in the study of critical phenomena is universality: very different physical systems — such as magnets, fluids, or binary mixtures — exhibit identical behavior near their critical points. Specifically, they share the same critical exponents, which describe how physical quantities like specific heat, magnetization, and susceptibility diverge.\nRenormalization explains this by showing that microscopic details become irrelevant at large length scales near the critical point. Instead, only general features such as:\n\nspatial dimensionality,\n\nsymmetry, and\n\nrange of interactions\n\ndetermine the system’s critical behavior. Systems that share these features fall into the same universality class.\n\n\n\nNear a second-order transition, systems become scale-invariant — they look statistically similar at all length scales. RG formalism captures this by introducing a procedure of coarse-graining, in which short-distance details are averaged out to reveal long-distance, collective behavior.\nThis leads to flows in parameter space, where the system evolves under successive coarse-graining transformations. These flows approach fixed points, which define the system’s universal properties at criticality.\n\n\n\nThe renormalization group does more than explain qualitative features — it is quantitatively predictive. It allows the computation of critical exponents and scaling functions with high accuracy. RG analysis also identifies which parameters:\n\nare relevant (affect the long-range behavior),\nirrelevant (fade away), or\nmarginal (require further analysis).\n\nThis classification provides a systematic way to simplify complex systems by focusing on the parameters that actually matter at large scales.\n\n\n\nThere is a deep connection between renormalization in statistical physics and quantum field theory (QFT). Many techniques used in RG flow — such as regularization and rescaling — were originally developed in the context of QFT. This has created a unified language that links condensed matter systems, quantum fields, and even aspects of quantum gravity.\n\n\n\nIn summary, renormalization has revolutionized the theory of phase transitions. It:\n\nexplains why different systems behave similarly near critical points,\npredicts critical behavior accurately, and\nreveals the emergence of universal physics from microscopic interactions.\n\nIt is one of the foundational concepts of modern theoretical physics and remains essential for understanding collective behavior in complex systems."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_phase_transitions.html#ehrenfest-classification",
+    "href": "C0statmech/lectures/PT_phase_transitions.html#ehrenfest-classification",
+    "title": "Phase Transitions (& Renormalization)",
+    "section": "Ehrenfest Classification",
+    "text": "Ehrenfest Classification\nThe familiar fusion, vaporization, sublimation phase transitions in which matter switches from one of solid, liquid, and vapor to another are not the only kind of phase transitions. Indeed there are solid-solid transitions as well. The onset of superconductivity, superfluidity are also due to phase transitions.\nThe Ehrenfest classification scheme differentiates between 1st and 2nd order phase transitions.\n\n\n\n\nflowchart TD\n    Start[\"Phase transitions\"]\n    \n    %% Start --&gt; OrderParam[\"Order Parameter (e.g., magnetization, density)\"]\n\n    Start --&gt;|Discontinuous Jump| FirstOrder[\"1st Order Phase Transition\"]\n    Start --&gt;|Continuous| SecondOrder[\"2nd Order Phase Transition\"]\n\n    %% FirstOrder --&gt; FO_Features[\"Latent Heat Present\"]\n    FirstOrder --&gt; FO_Example[\"e.g., Ice ⇌ Water, Liquid ⇌ Gas\"]\n\n    %% SecondOrder --&gt; SO_Features[\"No Latent Heat\"]\n    SecondOrder --&gt; SO_Example[\"e.g., Ferromagnetic ⇌ Paramagnetic\"]\n\n    classDef first fill:#ffd1d1,stroke:#cc0000,stroke-width:2px\n    classDef second fill:#d1eaff,stroke:#0044cc,stroke-width:2px\n\n    class FirstOrder,FO_Features,FO_Example first\n    class SecondOrder,SO_Features,SO_Example second\n\n\n\n\n\n\n\n\n\nflowchart TD\n    Start[\"Thermodynamic System\"]\n    \n    Start --&gt; OrderParam[\"Order Parameter (e.g., magnetization, density)\"]\n\n    OrderParam --&gt;|Discontinuous Jump| FirstOrder[\"1st Order Phase Transition\"]\n    OrderParam --&gt;|Continuous| SecondOrder[\"2nd Order Phase Transition\"]\n\n    FirstOrder --&gt; FO_Features[\"Latent Heat Present\"]\n    FirstOrder --&gt; FO_Example[\"e.g., Ice ⇌ Water, Liquid ⇌ Gas\"]\n\n    SecondOrder --&gt; SO_Features[\"No Latent Heat\"]\n    SecondOrder --&gt; SO_Example[\"e.g., Ferromagnetic ⇌ Paramagnetic\"]\n\n    classDef first fill:#ffd1d1,stroke:#cc0000,stroke-width:2px\n    classDef second fill:#d1eaff,stroke:#0044cc,stroke-width:2px\n\n    class FirstOrder,FO_Features,FO_Example first\n    class SecondOrder,SO_Features,SO_Example second"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_universality.html",
+    "href": "C0statmech/lectures/PT_universality.html",
+    "title": "Worldlines",
+    "section": "",
+    "text": "Universality refers to the observation that very different physical systems exhibit identical critical behavior near continuous (second-order) phase transitions. The concept reveals deep connections between seemingly unrelated systems, making critical phenomena a cornerstone of modern theoretical physics.\nNear the critical point, physical quantities follow power laws:\n\nOrder parameter: \\(M \\sim |T - T_c|^\\beta\\)\nSusceptibility: \\(\\chi \\sim |T - T_c|^{-\\gamma}\\)\nCorrelation length: \\(\\xi \\sim |T - T_c|^{-\\nu}\\)\n\nThe exponents \\(\\beta\\), \\(\\gamma\\), \\(\\nu\\), etc., are universal: they depend only on a few key features:\n\nDimensionality of space (\\(d\\))\nSymmetry of the order parameter\nRange of interactions\n\nAs an example, a 3D Ising magnet and a liquid-gas transition share the same critical exponents → same universality class. But why would that be? Well, according to the Renormalization group (RG) under coarse-graining, microscopic details become irrelevant. Systems flow toward fixed points that define their universality class."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_universality.html#universality-in-phase-transitions",
+    "href": "C0statmech/lectures/PT_universality.html#universality-in-phase-transitions",
+    "title": "Worldlines",
+    "section": "",
+    "text": "Universality refers to the observation that very different physical systems exhibit identical critical behavior near continuous (second-order) phase transitions. The concept reveals deep connections between seemingly unrelated systems, making critical phenomena a cornerstone of modern theoretical physics.\nNear the critical point, physical quantities follow power laws:\n\nOrder parameter: \\(M \\sim |T - T_c|^\\beta\\)\nSusceptibility: \\(\\chi \\sim |T - T_c|^{-\\gamma}\\)\nCorrelation length: \\(\\xi \\sim |T - T_c|^{-\\nu}\\)\n\nThe exponents \\(\\beta\\), \\(\\gamma\\), \\(\\nu\\), etc., are universal: they depend only on a few key features:\n\nDimensionality of space (\\(d\\))\nSymmetry of the order parameter\nRange of interactions\n\nAs an example, a 3D Ising magnet and a liquid-gas transition share the same critical exponents → same universality class. But why would that be? Well, according to the Renormalization group (RG) under coarse-graining, microscopic details become irrelevant. Systems flow toward fixed points that define their universality class."
+  },
+  {
+    "objectID": "C0statmech/home_statmech.html#statistical-mechanics",
+    "href": "C0statmech/home_statmech.html#statistical-mechanics",
+    "title": "Worldlines",
+    "section": "",
+    "text": "Quantum Gases"
+  },
+  {
+    "objectID": "C0statmech/lectures/free_energy.html",
+    "href": "C0statmech/lectures/free_energy.html",
+    "title": "Why the Energy Bound in Entropy Is Not Available for Work",
+    "section": "",
+    "text": "In thermodynamics, the concept of free energy is central to understanding how and why energy can be harnessed to do useful work. While the total internal energy \\(U\\) of a system contains all forms of energy—thermal, mechanical, chemical—not all of it is available for performing work. A key portion of this energy is bound up in entropy through the term \\(TS\\), where \\(T\\) is the temperature and \\(S\\) is the entropy of the system. This document explores why the \\(TS\\) contribution to internal energy is not available for work, both conceptually and mathematically, using the framework of the First and Second Laws of Thermodynamics.\nIn a sense, one can think of this as a kind of “entropy tax”: the higher the entropy, the more internal energy is deducted from the system’s ability to do useful work."
+  },
+  {
+    "objectID": "C0statmech/lectures/free_energy.html#first-law-energy-conservation",
+    "href": "C0statmech/lectures/free_energy.html#first-law-energy-conservation",
+    "title": "Why the Energy Bound in Entropy Is Not Available for Work",
+    "section": "First Law: Energy Conservation",
+    "text": "First Law: Energy Conservation\n\\[\ndU = \\delta Q - \\delta W\n\\]\nThis equation states that the change in internal energy is the net heat added to the system minus the work done by the system."
+  },
+  {
+    "objectID": "C0statmech/lectures/free_energy.html#second-law-entropy-and-heat",
+    "href": "C0statmech/lectures/free_energy.html#second-law-entropy-and-heat",
+    "title": "Why the Energy Bound in Entropy Is Not Available for Work",
+    "section": "Second Law: Entropy and Heat",
+    "text": "Second Law: Entropy and Heat\n\\[\n\\delta Q \\leq TdS\n\\]\nThis inequality holds for all processes; equality is achieved only in reversible processes. It reflects the fact that, due to increasing entropy, not all heat input can be converted to work."
+  },
+  {
+    "objectID": "C0statmech/lectures/free_energy.html#combining-the-laws",
+    "href": "C0statmech/lectures/free_energy.html#combining-the-laws",
+    "title": "Why the Energy Bound in Entropy Is Not Available for Work",
+    "section": "Combining the Laws",
+    "text": "Combining the Laws\nSubstituting the Second Law into the First:\n\\[\ndU \\leq TdS - \\delta W\n\\]\nRewriting:\n\\[\n\\delta W \\leq TdS - dU\n\\]\nThis inequality expresses the maximum possible work output of the system.\nNow recall the total differential of the Helmholtz free energy:\n\\[\nF = U - TS \\quad \\Rightarrow \\quad dF = dU - TdS - SdT\n\\]\nFor a system at constant temperature (\\(dT = 0\\)):\n\\[\ndF = dU - TdS \\quad \\Rightarrow \\quad -dF = TdS - dU\n\\]\nSo the maximum reversible work is:\n\\[\n\\delta W_{\\text{max}} = -dF\n\\]\nThis result is profound: only the change in free energy, not the entire internal energy, determines the maximum work that can be extracted from a system. The remaining portion, the \\(TS\\) term, is intrinsically tied to entropy and is not available for work."
+  },
+  {
+    "objectID": "D0examples/tikz_example.html",
+    "href": "D0examples/tikz_example.html",
+    "title": "How to add and cross reference tikz diagrams in quarto",
+    "section": "",
+    "text": "Add to quarto yaml:\nfilters:\n  - pandoc-ext/diagram\nSource\nExtension\n\n\n\n\n\nA Figure\n\n\nFigure 1: This is a caption\n\n\n\n\n\n\n\nA Stick Figure\n\n\nFigure 2: This is a caption\n\n\nSee Figure 2."
+  },
+  {
+    "objectID": "C0statmech/lectures/thermodynamicpotentials.html",
+    "href": "C0statmech/lectures/thermodynamicpotentials.html",
+    "title": "Thermodynamic potentials",
+    "section": "",
+    "text": "\\(U(S,V,N)\\)\n\n\n\\(dU=TdS-PdV+\\mu dN\\) but S being more useful thoeretically is difficult to measure.\n\n\n\n\n\\(H(S,P,N)\\)\n\n\n\\(dH=TdS-VdP+\\mu dN\\).\n\n\n\n\n\\(F(T,V,N)\\)\n\n\n\\(dF=-SdT-pdV+\\mu dN\\).\n\n\n\n\n\\(G(T,P,N)\\)\n\n\n\\(dG=-SdT+VdP+\\mu dN\\).\n\n\n\n\n\\(\\Phi(T,P,\\mu)\\)\n\n\n\\(d\\Phi=-SdT+VdP+Nd\\mu\\).\n\n\n\n\n\n\n\n\n\n\ngraph TD\n    U[\"Internal Energy (U)&lt;br/&gt;Natural variables: (S, V, N)\"]\n    F[\"Helmholtz Free Energy (F = U - TS)&lt;br/&gt;Natural variables: (T, V, N)\"]\n    G[\"Gibbs Free Energy (G = U - TS + PV)&lt;br/&gt;Natural variables: (T, P, N)\"]\n    Omega[\"Grand Potential (Ω = U - TS - μN)&lt;br/&gt;Natural variables: (T, V, μ)\"]\n\n    U -- \"Legendre in T: U - TS → F\" --&gt; F\n    F -- \"Legendre in μ: F - μN → Ω\" --&gt; Omega\n    F -- \"Legendre in P: F + PV → G\" --&gt; G\n    U -- \"Legendre in T & P: U - TS + PV → G\" --&gt; G\n    U -- \"Legendre in T & μ: U - TS - μN → Ω\" --&gt; Omega\n    Omega -- \"Legendre in N: Ω + μN → F\" --&gt; F\n    G -- \"Legendre in μ: G - μN → ???\" --&gt; GN[\"G(T, P, μ)?&lt;br/&gt;(Less common)\"]"
+  },
+  {
+    "objectID": "D0quartoexamples/tikz_example.html",
+    "href": "D0quartoexamples/tikz_example.html",
+    "title": "How to add and cross reference tikz diagrams in quarto",
+    "section": "",
+    "text": "Add to quarto yaml:\nfilters:\n  - pandoc-ext/diagram\nSource\nExtension\n\n\n\n\n\nA Figure\n\n\nFigure 1: This is a caption\n\n\n\n\n\n\n\nA Stick Figure\n\n\nFigure 2: This is a caption\n\n\nSee Figure 2."
+  },
+  {
+    "objectID": "C0diffgeom/lectures/pointsettopology.html",
+    "href": "C0diffgeom/lectures/pointsettopology.html",
+    "title": "Some Concepts from Point Set Topology",
+    "section": "",
+    "text": "General Topology\n\n\nDeals with the basic set-theoretic definitions and constructions used in topology. Foundational to other branches.\n\n\n\n\nDifferential Topology\n\n\nDeals with…\n\n\n\n\nGeometric Topology\n\n\nDeals with…\n\n\n\n\nAlgebraic Topology\n\n\nDeals with…\nPoint set topology (or General topology) deals with the basic set-theoretic definitions and constructions used in topology. It is the foundation of most other branches of topology, including differential topology, geometric topology, and algebraic topology.\nThe notions fundamental to point-set topology are continuity, compactness, and connectedness.\nTo build those we need notions of open sets and closed sets in \\(R^n\\). We use open ball and closed ball as their respective examples.\n[Figure Note that U of open sets in R is open. Finite intersection of open sets in Rn]\nA collection of open sets is a topological space if they satisfy the following conditions:"
+  },
+  {
+    "objectID": "C0diffgeom/lectures/pointsettopology.html#usual-vs.-perverse-topologies.",
+    "href": "C0diffgeom/lectures/pointsettopology.html#usual-vs.-perverse-topologies.",
+    "title": "Some Concepts from Point Set Topology",
+    "section": "Usual vs. Perverse Topologies.",
+    "text": "Usual vs. Perverse Topologies."
+  },
+  {
+    "objectID": "C0diffgeom/lectures/pointsettopology.html#induced-or-subspace-topology",
+    "href": "C0diffgeom/lectures/pointsettopology.html#induced-or-subspace-topology",
+    "title": "Some Concepts from Point Set Topology",
+    "section": "Induced (or subspace) topology",
+    "text": "Induced (or subspace) topology"
+  },
+  {
+    "objectID": "C0diffgeom/lectures/pointsettopology.html#neighborhood",
+    "href": "C0diffgeom/lectures/pointsettopology.html#neighborhood",
+    "title": "Some Concepts from Point Set Topology",
+    "section": "Neighborhood",
+    "text": "Neighborhood\nAny open set in M containing a point \\(x \\elem M\\)"
+  },
+  {
+    "objectID": "C0diffgeom/lectures/pointsettopology.html#neighborhood-and-continuous-maps",
+    "href": "C0diffgeom/lectures/pointsettopology.html#neighborhood-and-continuous-maps",
+    "title": "Some Concepts from Point Set Topology",
+    "section": "Neighborhood and Continuous Maps",
+    "text": "Neighborhood and Continuous Maps\nAny open set in M containing a point \\(x \\in M\\) is a neighborhood of \\(x\\).\nIf \\(F:M\\rightarrow N\\) then \\(F\\) is continuous if for every open set \\(V\\subset U\\), the inverse image \\(F^{-1}V := {x \\in M | F(x) \\in V}\\) is open in \\(M\\)."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_resources.html",
+    "href": "C0statmech/lectures/PT_resources.html",
+    "title": "Resources on Phase Transitions",
+    "section": "",
+    "text": "Some books, lecture notes and stuff that might be useful."
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_resources.html#lecture-notes",
+    "href": "C0statmech/lectures/PT_resources.html#lecture-notes",
+    "title": "Resources on Phase Transitions",
+    "section": "Lecture Notes",
+    "text": "Lecture Notes\nTU-Dresden lecture notes\nLandau Theory"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_resources.html#books",
+    "href": "C0statmech/lectures/PT_resources.html#books",
+    "title": "Resources on Phase Transitions",
+    "section": "Books",
+    "text": "Books\n\nHerbut, I. (2007). A Modern Approach to Critical Phenomena. Cambridge University Press.\nSachdev, S. (2011). Quantum Phase Transitions. 2nd ed. Cambridge University Press"
+  },
+  {
+    "objectID": "D0python/debugging/01context.html",
+    "href": "D0python/debugging/01context.html",
+    "title": "Getting context",
+    "section": "",
+    "text": "The inspect module allows you to figure out the traceback, or the sequence of calls that led you to a certain point.\nimport inspect\n\ndef print_context():\n    stack = inspect.stack()\n    for frame in reversed(stack[1:]):  # skip print_context itself\n        func = frame.function\n        lineno = frame.lineno\n        filename = frame.filename.rsplit(\"/\", 1)[-1]  # optional: basename only\n        print(f\"{func} (line {lineno} in {filename})\")"
+  },
+  {
+    "objectID": "C0QM/lectures/Foundations-CorrespondencePrinciple.html",
+    "href": "C0QM/lectures/Foundations-CorrespondencePrinciple.html",
+    "title": "Correspondence Principle",
+    "section": "",
+    "text": "Quantum mechanics was built to extend classical mechanics — not overthrow it.So in situations where classical mechanics worked well (e.g., planetary orbits, cannonballs), quantum predictions must reduce to classical ones. This ensures continuity between theories: new theories don’t discard old ones — they contain them as limits.\nRemember also that the Planck’s constant is a measure of quantization. It tells us how pixelated the real world is. If you show a finely pixelated digital image to someone who is unaware of how such images, work, he might be forgiven to assume that the image is a continuum. This is the same as saying, that there are pixels, but of almost 0 size.\nBut whatever the underlying reality, i.e. whether the image is pixelated or not should not matter when viewed on the macroscopic scale.\nThus the correspondence principle states that quantum mechanics must reproduce classical mechanics in the appropriate limit typically when:\nThis idea was introduced by Niels Bohr and has since been formalized in many ways. (Stanford Encyclopedia Enry)"
+  },
+  {
+    "objectID": "C0QM/home_QM.html",
+    "href": "C0QM/home_QM.html",
+    "title": "Quantum Mechanics",
+    "section": "",
+    "text": "Green’s functions/Propagators\nLinear response"
+  },
+  {
+    "objectID": "C0QM/home_QM.html#chapters",
+    "href": "C0QM/home_QM.html#chapters",
+    "title": "Quantum Mechanics",
+    "section": "",
+    "text": "Green’s functions/Propagators\nLinear response"
+  },
+  {
+    "objectID": "C0QM/lectures/Foundations-CorrespondencePrinciple.html#how-is-the-principle-implemented",
+    "href": "C0QM/lectures/Foundations-CorrespondencePrinciple.html#how-is-the-principle-implemented",
+    "title": "Correspondence Principle",
+    "section": "How is the principle implemented?",
+    "text": "How is the principle implemented?\nThe question is how does the framework of quantum mechanics encode this principle. In other words what formal bridges connect the quantum world with the classical.\n\nEhrenfest’s Theorem\nThis is the first formal bridge between quantum and classical mechanics:\n\\[\n\\frac{d}{dt}⟨\\hat x⟩=\\frac{⟨\\hat p⟩}{m},\\quad \\frac{d}{dt}{⟨\\hat p⟩}=⟨−∇V(\\hat x)⟩\n\\]\nHence the time derivative of the average position is momentum; and rate of change of average momentum is average force.\nThese equations resemble Newton’s second law, but only in terms of expectation values.\nSo while individual measurements fluctuate, their average behavior follows classical trajectories — in certain limits.\n\n\nPoisson Brackets ↔︎ Commutators\nThe Poisson bracket is a fundamental concept in classical mechanics, particularly within Hamiltonian mechanics. It is a binary operation that describes how two physical quantities evolve in time under a Hamiltonian system. In going from classical to quantum mechanics, Dirac postulated:\n\\[\n{A,B}_{Poisson}\\rightarrow i\\hbar [\\hat A, \\hat B]\n\\]\nThis correspondence works beautifully in:\n\nCanonical quantization,\nSymmetry and conservation laws,\nSemiclassical approximations.\n\n\n\nLarge Quantum Numbers\nIn the Bohr model, as quantum numbers \\(n\\rightarrow \\infty\\), the spacing between energy levels gets smaller: \\[\nE_n∼n^2\\implies ΔE_n∼\\frac{1}{n}\n\\]\nSo energy becomes quasi-continuous, and the quantum system mimics a classical continuum.\n\n\nPath Integral View\nIn Feynman’s path integral formulation, the probability amplitude is a sum over all paths: \\[\nA∼∫e^{iS[x]/ℏ} Dx\n\\]\nIn the limit \\(\\hbar \\rightarrow 0\\), the phase oscillates wildly unless the action SS is stationary, i.e., classical path dominates. So in this case classical mechanics emerges from quantum mechanics via the principle of stationary action.\n\n\nWKB Approximation\nIn the semiclassical WKB method, the wavefunction is approximated as:\n\\[\n\\psi (x)∼e^{iS(x)/ℏ}\n\\]\nThis directly connects the quantum phase to the classical Hamilton–Jacobi action. Again, when \\(\\hbar\\) is small, classical mechanics emerges."
+  },
+  {
+    "objectID": "C0QM/lectures/PoissonBracket.html",
+    "href": "C0QM/lectures/PoissonBracket.html",
+    "title": "Poisson Brackets",
+    "section": "",
+    "text": "Poisson brackets appear in Hamiltonian mehcanics and are also related to the (classical) commutator.\nSince commutators appear in quantum mechanics as well, it turns out that Poisson Brackets provide a connection between the classical and the quantum domains."
+  },
+  {
+    "objectID": "C0QM/lectures/PoissonBracket.html#useful-links",
+    "href": "C0QM/lectures/PoissonBracket.html#useful-links",
+    "title": "Poisson Brackets",
+    "section": "Useful links",
+    "text": "Useful links\nPoisson brackets"
+  },
+  {
+    "objectID": "C0statmech/lectures/PT_IsingModel.html",
+    "href": "C0statmech/lectures/PT_IsingModel.html",
+    "title": "Ising Model",
+    "section": "",
+    "text": "We wil try to run the 0th and 1st approximations in tandem so as to see where the differences emerge.\n\n\n\n\n\n\n\nZeroth Approximation\nFirst Approximation\n\n\n\n\nJanuary\n\\(H_{q+1} = -\\mu B\\sigma_0 - \\mu (B + B')\\sum_{j=1}^q\\sigma_j - J \\sum_{j=1}^q \\sigma_0 \\sigma_j\\)\nWe can now find the partition function \\(Z\\):\n\\[\nZ = exp\n\\]\nwhere:\n\\[\n\\alpha = \\frac{\\mu B}{kT},\\quad \\alpha ' = \\frac{\\mu B'}{kT},\\quad \\gamma = \\frac{J}{kT}\n\\]\n\n\nFebruary\n\\(80\\)\n\n\nMarch\n\\(420\\)\n\n\n\n\n\n\n\n\n\n\nConfigurational Energy\n\\(U_0 = - J (\\frac{1}{2} qN - 2q \\bar N_+ + 4\\bar N_{++})\\)\n\n\n\n\n\\[\n\\bar N_{++} = \\frac{1}{2} N (1 + \\bar L_0)\n\\]\n\\[\nU_0 = -\\frac{1}{2} q J N \\bar L_0^2\n\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEq 1 - Long range order Eq 2 - Magneization Eq - Hamiltonian\n\nHamiltonian \\[\nH_{q+1} = -\\mu B\\sigma_0 - \\mu (B+B')\\sum_{j=1}^q\\sigma_j - J \\sum_{j=1}^q \\sigma_0 \\sigma_j\n\\] Eq 2 - Partition Function"
+  },
+  {
+    "objectID": "C0QM/lectures/Foundations-MeasurementProblem.html",
+    "href": "C0QM/lectures/Foundations-MeasurementProblem.html",
+    "title": "Measurement Problem",
+    "section": "",
+    "text": "Both determinism and indeterminism are built into QM. This is because there are at least two processes that proceed in different ways.\nBy way of analogy, I am not entirely aware where my friend is currently. He could be in any country for all I know. I could make a phone call to eliminate this uncertainty in my knowledge.\nBut once the phone is hung, my knowledge of my friend’s whereabouts is once more shrouded in a mist. But surely, if I determined that my friend was in my city, the likelihood of his being in another city several thousand miles away would be very small. In other words the cloud over my uncertainty is not entirely random but follows some logical/causal sense."
+  },
+  {
+    "objectID": "C0QM/lectures/Foundations-MeasurementProblem.html#some-literature",
+    "href": "C0QM/lectures/Foundations-MeasurementProblem.html#some-literature",
+    "title": "Measurement Problem",
+    "section": "Some Literature",
+    "text": "Some Literature\n\nBell (1990)"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#the-ssh-model-in-bloch-form",
+    "href": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#the-ssh-model-in-bloch-form",
+    "title": "SSH to Floquet",
+    "section": "The SSH Model (in Bloch Form)",
+    "text": "The SSH Model (in Bloch Form)\nThe Su-Schrieffer–Heeger (SSH) model is a foundational 1D lattice model used to understand topological phases of matter. It describes a chain with alternating hopping amplitudes between two types of lattice sites, leading to non-trivial topological behavior such as protected edge states and quantized topological invariants."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#real-space-ssh-hamiltonian",
+    "href": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#real-space-ssh-hamiltonian",
+    "title": "SSH to Floquet",
+    "section": "Real-Space SSH Hamiltonian",
+    "text": "Real-Space SSH Hamiltonian\nThe SSH model consists of a one-dimensional tight-binding chain with two sublattice sites, \\(A\\) and \\(B\\), per unit cell. Electrons can hop:\n\nBetween \\(A\\) and \\(B\\) within the same unit cell with amplitude \\(t_1\\) (intra-cell hopping),\nFrom site \\(B\\) in one unit cell to site \\(A\\) in the next with amplitude \\(t_2\\) (inter-cell hopping).\n\nLet \\(\\hat{a}_n^\\dagger\\) and \\(\\hat{b}_n^\\dagger\\) be creation operators for sublattices \\(A\\) and \\(B\\) in the \\(n\\)-th unit cell. The real-space Hamiltonian is\n\\[\nH = \\sum_n \\left( t_1 \\hat{a}_n^\\dagger \\hat{b}_n + t_2 \\hat{a}_{n+1}^\\dagger \\hat{b}_n + \\text{h.c.} \\right),\n\\]\nwhere “h.c.” denotes the Hermitian conjugate."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#blochs-theorem-and-fourier-transform",
+    "href": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#blochs-theorem-and-fourier-transform",
+    "title": "SSH to Floquet",
+    "section": "Bloch’s Theorem and Fourier Transform",
+    "text": "Bloch’s Theorem and Fourier Transform\nTo take advantage of spatial periodicity, we transform the operators to momentum space using the discrete Fourier transform:\n\\[\n\\hat{a}_n = \\frac{1}{\\sqrt{N}} \\sum_k e^{ikn} \\hat{a}_k, \\quad\n\\hat{b}_n = \\frac{1}{\\sqrt{N}} \\sum_k e^{ikn} \\hat{b}_k,\n\\]\nwhere \\(N\\) is the number of unit cells and \\(k\\) is the crystal momentum.\n\nIntra-cell Term\nUsing the Fourier-transformed operators, the first term becomes\n\\[\n\\sum_n t_1 \\hat{a}_n^\\dagger \\hat{b}_n = \\sum_k t_1 \\hat{a}_k^\\dagger \\hat{b}_k.\n\\]\n\n\nInter-cell Term\nSimilarly, the second term becomes\n\\[\n\\sum_n t_2 \\hat{a}_{n+1}^\\dagger \\hat{b}_n = \\sum_k t_2 e^{-ik} \\hat{a}_k^\\dagger \\hat{b}_k.\n\\]\nCombining both:\n\\[\nH = \\sum_k \\left( t_1 + t_2 e^{-ik} \\right) \\hat{a}_k^\\dagger \\hat{b}_k + \\text{h.c.}\n\\]"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#bloch-hamiltonian-in-matrix-form",
+    "href": "C0TopologicalMaterials/lectures/01_SSHtoFloquet.html#bloch-hamiltonian-in-matrix-form",
+    "title": "SSH to Floquet",
+    "section": "Bloch Hamiltonian in Matrix Form",
+    "text": "Bloch Hamiltonian in Matrix Form\nTo express the Hamiltonian as a matrix, define the spinor\n\\[\n\\psi_k = \\begin{pmatrix} \\hat{a}_k \\\\ \\hat{b}_k \\end{pmatrix}.\n\\]\nThen the Hamiltonian becomes\n\\[\nH = \\sum_k \\psi_k^\\dagger H(k) \\psi_k,\n\\]\nwhere the \\(2 \\times 2\\) Bloch Hamiltonian is\n\\[\nH(k) =\n\\begin{pmatrix}\n0 & t_1 + t_2 e^{-ik} \\\\\nt_1 + t_2 e^{ik} & 0\n\\end{pmatrix}.\n\\]\nNote how the initial \\(n\\times n\\) matrix gives way to a compact \\(2 \\times 2\\) form. This form compactly encodes the band structure and is a starting point for analyzing topological behavior.\nWe thus have derived the momentum-space (Bloch) Hamiltonian for the SSH model. This formulation simplifies the analysis of periodic systems and lays the foundation for calculating energy bands, exploring winding numbers, and understanding bulk-boundary correspondence. We will see that the SSH model, though simple, is a rich playground for studying modern topological phases of matter."
+  },
+  {
+    "objectID": "C0linalg/lectures/figures.html#leaderline",
+    "href": "C0linalg/lectures/figures.html#leaderline",
+    "title": "Leader-line Example",
+    "section": "Leaderline",
+    "text": "Leaderline\n\n\n\n\n\n\n\n\nHere is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector."
+  },
+  {
+    "objectID": "C0linalg/lectures/01-vectorspaces.html#leaderline",
+    "href": "C0linalg/lectures/01-vectorspaces.html#leaderline",
+    "title": "Vector Spaces",
+    "section": "",
+    "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector.\n\n\n   \nLinear algebra is the study of linear maps on finite-dimensional vector spaces.\n\nSome more text."
+  },
+  {
+    "objectID": "C0QM/lectures/interpretations/pilot.html",
+    "href": "C0QM/lectures/interpretations/pilot.html",
+    "title": "Pilot Wave Theory",
+    "section": "",
+    "text": "Schrodinger regarded wave intensity as \\(\\psi^* \\psi\\) as the actual density of electric charge [Bohm,82].\nProblem: charge density would spread out where as the particle does not.\nBorn: wave intensity is probability of finding a particle.\nQuestion: Is the particle localized by the ACT of measurement or does it exist independently.\nBohr: Meaning exist within the bounds defined by the Uncertainty Principle.\nThere are some problems we need to solve:"
+  },
+  {
+    "objectID": "C0QM/lectures/interpretations/pilot.html#essence-of-de-broglies-arguments",
+    "href": "C0QM/lectures/interpretations/pilot.html#essence-of-de-broglies-arguments",
+    "title": "Pilot Wave Theory",
+    "section": "Essence of de Broglie’s arguments:",
+    "text": "Essence of de Broglie’s arguments:\n\nA physically real wave satisfying S.E. exists (at least as a linear approximation).\nThere is a particle following a well defined trajectory\nThe momentum of the wave and particle are related via:\n\n\\[\np = \\hbar \\nabla \\phi\n\\]\nwhere \\(\\phi\\) is the wave-function.\nThe wave pilots the particle. And periodicity of the particle served as a clock. At rest, the clock would have a frequency \\(\\omega_0 = m_0 c^2/\\hbar\\).\n\nBohr-Sommerfeld relation\n\\[\n\\oint \\vec p\\cdot \\vec dx = nh\n\\]\nB.S. relation is condition for the clock to remain in phase with the pilot wave."
+  },
+  {
+    "objectID": "C0QM/lectures/interpretations/pilot.html#extension-to-many-body-systems",
+    "href": "C0QM/lectures/interpretations/pilot.html#extension-to-many-body-systems",
+    "title": "Pilot Wave Theory",
+    "section": "Extension to many-body systems",
+    "text": "Extension to many-body systems"
+  },
+  {
+    "objectID": "C0QM/home_QM.html#interpretations",
+    "href": "C0QM/home_QM.html#interpretations",
+    "title": "Quantum Mechanics",
+    "section": "Interpretations",
+    "text": "Interpretations\nLiterature"
+  },
+  {
+    "objectID": "C0linalg/lectures/test/figures.html",
+    "href": "C0linalg/lectures/test/figures.html",
+    "title": "Worldlines",
+    "section": "",
+    "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector."
+  },
+  {
+    "objectID": "C0linalg/lectures/test/figures.html#leaderline",
+    "href": "C0linalg/lectures/test/figures.html#leaderline",
+    "title": "Worldlines",
+    "section": "Leaderline",
+    "text": "Leaderline\n\n\n\n\n\n\n\n\nHere is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector."
+  },
+  {
+    "objectID": "C0QM/lectures/interpretations/literature.html",
+    "href": "C0QM/lectures/interpretations/literature.html",
+    "title": "Literature on various interpretations of QM",
+    "section": "",
+    "text": "The de Broglie Pilot Wave Theory and the Further Development of New Insights Arising Out of It"
+  },
+  {
+    "objectID": "C0QM/lectures/interpretations/literature.html#pilot-wave-theory-bohmian-mechanics",
+    "href": "C0QM/lectures/interpretations/literature.html#pilot-wave-theory-bohmian-mechanics",
+    "title": "Literature on various interpretations of QM",
+    "section": "",
+    "text": "The de Broglie Pilot Wave Theory and the Further Development of New Insights Arising Out of It"
+  },
+  {
+    "objectID": "C0manybody/lectures/excitons.html",
+    "href": "C0manybody/lectures/excitons.html",
+    "title": "Excitons",
+    "section": "",
+    "text": "Ground state = \\(\\Phi_g\\). Filled up to band \\(\\mu\\). Bands from \\(\\nu\\) and above are completely empty.\nelectron-hole interaction necessitates that we consider the configuration interaction.\nEnergy eigenstates within the subspace of one-electron excitation should be a linear combination of \\(\\Psi_{\\nu\\mu k K} = \\Psi (\\nu k \\leftarrow \\mu k - K)\\)."
+  },
+  {
+    "objectID": "C0manybody/lectures/excitons.html#elementary-excitations",
+    "href": "C0manybody/lectures/excitons.html#elementary-excitations",
+    "title": "Excitons",
+    "section": "",
+    "text": ":::{.ddm-head onclick=“toggleBox(this)”} fsdf ::: :::{.ddm-box} sdfsd :::"
+  },
+  {
+    "objectID": "C0fourieranalysis/home_fourieranalysis.html",
+    "href": "C0fourieranalysis/home_fourieranalysis.html",
+    "title": "Fourier Analysis",
+    "section": "",
+    "text": "DFT"
+  },
+  {
+    "objectID": "C0fourieranalysis/lectures/DFT.html",
+    "href": "C0fourieranalysis/lectures/DFT.html",
+    "title": "Discrete Fourier Transform",
+    "section": "",
+    "text": "It should be slightly unnerving to realize that while colors in a box paints are discrete (red, blue, green), the painting on the canvas (for our intents and purposes) are not. Or that while a sound that is seemingly continuous is actually made up of a handful of frequencies."
+  },
+  {
+    "objectID": "C0fourieranalysis/lectures/DFT.html#orthogonality-relations",
+    "href": "C0fourieranalysis/lectures/DFT.html#orthogonality-relations",
+    "title": "Discrete Fourier Transform",
+    "section": "Orthogonality relations",
+    "text": "Orthogonality relations\nWe have two orthogonality relations: \\[\n\\frac{1}{T} \\int_T e^{i m \\omega t } e^{-i n \\omega t} dt =  \\delta_{nm}\n\\]\nTo see this, simply carry out the integral.\nWe also have the following discrete condition:\n\\[\n\\frac{1}{N} \\sum_0^{N-1} (e^{i \\frac{2\\pi}{N}kn})(e^{-i \\frac{2\\pi}{N}k'n})= \\delta_{kk'}\n\\]"
+  },
+  {
+    "objectID": "C0fourieranalysis/lectures/DFT.html#discrete-fourier-trasnform",
+    "href": "C0fourieranalysis/lectures/DFT.html#discrete-fourier-trasnform",
+    "title": "Discrete Fourier Transform",
+    "section": "Discrete Fourier Trasnform",
+    "text": "Discrete Fourier Trasnform\n\\[\n{\\displaystyle X_{k}=\\sum _{n=0}^{N-1}x_{n}\\cdot e^{-i2\\pi {\\tfrac {k}{N}}n}}\n\\]"
+  },
+  {
+    "objectID": "C0manybody/lectures/excitons.html#elementary-excitations-in-many-electron-system-of-insulators",
+    "href": "C0manybody/lectures/excitons.html#elementary-excitations-in-many-electron-system-of-insulators",
+    "title": "Excitons",
+    "section": "",
+    "text": "Ground state = \\(\\Phi_g\\). Filled up to band \\(\\mu\\). Bands from \\(\\nu\\) and above are completely empty.\nelectron-hole interaction necessitates that we consider the configuration interaction.\nEnergy eigenstates within the subspace of one-electron excitation should be a linear combination of \\(\\Psi_{\\nu\\mu k K} = \\Psi (\\nu k \\leftarrow \\mu k - K)\\)."
   }
 ]

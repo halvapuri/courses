@@ -1,0 +1,97 @@
+
+/* ==================================== tcolorbox-CUSTOM */
+
+.tbox {
+  position: relative;
+  border: 2px solid #878787;
+  border-radius: 4%;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin: 0.1em 0;
+  font-family: sans-serif;
+
+  box-sizing: border-box;
+  padding: 1% 1%;
+  font-size: 1.2em;
+  line-height: 0.9;
+  text-align: center;
+    width: 35%;
+}
+
+
+
+
+.theader, .theaderfill {
+  /*background-color: #ffffff;*/
+  border-bottom: 2px solid #ccc;
+  color: rgb(203, 0, 0);
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.theaderfill {
+  margin: 0em 0;
+  padding: 0% 0%;
+  color: Coral;
+/*  background-color: SeaGreen;*/
+}
+
+
+.tbody {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  display: block;
+  box-sizing: border-box;
+  font-size: 0.95rem;
+  padding: 0.5em 0; /* Optional, makes spacing nicer */
+}
+
+/* ==================================== BBC styled boxes-CUSTOM */
+.bbcbox {
+  position: relative;
+  border-left: 0.4em solid #b80000; /* or any color/width you want */
+  padding:0em;
+  margin: 0em;
+  background-color: #1a1a1aff;
+  color: white;
+
+  font-size: 0.85em;
+  display: inline-block;     /* shrink to fit content */
+  max-width: 35%;            /* limit width to 35% of parent */
+  word-wrap: break-word;     /* allow line breaks if content is too long */
+}
+
+.bbcbox .bbcheader {
+  color: #FFA500;
+  font-weight: bold;
+  padding: 0.1em;
+  border-bottom: 1px solid #ccc;
+  margin: 0.3em;
+}
+
+.bbcbox .bbcbody {
+  padding: 0.1em;
+  margin: 0.3em;
+  font-weight: normal;
+}
+
+
+
+    .blob {
+      /* display: inline-block; */
+      position: absolute;
+      text-align: center;
+      width: 150px;
+      height: 120px;
+      background: #cce5ff;
+      border: 2px solid #004080;
+      border-radius: 50% 40% 60% 50% / 50% 60% 40% 50%;
+      margin: 10% 50%;
+      position: relative;
+      line-height: 120px;
+      font-weight: bold;
+      color: #004080;
+    }

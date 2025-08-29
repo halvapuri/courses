@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'EB Garamond Reg';
+  src: url("../fonts/ebgaramond/EBGaramond12-Regular.woff") format('woff'),
+       url("../fonts/ebgaramond/EBGaramond12-Regular.woff") format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'EB Garamond It';
+  src: url('../fonts/ebgaramond/EBGaramond08-Italic.woff') format('woff'),
+       url('../fonts/ebgaramond/EBGaramond08-Italic.woff') format('woff');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'EB Garamond Bd';
+  src: url('../fonts/ebgaramond/ebgaramond-bold.woff2') format('woff2'),
+       url('../fonts/ebgaramond/ebgaramond-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'EB Garamond SC12';
+    src: url('../fonts/ebgaramond/EBGaramondSC12-Regular.woff') format('woff'),
+         url('../fonts/ebgaramond/EBGaramondSC12-Regular.woff') format('woff');
+    /* font-weight: bold; */
+    font-variant: small-caps;
+  }
+
+
+@font-face {
+    font-family: 'EB Garamond SC08';
+    src: url('../fonts/ebgaramond/EBGaramondSC08-Regular.woff') format('woff'),
+         url('../fonts/ebgaramond/EBGaramondSC08-Regular.woff') format('woff');
+    font-variant: small-caps;
+  }
+
+  
+
+
+
