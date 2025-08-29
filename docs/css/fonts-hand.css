@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Shadows Light Reg';
+  src: url("../fonts/hand/ShadowsIntoLight-Regular.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.handwrit, .handwrith, .handwritb{
+  font-family: 'Shadows Light Reg';
+  letter-spacing: 0.09em;
+}
+
+.handwrith, .handwritb {
+  font-weight: bold;
+}
+
+.handwrith {
+  color: #d00300;
+}

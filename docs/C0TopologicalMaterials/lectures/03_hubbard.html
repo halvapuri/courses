@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Worldlines - Hubbard Model</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+function toggleBox(header) {
+  // Use jQuery to find the associated container and toggle its visibility
+  $(header).next('.dd-box').slideToggle();
+  $(header).next('.ddm-box').slideToggle();
+}
+</script>
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+
+</script>
+
+
+
+
+
+
+<script>
+//Draws leader between 'from' and 'to' on 'stage'. Uses existing objects if ids exist, otherwise creates them according to given style parameter.
+//lineOptions to stylize.
+//Issues. May need to create id via html if container is to keep equations.
+function drawLeader({
+  
+  containerId = 'stage',
+  from = { id: 'from', text: '', className: '', style: {} },
+  to = { id: 'to', text: '', className: '', style: {} },
+  lineOptions = {}
+}) {
+  // Creates 'from' and 'to' in 'containerId'. Ignores creation if ids already exist and draws a leaderline between them.
+  window.addEventListener('load', () => {
+    const container = document.getElementById(containerId);
+    const elements = { from, to };
+    const createdDivs = {};
+
+    for (const key in elements) {
+      const { id, text, className, style } = elements[key];
+      let el = document.getElementById(id);
+
+      if (!el || !container.contains(el)) {
+        el = document.createElement('div');
+        el.id = id;
+        el.textContent = text;
+        el.className = className || 'anchor80-line';
+        Object.assign(el.style, {
+          position: 'relative',
+          ...style
+        });
+        container.appendChild(el);
+      }
+
+      createdDivs[key] = el;
+    }
+
+    new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
+  });
+}
+
+</script>
+
+
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
+<link rel="stylesheet" href="../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../css/shapes.css">
+<link rel="stylesheet" href="../../css/leaders.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Worldlines</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../C0calculusI/home_calculusI.html" rel="" target="">
+ <span class="dropdown-text">Calculus I</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0calculusII/home_calculusII.html" rel="" target="">
+ <span class="dropdown-text">Calculus II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0ode/home_ode.html" rel="" target="">
+ <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0noneqthermo/home_noneqthermo.html" rel="" target="">
+ <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
+        <li>
+    <a class="dropdown-item" href="../../D0abinit/home_abinit.html" rel="" target="">
+ <span class="dropdown-text">Ab initio calculation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Hubbard Model</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Courses</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ODEs &amp; Lin. Alg.</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Under development</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Many-Body Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stochastic Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topology</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Differential Geometry</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#h.m.-mott-insulators" id="toc-h.m.-mott-insulators" class="nav-link active" data-scroll-target="#h.m.-mott-insulators">H.M. &amp; Mott insulators</a></li>
+  <li><a href="#h.m.-superconductivity" id="toc-h.m.-superconductivity" class="nav-link" data-scroll-target="#h.m.-superconductivity">H.M. &amp; superconductivity</a></li>
+  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Hubbard Model</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In Hubbard model:</p>
+<ul>
+<li>the electrons move on a lattice within a tight-binding scheme and correlation is in- troduced through an on-site repulsive term.</li>
+<li>the competition among the kinetic and the interaction term, the Hubbard model shows a rich phase diagram where both the dimensionality and the different lattice geometries play an important role.</li>
+</ul>
+<section id="h.m.-mott-insulators" class="level2">
+<h2 class="anchored" data-anchor-id="h.m.-mott-insulators">H.M. &amp; Mott insulators</h2>
+<p>Mott - Considered a 1d H atom chain. Mott’s Gedankenexperiment follows what happens if the lattice constant a is increased from its equilibrium value to larger interatomic sep- arations. This corresponds to increase the ratio between the Coulomb repulsion and the kinetic energy. According to band theory, this systems would always be a metal since the tight-binding valence s-band, which becomes narrower when increasing a, is always half filled (see Figure 1.1). This metallic state is indeed realized for small lattice spacings. In the opposite limit, the independent-electron picture clearly fails, since for very large interatomic distances the system will be composed by a set of neutral atoms, which is no more conducting. This happens because at large distances the overlap between the atomic wavefunctions is small, giving a very small energy gain due to the hopping of charges among the lattice. Since the kinetic term is very small, the dominant contribution, which is respon- sible of the localization of the electrons, comes from the Coulomb repulsion U of two electrons on the same lattice site. In this simple model, above a critical value of the lattice constant ac, the system becomes an insulator which cannot be de- scribed by the band theory approach: the Mott insulator. Its insulating character does not result in the lack of available states at low energies, as it occurs in con- ventional band insulators. In a Mott insulator the repulsion among electrons is the most relevant term and determines their localization on the different atoms.</p>
+<p>the main ingredient which characterizes Mott insulators is the presence of a suf- ficiently narrow band for valence electrons. There are other classes of materials where correlation plays a fundamental role. These systems are generally characterized by partially-filled valence bands, with a consequent failure of the band-theory approach in predicting their properties. Indeed, most of these materials are insulators with a large gap, while the independent-electron approach would predict a metallic behavior.</p>
+
+<div id="stage" class="stage" style="position: relative; height: 300px;">
+<div id="nodeA" class="tbox">
+<div id="nodeAh" class="theader" style="">
+d bands are more localized
+</div>
+<div id="nodeAc" class="tbody" style="">
+Wave function decays rapidly
+</div>
+</div>
+<div id="nodeA2" class="tbox" style="top: 20%; left: 70%;">
+<div id="nodeA2h" class="theader" style="">
+Overlap is small
+</div>
+<div id="nodeA2c" class="tbody" style="">
+Band width depends on hopping parameter t which depends on overlap
+</div>
+</div>
+<div id="nodeA3" class="tbox" style="position: absolute; top: 70%; left: 10%;">
+<div id="nodeA3h" class="theader" style="">
+Strong correlations
+</div>
+<div id="nodeA3c" class="tbody" style="">
+KE is small; e-e repulsion is large
+</div>
+</div>
+<p><!-- <div class="anchor80-line" id="nodeC" style="width: 30%; position: absolute; top: 80%; left: 100px;">
+    bb
+  </div> --></p>
+</div>
+<script>
+  drawLeader({
+    containerId: 'stage',
+    from: {id: 'nodeA'},
+    to: {id: 'nodeA2'},
+    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
+  });
+
+  drawLeader({
+    containerId: 'stage',
+    from: {id: 'nodeA2'},
+    to: {id: 'nodeA3'},
+    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
+  });
+
+  // drawLeader({
+  //   containerId: 'stage',
+  //   from: {id: 'nodeA'},
+  //   to: {id: 'nodeC'},
+  //   lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
+  // });
+</script>
+</section>
+<section id="h.m.-superconductivity" class="level2">
+<h2 class="anchored" data-anchor-id="h.m.-superconductivity">H.M. &amp; superconductivity</h2>
+</section>
+<section id="sources" class="level2">
+<h2 class="anchored" data-anchor-id="sources">Sources</h2>
+<p><a href="https://iris.sissa.it/retrieve/dd8a4bf7-055d-20a0-e053-d805fe0a8cb0/1963_1897_Capello.pdf">Link</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script src="../../scripts/leader-line-master/leader-line.min.js"></script>
+
+
+
+</body></html>

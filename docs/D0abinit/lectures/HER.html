@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Worldlines - Hydrogen Evolution Reaction for Water Splitting</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+function toggleBox(header) {
+  // Use jQuery to find the associated container and toggle its visibility
+  $(header).next('.dd-box').slideToggle();
+  $(header).next('.ddm-box').slideToggle();
+}
+</script>
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+
+</script>
+
+
+
+
+
+
+<script>
+//Draws leader between 'from' and 'to' on 'stage'. Uses existing objects if ids exist, otherwise creates them according to given style parameter.
+//lineOptions to stylize.
+//Issues. May need to create id via html if container is to keep equations.
+function drawLeader({
+  
+  containerId = 'stage',
+  from = { id: 'from', text: '', className: '', style: {} },
+  to = { id: 'to', text: '', className: '', style: {} },
+  lineOptions = {}
+}) {
+  // Creates 'from' and 'to' in 'containerId'. Ignores creation if ids already exist and draws a leaderline between them.
+  window.addEventListener('load', () => {
+    const container = document.getElementById(containerId);
+    const elements = { from, to };
+    const createdDivs = {};
+
+    for (const key in elements) {
+      const { id, text, className, style } = elements[key];
+      let el = document.getElementById(id);
+
+      if (!el || !container.contains(el)) {
+        el = document.createElement('div');
+        el.id = id;
+        el.textContent = text;
+        el.className = className || 'anchor80-line';
+        Object.assign(el.style, {
+          position: 'relative',
+          ...style
+        });
+        container.appendChild(el);
+      }
+
+      createdDivs[key] = el;
+    }
+
+    new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
+  });
+}
+
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
+<link rel="stylesheet" href="../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../css/shapes.css">
+<link rel="stylesheet" href="../../css/leaders.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Worldlines</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../C0calculusI/home_calculusI.html" rel="" target="">
+ <span class="dropdown-text">Calculus I</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0calculusII/home_calculusII.html" rel="" target="">
+ <span class="dropdown-text">Calculus II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0ode/home_ode.html" rel="" target="">
+ <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0noneqthermo/home_noneqthermo.html" rel="" target="">
+ <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
+        <li>
+    <a class="dropdown-item" href="../../D0abinit/home_abinit.html" rel="" target="">
+ <span class="dropdown-text">Ab initio calculation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Hydrogen Evolution Reaction for Water Splitting</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Courses</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus I</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calculus II</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ODEs &amp; Lin. Alg.</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Under development</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Many-Body Systems</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Probability Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stochastic Processes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Statistical Mechanics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topology</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Differential Geometry</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#strategies" id="toc-strategies" class="nav-link active" data-scroll-target="#strategies">Strategies</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Hydrogen Evolution Reaction for Water Splitting</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>HER electrocatalysis can be well performed by Pt with a low overpotential close to zero and a Tafel slope of about 30 mV dec–1</p>
+<p>Due to electrocatalytic activity and electrochemical stability, transition metal compounds are the best options for HER electrocatalysts</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Energy density of hydrogen is approximately equivalent to 33.5 kWh/kg of usable energy, while this amount of energy for diesel is about 13 kWh/kg.</p>
+<p>i.e.&nbsp;Energy per kg of hydrogen = Energy per gallon of diesel</p>
+<p><span class="math inline">\(ED_{diesel} (45.5) \approx ED_{gasoline} (45.8) &lt; ED_{Hydrogen}(120)\)</span> in MJ/kg</p>
+</div></div><div class="ddm">
+<section id="green-hydrogen-her-opportunities-and-challenges" class="level2 ddm-head" onclick="toggleBox(this)">
+<h2 class="anchored" data-anchor-id="green-hydrogen-her-opportunities-and-challenges">Green Hydrogen &amp; HER: Opportunities and Challenges</h2>
+</section>
+<div class="ddm-box">
+<p>Green hydrogen, also known as <em>renewable hydrogen</em>, is hydrogen produced using only renewable energy, typically through the <strong>water electrolysis (WE)</strong> process. This process offers several advantages for sustainable energy systems.</p>
+<section id="advantages-of-water-electrolysis-we" class="level3">
+<h3 class="anchored" data-anchor-id="advantages-of-water-electrolysis-we">Advantages of Water Electrolysis (WE)</h3>
+<ul>
+<li>The <strong>hydrogen evolution reaction (HER)</strong> can be performed at <strong>room temperature and atmospheric pressure</strong>, making it operationally efficient.<br>
+</li>
+<li>It enables <strong>selective production</strong> of hydrogen (H₂) and oxygen (O₂), eliminating the need for gas separation steps[^10][^11].<br>
+</li>
+<li>The <strong>feedstock (H₂O)</strong> and <strong>products (O₂ and H₂)</strong> are environmentally friendly and sustainable.</li>
+</ul>
+</section>
+<section id="challenges-in-her" class="level3">
+<h3 class="anchored" data-anchor-id="challenges-in-her">Challenges in HER</h3>
+<p>Despite its advantages, HER presents several limitations:</p>
+<ul>
+<li><strong>High electricity consumption</strong> is a major challenge for large-scale implementation[^12].<br>
+</li>
+<li>The process heavily depends on <strong>optimized electrocatalysts</strong> to reduce energy barriers and increase efficiency.</li>
+</ul>
+</section>
+<section id="role-of-electrocatalysts" class="level3">
+<h3 class="anchored" data-anchor-id="role-of-electrocatalysts">Role of Electrocatalysts</h3>
+<p>The performance of HER (and the oxygen evolution reaction, OER) is strongly influenced by the <strong>type of electrocatalyst</strong> used.</p>
+<section id="state-of-the-art-catalysts" class="level4">
+<h4 class="anchored" data-anchor-id="state-of-the-art-catalysts">State-of-the-Art Catalysts</h4>
+<ul>
+<li><strong>Platinum (Pt)</strong> is currently the most efficient catalyst for HER, requiring <strong>very low overpotentials</strong> even at high reaction rates.<br>
+</li>
+<li><strong>IrO₂ and RuO₂</strong> are among the best-known catalysts for the <strong>OER</strong>.</li>
+</ul>
+</section>
+</section>
+<section id="need-for-alternatives" class="level3">
+<h3 class="anchored" data-anchor-id="need-for-alternatives">Need for Alternatives</h3>
+<p>To support large-scale hydrogen production, research is focused on finding <strong>low-cost</strong>, <strong>abundant</strong>, and <strong>high-performance electrocatalysts</strong> that can rival the efficiency of noble metals.</p>
+</section>
+</div>
+</div>
+<div class="ddm">
+<div class="ddm-head" onclick="toggleBox(this)">
+<p>Hydrogen Evolution Reaction: Some chemistry</p>
+</div>
+<div class="ddm-box">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 267.78 216.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 212)">
+<title>
+HER_Mechanism
+</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-212 263.78,-212 263.78,4 -4,4"></polygon> <!-- Volmer --> <g id="node1" class="node">
+<title>
+Volmer
+</title>
+<polygon fill="lightblue" stroke="lightblue" points="189.5,-207.8 86.84,-207.8 86.84,-166.6 189.5,-166.6 189.5,-207.8"></polygon> <text text-anchor="middle" x="138.17" y="-191.4" font-family="Times,serif" font-size="14.00">Step 1: Volmer</text> <text text-anchor="middle" x="138.17" y="-174.6" font-family="Times,serif" font-size="14.00">H⁺ + e⁻ → H*</text> </g> <!-- Heyrovsky --> <g id="node2" class="node">
+<title>
+Heyrovsky
+</title>
+<polygon fill="lightblue" stroke="lightblue" points="138.5,-130.6 -0.17,-130.6 -0.17,-71.8 138.5,-71.8 138.5,-130.6"></polygon> <text text-anchor="middle" x="69.17" y="-113.8" font-family="Times,serif" font-size="14.00">Step 2A: Heyrovsky</text> <text text-anchor="middle" x="69.17" y="-97" font-family="Times,serif" font-size="14.00">H* + H⁺ + e⁻ → H₂</text> <text text-anchor="middle" x="69.17" y="-80.2" font-family="Times,serif" font-size="14.00">(High potential)</text> </g> <!-- Volmer&#45;&gt;Heyrovsky --> <g id="edge1" class="edge">
+<title>
+Volmer-&gt;Heyrovsky
+</title>
+<path fill="none" stroke="black" d="M121.82,-166.29C114.97,-157.95 106.78,-147.99 98.93,-138.43"></path> <polygon fill="black" stroke="black" points="101.51,-136.05 92.45,-130.55 96.1,-140.5 101.51,-136.05"></polygon> </g> <!-- Tafel --> <g id="node3" class="node">
+<title>
+Tafel
+</title>
+<polygon fill="lightblue" stroke="lightblue" points="259.89,-121.8 156.44,-121.8 156.44,-80.6 259.89,-80.6 259.89,-121.8"></polygon> <text text-anchor="middle" x="208.17" y="-105.4" font-family="Times,serif" font-size="14.00">Step 2B: Tafel</text> <text text-anchor="middle" x="208.17" y="-88.6" font-family="Times,serif" font-size="14.00">H* + H* → H₂</text> </g> <!-- Volmer&#45;&gt;Tafel --> <g id="edge3" class="edge">
+<title>
+Volmer-&gt;Tafel
+</title>
+<path fill="none" stroke="black" d="M154.76,-166.29C163.82,-155.41 175.19,-141.77 185.11,-129.87"></path> <polygon fill="black" stroke="black" points="187.98,-131.89 191.7,-121.96 182.61,-127.41 187.98,-131.89"></polygon> </g> <!-- H2 --> <g id="node4" class="node">
+<title>
+H2
+</title>
+<ellipse fill="lightgreen" stroke="lightgreen" cx="138.17" cy="-18" rx="46.94" ry="18"></ellipse> <text text-anchor="middle" x="138.17" y="-13.8" font-family="Times,serif" font-size="14.00">H₂ (gas)</text> </g> <!-- Heyrovsky&#45;&gt;H2 --> <g id="edge2" class="edge">
+<title>
+Heyrovsky-&gt;H2
+</title>
+<path fill="none" stroke="black" d="M93.3,-71.8C101.16,-62.56 109.8,-52.38 117.39,-43.45"></path> <polygon fill="black" stroke="black" points="120.2,-45.55 124.01,-35.66 114.86,-41.02 120.2,-45.55"></polygon> </g> <!-- Tafel&#45;&gt;H2 --> <g id="edge4" class="edge">
+<title>
+Tafel-&gt;H2
+</title>
+<path fill="none" stroke="black" d="M191.22,-80.54C181.49,-69.26 169.2,-54.99 158.89,-43.04"></path> <polygon fill="black" stroke="black" points="161.31,-40.49 152.13,-35.2 156.01,-45.06 161.31,-40.49"></polygon> </g> </g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<p>There is a choice on the reduction process. Nevertheless, the electrocatalyst’s task is to facilitate the adsorption of <span class="math inline">\(H^+\)</span>.</p>
+<p>The key half-reaction for hydrogen production in water splitting occurs at the cathode and involves the transfer of two highly dependent electrons in environmental conditions.</p>
+<section id="reason-why-pt-is-used" class="level3">
+<h3 class="anchored" data-anchor-id="reason-why-pt-is-used">Reason why Pt is used?</h3>
+<p>The free energy from absorption of H in Pt is near to the thermoneutral state (ΔGH* ≈ 0). That is why Pt is widely recognized as the greatest HER electrocatalyst available to date.</p>
+<p>The Tafel step in the high potential of the HER mechanism is insignificant, and the Volmer–Heyrovsky mechanism is used to carry out the reaction.</p>
+<p>Reason?</p>
+<p>High potential here means a more negative electrode potential (relative to a reference electrode like RHE). In other words, we are talking about conditions where the driving force for HER is strong.</p>
+<p>At low overpotentials, the Tafel step (recombination of two adsorbed H atoms) can dominate.</p>
+<p>At high (negative) potentials, the Heyrovsky step (involving another electron transfer) becomes kinetically more favorable.</p>
+<p>Thus, the HER tends to proceed via the Volmer–Heyrovsky mechanism, and the Tafel step becomes negligible.</p>
+</section>
+</div>
+</div>
+<section id="strategies" class="level2">
+<h2 class="anchored" data-anchor-id="strategies">Strategies</h2>
+<p>doping, crystallization control, structural engineering, carbon nanomaterials, and increasing active sites by changing morphology are helpful to improve HER performance. Finally, the challenges and future perspectives in designing functional and stable electrocatalysts for HER in efficient hydrogen production from water-splitting electrolysis will be described.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>https://pubs.acs.org/doi/10.1021/acsomega.3c07911</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script src="../../scripts/leader-line-master/leader-line.min.js"></script>
+
+
+
+</body></html>

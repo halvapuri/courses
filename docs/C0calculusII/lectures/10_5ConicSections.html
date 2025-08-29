@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Worldlines - Conic Sections</title>
+<title>Conic Sections – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -64,22 +65,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-3c90b8450f3be678cdf591e425017e4f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -88,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
@@ -145,52 +153,137 @@ function openCity(evt, cityName) {
 
 
 
+<script>
+//Draws leader between 'from' and 'to' on 'stage'. Uses existing objects if ids exist, otherwise creates them according to given style parameter.
+//lineOptions to stylize.
+//Issues. May need to create id via html if container is to keep equations.
+function drawLeader({
+  
+  containerId = 'stage',
+  from = { id: 'from', text: '', className: '', style: {} },
+  to = { id: 'to', text: '', className: '', style: {} },
+  lineOptions = {}
+}) {
+  // Creates 'from' and 'to' in 'containerId'. Ignores creation if ids already exist and draws a leaderline between them.
+  window.addEventListener('load', () => {
+    const container = document.getElementById(containerId);
+    const elements = { from, to };
+    const createdDivs = {};
+
+    for (const key in elements) {
+      const { id, text, className, style } = elements[key];
+      let el = document.getElementById(id);
+
+      if (!el || !container.contains(el)) {
+        el = document.createElement('div');
+        el.id = id;
+        el.textContent = text;
+        el.className = className || 'anchor80-line';
+        Object.assign(el.style, {
+          position: 'relative',
+          ...style
+        });
+        container.appendChild(el);
+      }
+
+      createdDivs[key] = el;
+    }
+
+    new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
+  });
+}
+
+</script>
+
 
 <link rel="stylesheet" href="../../css/buttons.css">
 <link rel="stylesheet" href="../../css/tabs.css">
 <link rel="stylesheet" href="../../css/callouts.css">
+<link rel="stylesheet" href="../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../css/shapes.css">
+<link rel="stylesheet" href="../../css/leaders.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../index.html" rel="" target="" aria-current="page">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../C0calculusI/home_calculusI.html">
+ <span class="dropdown-text">Calculus I</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0calculusII/home_calculusII.html">
+ <span class="dropdown-text">Calculus II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0ode/home_ode.html">
+ <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0noneqthermo/home_noneqthermo.html">
+ <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
+        <li>
+    <a class="dropdown-item" href="../../D0abinit/home_abinit.html">
+ <span class="dropdown-text">Ab initio calculation</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-</div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Conic Sections</li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Conic Sections</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -199,10 +292,10 @@ function openCity(evt, cityName) {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../_figs/hugorheinholdchimp.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -214,9 +307,9 @@ function openCity(evt, cityName) {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Courses</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -233,17 +326,35 @@ function openCity(evt, cityName) {
  <span class="menu-text">Calculus II</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ODEs &amp; Lin. Alg.</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Under development</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Many-Body Systems</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
@@ -253,13 +364,7 @@ function openCity(evt, cityName) {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Differential Geometry</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
+ <span class="menu-text">Stochastic Processes</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -285,7 +390,7 @@ function openCity(evt, cityName) {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -321,12 +426,14 @@ function openCity(evt, cityName) {
   </div>
   
 
+
 </header>
+
 
 <section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section"></h2>
 <div class="cell" data-execution_count="1">
-<details>
+<details class="code-fold">
 <summary>Some plotting routines. Click to expand</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
@@ -466,12 +573,16 @@ function openCity(evt, cityName) {
 <span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="10_5ConicSections_files/figure-html/cell-3-output-1.png" width="667" height="638"></p>
+<div>
+<figure class="figure">
+<p><img src="10_5ConicSections_files/figure-html/cell-3-output-1.png" width="667" height="638" class="figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can animate the circles to show how the distances from the focus to a point on the parabola, and a circle on directrix directly under the parabola are the same.</p>
 <div class="cell" data-execution_count="3">
-<details>
+<details class="code-fold">
 <summary>Parabola Animation</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -3943,7 +4054,6 @@ AAAAJal0b28AAAAdZGF0YQAAAAEAAAAATGF2ZjU4Ljc2LjEwMA==
 <span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the figure</span></span>
 <span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-
 <div>                            <div id="17ca6d29-c867-4468-9f5e-b272666e1a80" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("17ca6d29-c867-4468-9f5e-b272666e1a80")) {                    Plotly.newPlot(                        "17ca6d29-c867-4468-9f5e-b272666e1a80",                        [{"mode":"lines","name":"Ellipse","x":[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0],"y":[0.0,0.054926725630168066,0.10963228072226901,0.16389638531393172,0.21750053700814315,0.270228890805282,0.32186912823475117,0.37221331228652216,0.42105872470008454,0.4682086822393328,0.5134733286665403,0.5566703992264193,0.5976259545619623,0.636175081106841,0.672162555134133,0.7054434677874855,0.7358838085779339,0.7633610049968438,0.7877644160721413,0.8089957778804583,0.8269695992212696,0.8416135058597837,0.8528685319524432,0.860689357481564,0.8650444907430522,0.865916395152381,0.863301559858227,0.8572105138794299,0.84766778370835,0.8347117945513387,0.8183947156039958,0.7987822499842309,0.7759533701689972,0.7499999999999998,0.7210266445388293,0.6891499692619618,0.6544983302900641,0.6172112575431955,0.577438892903068,0.5353413856446787,0.4910882475717049,0.44485767045229635,0.3968358085037195,0.3472160288150237,0.29619813272602397,0.24398755129782143,0.1907945181144288,0.1368332227463253,0.08232094828465568,0.027477196418909857,-0.02747719641891003,-0.08232094828465585,-0.13683322274632548,-0.19079451811442857,-0.24398755129782157,-0.29619813272602374,-0.34721602881502384,-0.3968358085037193,-0.44485767045229646,-0.4910882475717047,-0.5353413856446789,-0.5774388929030679,-0.6172112575431956,-0.654498330290064,-0.6891499692619619,-0.7210266445388291,-0.7500000000000001,-0.7759533701689973,-0.7987822499842309,-0.8183947156039957,-0.8347117945513388,-0.84766778370835,-0.8572105138794299,-0.8633015598582269,-0.865916395152381,-0.8650444907430522,-0.860689357481564,-0.8528685319524433,-0.8416135058597837,-0.8269695992212696,-0.8089957778804584,-0.7877644160721412,-0.7633610049968437,-0.7358838085779339,-0.7054434677874856,-0.6721625551341328,-0.6361750811068408,-0.5976259545619623,-0.5566703992264196,-0.51347332866654,-0.46820868223933276,-0.42105872470008465,-0.3722133122865224,-0.3218691282347509,-0.27022889080528195,-0.21750053700814329,-0.1638963853139313,-0.10963228072226881,-0.05492672563016808,-2.1211504774498136e-16],"type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"X"},"scaleanchor":"y","range":[-2,2]},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"Y"},"constrain":"domain","range":[-2,2]},"title":{"text":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.50"},"showlegend":false,"sliders":[{"active":0,"currentvalue":{"prefix":"Eccentricity: ","visible":true,"xanchor":"right"},"len":0.9,"pad":{"b":10},"steps":[{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.0634239196565645,0.12659245357374926,0.18925124436041021,0.2511479871810792,0.3120334456984871,0.3716624556603276,0.42979491208917164,0.4861967361004687,0.5406408174555976,0.5929079290546404,0.6427876096865393,0.690079011482112,0.7345917086575333,0.7761464642917568,0.8145759520503357,0.8497254299495144,0.8814533634475821,0.9096319953545183,0.9341478602651067,0.9549022414440739,0.9718115683235417,0.984807753012208,0.9938384644612541,0.998867339183008,0.9998741276738751,0.9968547759519424,0.9898214418809327,0.9788024462147787,0.963842158559942,0.9450008187146685,0.9223542941045814,0.8959937742913359,0.8660254037844385,0.8325698546347714,0.795761840530832,0.7557495743542583,0.7126941713788627,0.6667690005162917,0.6181589862206051,0.5670598638627709,0.5136773915734063,0.4582265217274105,0.4009305354066136,0.3420201433256689,0.28173255684142967,0.2203105327865408,0.1580013959733499,0.09505604330418244,0.031727933498067656,-0.03172793349806786,-0.09505604330418263,-0.15800139597335008,-0.22031053278654056,-0.28173255684142984,-0.34202014332566866,-0.4009305354066138,-0.4582265217274103,-0.5136773915734064,-0.5670598638627706,-0.6181589862206053,-0.6667690005162915,-0.7126941713788629,-0.7557495743542582,-0.7957618405308321,-0.8325698546347713,-0.8660254037844388,-0.895993774291336,-0.9223542941045814,-0.9450008187146683,-0.9638421585599422,-0.9788024462147787,-0.9898214418809327,-0.9968547759519423,-0.9998741276738751,-0.998867339183008,-0.9938384644612541,-0.9848077530122081,-0.9718115683235417,-0.9549022414440739,-0.9341478602651068,-0.9096319953545182,-0.881453363447582,-0.8497254299495144,-0.8145759520503358,-0.7761464642917566,-0.7345917086575332,-0.690079011482112,-0.6427876096865396,-0.5929079290546402,-0.5406408174555974,-0.4861967361004688,-0.4297949120891719,-0.37166245566032724,-0.31203344569848707,-0.2511479871810794,-0.18925124436040974,-0.12659245357374904,-0.06342391965656452,-2.4492935982947064e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.00"}],"label":"0.00","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.0631060032703413,0.12595790093838355,0.18830261059540324,0.24988909209978827,0.3104693584270854,0.3697994742262221,0.42764053806106994,0.48375964438220903,0.537930821355373,0.5899359407702703,0.6395655963659,0.6866199470356564,0.7309095215169319,0.7722559813250198,0.8104928388592485,0.845466127789788,0.8770350230257197,0.905072407767973,0.9294653853638114,0.9501157339018059,0.9669403017168056,0.9798713422123461,0.9888567866522818,0.99386045382321,0.9948621957234463,0.991857978691917,0.9848598996502884,0.9738961373929329,0.9590108391208692,0.9402639426765655,0.917730935195403,0.8915025491456235,0.8616843969807041,0.8283965458752823,0.7917730342570194,0.7519613320811623,0.7091217470210808,0.6634267789658477,0.6150604254240662,0.5642174406308472,0.5111025513412372,0.4559296324678371,0.39892084588201143,0.34030574584644613,0.28032035468114924,0.2192062123848742,0.15720940403879163,0.09457956890872436,0.031568895235931614,-0.031568895235931815,-0.09457956890872456,-0.15720940403879183,-0.21920621238487395,-0.2803203546811494,-0.3403057458464459,-0.3989208458820116,-0.45592963246783685,-0.5111025513412373,-0.564217440630847,-0.6150604254240665,-0.6634267789658475,-0.709121747021081,-0.7519613320811622,-0.7917730342570195,-0.8283965458752822,-0.8616843969807044,-0.8915025491456237,-0.917730935195403,-0.9402639426765654,-0.9590108391208693,-0.9738961373929329,-0.9848598996502884,-0.9918579786919169,-0.9948621957234463,-0.99386045382321,-0.9888567866522818,-0.9798713422123462,-0.9669403017168056,-0.9501157339018059,-0.9294653853638115,-0.9050724077679729,-0.8770350230257196,-0.845466127789788,-0.8104928388592486,-0.7722559813250196,-0.7309095215169318,-0.6866199470356564,-0.6395655963659004,-0.5899359407702701,-0.5379308213553728,-0.48375964438220914,-0.4276405380610702,-0.3697994742262218,-0.31046935842708534,-0.24988909209978843,-0.18830261059540276,-0.12595790093838333,-0.06310600327034131,-2.4370163600889013e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.10"}],"label":"0.10","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.06214249625834366,0.1240347666170618,0.18542759274791104,0.24607376740827785,0.30572908985749436,0.364153349167032,0.42111129146512943,0.4763735672211031,0.5297176547549595,0.5809287562536631,0.6298006626861179,0.6761365841341553,0.7197499421960786,0.7604651212720354,0.7981181757060557,0.8325574899373446,0.863644389002634,0.8912536969313152,0.9152742407848928,0.9356092983111699,0.9521769874106195,0.9649105958467011,0.9737588498724904,0.9786861206919615,0.9796725679245739,0.9767142194954823,0.9698229876296801,0.9590266208856735,0.9443685924218302,0.9259079249453144,0.9037189530484763,0.8778910238896852,0.8485281374238568,0.8157485276313416,0.7796841864314143,0.7404803321974034,0.6982948250135522,0.6532975310281792,0.605669638462648,0.555602928030353,0.5032990007034708,0.44896846593700207,0.39283009361882715,0.33510993316058335,0.27604040327646423,0.2158593561150915,0.15480911951285756,0.09313552122525938,0.031086899065289407,-0.031086899065289605,-0.09313552122525957,-0.15480911951285775,-0.21585935611509124,-0.2760404032764644,-0.33510993316058313,-0.39283009361882726,-0.44896846593700185,-0.5032990007034709,-0.5556029280303528,-0.6056696384626482,-0.653297531028179,-0.6982948250135524,-0.7404803321974033,-0.7796841864314145,-0.8157485276313415,-0.8485281374238571,-0.8778910238896853,-0.9037189530484763,-0.9259079249453143,-0.9443685924218304,-0.9590266208856735,-0.9698229876296801,-0.9767142194954822,-0.9796725679245739,-0.9786861206919615,-0.9737588498724904,-0.9649105958467012,-0.9521769874106195,-0.9356092983111699,-0.915274240784893,-0.8912536969313151,-0.8636443890026338,-0.8325574899373446,-0.7981181757060558,-0.7604651212720351,-0.7197499421960785,-0.6761365841341553,-0.6298006626861182,-0.5809287562536629,-0.5297176547549594,-0.4763735672211032,-0.4211112914651297,-0.3641533491670317,-0.3057290898574943,-0.24607376740827802,-0.18542759274791057,-0.12403476661706157,-0.06214249625834367,-2.3998078184349537e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.20"}],"label":"0.20","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.060502563267915664,0.12076150406755413,0.18053418091233295,0.239579910328992,0.29766093600499266,0.3545433861492739,0.4099982152114108,0.4638021261672066,0.5157384696569974,0.5655981163561588,0.6131802990650846,0.6582934211278413,0.7007558279242769,0.7403965383290644,0.7770559331923454,0.8105863980697106,0.8408529176134673,0.867733619231792,0.8911202638266443,0.9109186816344113,0.9270491514143089,0.9394467214576824,0.9480614711256122,0.952858711861708,0.9538191268706816,0.9509388489002643,0.9442294758132667,0.9337180238870789,0.9194468190286562,0.9014733263430307,0.879869918741615,0.854723585522032,0.8261355820929152,0.7942210222541164,0.7591084146740608,0.7209391454306977,0.6798669086996642,0.6360570878820864,0.5896860896639927,0.5409406336888536,0.4900170007034749,0.4371202422047107,0.3824633547694534,0.32626642239259784,0.26875573028646765,0.21016285371013457,0.15072372549758,0.0906776860394464,0.03026651954375662,-0.030266519543756813,-0.09067768603944658,-0.1507237254975802,-0.21016285371013432,-0.2687557302864678,-0.3262664223925977,-0.3824633547694536,-0.43712024220471046,-0.490017000703475,-0.5409406336888534,-0.5896860896639929,-0.6360570878820861,-0.6798669086996643,-0.7209391454306976,-0.7591084146740609,-0.7942210222541163,-0.8261355820929155,-0.8547235855220321,-0.879869918741615,-0.9014733263430306,-0.9194468190286563,-0.9337180238870789,-0.9442294758132667,-0.9509388489002641,-0.9538191268706816,-0.952858711861708,-0.9480614711256122,-0.9394467214576825,-0.9270491514143089,-0.9109186816344113,-0.8911202638266444,-0.8677336192317919,-0.8408529176134671,-0.8105863980697106,-0.7770559331923456,-0.7403965383290643,-0.7007558279242768,-0.6582934211278413,-0.613180299065085,-0.5655981163561585,-0.5157384696569973,-0.4638021261672067,-0.409998215211411,-0.35454338614927355,-0.2976609360049926,-0.23957991032899217,-0.1805341809123325,-0.12076150406755393,-0.06050256326791568,-2.3364771791928897e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.30"}],"label":"0.30","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.05812898253940089,0.11602390018237779,0.17345163052923288,0.2301809323786189,0.28598337685424197,0.3406342672073239,0.393913543591104,0.4456066691641733,0.4955054939546157,0.5434090930064793,0.5891245754336591,0.6324678611234157,0.6732644219620187,0.7113499845978631,0.7465711919122764,0.7787862205345092,0.8078653519143932,0.8336914946531598,0.8561606559891763,0.8751823605400932,0.8906800146152757,0.9025912146315637,0.9108679983904753,0.9154770382050527,0.9163997750986944,0.913632493535604,0.9071863363819413,0.8970872600374332,0.8833759299181126,0.8661075567110419,0.845351674060361,0.8211918585798449,0.793725393319377,0.763062876040444,0.7293277738779831,0.692655926181809,0.6531949975394936,0.6111038831831913,0.5665520691746173,0.5197189499445002,0.4707931059345211,0.4199715442504371,0.3674589053839959,0.31346663919790463,0.25821215349186005,0.20191793857807472,0.14481067139131334,0.08712030274088325,0.029079131379884014,-0.029079131379884198,-0.08712030274088342,-0.1448106713913135,-0.2019179385780745,-0.2582121534918602,-0.3134666391979044,-0.367458905383996,-0.4199715442504369,-0.4707931059345212,-0.5197189499445001,-0.5665520691746175,-0.6111038831831911,-0.6531949975394938,-0.6926559261818089,-0.7293277738779832,-0.763062876040444,-0.7937253933193773,-0.821191858579845,-0.845351674060361,-0.8661075567110418,-0.8833759299181128,-0.8970872600374332,-0.9071863363819413,-0.913632493535604,-0.9163997750986944,-0.9154770382050527,-0.9108679983904753,-0.9025912146315638,-0.8906800146152757,-0.8751823605400932,-0.8561606559891765,-0.8336914946531597,-0.8078653519143931,-0.7787862205345092,-0.7465711919122765,-0.7113499845978629,-0.6732644219620186,-0.6324678611234157,-0.5891245754336595,-0.5434090930064791,-0.4955054939546156,-0.4456066691641734,-0.39391354359110425,-0.34063426720732365,-0.28598337685424197,-0.23018093237861906,-0.17345163052923243,-0.11602390018237758,-0.0581289825394009,-2.2448146626712507e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.40"}],"label":"0.40","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.054926725630168066,0.10963228072226901,0.16389638531393172,0.21750053700814315,0.270228890805282,0.32186912823475117,0.37221331228652216,0.42105872470008454,0.4682086822393328,0.5134733286665403,0.5566703992264193,0.5976259545619623,0.636175081106841,0.672162555134133,0.7054434677874855,0.7358838085779339,0.7633610049968438,0.7877644160721413,0.8089957778804583,0.8269695992212696,0.8416135058597837,0.8528685319524432,0.860689357481564,0.8650444907430522,0.865916395152381,0.863301559858227,0.8572105138794299,0.84766778370835,0.8347117945513387,0.8183947156039958,0.7987822499842309,0.7759533701689972,0.7499999999999998,0.7210266445388293,0.6891499692619618,0.6544983302900641,0.6172112575431955,0.577438892903068,0.5353413856446787,0.4910882475717049,0.44485767045229635,0.3968358085037195,0.3472160288150237,0.29619813272602397,0.24398755129782143,0.1907945181144288,0.1368332227463253,0.08232094828465568,0.027477196418909857,-0.02747719641891003,-0.08232094828465585,-0.13683322274632548,-0.19079451811442857,-0.24398755129782157,-0.29619813272602374,-0.34721602881502384,-0.3968358085037193,-0.44485767045229646,-0.4910882475717047,-0.5353413856446789,-0.5774388929030679,-0.6172112575431956,-0.654498330290064,-0.6891499692619619,-0.7210266445388291,-0.7500000000000001,-0.7759533701689973,-0.7987822499842309,-0.8183947156039957,-0.8347117945513388,-0.84766778370835,-0.8572105138794299,-0.8633015598582269,-0.865916395152381,-0.8650444907430522,-0.860689357481564,-0.8528685319524433,-0.8416135058597837,-0.8269695992212696,-0.8089957778804584,-0.7877644160721412,-0.7633610049968437,-0.7358838085779339,-0.7054434677874856,-0.6721625551341328,-0.6361750811068408,-0.5976259545619623,-0.5566703992264196,-0.51347332866654,-0.46820868223933276,-0.42105872470008465,-0.3722133122865224,-0.3218691282347509,-0.27022889080528195,-0.21750053700814329,-0.1638963853139313,-0.10963228072226881,-0.05492672563016808,-2.1211504774498136e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.50"}],"label":"0.50","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.050739135725251606,0.10127396285899942,0.1514009954883282,0.2009183897448634,0.24962675655878971,0.29732996452826205,0.34383592967133736,0.388957388880375,0.4325126539644781,0.47432634324371237,0.5142300877492314,0.5520632091856896,0.5876733669260267,0.6209171714334055,0.6516607616402686,0.6797803439596115,0.7051626907580657,0.7277055962836148,0.7473182882120853,0.7639217931552591,0.7774492546588334,0.7878462024097664,0.7950707715690033,0.7990938713464064,0.7998993021391001,0.797483820761554,0.7918571535047462,0.783041956971823,0.7710737268479537,0.7560006549717349,0.7378834352836652,0.7167950194330688,0.6928203230275508,0.6660558837078172,0.6366094724246656,0.6045996594834067,0.5701553371030902,0.5334152004130334,0.49452718897648407,0.4536478910902167,0.4109419132587251,0.36658121738192845,0.32074442832529093,0.2736161146605351,0.22538604547314375,0.17624842622923265,0.1264011167786799,0.07604483464334595,0.025382346798454126,-0.02538234679845429,-0.0760448346433461,-0.12640111677868007,-0.17624842622923245,-0.2253860454731439,-0.2736161146605349,-0.32074442832529104,-0.3665812173819283,-0.41094191325872514,-0.4536478910902165,-0.49452718897648423,-0.5334152004130333,-0.5701553371030904,-0.6045996594834065,-0.6366094724246657,-0.6660558837078171,-0.6928203230275511,-0.7167950194330688,-0.7378834352836652,-0.7560006549717347,-0.7710737268479537,-0.783041956971823,-0.7918571535047462,-0.7974838207615539,-0.7998993021391001,-0.7990938713464064,-0.7950707715690033,-0.7878462024097665,-0.7774492546588334,-0.7639217931552591,-0.7473182882120855,-0.7277055962836146,-0.7051626907580656,-0.6797803439596115,-0.6516607616402688,-0.6209171714334053,-0.5876733669260266,-0.5520632091856896,-0.5142300877492317,-0.47432634324371215,-0.43251265396447797,-0.38895738888037507,-0.3438359296713376,-0.2973299645282618,-0.24962675655878966,-0.20091838974486353,-0.1514009954883278,-0.10127396285899924,-0.05073913572525162,-1.9594348786357652e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.60"}],"label":"0.60","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.045293738288500744,0.09040509467905639,0.13515242166125432,0.17935553754262742,0.22283645197673577,0.26542008266747097,0.3069349603636685,0.3472139193052633,0.38609477034080497,0.4234209540059276,0.45904217093305566,0.49281498705391025,0.5246034111578775,0.554279442480617,0.5817235861179625,0.6068253341897258,0.6294836108159275,0.6496071791136915,0.6671150085759706,0.6819366013527998,0.6940122761212553,0.7032934084010788,0.7097426263482973,0.7133339612384486,0.7140529520334694,0.7118967036111914,0.7068738984229767,0.6990047615325504,0.6883209791768075,0.6748655711765201,0.658692717710703,0.6398675411521552,0.6184658438426489,0.5945738028636545,0.5682876230316465,0.5397131495152658,0.50896544163418,0.4761683095558148,0.4414538157555057,0.404961743247523,0.3668390327282061,0.32723919089764375,0.2863216723423696,0.24425123746802319,0.20119728906734502,0.15733319019492242,0.11283556609535367,0.06788359299572887,0.022658276626201734,-0.022658276626201877,-0.067883592995729,-0.1128355660953538,-0.15733319019492223,-0.20119728906734513,-0.24425123746802302,-0.2863216723423697,-0.3272391908976436,-0.36683903272820617,-0.4049617432475228,-0.44145381575550585,-0.47616830955581463,-0.5089654416341801,-0.5397131495152657,-0.5682876230316466,-0.5945738028636544,-0.6184658438426491,-0.6398675411521553,-0.658692717710703,-0.67486557117652,-0.6883209791768076,-0.6990047615325504,-0.7068738984229767,-0.7118967036111914,-0.7140529520334694,-0.7133339612384486,-0.7097426263482973,-0.7032934084010788,-0.6940122761212553,-0.6819366013527998,-0.6671150085759707,-0.6496071791136914,-0.6294836108159275,-0.6068253341897258,-0.5817235861179626,-0.5542794424806169,-0.5246034111578775,-0.49281498705391025,-0.4590421709330559,-0.42342095400592744,-0.3860947703408049,-0.34721391930526335,-0.30693496036366874,-0.26542008266747075,-0.2228364519767357,-0.17935553754262756,-0.135152421661254,-0.09040509467905623,-0.04529373828850075,-1.7491454932709828e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.70"}],"label":"0.70","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.03805435179393869,0.07595547214424954,0.1135507466162461,0.1506887923086475,0.18722006741909222,0.2229974733961965,0.2578769472535029,0.29171804166028115,0.3243844904733585,0.35574475743278416,0.38567256581192344,0.4140474068892671,0.44075502519451987,0.465687878575054,0.48874557123020135,0.5098352579697085,0.5288720180685491,0.5457791972127108,0.5604887161590638,0.5729413448664442,0.5830869409941248,0.5908846518073246,0.5963030786767524,0.5993204035098046,0.5999244766043249,0.5981128655711653,0.5938928651285594,0.5872814677288671,0.5783052951359651,0.5670004912288009,0.5534125764627487,0.5375962645748014,0.519615242270663,0.49954191278086274,0.4774571043184991,0.4534497446125549,0.4276165028273175,0.40006140030977494,0.37089539173236297,0.3402359183176624,0.3082064349440437,0.27493591303644627,0.24055832124396812,0.20521208599540128,0.16903953410485775,0.13218631967192446,0.09480083758400991,0.057033625982509446,0.01903676009884059,-0.01903676009884071,-0.057033625982509564,-0.09480083758401003,-0.13218631967192432,-0.16903953410485786,-0.20521208599540114,-0.2405583212439682,-0.2749359130364461,-0.30820643494404376,-0.3402359183176623,-0.3708953917323631,-0.40006140030977483,-0.42761650282731767,-0.4534497446125548,-0.47745710431849914,-0.4995419127808627,-0.5196152422706631,-0.5375962645748015,-0.5534125764627487,-0.5670004912288009,-0.5783052951359652,-0.5872814677288671,-0.5938928651285594,-0.5981128655711653,-0.5999244766043249,-0.5993204035098046,-0.5963030786767524,-0.5908846518073247,-0.5830869409941248,-0.5729413448664442,-0.5604887161590639,-0.5457791972127108,-0.5288720180685491,-0.5098352579697085,-0.4887455712302014,-0.46568787857505384,-0.4407550251945198,-0.4140474068892671,-0.38567256581192366,-0.35574475743278405,-0.3243844904733584,-0.2917180416602812,-0.2578769472535031,-0.2229974733961963,-0.1872200674190922,-0.1506887923086476,-0.11355074661624583,-0.07595547214424941,-0.03805435179393871,-1.4695761589768236e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.80"}],"label":"0.80","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.027645845638620752,0.055180371214283735,0.08249270491063498,0.10947286959959726,0.13601222568044913,0.1620039085331534,0.18734325882446465,0.21192824393412563,0.235659868804217,0.258442574557316,0.280184623278369,0.300798467410897,0.32020110228010595,0.33831440032341675,0.3550654256825846,0.37038672789065824,0.38421661347120384,0.3964993943561604,0.40718561212203536,0.4162322371415194,0.423602841848609,0.42926774741955775,0.4332041432790245,0.4353961789502096,0.4358350278791306,0.43451892297603956,0.4314531637308703,0.4266500948740625,0.42012905666868927,0.4119163070340439,0.40204491581426627,0.3905546316177524,0.37749172176353735,0.3629087859791317,0.3468645445999825,0.32942360212340893,0.310656187069092,0.29063786919361345,0.26944925519771684,0.24717566415157496,0.22390678394500493,0.1997363101459927,0.17476156872170842,0.14908312414118877,0.12280437443771203,0.09603113486141354,0.06887121179861863,0.041433968673575725,0.013829885580545582,-0.01382988558054567,-0.04143396867357581,-0.06887121179861871,-0.09603113486141344,-0.12280437443771211,-0.14908312414118866,-0.1747615687217085,-0.19973631014599258,-0.22390678394500496,-0.24717566415157485,-0.26944925519771695,-0.29063786919361334,-0.3106561870690921,-0.3294236021234089,-0.34686454459998256,-0.3629087859791316,-0.3774917217635375,-0.39055463161775245,-0.40204491581426627,-0.41191630703404386,-0.4201290566686893,-0.4266500948740625,-0.4314531637308703,-0.4345189229760395,-0.4358350278791306,-0.4353961789502096,-0.4332041432790245,-0.42926774741955775,-0.423602841848609,-0.4162322371415194,-0.4071856121220354,-0.3964993943561604,-0.3842166134712038,-0.37038672789065824,-0.35506542568258465,-0.33831440032341664,-0.3202011022801059,-0.300798467410897,-0.2801846232783692,-0.25844257455731595,-0.23565986880421694,-0.21192824393412568,-0.1873432588244648,-0.16200390853315325,-0.13601222568044913,-0.10947286959959734,-0.08249270491063478,-0.05518037121428364,-0.02764584563862076,-1.0676223278027729e-16]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 0.90"}],"label":"0.90","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0,-0.0]]},{"title":"Ellipse with Semi-Major Axis = 1, Eccentricity = 1.00"}],"label":"1.00","method":"update"}],"x":0.1,"xanchor":"left","y":-0.1,"yanchor":"top"},{"active":0,"currentvalue":{"prefix":"Semi-Major Axis: ","visible":true,"xanchor":"right"},"len":0.9,"pad":{"b":10},"steps":[{"args":[{"x":[[0.1,0.09979866764718845,0.09919548128307953,0.09819286972627067,0.09679487013963563,0.09500711177409454,0.09283679330160727,0.09029265382866213,0.0873849377069785,0.08412535328311813,0.08052702575310587,0.0766044443118978,0.07237340381050701,0.06785094115571322,0.06305526670845225,0.05800569095711982,0.05272254676105024,0.04722710747726827,0.041541501300188646,0.03568862215918719,0.029692037532827495,0.02357589355094273,0.017364817766693044,0.01108381999010111,0.0047581915823742185,-0.001586596383480803,-0.007924995685678855,-0.014231483827328523,-0.020480666806519075,-0.026647381369003506,-0.032706796331742165,-0.03863451256931287,-0.044406661260577414,-0.050000000000000024,-0.05539200638661103,-0.060560968713766684,-0.0654860733945285,-0.07014748877063214,-0.07452644496757548,-0.07860530947427875,-0.08236765814298327,-0.08579834132349771,-0.08888354486549234,-0.09161084574320696,-0.09396926207859084,-0.09594929736144975,-0.09754297868854071,-0.09874388886763943,-0.09954719225730846,-0.09994965423831852,-0.09994965423831852,-0.09954719225730846,-0.09874388886763943,-0.09754297868854071,-0.09594929736144975,-0.09396926207859085,-0.09161084574320696,-0.08888354486549235,-0.0857983413234977,-0.08236765814298329,-0.07860530947427874,-0.07452644496757548,-0.07014748877063214,-0.06548607339452853,-0.060560968713766664,-0.05539200638661105,-0.04999999999999996,-0.0444066612605774,-0.03863451256931287,-0.03270679633174219,-0.026647381369003464,-0.020480666806519054,-0.014231483827328523,-0.007924995685678879,-0.001586596383480761,0.004758191582374238,0.011083819990101086,0.017364817766693,0.02357589355094275,0.029692037532827495,0.03568862215918717,0.04154150130018869,0.04722710747726829,0.05272254676105024,0.0580056909571198,0.06305526670845228,0.06785094115571323,0.07237340381050701,0.07660444431189778,0.08052702575310589,0.08412535328311813,0.0873849377069785,0.09029265382866211,0.09283679330160727,0.09500711177409454,0.09679487013963563,0.09819286972627068,0.09919548128307953,0.09979866764718845,0.1]],"y":[[0.0,0.005492672563016807,0.010963228072226902,0.016389638531393174,0.021750053700814315,0.027022889080528203,0.03218691282347512,0.03722133122865222,0.04210587247000846,0.04682086822393328,0.05134733286665403,0.05566703992264193,0.059762595456196235,0.0636175081106841,0.06721625551341331,0.07054434677874856,0.0735883808577934,0.07633610049968438,0.07877644160721414,0.08089957778804584,0.08269695992212696,0.08416135058597837,0.08528685319524432,0.08606893574815641,0.08650444907430523,0.0865916395152381,0.0863301559858227,0.085721051387943,0.084766778370835,0.08347117945513388,0.08183947156039958,0.07987822499842309,0.07759533701689973,0.07499999999999998,0.07210266445388293,0.06891499692619618,0.06544983302900642,0.06172112575431955,0.05774388929030681,0.05353413856446788,0.049108824757170495,0.04448576704522964,0.039683580850371956,0.034721602881502375,0.029619813272602397,0.024398755129782145,0.019079451811442882,0.013683322274632531,0.008232094828465568,0.002747719641890986,-0.0027477196418910035,-0.008232094828465585,-0.013683322274632549,-0.019079451811442858,-0.02439875512978216,-0.029619813272602376,-0.03472160288150239,-0.039683580850371936,-0.04448576704522965,-0.049108824757170474,-0.05353413856446789,-0.05774388929030679,-0.06172112575431957,-0.06544983302900641,-0.0689149969261962,-0.07210266445388291,-0.07500000000000001,-0.07759533701689975,-0.07987822499842309,-0.08183947156039957,-0.08347117945513388,-0.084766778370835,-0.085721051387943,-0.08633015598582269,-0.0865916395152381,-0.08650444907430523,-0.08606893574815641,-0.08528685319524433,-0.08416135058597837,-0.08269695992212696,-0.08089957778804585,-0.07877644160721413,-0.07633610049968437,-0.0735883808577934,-0.07054434677874856,-0.06721625551341329,-0.06361750811068409,-0.059762595456196235,-0.05566703992264196,-0.05134733286665401,-0.046820868223933276,-0.042105872470008465,-0.03722133122865224,-0.03218691282347509,-0.027022889080528197,-0.02175005370081433,-0.016389638531393132,-0.010963228072226881,-0.005492672563016808,-2.121150477449814e-17]]},{"title":"Ellipse with Semi-Major Axis = 0.1, Eccentricity = 0.50"}],"label":"0.1","method":"update"},{"args":[{"x":[[0.2,0.1995973352943769,0.19839096256615907,0.19638573945254134,0.19358974027927126,0.1900142235481891,0.18567358660321454,0.18058530765732425,0.174769875413957,0.16825070656623625,0.16105405150621174,0.1532088886237956,0.14474680762101402,0.13570188231142644,0.1261105334169045,0.11601138191423964,0.10544509352210048,0.09445421495453654,0.08308300260037729,0.07137724431837437,0.05938407506565499,0.04715178710188546,0.03472963553338609,0.02216763998020222,0.009516383164748437,-0.003173192766961606,-0.01584999137135771,-0.028462967654657046,-0.04096133361303815,-0.05329476273800701,-0.06541359266348433,-0.07726902513862574,-0.08881332252115483,-0.10000000000000005,-0.11078401277322206,-0.12112193742753337,-0.130972146789057,-0.14029497754126427,-0.14905288993515095,-0.1572106189485575,-0.16473531628596655,-0.17159668264699543,-0.17776708973098468,-0.18322169148641393,-0.18793852415718168,-0.1918985947228995,-0.19508595737708143,-0.19748777773527887,-0.19909438451461692,-0.19989930847663703,-0.19989930847663703,-0.19909438451461692,-0.19748777773527887,-0.19508595737708143,-0.1918985947228995,-0.1879385241571817,-0.18322169148641393,-0.1777670897309847,-0.1715966826469954,-0.16473531628596658,-0.15721061894855748,-0.14905288993515095,-0.14029497754126427,-0.13097214678905705,-0.12112193742753333,-0.1107840127732221,-0.09999999999999992,-0.0888133225211548,-0.07726902513862574,-0.06541359266348439,-0.05329476273800693,-0.04096133361303811,-0.028462967654657046,-0.015849991371357758,-0.003173192766961522,0.009516383164748477,0.022167639980202172,0.034729635533386,0.0471517871018855,0.05938407506565499,0.07137724431837433,0.08308300260037738,0.09445421495453658,0.10544509352210048,0.1160113819142396,0.12611053341690456,0.13570188231142646,0.14474680762101402,0.15320888862379556,0.16105405150621177,0.16825070656623625,0.174769875413957,0.18058530765732422,0.18567358660321454,0.1900142235481891,0.19358974027927126,0.19638573945254137,0.19839096256615907,0.1995973352943769,0.2]],"y":[[0.0,0.010985345126033615,0.021926456144453804,0.03277927706278635,0.04350010740162863,0.05404577816105641,0.06437382564695024,0.07444266245730444,0.08421174494001692,0.09364173644786657,0.10269466573330806,0.11133407984528386,0.11952519091239247,0.1272350162213682,0.13443251102682663,0.14108869355749712,0.1471767617155868,0.15267220099936876,0.15755288321442829,0.16179915557609167,0.16539391984425392,0.16832270117195675,0.17057370639048863,0.17213787149631282,0.17300889814861045,0.1731832790304762,0.1726603119716454,0.171442102775886,0.16953355674167,0.16694235891026776,0.16367894312079917,0.15975644999684618,0.15519067403379946,0.14999999999999997,0.14420532890776586,0.13782999385239236,0.13089966605801284,0.1234422515086391,0.11548777858061363,0.10706827712893575,0.09821764951434099,0.08897153409045928,0.07936716170074391,0.06944320576300475,0.059239626545204795,0.04879751025956429,0.038158903622885765,0.027366644549265063,0.016464189656931135,0.005495439283781972,-0.005495439283782007,-0.01646418965693117,-0.027366644549265098,-0.038158903622885716,-0.04879751025956432,-0.05923962654520475,-0.06944320576300478,-0.07936716170074387,-0.0889715340904593,-0.09821764951434095,-0.10706827712893578,-0.11548777858061358,-0.12344225150863913,-0.13089966605801281,-0.1378299938523924,-0.14420532890776583,-0.15000000000000002,-0.1551906740337995,-0.15975644999684618,-0.16367894312079914,-0.16694235891026776,-0.16953355674167,-0.171442102775886,-0.17266031197164539,-0.1731832790304762,-0.17300889814861045,-0.17213787149631282,-0.17057370639048866,-0.16832270117195675,-0.16539391984425392,-0.1617991555760917,-0.15755288321442826,-0.15267220099936873,-0.1471767617155868,-0.14108869355749712,-0.13443251102682657,-0.12723501622136818,-0.11952519091239247,-0.11133407984528391,-0.10269466573330802,-0.09364173644786655,-0.08421174494001693,-0.07444266245730448,-0.06437382564695018,-0.05404577816105639,-0.04350010740162866,-0.032779277062786265,-0.021926456144453762,-0.010985345126033616,-4.242300954899628e-17]]},{"title":"Ellipse with Semi-Major Axis = 0.2, Eccentricity = 0.50"}],"label":"0.2","method":"update"},{"args":[{"x":[[0.3,0.2993960029415653,0.2975864438492386,0.294578609178812,0.29038461041890684,0.28502133532228363,0.27851037990482175,0.27087796148598636,0.26215481312093547,0.25237605984935435,0.24158107725931757,0.2298133329356934,0.21712021143152102,0.20355282346713965,0.18916580012535675,0.17401707287135945,0.1581676402831507,0.1416813224318048,0.12462450390056592,0.10706586647756157,0.08907611259848247,0.07072768065282818,0.05209445330007912,0.03325145997030333,0.014274574747122654,-0.004759789150442408,-0.02377498705703656,-0.042694451481985564,-0.06144200041955722,-0.0799421441070105,-0.0981203889952265,-0.1159035377079386,-0.13321998378173222,-0.15000000000000005,-0.16617601915983307,-0.18168290614130003,-0.1964582201835855,-0.21044246631189642,-0.22357933490272638,-0.23581592842283625,-0.2471029744289498,-0.25739502397049313,-0.266650634596477,-0.27483253722962087,-0.2819077862357725,-0.2878478920843492,-0.2926289360656221,-0.2962316666029183,-0.2986415767719254,-0.29984896271495554,-0.29984896271495554,-0.2986415767719254,-0.2962316666029183,-0.2926289360656221,-0.2878478920843492,-0.2819077862357725,-0.27483253722962087,-0.26665063459647703,-0.2573950239704931,-0.24710297442894982,-0.23581592842283622,-0.22357933490272644,-0.21044246631189636,-0.19645822018358555,-0.18168290614129998,-0.16617601915983313,-0.14999999999999988,-0.1332199837817322,-0.1159035377079386,-0.09812038899522656,-0.0799421441070104,-0.06144200041955716,-0.042694451481985564,-0.023774987057036637,-0.004759789150442282,0.014274574747122714,0.03325145997030326,0.05209445330007899,0.07072768065282824,0.08907611259848247,0.1070658664775615,0.12462450390056604,0.14168132243180487,0.1581676402831507,0.17401707287135937,0.18916580012535686,0.20355282346713968,0.21712021143152102,0.22981333293569334,0.2415810772593176,0.25237605984935435,0.26215481312093547,0.2708779614859863,0.2785103799048218,0.28502133532228363,0.29038461041890684,0.294578609178812,0.2975864438492386,0.2993960029415653,0.3]],"y":[[0.0,0.01647801768905042,0.0328896842166807,0.04916891559417951,0.06525016110244294,0.0810686672415846,0.09656073847042536,0.11166399368595664,0.12631761741002537,0.14046260467179986,0.15404199859996207,0.16700111976792578,0.1792877863685887,0.19085252433205227,0.20164876654023992,0.21163304033624564,0.22076514257338015,0.22900830149905313,0.23632932482164237,0.2426987333641375,0.24809087976638086,0.2524840517579351,0.25586055958573295,0.2582068072444692,0.2595133472229157,0.2597749185457143,0.2589904679574681,0.25716315416382896,0.254300335112505,0.2504135383654016,0.24551841468119873,0.23963467499526928,0.23278601105069918,0.22499999999999992,0.21630799336164877,0.20674499077858854,0.19634949908701924,0.18516337726295862,0.17323166787092042,0.1606024156934036,0.14732647427151147,0.1334573011356889,0.11905074255111585,0.10416480864450711,0.08885943981780718,0.07319626538934643,0.05723835543432864,0.04104996682389759,0.0246962844853967,0.008243158925672957,-0.00824315892567301,-0.024696284485396753,-0.041049966823897645,-0.05723835543432857,-0.07319626538934647,-0.08885943981780713,-0.10416480864450715,-0.11905074255111579,-0.13345730113568893,-0.1473264742715114,-0.16060241569340367,-0.17323166787092037,-0.1851633772629587,-0.1963494990870192,-0.20674499077858857,-0.21630799336164874,-0.22500000000000003,-0.2327860110506992,-0.23963467499526928,-0.2455184146811987,-0.25041353836540164,-0.254300335112505,-0.25716315416382896,-0.25899046795746805,-0.2597749185457143,-0.2595133472229157,-0.2582068072444692,-0.25586055958573295,-0.2524840517579351,-0.24809087976638086,-0.24269873336413753,-0.23632932482164234,-0.2290083014990531,-0.22076514257338015,-0.21163304033624566,-0.20164876654023986,-0.19085252433205224,-0.1792877863685887,-0.16700111976792587,-0.154041998599962,-0.1404626046717998,-0.1263176174100254,-0.11166399368595671,-0.09656073847042526,-0.08106866724158458,-0.06525016110244299,-0.04916891559417939,-0.03288968421668064,-0.016478017689050422,-6.363451432349441e-17]]},{"title":"Ellipse with Semi-Major Axis = 0.3, Eccentricity = 0.50"}],"label":"0.3","method":"update"},{"args":[{"x":[[0.4,0.3991946705887538,0.39678192513231814,0.3927714789050827,0.3871794805585425,0.3800284470963782,0.37134717320642907,0.3611706153146485,0.349539750827914,0.3365014131324725,0.3221081030124235,0.3064177772475912,0.28949361524202805,0.27140376462285287,0.252221066833809,0.23202276382847928,0.21089018704420096,0.18890842990907308,0.16616600520075459,0.14275448863674875,0.11876815013130998,0.09430357420377092,0.06945927106677217,0.04433527996040444,0.019032766329496874,-0.006346385533923212,-0.03169998274271542,-0.05692593530931409,-0.0819226672260763,-0.10658952547601402,-0.13082718532696866,-0.15453805027725148,-0.17762664504230966,-0.2000000000000001,-0.22156802554644411,-0.24224387485506674,-0.261944293578114,-0.28058995508252854,-0.2981057798703019,-0.314421237897115,-0.3294706325719331,-0.34319336529399086,-0.35553417946196936,-0.36644338297282786,-0.37587704831436336,-0.383797189445799,-0.39017191475416285,-0.39497555547055774,-0.39818876902923384,-0.39979861695327407,-0.39979861695327407,-0.39818876902923384,-0.39497555547055774,-0.39017191475416285,-0.383797189445799,-0.3758770483143634,-0.36644338297282786,-0.3555341794619694,-0.3431933652939908,-0.32947063257193315,-0.31442123789711496,-0.2981057798703019,-0.28058995508252854,-0.2619442935781141,-0.24224387485506665,-0.2215680255464442,-0.19999999999999984,-0.1776266450423096,-0.15453805027725148,-0.13082718532696877,-0.10658952547601386,-0.08192266722607622,-0.05692593530931409,-0.031699982742715516,-0.006346385533923044,0.019032766329496954,0.044335279960404345,0.069459271066772,0.094303574203771,0.11876815013130998,0.14275448863674867,0.16616600520075475,0.18890842990907317,0.21089018704420096,0.2320227638284792,0.2522210668338091,0.2714037646228529,0.28949361524202805,0.3064177772475911,0.32210810301242354,0.3365014131324725,0.349539750827914,0.36117061531464845,0.37134717320642907,0.3800284470963782,0.3871794805585425,0.39277147890508274,0.39678192513231814,0.3991946705887538,0.4]],"y":[[0.0,0.02197069025206723,0.04385291228890761,0.0655585541255727,0.08700021480325726,0.10809155632211281,0.12874765129390048,0.14888532491460887,0.16842348988003383,0.18728347289573313,0.20538933146661612,0.22266815969056772,0.23905038182478494,0.2544700324427364,0.26886502205365326,0.28217738711499424,0.2943535234311736,0.3053444019987375,0.31510576642885657,0.32359831115218335,0.33078783968850783,0.3366454023439135,0.34114741278097727,0.34427574299262564,0.3460177962972209,0.3463665580609524,0.3453206239432908,0.342884205551772,0.33906711348334,0.3338847178205355,0.32735788624159834,0.31951289999369237,0.31038134806759893,0.29999999999999993,0.2884106578155317,0.2756599877047847,0.2617993321160257,0.2468845030172782,0.23097555716122725,0.2141365542578715,0.19643529902868198,0.17794306818091857,0.15873432340148783,0.1388864115260095,0.11847925309040959,0.09759502051912858,0.07631780724577153,0.054733289098530126,0.03292837931386227,0.010990878567563945,-0.010990878567564014,-0.03292837931386234,-0.054733289098530195,-0.07631780724577143,-0.09759502051912863,-0.1184792530904095,-0.13888641152600956,-0.15873432340148774,-0.1779430681809186,-0.1964352990286819,-0.21413655425787156,-0.23097555716122717,-0.24688450301727827,-0.26179933211602563,-0.2756599877047848,-0.28841065781553166,-0.30000000000000004,-0.310381348067599,-0.31951289999369237,-0.3273578862415983,-0.3338847178205355,-0.33906711348334,-0.342884205551772,-0.34532062394329077,-0.3463665580609524,-0.3460177962972209,-0.34427574299262564,-0.3411474127809773,-0.3366454023439135,-0.33078783968850783,-0.3235983111521834,-0.3151057664288565,-0.30534440199873747,-0.2943535234311736,-0.28217738711499424,-0.26886502205365315,-0.25447003244273636,-0.23905038182478494,-0.22266815969056783,-0.20538933146661603,-0.1872834728957331,-0.16842348988003386,-0.14888532491460896,-0.12874765129390037,-0.10809155632211279,-0.08700021480325731,-0.06555855412557253,-0.043852912288907524,-0.021970690252067233,-8.484601909799256e-17]]},{"title":"Ellipse with Semi-Major Axis = 0.4, Eccentricity = 0.50"}],"label":"0.4","method":"update"},{"args":[{"x":[[0.5,0.4989933382359422,0.49597740641539767,0.49096434863135335,0.4839743506981781,0.4750355588704727,0.4641839665080363,0.4514632691433106,0.43692468853489247,0.4206267664155906,0.4026351287655293,0.383022221559489,0.36186701905253504,0.3392547057785661,0.31527633354226126,0.2900284547855991,0.2636127338052512,0.23613553738634135,0.20770750650094322,0.17844311079593594,0.14846018766413746,0.11787946775471364,0.08682408883346521,0.05541909995050555,0.02379095791187109,-0.007932981917404014,-0.03962497842839427,-0.07115741913664261,-0.10240333403259537,-0.13323690684501752,-0.16353398165871083,-0.19317256284656434,-0.22203330630288706,-0.2500000000000001,-0.27696003193305513,-0.3028048435688334,-0.3274303669726425,-0.3507374438531607,-0.37263222483787733,-0.39302654737139375,-0.41183829071491634,-0.42899170661748853,-0.4444177243274617,-0.4580542287160348,-0.46984631039295416,-0.4797464868072487,-0.4877148934427035,-0.49371944433819714,-0.4977359612865423,-0.49974827119159254,-0.49974827119159254,-0.4977359612865423,-0.49371944433819714,-0.4877148934427035,-0.4797464868072487,-0.4698463103929542,-0.4580542287160348,-0.44441772432746174,-0.4289917066174885,-0.4118382907149164,-0.3930265473713937,-0.3726322248378774,-0.35073744385316064,-0.3274303669726426,-0.3028048435688333,-0.27696003193305524,-0.2499999999999998,-0.22203330630288698,-0.19317256284656434,-0.16353398165871094,-0.13323690684501732,-0.10240333403259527,-0.07115741913664261,-0.039624978428394395,-0.007932981917403804,0.02379095791187119,0.05541909995050543,0.08682408883346499,0.11787946775471374,0.14846018766413746,0.17844311079593583,0.2077075065009434,0.23613553738634144,0.2636127338052512,0.29002845478559897,0.3152763335422614,0.33925470577856615,0.36186701905253504,0.3830222215594889,0.40263512876552937,0.4206267664155906,0.43692468853489247,0.45146326914331053,0.46418396650803634,0.4750355588704727,0.4839743506981781,0.4909643486313534,0.49597740641539767,0.4989933382359422,0.5]],"y":[[0.0,0.027463362815084033,0.054816140361134504,0.08194819265696586,0.10875026850407157,0.135114445402641,0.16093456411737558,0.18610665614326108,0.21052936235004227,0.2341043411196664,0.25673666433327014,0.2783351996132096,0.29881297728098116,0.3180875405534205,0.3360812775670665,0.35272173389374273,0.36794190428896695,0.3816805024984219,0.39388220803607066,0.40449788894022914,0.4134847996106348,0.42080675292989184,0.4264342659762216,0.430344678740782,0.4325222453715261,0.4329581975761905,0.4316507799291135,0.42860525693971496,0.423833891854175,0.41735589727566935,0.4091973578019979,0.39939112499211543,0.3879766850844986,0.3749999999999999,0.3605133222694146,0.3445749846309809,0.32724916514503205,0.30860562877159775,0.288719446451534,0.26767069282233935,0.24554412378585244,0.22242883522614817,0.19841790425185976,0.17360801440751186,0.14809906636301198,0.12199377564891072,0.0953972590572144,0.06841661137316266,0.04116047414232784,0.013738598209454929,-0.013738598209455015,-0.04116047414232792,-0.06841661137316274,-0.09539725905721429,-0.12199377564891078,-0.14809906636301187,-0.17360801440751192,-0.19841790425185965,-0.22242883522614823,-0.24554412378585236,-0.26767069282233946,-0.28871944645153397,-0.3086056287715978,-0.327249165145032,-0.34457498463098096,-0.36051332226941457,-0.37500000000000006,-0.3879766850844987,-0.39939112499211543,-0.40919735780199784,-0.4173558972756694,-0.423833891854175,-0.42860525693971496,-0.43165077992911344,-0.4329581975761905,-0.4325222453715261,-0.430344678740782,-0.42643426597622164,-0.42080675292989184,-0.4134847996106348,-0.4044978889402292,-0.3938822080360706,-0.38168050249842184,-0.36794190428896695,-0.3527217338937428,-0.3360812775670664,-0.3180875405534204,-0.29881297728098116,-0.2783351996132098,-0.25673666433327,-0.23410434111966638,-0.21052936235004233,-0.1861066561432612,-0.16093456411737544,-0.13511444540264098,-0.10875026850407164,-0.08194819265696565,-0.054816140361134406,-0.02746336281508404,-1.0605752387249068e-16]]},{"title":"Ellipse with Semi-Major Axis = 0.5, Eccentricity = 0.50"}],"label":"0.5","method":"update"},{"args":[{"x":[[0.6,0.5987920058831306,0.5951728876984772,0.589157218357624,0.5807692208378137,0.5700426706445673,0.5570207598096435,0.5417559229719727,0.5243096262418709,0.5047521196987087,0.48316215451863515,0.4596266658713868,0.43424042286304204,0.4071056469342793,0.3783316002507135,0.3480341457427189,0.3163352805663014,0.2833626448636096,0.24924900780113185,0.21413173295512314,0.17815222519696494,0.14145536130565636,0.10418890660015824,0.06650291994060666,0.028549149494245307,-0.009519578300884816,-0.04754997411407312,-0.08538890296397113,-0.12288400083911444,-0.159884288214021,-0.196240777990453,-0.2318070754158772,-0.26643996756346444,-0.3000000000000001,-0.33235203831966614,-0.36336581228260006,-0.392916440367171,-0.42088493262379284,-0.44715866980545277,-0.4716318568456725,-0.4942059488578996,-0.5147900479409863,-0.533301269192954,-0.5496650744592417,-0.563815572471545,-0.5756957841686984,-0.5852578721312443,-0.5924633332058366,-0.5972831535438508,-0.5996979254299111,-0.5996979254299111,-0.5972831535438508,-0.5924633332058366,-0.5852578721312443,-0.5756957841686984,-0.563815572471545,-0.5496650744592417,-0.5333012691929541,-0.5147900479409862,-0.49420594885789965,-0.47163185684567244,-0.4471586698054529,-0.42088493262379273,-0.3929164403671711,-0.36336581228259995,-0.33235203831966625,-0.29999999999999977,-0.2664399675634644,-0.2318070754158772,-0.1962407779904531,-0.1598842882140208,-0.12288400083911433,-0.08538890296397113,-0.04754997411407327,-0.009519578300884565,0.02854914949424543,0.06650291994060652,0.10418890660015798,0.14145536130565647,0.17815222519696494,0.214131732955123,0.24924900780113207,0.28336264486360974,0.3163352805663014,0.34803414574271874,0.3783316002507137,0.40710564693427936,0.43424042286304204,0.4596266658713867,0.4831621545186352,0.5047521196987087,0.5243096262418709,0.5417559229719726,0.5570207598096436,0.5700426706445673,0.5807692208378137,0.589157218357624,0.5951728876984772,0.5987920058831306,0.6]],"y":[[0.0,0.03295603537810084,0.0657793684333614,0.09833783118835902,0.1305003222048859,0.1621373344831692,0.19312147694085072,0.22332798737191328,0.25263523482005074,0.2809252093435997,0.30808399719992413,0.33400223953585156,0.3585755727371774,0.38170504866410454,0.40329753308047983,0.4232660806724913,0.4415302851467603,0.45801660299810626,0.47265864964328475,0.485397466728275,0.4961817595327617,0.5049681035158702,0.5117211191714659,0.5164136144889384,0.5190266944458314,0.5195498370914285,0.5179809359149362,0.5143263083276579,0.50860067022501,0.5008270767308032,0.49103682936239745,0.47926934999053855,0.46557202210139836,0.44999999999999984,0.43261598672329754,0.4134899815571771,0.39269899817403847,0.37032675452591723,0.34646333574184085,0.3212048313868072,0.29465294854302293,0.2669146022713778,0.2381014851022317,0.20832961728901422,0.17771887963561436,0.14639253077869285,0.11447671086865728,0.08209993364779518,0.0493925689707934,0.016486317851345914,-0.01648631785134602,-0.049392568970793506,-0.08209993364779529,-0.11447671086865714,-0.14639253077869294,-0.17771887963561425,-0.2083296172890143,-0.23810148510223159,-0.26691460227137787,-0.2946529485430228,-0.32120483138680733,-0.34646333574184074,-0.3703267545259174,-0.3926989981740384,-0.41348998155717714,-0.4326159867232975,-0.45000000000000007,-0.4655720221013984,-0.47926934999053855,-0.4910368293623974,-0.5008270767308033,-0.50860067022501,-0.5143263083276579,-0.5179809359149361,-0.5195498370914285,-0.5190266944458314,-0.5164136144889384,-0.5117211191714659,-0.5049681035158702,-0.4961817595327617,-0.48539746672827505,-0.4726586496432847,-0.4580166029981062,-0.4415302851467603,-0.42326608067249133,-0.4032975330804797,-0.3817050486641045,-0.3585755727371774,-0.33400223953585173,-0.308083997199924,-0.2809252093435996,-0.2526352348200508,-0.22332798737191342,-0.19312147694085052,-0.16213733448316917,-0.13050032220488597,-0.09833783118835877,-0.06577936843336128,-0.032956035378100844,-1.2726902864698881e-16]]},{"title":"Ellipse with Semi-Major Axis = 0.6, Eccentricity = 0.50"}],"label":"0.6","method":"update"},{"args":[{"x":[[0.7,0.6985906735303191,0.6943683689815567,0.6873500880838946,0.6775640909774493,0.6650497824186618,0.6498575531112507,0.6320485768006348,0.6116945639488495,0.5888774729818268,0.563689180271741,0.5362311101832846,0.506613826673549,0.47495658808999247,0.44138686695916574,0.4060398366998387,0.36905782732735165,0.3305897523408779,0.2907905091013205,0.2498203551143103,0.20784426272979242,0.16503125485659909,0.12155372436685129,0.07758673993070776,0.03330734107661953,-0.01110617468436562,-0.05547496979975197,-0.09962038679129966,-0.14336466764563352,-0.1865316695830245,-0.22894757432219515,-0.2704415879851901,-0.31084662882404185,-0.35000000000000014,-0.38774404470627716,-0.42392678099636677,-0.45840251376169944,-0.49103242139442493,-0.5216851147730283,-0.5502371663199512,-0.5765736070008829,-0.6005883892644839,-0.6221848140584463,-0.6412759202024487,-0.6577848345501358,-0.6716450815301481,-0.6828008508197849,-0.691207222073476,-0.6968303458011592,-0.6996475796682295,-0.6996475796682295,-0.6968303458011592,-0.691207222073476,-0.6828008508197849,-0.6716450815301481,-0.6577848345501358,-0.6412759202024487,-0.6221848140584464,-0.6005883892644839,-0.5765736070008829,-0.5502371663199511,-0.5216851147730284,-0.4910324213944249,-0.4584025137616996,-0.4239267809963666,-0.3877440447062773,-0.3499999999999997,-0.31084662882404174,-0.2704415879851901,-0.2289475743221953,-0.18653166958302425,-0.14336466764563338,-0.09962038679129966,-0.055474969799752145,-0.011106174684365325,0.033307341076619666,0.0775867399307076,0.12155372436685097,0.16503125485659922,0.20784426272979242,0.24982035511431014,0.29079050910132076,0.330589752340878,0.36905782732735165,0.4060398366998385,0.44138686695916596,0.4749565880899926,0.506613826673549,0.5362311101832844,0.5636891802717411,0.5888774729818268,0.6116945639488495,0.6320485768006348,0.6498575531112508,0.6650497824186618,0.6775640909774493,0.6873500880838948,0.6943683689815567,0.6985906735303191,0.7]],"y":[[0.0,0.03844870794111765,0.07674259650558829,0.11472746971975219,0.1522503759057002,0.18916022356369738,0.22530838976432582,0.2605493186005655,0.29474110729005915,0.32774607756753293,0.3594313300665781,0.38966927945849344,0.4183381681933736,0.44532255677478866,0.4705137885938931,0.4938104274512398,0.5151186660045537,0.5343527034977906,0.5514350912504988,0.5662970445163208,0.5788787194548887,0.5891294541018486,0.5970079723667101,0.6024825502370947,0.6055311435201365,0.6061414766066666,0.6043110919007588,0.600047359715601,0.593367448595845,0.584298256185937,0.5728763009227971,0.5591475749889616,0.543167359118298,0.5249999999999998,0.5047186511771804,0.4824049784833732,0.45814883120304484,0.4320478802802368,0.4042072250321476,0.3747389699512751,0.3437617733001934,0.3114003693166074,0.27778506595260366,0.24305122017051659,0.20733869290821674,0.17079128590847498,0.13355616268010015,0.09578325592242772,0.05762466379925897,0.019234037493236898,-0.01923403749323702,-0.05762466379925909,-0.09578325592242783,-0.1335561626801,-0.1707912859084751,-0.2073386929082166,-0.24305122017051667,-0.2777850659526035,-0.31140036931660753,-0.34376177330019325,-0.3747389699512752,-0.4042072250321475,-0.43204788028023694,-0.4581488312030448,-0.48240497848337327,-0.5047186511771804,-0.525,-0.5431673591182982,-0.5591475749889616,-0.572876300922797,-0.5842982561859371,-0.593367448595845,-0.600047359715601,-0.6043110919007588,-0.6061414766066666,-0.6055311435201365,-0.6024825502370947,-0.5970079723667102,-0.5891294541018486,-0.5788787194548887,-0.5662970445163208,-0.5514350912504988,-0.5343527034977905,-0.5151186660045537,-0.4938104274512399,-0.470513788593893,-0.4453225567747886,-0.4183381681933736,-0.38966927945849367,-0.359431330066578,-0.3277460775675329,-0.2947411072900592,-0.2605493186005657,-0.22530838976432563,-0.18916022356369736,-0.15225037590570029,-0.11472746971975191,-0.07674259650558816,-0.038448707941117655,-1.4848053342148694e-16]]},{"title":"Ellipse with Semi-Major Axis = 0.7, Eccentricity = 0.50"}],"label":"0.7","method":"update"},{"args":[{"x":[[0.8,0.7983893411775076,0.7935638502646363,0.7855429578101654,0.774358961117085,0.7600568941927563,0.7426943464128581,0.722341230629297,0.699079501655828,0.673002826264945,0.644216206024847,0.6128355544951825,0.5789872304840561,0.5428075292457057,0.504442133667618,0.46404552765695856,0.4217803740884019,0.37781685981814617,0.33233201040150917,0.2855089772734975,0.23753630026261996,0.18860714840754184,0.13891854213354435,0.08867055992080888,0.03806553265899375,-0.012692771067846423,-0.06339996548543084,-0.11385187061862818,-0.1638453344521526,-0.21317905095202805,-0.2616543706539373,-0.30907610055450296,-0.3552532900846193,-0.4000000000000002,-0.44313605109288823,-0.4844877497101335,-0.523888587156228,-0.5611799101650571,-0.5962115597406038,-0.62884247579423,-0.6589412651438662,-0.6863867305879817,-0.7110683589239387,-0.7328867659456557,-0.7517540966287267,-0.767594378891598,-0.7803438295083257,-0.7899511109411155,-0.7963775380584677,-0.7995972339065481,-0.7995972339065481,-0.7963775380584677,-0.7899511109411155,-0.7803438295083257,-0.767594378891598,-0.7517540966287268,-0.7328867659456557,-0.7110683589239388,-0.6863867305879816,-0.6589412651438663,-0.6288424757942299,-0.5962115597406038,-0.5611799101650571,-0.5238885871562282,-0.4844877497101333,-0.4431360510928884,-0.3999999999999997,-0.3552532900846192,-0.30907610055450296,-0.26165437065393754,-0.21317905095202772,-0.16384533445215244,-0.11385187061862818,-0.06339996548543103,-0.012692771067846088,0.03806553265899391,0.08867055992080869,0.138918542133544,0.188607148407542,0.23753630026261996,0.28550897727349733,0.3323320104015095,0.37781685981814633,0.4217803740884019,0.4640455276569584,0.5044421336676183,0.5428075292457059,0.5789872304840561,0.6128355544951822,0.6442162060248471,0.673002826264945,0.699079501655828,0.7223412306292969,0.7426943464128581,0.7600568941927563,0.774358961117085,0.7855429578101655,0.7935638502646363,0.7983893411775076,0.8]],"y":[[0.0,0.04394138050413446,0.08770582457781521,0.1311171082511454,0.17400042960651452,0.21618311264422563,0.25749530258780096,0.29777064982921775,0.33684697976006767,0.37456694579146627,0.41077866293323223,0.44533631938113544,0.4781007636495699,0.5089400648854728,0.5377300441073065,0.5643547742299885,0.5887070468623472,0.610688803997475,0.6302115328577131,0.6471966223043667,0.6615756793770157,0.673290804687827,0.6822948255619545,0.6885514859852513,0.6920355925944418,0.6927331161219048,0.6906412478865817,0.685768411103544,0.67813422696668,0.667769435641071,0.6547157724831967,0.6390257999873847,0.6207626961351979,0.5999999999999999,0.5768213156310634,0.5513199754095695,0.5235986642320514,0.4937690060345564,0.4619511143224545,0.428273108515743,0.39287059805736396,0.35588613636183714,0.31746864680297565,0.277772823052019,0.23695850618081918,0.19519004103825716,0.15263561449154306,0.10946657819706025,0.06585675862772454,0.02198175713512789,-0.021981757135128028,-0.06585675862772468,-0.10946657819706039,-0.15263561449154286,-0.19519004103825727,-0.236958506180819,-0.2777728230520191,-0.3174686468029755,-0.3558861363618372,-0.3928705980573638,-0.42827310851574313,-0.46195111432245434,-0.49376900603455653,-0.5235986642320513,-0.5513199754095696,-0.5768213156310633,-0.6000000000000001,-0.620762696135198,-0.6390257999873847,-0.6547157724831966,-0.667769435641071,-0.67813422696668,-0.685768411103544,-0.6906412478865815,-0.6927331161219048,-0.6920355925944418,-0.6885514859852513,-0.6822948255619546,-0.673290804687827,-0.6615756793770157,-0.6471966223043668,-0.630211532857713,-0.6106888039974749,-0.5887070468623472,-0.5643547742299885,-0.5377300441073063,-0.5089400648854727,-0.4781007636495699,-0.44533631938113566,-0.41077866293323206,-0.3745669457914662,-0.3368469797600677,-0.2977706498292179,-0.25749530258780073,-0.21618311264422557,-0.17400042960651463,-0.13111710825114506,-0.08770582457781505,-0.043941380504134465,-1.696920381959851e-16]]},{"title":"Ellipse with Semi-Major Axis = 0.8, Eccentricity = 0.50"}],"label":"0.8","method":"update"},{"args":[{"x":[[0.9,0.898188008824696,0.8927593315477158,0.8837358275364361,0.8711538312567206,0.855064005966851,0.8355311397144654,0.812633884457959,0.7864644393628064,0.7571281795480631,0.7247432317779527,0.6894399988070802,0.6513606342945631,0.610658470401419,0.5674974003760703,0.5220512186140783,0.47450292084945217,0.42504396729541444,0.3738735117016978,0.3211975994326847,0.2672283377954474,0.21218304195848456,0.15628335990023737,0.09975437991090999,0.04282372424136796,-0.014279367451327227,-0.07132496117110969,-0.1280833544459567,-0.18432600125867166,-0.23982643232103154,-0.2943611669856795,-0.3477106131238158,-0.3996599513451967,-0.45000000000000023,-0.49852805747949924,-0.5450487184239001,-0.5893746605507565,-0.6313273989356892,-0.6707380047081792,-0.7074477852685088,-0.7413089232868494,-0.7721850719114793,-0.799951903789431,-0.8244976116888626,-0.8457233587073175,-0.8635436762530476,-0.8778868081968664,-0.8886949998087549,-0.8959247303157761,-0.8995468881448666,-0.8995468881448666,-0.8959247303157761,-0.8886949998087549,-0.8778868081968664,-0.8635436762530476,-0.8457233587073176,-0.8244976116888626,-0.7999519037894312,-0.7721850719114792,-0.7413089232868495,-0.7074477852685087,-0.6707380047081793,-0.6313273989356891,-0.5893746605507567,-0.5450487184239,-0.49852805747949946,-0.4499999999999997,-0.39965995134519655,-0.3477106131238158,-0.2943611669856797,-0.23982643232103118,-0.1843260012586715,-0.1280833544459567,-0.07132496117110991,-0.014279367451326849,0.04282372424136815,0.09975437991090978,0.15628335990023698,0.21218304195848472,0.2672283377954474,0.3211975994326845,0.37387351170169814,0.4250439672954146,0.47450292084945217,0.5220512186140781,0.5674974003760705,0.6106584704014191,0.6513606342945631,0.6894399988070801,0.7247432317779529,0.7571281795480631,0.7864644393628064,0.8126338844579589,0.8355311397144655,0.855064005966851,0.8711538312567206,0.8837358275364362,0.8927593315477158,0.898188008824696,0.9]],"y":[[0.0,0.04943405306715126,0.09866905265004211,0.14750674678253856,0.19575048330732883,0.24320600172475382,0.2896822154112761,0.33499198105787,0.3789528522300761,0.42138781401539954,0.4621259957998862,0.5010033593037774,0.5378633591057661,0.5725575729961568,0.6049462996207198,0.6348991210087369,0.6622954277201405,0.6870249044971594,0.7089879744649272,0.7280962000924125,0.7442726392991427,0.7574521552738054,0.7675816787571988,0.7746204217334076,0.778540041668747,0.7793247556371429,0.7769714038724043,0.771489462491487,0.762901005337515,0.7512406150962049,0.7365552440435963,0.7189040249858079,0.6983580331520975,0.6749999999999998,0.6489239800849463,0.6202349723357656,0.5890484972610577,0.555490131788876,0.5196950036127613,0.48180724708021083,0.44197942281453445,0.40037190340706674,0.3571522276533476,0.31249442593352134,0.2665783194534216,0.21958879616803928,0.1717150663029859,0.12314990047169277,0.07408885345619011,0.024729476777018873,-0.02472947677701903,-0.07408885345619026,-0.12314990047169293,-0.17171506630298572,-0.21958879616803942,-0.2665783194534214,-0.31249442593352145,-0.3571522276533474,-0.40037190340706685,-0.4419794228145343,-0.481807247080211,-0.5196950036127611,-0.5554901317888761,-0.5890484972610577,-0.6202349723357657,-0.6489239800849462,-0.6750000000000002,-0.6983580331520977,-0.7189040249858079,-0.7365552440435962,-0.751240615096205,-0.762901005337515,-0.771489462491487,-0.7769714038724043,-0.7793247556371429,-0.778540041668747,-0.7746204217334076,-0.767581678757199,-0.7574521552738054,-0.7442726392991427,-0.7280962000924126,-0.7089879744649271,-0.6870249044971594,-0.6622954277201405,-0.634899121008737,-0.6049462996207196,-0.5725575729961568,-0.5378633591057661,-0.5010033593037776,-0.46212599579988606,-0.4213878140153995,-0.3789528522300762,-0.33499198105787015,-0.2896822154112758,-0.24320600172475376,-0.19575048330732897,-0.14750674678253817,-0.09866905265004193,-0.049434053067151276,-1.9090354297048323e-16]]},{"title":"Ellipse with Semi-Major Axis = 0.9, Eccentricity = 0.50"}],"label":"0.9","method":"update"},{"args":[{"x":[[1.0,0.9979866764718844,0.9919548128307953,0.9819286972627067,0.9679487013963562,0.9500711177409454,0.9283679330160726,0.9029265382866212,0.8738493770697849,0.8412535328311812,0.8052702575310586,0.766044443118978,0.7237340381050701,0.6785094115571322,0.6305526670845225,0.5800569095711982,0.5272254676105024,0.4722710747726827,0.41541501300188644,0.3568862215918719,0.2969203753282749,0.23575893550942728,0.17364817766693041,0.1108381999010111,0.04758191582374218,-0.01586596383480803,-0.07924995685678854,-0.14231483827328523,-0.20480666806519074,-0.26647381369003503,-0.32706796331742166,-0.3863451256931287,-0.4440666126057741,-0.5000000000000002,-0.5539200638661103,-0.6056096871376668,-0.654860733945285,-0.7014748877063214,-0.7452644496757547,-0.7860530947427875,-0.8236765814298327,-0.8579834132349771,-0.8888354486549234,-0.9161084574320696,-0.9396926207859083,-0.9594929736144974,-0.975429786885407,-0.9874388886763943,-0.9954719225730846,-0.9994965423831851,-0.9994965423831851,-0.9954719225730846,-0.9874388886763943,-0.975429786885407,-0.9594929736144974,-0.9396926207859084,-0.9161084574320696,-0.8888354486549235,-0.857983413234977,-0.8236765814298328,-0.7860530947427874,-0.7452644496757548,-0.7014748877063213,-0.6548607339452852,-0.6056096871376666,-0.5539200638661105,-0.4999999999999996,-0.44406661260577396,-0.3863451256931287,-0.3270679633174219,-0.26647381369003464,-0.20480666806519054,-0.14231483827328523,-0.07924995685678879,-0.01586596383480761,0.04758191582374238,0.11083819990101086,0.17364817766692997,0.23575893550942748,0.2969203753282749,0.35688622159187167,0.4154150130018868,0.4722710747726829,0.5272254676105024,0.5800569095711979,0.6305526670845228,0.6785094115571323,0.7237340381050701,0.7660444431189778,0.8052702575310587,0.8412535328311812,0.8738493770697849,0.9029265382866211,0.9283679330160727,0.9500711177409454,0.9679487013963562,0.9819286972627068,0.9919548128307953,0.9979866764718844,1.0]],"y":[[0.0,0.054926725630168066,0.10963228072226901,0.16389638531393172,0.21750053700814315,0.270228890805282,0.32186912823475117,0.37221331228652216,0.42105872470008454,0.4682086822393328,0.5134733286665403,0.5566703992264193,0.5976259545619623,0.636175081106841,0.672162555134133,0.7054434677874855,0.7358838085779339,0.7633610049968438,0.7877644160721413,0.8089957778804583,0.8269695992212696,0.8416135058597837,0.8528685319524432,0.860689357481564,0.8650444907430522,0.865916395152381,0.863301559858227,0.8572105138794299,0.84766778370835,0.8347117945513387,0.8183947156039958,0.7987822499842309,0.7759533701689972,0.7499999999999998,0.7210266445388293,0.6891499692619618,0.6544983302900641,0.6172112575431955,0.577438892903068,0.5353413856446787,0.4910882475717049,0.44485767045229635,0.3968358085037195,0.3472160288150237,0.29619813272602397,0.24398755129782143,0.1907945181144288,0.1368332227463253,0.08232094828465568,0.027477196418909857,-0.02747719641891003,-0.08232094828465585,-0.13683322274632548,-0.19079451811442857,-0.24398755129782157,-0.29619813272602374,-0.34721602881502384,-0.3968358085037193,-0.44485767045229646,-0.4910882475717047,-0.5353413856446789,-0.5774388929030679,-0.6172112575431956,-0.654498330290064,-0.6891499692619619,-0.7210266445388291,-0.7500000000000001,-0.7759533701689973,-0.7987822499842309,-0.8183947156039957,-0.8347117945513388,-0.84766778370835,-0.8572105138794299,-0.8633015598582269,-0.865916395152381,-0.8650444907430522,-0.860689357481564,-0.8528685319524433,-0.8416135058597837,-0.8269695992212696,-0.8089957778804584,-0.7877644160721412,-0.7633610049968437,-0.7358838085779339,-0.7054434677874856,-0.6721625551341328,-0.6361750811068408,-0.5976259545619623,-0.5566703992264196,-0.51347332866654,-0.46820868223933276,-0.42105872470008465,-0.3722133122865224,-0.3218691282347509,-0.27022889080528195,-0.21750053700814329,-0.1638963853139313,-0.10963228072226881,-0.05492672563016808,-2.1211504774498136e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.0, Eccentricity = 0.50"}],"label":"1.0","method":"update"},{"args":[{"x":[[1.1,1.097785344119073,1.0911502941138749,1.0801215669889774,1.0647435715359919,1.04507822951504,1.02120472631768,0.9932191921152834,0.9612343147767635,0.9253788861142994,0.8857972832841645,0.8426488874308758,0.7961074419155771,0.7463603527128455,0.6936079337929748,0.638062600528318,0.5799480143715526,0.519498182249951,0.4569565143020751,0.3925748437510591,0.32661241286110243,0.25933482906037003,0.19101299543362346,0.12192201989111222,0.0523401074061164,-0.017452560218288834,-0.0871749525424674,-0.15654632210061376,-0.22528733487170982,-0.29312119505903855,-0.35977475964916383,-0.42497963826244156,-0.4884732738663516,-0.5500000000000003,-0.6093120702527214,-0.6661706558514335,-0.7203468073398136,-0.7716223764769535,-0.8197908946433302,-0.8646584042170663,-0.906044239572816,-0.9437817545584748,-0.9777189935204158,-1.0077193031752767,-1.0336618828644992,-1.0554422709759472,-1.0729727655739478,-1.0861827775440338,-1.0950191148303932,-1.0994461966215037,-1.0994461966215037,-1.0950191148303932,-1.0861827775440338,-1.0729727655739478,-1.0554422709759472,-1.0336618828644994,-1.0077193031752767,-0.9777189935204159,-0.9437817545584747,-0.9060442395728161,-0.8646584042170662,-0.8197908946433303,-0.7716223764769534,-0.7203468073398138,-0.6661706558514333,-0.6093120702527216,-0.5499999999999996,-0.4884732738663514,-0.42497963826244156,-0.3597747596491641,-0.2931211950590381,-0.22528733487170963,-0.15654632210061376,-0.08717495254246768,-0.017452560218288372,0.05234010740611662,0.12192201989111195,0.191012995433623,0.25933482906037025,0.32661241286110243,0.3925748437510589,0.45695651430207557,0.5194981822499513,0.5799480143715526,0.6380626005283178,0.6936079337929751,0.7463603527128456,0.7961074419155771,0.8426488874308756,0.8857972832841647,0.9253788861142994,0.9612343147767635,0.9932191921152832,1.02120472631768,1.04507822951504,1.0647435715359919,1.0801215669889777,1.0911502941138749,1.097785344119073,1.1]],"y":[[0.0,0.060419398193184884,0.12059550879449592,0.1802860238453249,0.2392505907089575,0.29725177988581025,0.35405604105822636,0.4094346435151744,0.46316459717009306,0.5150295504632662,0.5648206615331943,0.6123374391490612,0.6573885500181587,0.6997925892175252,0.7393788106475464,0.7759878145662341,0.8094721894357274,0.8396971054965282,0.8665408576793555,0.8898953556685042,0.9096665591433966,0.9257748564457622,0.9381553851476875,0.9467582932297205,0.9515489398173576,0.9525080346676191,0.9496317158440497,0.942931565267373,0.9324345620791851,0.9181829740064726,0.9002341871643955,0.8786604749826541,0.853548707185897,0.8249999999999998,0.7931293089927123,0.7580649661881581,0.7199481633190706,0.678932383297515,0.635182782193375,0.5888755242091467,0.5401970723288755,0.48934343749752607,0.4365193893540915,0.3819376316965261,0.3258179459986264,0.2683863064276036,0.2098739699258717,0.15051654502095785,0.09055304311312125,0.030224916060800845,-0.03022491606080104,-0.09055304311312144,-0.15051654502095804,-0.20987396992587146,-0.26838630642760375,-0.3258179459986262,-0.3819376316965263,-0.4365193893540913,-0.4893434374975262,-0.5401970723288753,-0.5888755242091468,-0.6351827821933748,-0.6789323832975153,-0.7199481633190705,-0.7580649661881582,-0.7931293089927122,-0.8250000000000002,-0.8535487071858971,-0.8786604749826541,-0.9002341871643954,-0.9181829740064728,-0.9324345620791851,-0.942931565267373,-0.9496317158440497,-0.9525080346676191,-0.9515489398173576,-0.9467582932297205,-0.9381553851476876,-0.9257748564457622,-0.9096665591433966,-0.8898953556685043,-0.8665408576793554,-0.8396971054965281,-0.8094721894357274,-0.7759878145662342,-0.7393788106475462,-0.6997925892175251,-0.6573885500181587,-0.6123374391490616,-0.5648206615331941,-0.515029550463266,-0.4631645971700932,-0.40943464351517467,-0.354056041058226,-0.2972517798858102,-0.23925059070895763,-0.18028602384532444,-0.12059550879449571,-0.0604193981931849,-2.333265525194795e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.1, Eccentricity = 0.50"}],"label":"1.1","method":"update"},{"args":[{"x":[[1.2,1.1975840117662613,1.1903457753969544,1.178314436715248,1.1615384416756274,1.1400853412891345,1.114041519619287,1.0835118459439455,1.0486192524837419,1.0095042393974174,0.9663243090372703,0.9192533317427736,0.8684808457260841,0.8142112938685586,0.756663200501427,0.6960682914854378,0.6326705611326028,0.5667252897272193,0.4984980156022637,0.4282634659102463,0.3563044503939299,0.2829107226113127,0.20837781320031648,0.1330058398812133,0.057098298988490614,-0.019039156601769632,-0.09509994822814624,-0.17077780592794226,-0.24576800167822888,-0.319768576428042,-0.392481555980906,-0.4636141508317544,-0.5328799351269289,-0.6000000000000002,-0.6647040766393323,-0.7267316245652001,-0.785832880734342,-0.8417698652475857,-0.8943173396109055,-0.943263713691345,-0.9884118977157992,-1.0295800958819725,-1.066602538385908,-1.0993301489184835,-1.12763114494309,-1.1513915683373968,-1.1705157442624885,-1.184926666411673,-1.1945663070877015,-1.1993958508598221,-1.1993958508598221,-1.1945663070877015,-1.184926666411673,-1.1705157442624885,-1.1513915683373968,-1.12763114494309,-1.0993301489184835,-1.0666025383859081,-1.0295800958819723,-0.9884118977157993,-0.9432637136913449,-0.8943173396109058,-0.8417698652475855,-0.7858328807343422,-0.7267316245651999,-0.6647040766393325,-0.5999999999999995,-0.5328799351269288,-0.4636141508317544,-0.3924815559809062,-0.3197685764280416,-0.24576800167822865,-0.17077780592794226,-0.09509994822814655,-0.01903915660176913,0.05709829898849086,0.13300583988121303,0.20837781320031595,0.28291072261131295,0.3563044503939299,0.428263465910246,0.49849801560226414,0.5667252897272195,0.6326705611326028,0.6960682914854375,0.7566632005014274,0.8142112938685587,0.8684808457260841,0.9192533317427733,0.9663243090372704,1.0095042393974174,1.0486192524837419,1.0835118459439452,1.1140415196192872,1.1400853412891345,1.1615384416756274,1.178314436715248,1.1903457753969544,1.1975840117662613,1.2]],"y":[[0.0,0.06591207075620167,0.1315587368667228,0.19667566237671805,0.2610006444097718,0.3242746689663384,0.38624295388170143,0.44665597474382657,0.5052704696401015,0.5618504186871994,0.6161679943998483,0.6680044790717031,0.7171511454743548,0.7634100973282091,0.8065950661609597,0.8465321613449825,0.8830605702935206,0.9160332059962125,0.9453172992865695,0.97079493345655,0.9923635190655234,1.0099362070317404,1.0234422383429318,1.0328272289778768,1.0380533888916628,1.039099674182857,1.0359618718298724,1.0286526166553158,1.01720134045002,1.0016541534616064,0.9820736587247949,0.9585386999810771,0.9311440442027967,0.8999999999999997,0.8652319734465951,0.8269799631143542,0.7853979963480769,0.7406535090518345,0.6929266714836817,0.6424096627736144,0.5893058970860459,0.5338292045427556,0.4762029702044634,0.41665923457802845,0.3554377592712287,0.2927850615573857,0.22895342173731456,0.16419986729559036,0.0987851379415868,0.03297263570269183,-0.03297263570269204,-0.09878513794158701,-0.16419986729559058,-0.22895342173731428,-0.2927850615573859,-0.3554377592712285,-0.4166592345780286,-0.47620297020446317,-0.5338292045427557,-0.5893058970860456,-0.6424096627736147,-0.6929266714836815,-0.7406535090518348,-0.7853979963480768,-0.8269799631143543,-0.865231973446595,-0.9000000000000001,-0.9311440442027968,-0.9585386999810771,-0.9820736587247948,-1.0016541534616066,-1.01720134045002,-1.0286526166553158,-1.0359618718298722,-1.039099674182857,-1.0380533888916628,-1.0328272289778768,-1.0234422383429318,-1.0099362070317404,-0.9923635190655234,-0.9707949334565501,-0.9453172992865694,-0.9160332059962124,-0.8830605702935206,-0.8465321613449827,-0.8065950661609594,-0.763410097328209,-0.7171511454743548,-0.6680044790717035,-0.616167994399848,-0.5618504186871992,-0.5052704696401016,-0.44665597474382684,-0.38624295388170105,-0.32427466896633833,-0.26100064440977194,-0.19667566237671755,-0.13155873686672256,-0.06591207075620169,-2.5453805729397763e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.2, Eccentricity = 0.50"}],"label":"1.2","method":"update"},{"args":[{"x":[[1.3,1.2973826794134498,1.289541256680034,1.2765073064415187,1.258333311815263,1.235092453063229,1.2068783129208944,1.1738044997726076,1.1360041901907205,1.0936295926805355,1.0468513347903763,0.9958577760546714,0.9408542495365911,0.8820622350242718,0.8197184672098793,0.7540739824425576,0.6853931078936532,0.6139523972044876,0.5400395169024523,0.46395208806943344,0.3859964879267574,0.3064866161622555,0.22574263096700956,0.14408965987131442,0.061856490570864835,-0.020625752985250437,-0.1030249439138251,-0.1850092897552708,-0.266248668484748,-0.34641595779704554,-0.4251883523126482,-0.5022486634010673,-0.5772865963875063,-0.6500000000000004,-0.7200960830259434,-0.787292593278967,-0.8513189541288705,-0.9119173540182178,-0.9688437845784811,-1.0218690231656238,-1.0707795558587825,-1.1153784372054703,-1.1554860832514005,-1.1909409946616905,-1.2216004070216808,-1.2473408656988467,-1.2680587229510292,-1.2836705552793126,-1.29411349934501,-1.2993455050981406,-1.2993455050981406,-1.29411349934501,-1.2836705552793126,-1.2680587229510292,-1.2473408656988467,-1.221600407021681,-1.1909409946616905,-1.1554860832514005,-1.11537843720547,-1.0707795558587827,-1.0218690231656236,-0.9688437845784812,-0.9119173540182177,-0.8513189541288708,-0.7872925932789666,-0.7200960830259436,-0.6499999999999995,-0.5772865963875061,-0.5022486634010673,-0.42518835231264845,-0.34641595779704504,-0.2662486684847477,-0.1850092897552708,-0.10302494391382543,-0.020625752985249893,0.0618564905708651,0.1440896598713141,0.22574263096700897,0.30648661616225575,0.3859964879267574,0.46395208806943317,0.5400395169024529,0.6139523972044878,0.6853931078936532,0.7540739824425573,0.8197184672098797,0.8820622350242721,0.9408542495365911,0.9958577760546712,1.0468513347903765,1.0936295926805355,1.1360041901907205,1.1738044997726074,1.2068783129208944,1.235092453063229,1.258333311815263,1.2765073064415189,1.289541256680034,1.2973826794134498,1.3]],"y":[[0.0,0.07140474331921849,0.1425219649389497,0.2130653009081112,0.28275069811058606,0.3512975580468666,0.4184298667051765,0.4838773059724788,0.5473763421101099,0.6086712869111326,0.6675153272665023,0.723671518994345,0.776913740930551,0.8270276054388932,0.8738113216743729,0.9170765081237311,0.956648951151314,0.9923693064958968,1.0240937408937836,1.0516945112445957,1.0750604789876503,1.0940975576177188,1.108729091538176,1.1188961647260331,1.1245578379659678,1.1256913136980953,1.122292027815695,1.1143736680432588,1.101968118820855,1.0851253329167403,1.0639131302851945,1.0384169249795001,1.0087393812196963,0.9749999999999998,0.937334637900478,0.8958949600405502,0.8508478293770833,0.802374634806154,0.7506705607739885,0.6959438013380823,0.6384147218432163,0.5783149715879853,0.5158865510548354,0.4513808374595308,0.3850575725438311,0.31718381668716783,0.24803287354875742,0.1778831895702229,0.10701723277005237,0.035720355344582816,-0.03572035534458304,-0.1070172327700526,-0.17788318957022312,-0.24803287354875714,-0.31718381668716805,-0.3850575725438309,-0.451380837459531,-0.515886551054835,-0.5783149715879854,-0.6384147218432161,-0.6959438013380825,-0.7506705607739882,-0.8023746348061543,-0.8508478293770831,-0.8958949600405505,-0.9373346379004779,-0.9750000000000001,-1.0087393812196965,-1.0384169249795001,-1.0639131302851943,-1.0851253329167403,-1.101968118820855,-1.1143736680432588,-1.122292027815695,-1.1256913136980953,-1.1245578379659678,-1.1188961647260331,-1.1087290915381762,-1.0940975576177188,-1.0750604789876503,-1.051694511244596,-1.0240937408937836,-0.9923693064958967,-0.956648951151314,-0.9170765081237312,-0.8738113216743727,-0.8270276054388931,-0.776913740930551,-0.7236715189943453,-0.667515327266502,-0.6086712869111325,-0.54737634211011,-0.4838773059724791,-0.4184298667051761,-0.3512975580468665,-0.2827506981105863,-0.21306530090811068,-0.14252196493894945,-0.0714047433192185,-2.7574956206847575e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.3, Eccentricity = 0.50"}],"label":"1.3","method":"update"},{"args":[{"x":[[1.4,1.3971813470606382,1.3887367379631135,1.3747001761677893,1.3551281819548986,1.3300995648373235,1.2997151062225014,1.2640971536012695,1.223389127897699,1.1777549459636536,1.127378360543482,1.0724622203665692,1.013227653347098,0.9499131761799849,0.8827737339183315,0.8120796733996773,0.7381156546547033,0.6611795046817558,0.581581018202641,0.4996407102286206,0.41568852545958485,0.33006250971319817,0.24310744873370257,0.15517347986141553,0.06661468215323905,-0.02221234936873124,-0.11094993959950394,-0.1992407735825993,-0.28672933529126704,-0.373063339166049,-0.4578951486443903,-0.5408831759703802,-0.6216932576480837,-0.7000000000000003,-0.7754880894125543,-0.8478535619927335,-0.9168050275233989,-0.9820648427888499,-1.0433702295460565,-1.1004743326399025,-1.1531472140017658,-1.2011767785289678,-1.2443696281168926,-1.2825518404048974,-1.3155696691002716,-1.3432901630602962,-1.3656017016395698,-1.382414444146952,-1.3936606916023184,-1.399295159336459,-1.399295159336459,-1.3936606916023184,-1.382414444146952,-1.3656017016395698,-1.3432901630602962,-1.3155696691002716,-1.2825518404048974,-1.2443696281168928,-1.2011767785289678,-1.1531472140017658,-1.1004743326399022,-1.0433702295460567,-0.9820648427888498,-0.9168050275233992,-0.8478535619927332,-0.7754880894125546,-0.6999999999999994,-0.6216932576480835,-0.5408831759703802,-0.4578951486443906,-0.3730633391660485,-0.28672933529126676,-0.1992407735825993,-0.11094993959950429,-0.02221234936873065,0.06661468215323933,0.1551734798614152,0.24310744873370194,0.33006250971319845,0.41568852545958485,0.4996407102286203,0.5815810182026415,0.661179504681756,0.7381156546547033,0.812079673399677,0.8827737339183319,0.9499131761799852,1.013227653347098,1.0724622203665688,1.1273783605434822,1.1777549459636536,1.223389127897699,1.2640971536012695,1.2997151062225016,1.3300995648373235,1.3551281819548986,1.3747001761677895,1.3887367379631135,1.3971813470606382,1.4]],"y":[[0.0,0.0768974158822353,0.15348519301117658,0.22945493943950437,0.3045007518114004,0.37832044712739477,0.45061677952865165,0.521098637201131,0.5894822145801183,0.6554921551350659,0.7188626601331563,0.7793385589169869,0.8366763363867472,0.8906451135495773,0.9410275771877862,0.9876208549024796,1.0302373320091074,1.0687054069955813,1.1028701825009977,1.1325940890326416,1.1577574389097773,1.1782589082036972,1.1940159447334202,1.2049651004741895,1.211062287040273,1.2122829532133332,1.2086221838015176,1.200094719431202,1.18673489719169,1.168596512371874,1.1457526018455941,1.1182951499779232,1.086334718236596,1.0499999999999996,1.0094373023543608,0.9648099569667464,0.9162976624060897,0.8640957605604735,0.8084144500642952,0.7494779399025502,0.6875235466003868,0.6228007386332148,0.5555701319052073,0.48610244034103317,0.4146773858164335,0.34158257181694995,0.2671123253602003,0.19156651184485543,0.11524932759851794,0.038468074986473796,-0.03846807498647404,-0.11524932759851818,-0.19156651184485565,-0.2671123253602,-0.3415825718169502,-0.4146773858164332,-0.48610244034103334,-0.555570131905207,-0.6228007386332151,-0.6875235466003865,-0.7494779399025504,-0.808414450064295,-0.8640957605604739,-0.9162976624060896,-0.9648099569667465,-1.0094373023543608,-1.05,-1.0863347182365963,-1.1182951499779232,-1.145752601845594,-1.1685965123718742,-1.18673489719169,-1.200094719431202,-1.2086221838015176,-1.2122829532133332,-1.211062287040273,-1.2049651004741895,-1.1940159447334204,-1.1782589082036972,-1.1577574389097773,-1.1325940890326416,-1.1028701825009977,-1.068705406995581,-1.0302373320091074,-0.9876208549024798,-0.941027577187786,-0.8906451135495772,-0.8366763363867472,-0.7793385589169873,-0.718862660133156,-0.6554921551350658,-0.5894822145801184,-0.5210986372011314,-0.45061677952865126,-0.3783204471273947,-0.30450075181140057,-0.22945493943950382,-0.15348519301117633,-0.07689741588223531,-2.969610668429739e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.4, Eccentricity = 0.50"}],"label":"1.4","method":"update"},{"args":[{"x":[[1.5,1.4969800147078267,1.487932219246193,1.4728930458940601,1.4519230520945343,1.4251066766114182,1.3925518995241088,1.3543898074299316,1.3107740656046774,1.261880299246772,1.2079053862965878,1.149066664678467,1.0856010571576051,1.0177641173356982,0.9458290006267838,0.8700853643567972,0.7908382014157536,0.708406612159024,0.6231225195028296,0.5353293323878079,0.44538056299241235,0.3536384032641409,0.2604722665003956,0.16625729985151666,0.07137287373561327,-0.023798945752212045,-0.11887493528518281,-0.21347225740992784,-0.3072100020977861,-0.3997107205350525,-0.4906019449761325,-0.579517688539693,-0.6660999189086612,-0.7500000000000003,-0.8308800957991653,-0.9084145307065002,-0.9822911009179275,-1.052212331559482,-1.117896674513632,-1.1790796421141811,-1.235514872144749,-1.2869751198524657,-1.333253172982385,-1.3741626861481044,-1.4095389311788624,-1.439239460421746,-1.4631446803281105,-1.4811583330145914,-1.4932078838596268,-1.4992448135747776,-1.4992448135747776,-1.4932078838596268,-1.4811583330145914,-1.4631446803281105,-1.439239460421746,-1.4095389311788626,-1.3741626861481044,-1.3332531729823853,-1.2869751198524655,-1.235514872144749,-1.1790796421141811,-1.117896674513632,-1.052212331559482,-0.9822911009179278,-0.9084145307064999,-0.8308800957991658,-0.7499999999999994,-0.6660999189086609,-0.579517688539693,-0.49060194497613285,-0.39971072053505197,-0.3072100020977858,-0.21347225740992784,-0.11887493528518318,-0.023798945752211413,0.07137287373561357,0.1662572998515163,0.26047226650039496,0.3536384032641412,0.44538056299241235,0.5353293323878074,0.6231225195028303,0.7084066121590243,0.7908382014157536,0.870085364356797,0.9458290006267842,1.0177641173356984,1.0856010571576051,1.1490666646784666,1.207905386296588,1.261880299246772,1.3107740656046774,1.3543898074299316,1.392551899524109,1.4251066766114182,1.4519230520945343,1.4728930458940601,1.487932219246193,1.4969800147078267,1.5]],"y":[[0.0,0.08239008844525211,0.16444842108340352,0.2458445779708976,0.32625080551221475,0.40534333620792307,0.48280369235212683,0.5583199684297833,0.6315880870501269,0.7023130233589993,0.7702099929998104,0.835005598839629,0.8964389318429435,0.9542626216602615,1.0082438327011998,1.0581652016812284,1.103825712866901,1.1450415074952658,1.181646624108212,1.2134936668206875,1.2404543988319043,1.2624202587896756,1.2793027979286649,1.2910340362223462,1.2975667361145784,1.2988745927285716,1.2949523397873406,1.285815770819145,1.271501675562525,1.2520676918270082,1.2275920734059937,1.1981733749763466,1.163930055253496,1.1249999999999998,1.081539966808244,1.0337249538929427,0.9817474954350962,0.9258168863147933,0.8661583393546022,0.8030120784670182,0.7366323713575574,0.6672865056784446,0.5952537127555794,0.5208240432225356,0.444297199089036,0.3659813269467322,0.28619177717164324,0.20524983411948797,0.12348142242698353,0.04121579462836479,-0.041215794628365054,-0.12348142242698378,-0.20524983411948824,-0.2861917771716429,-0.3659813269467324,-0.4442971990890357,-0.5208240432225358,-0.595253712755579,-0.6672865056784447,-0.7366323713575571,-0.8030120784670184,-0.866158339354602,-0.9258168863147935,-0.9817474954350961,-1.033724953892943,-1.0815399668082437,-1.1250000000000002,-1.1639300552534961,-1.1981733749763466,-1.2275920734059937,-1.2520676918270084,-1.271501675562525,-1.285815770819145,-1.2949523397873404,-1.2988745927285716,-1.2975667361145784,-1.2910340362223462,-1.2793027979286649,-1.2624202587896756,-1.2404543988319043,-1.2134936668206877,-1.181646624108212,-1.1450415074952656,-1.103825712866901,-1.0581652016812284,-1.0082438327011993,-0.9542626216602614,-0.8964389318429435,-0.8350055988396294,-0.7702099929998101,-0.7023130233589991,-0.631588087050127,-0.5583199684297836,-0.4828036923521264,-0.40534333620792296,-0.32625080551221497,-0.24584457797089698,-0.16444842108340324,-0.08239008844525213,-3.181725716174721e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.5, Eccentricity = 0.50"}],"label":"1.5","method":"update"},{"args":[{"x":[[1.6,1.5967786823550152,1.5871277005292725,1.5710859156203307,1.54871792223417,1.5201137883855127,1.4853886928257163,1.444682461258594,1.398159003311656,1.34600565252989,1.288432412049694,1.225671108990365,1.1579744609681122,1.0856150584914115,1.008884267335236,0.9280910553139171,0.8435607481768038,0.7556337196362923,0.6646640208030183,0.571017954546995,0.4750726005252399,0.37721429681508367,0.2778370842670887,0.17734111984161777,0.0761310653179875,-0.025385542135692846,-0.12679993097086167,-0.22770374123725637,-0.3276906689043052,-0.4263581019040561,-0.5233087413078746,-0.6181522011090059,-0.7105065801692386,-0.8000000000000004,-0.8862721021857765,-0.968975499420267,-1.047777174312456,-1.1223598203301142,-1.1924231194812076,-1.25768495158846,-1.3178825302877324,-1.3727734611759634,-1.4221367178478774,-1.4657735318913114,-1.5035081932574534,-1.535188757783196,-1.5606876590166514,-1.579902221882231,-1.5927550761169353,-1.5991944678130963,-1.5991944678130963,-1.5927550761169353,-1.579902221882231,-1.5606876590166514,-1.535188757783196,-1.5035081932574537,-1.4657735318913114,-1.4221367178478777,-1.3727734611759632,-1.3178825302877326,-1.2576849515884598,-1.1924231194812076,-1.1223598203301142,-1.0477771743124564,-0.9689754994202666,-0.8862721021857768,-0.7999999999999994,-0.7105065801692384,-0.6181522011090059,-0.5233087413078751,-0.42635810190405543,-0.32769066890430487,-0.22770374123725637,-0.12679993097086206,-0.025385542135692177,0.07613106531798781,0.17734111984161738,0.277837084267088,0.377214296815084,0.4750726005252399,0.5710179545469947,0.664664020803019,0.7556337196362927,0.8435607481768038,0.9280910553139168,1.0088842673352365,1.0856150584914117,1.1579744609681122,1.2256711089903645,1.2884324120496942,1.34600565252989,1.398159003311656,1.4446824612585938,1.4853886928257163,1.5201137883855127,1.54871792223417,1.571085915620331,1.5871277005292725,1.5967786823550152,1.6]],"y":[[0.0,0.08788276100826892,0.17541164915563043,0.2622342165022908,0.34800085921302903,0.43236622528845126,0.5149906051756019,0.5955412996584355,0.6736939595201353,0.7491338915829325,0.8215573258664645,0.8906726387622709,0.9562015272991398,1.0178801297709457,1.075460088214613,1.128709548459977,1.1774140937246944,1.22137760799495,1.2604230657154263,1.2943932446087334,1.3231513587540313,1.346581609375654,1.364589651123909,1.3771029719705026,1.3840711851888836,1.3854662322438096,1.3812824957731633,1.371536822207088,1.35626845393336,1.335538871282142,1.3094315449663934,1.2780515999747695,1.2415253922703957,1.1999999999999997,1.1536426312621268,1.102639950819139,1.0471973284641027,0.9875380120691128,0.923902228644909,0.856546217031486,0.7857411961147279,0.7117722727236743,0.6349372936059513,0.555545646104038,0.47391701236163836,0.3903800820765143,0.3052712289830861,0.2189331563941205,0.13171351725544908,0.04396351427025578,-0.043963514270256056,-0.13171351725544936,-0.21893315639412078,-0.30527122898308573,-0.39038008207651453,-0.473917012361638,-0.5555456461040382,-0.634937293605951,-0.7117722727236744,-0.7857411961147276,-0.8565462170314863,-0.9239022286449087,-0.9875380120691131,-1.0471973284641025,-1.1026399508191391,-1.1536426312621266,-1.2000000000000002,-1.241525392270396,-1.2780515999747695,-1.3094315449663931,-1.335538871282142,-1.35626845393336,-1.371536822207088,-1.381282495773163,-1.3854662322438096,-1.3840711851888836,-1.3771029719705026,-1.3645896511239093,-1.346581609375654,-1.3231513587540313,-1.2943932446087336,-1.260423065715426,-1.2213776079949499,-1.1774140937246944,-1.128709548459977,-1.0754600882146126,-1.0178801297709454,-0.9562015272991398,-0.8906726387622713,-0.8215573258664641,-0.7491338915829324,-0.6736939595201354,-0.5955412996584358,-0.5149906051756015,-0.43236622528845114,-0.34800085921302926,-0.2622342165022901,-0.1754116491556301,-0.08788276100826893,-3.393840763919702e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.6, Eccentricity = 0.50"}],"label":"1.6","method":"update"},{"args":[{"x":[[1.7,1.6965773500022034,1.686323181812352,1.6692787853466013,1.6455127923738055,1.6151209001596072,1.5782254861273233,1.534975115087256,1.4855439410186344,1.4301310058130081,1.3689594378027996,1.3022755533022625,1.230347864778619,1.1534659996471246,1.0719395340436881,0.9860967462710368,0.896283294937854,0.8028608271135605,0.706205522103207,0.6067065767061822,0.5047646380580674,0.40079019036602637,0.2952019020337817,0.18842493983171887,0.08088925690036171,-0.026972138519173648,-0.1347249266565405,-0.24193522506458487,-0.34817133571082426,-0.45300548327305956,-0.5560155376396169,-0.6567867136783188,-0.754913241429816,-0.8500000000000003,-0.9416641085723874,-1.0295364681340335,-1.1132632477069844,-1.1925073091007463,-1.266949564448783,-1.3362902610627387,-1.4002501884307155,-1.458571802499461,-1.5110202627133698,-1.5573843776345182,-1.597477455336044,-1.6311380551446455,-1.6582306377051919,-1.6786461107498702,-1.6923022683742437,-1.6991441220514145,-1.6991441220514145,-1.6923022683742437,-1.6786461107498702,-1.6582306377051919,-1.6311380551446455,-1.5974774553360442,-1.5573843776345182,-1.51102026271337,-1.4585718024994607,-1.4002501884307157,-1.3362902610627385,-1.2669495644487831,-1.192507309100746,-1.1132632477069848,-1.029536468134033,-0.9416641085723878,-0.8499999999999993,-0.7549132414298158,-0.6567867136783188,-0.5560155376396172,-0.4530054832730589,-0.3481713357108239,-0.24193522506458487,-0.13472492665654093,-0.026972138519172933,0.08088925690036204,0.18842493983171846,0.29520190203378094,0.4007901903660267,0.5047646380580674,0.6067065767061818,0.7062055221032075,0.8028608271135609,0.896283294937854,0.9860967462710365,1.0719395340436888,1.1534659996471248,1.230347864778619,1.3022755533022623,1.3689594378027998,1.4301310058130081,1.4855439410186344,1.5349751150872557,1.5782254861273235,1.6151209001596072,1.6455127923738055,1.6692787853466016,1.686323181812352,1.6965773500022034,1.7]],"y":[[0.0,0.09337543357128572,0.1863748772278573,0.2786238550336839,0.3697509129138434,0.45938911436897945,0.5471775179990771,0.6327626308870877,0.7157998319901437,0.7959547598068658,0.8729046587331184,0.9463396786849128,1.015964122755336,1.0814976378816297,1.1426763437280263,1.1992538952387255,1.2510024745824877,1.2977137084946344,1.3391995073226404,1.3752928223967793,1.4058483186761583,1.4307429599616324,1.4498765043191533,1.463171907718659,1.4705756342631888,1.4720578717590478,1.467612651758986,1.457257873595031,1.441035232304195,1.4190100507372758,1.391271016526793,1.3579298249731926,1.3191207292872955,1.2749999999999997,1.2257452957160098,1.171554947745335,1.112647161493109,1.0492591378234324,0.9816461179352158,0.9100803555959538,0.8348500208718984,0.7562580397689038,0.6746208744563232,0.5902672489855403,0.5035368256342407,0.41477883720629644,0.324350680794529,0.23261647866875304,0.13994561208391465,0.04671123391214676,-0.04671123391214706,-0.13994561208391493,-0.23261647866875332,-0.3243506807945286,-0.4147788372062967,-0.5035368256342404,-0.5902672489855406,-0.6746208744563229,-0.756258039768904,-0.8348500208718981,-0.9100803555959541,-0.9816461179352155,-1.0492591378234326,-1.1126471614931088,-1.1715549477453353,-1.2257452957160095,-1.2750000000000001,-1.3191207292872955,-1.3579298249731926,-1.3912710165267927,-1.419010050737276,-1.441035232304195,-1.457257873595031,-1.4676126517589858,-1.4720578717590478,-1.4705756342631888,-1.463171907718659,-1.4498765043191535,-1.4307429599616324,-1.4058483186761583,-1.3752928223967793,-1.3391995073226401,-1.2977137084946344,-1.2510024745824877,-1.1992538952387255,-1.1426763437280258,-1.0814976378816294,-1.015964122755336,-0.9463396786849133,-0.8729046587331181,-0.7959547598068657,-0.715799831990144,-0.6327626308870881,-0.5471775179990765,-0.45938911436897933,-0.3697509129138436,-0.27862385503368325,-0.18637487722785698,-0.09337543357128573,-3.6059558116646835e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.7, Eccentricity = 0.50"}],"label":"1.7","method":"update"},{"args":[{"x":[[1.8,1.796376017649392,1.7855186630954316,1.7674716550728722,1.7423076625134413,1.710128011933702,1.6710622794289307,1.625267768915918,1.5729288787256128,1.5142563590961262,1.4494864635559055,1.3788799976141604,1.3027212685891263,1.221316940802838,1.1349948007521407,1.0441024372281567,0.9490058416989043,0.8500879345908289,0.7477470234033956,0.6423951988653694,0.5344566755908948,0.4243660839169691,0.31256671980047473,0.19950875982181998,0.08564744848273592,-0.028558734902654453,-0.14264992234221938,-0.2561667088919134,-0.3686520025173433,-0.4796528646420631,-0.588722333971359,-0.6954212262476316,-0.7993199026903934,-0.9000000000000005,-0.9970561149589985,-1.0900974368478002,-1.178749321101513,-1.2626547978713785,-1.3414760094163585,-1.4148955705370176,-1.4826178465736988,-1.5443701438229587,-1.599903807578862,-1.6489952233777252,-1.691446717414635,-1.7270873525060952,-1.7557736163937328,-1.7773899996175098,-1.7918494606315523,-1.7990937762897332,-1.7990937762897332,-1.7918494606315523,-1.7773899996175098,-1.7557736163937328,-1.7270873525060952,-1.6914467174146353,-1.6489952233777252,-1.5999038075788623,-1.5443701438229585,-1.482617846573699,-1.4148955705370174,-1.3414760094163587,-1.2626547978713782,-1.1787493211015134,-1.0900974368478,-0.9970561149589989,-0.8999999999999994,-0.7993199026903931,-0.6954212262476316,-0.5887223339713594,-0.47965286464206236,-0.368652002517343,-0.2561667088919134,-0.14264992234221982,-0.028558734902653697,0.0856474484827363,0.19950875982181956,0.31256671980047396,0.42436608391696945,0.5344566755908948,0.642395198865369,0.7477470234033963,0.8500879345908292,0.9490058416989043,1.0441024372281562,1.134994800752141,1.2213169408028381,1.3027212685891263,1.3788799976141601,1.4494864635559057,1.5142563590961262,1.5729288787256128,1.6252677689159178,1.671062279428931,1.710128011933702,1.7423076625134413,1.7674716550728724,1.7855186630954316,1.796376017649392,1.8]],"y":[[0.0,0.09886810613430252,0.19733810530008422,0.2950134935650771,0.39150096661465766,0.48641200344950764,0.5793644308225522,0.66998396211574,0.7579057044601522,0.8427756280307991,0.9242519915997724,1.0020067186075547,1.0757267182115322,1.1451151459923137,1.2098925992414395,1.2697982420174738,1.324590855440281,1.3740498089943187,1.4179759489298545,1.456192400184825,1.4885452785982853,1.5149043105476108,1.5351633575143977,1.5492408434668152,1.557080083337494,1.5586495112742857,1.5539428077448085,1.542978924982974,1.52580201067503,1.5024812301924098,1.4731104880871926,1.4378080499716157,1.396716066304195,1.3499999999999996,1.2978479601698927,1.2404699446715313,1.1780969945221154,1.110980263577752,1.0393900072255227,0.9636144941604217,0.8839588456290689,0.8007438068141335,0.7143044553066952,0.6249888518670427,0.5331566389068432,0.43917759233607856,0.3434301326059718,0.24629980094338555,0.14817770691238022,0.049458953554037746,-0.04945895355403806,-0.14817770691238052,-0.24629980094338585,-0.34343013260597144,-0.43917759233607884,-0.5331566389068428,-0.6249888518670429,-0.7143044553066948,-0.8007438068141337,-0.8839588456290686,-0.963614494160422,-1.0393900072255222,-1.1109802635777521,-1.1780969945221154,-1.2404699446715315,-1.2978479601698925,-1.3500000000000003,-1.3967160663041953,-1.4378080499716157,-1.4731104880871924,-1.50248123019241,-1.52580201067503,-1.542978924982974,-1.5539428077448085,-1.5586495112742857,-1.557080083337494,-1.5492408434668152,-1.535163357514398,-1.5149043105476108,-1.4885452785982853,-1.4561924001848252,-1.4179759489298542,-1.3740498089943187,-1.324590855440281,-1.269798242017474,-1.209892599241439,-1.1451151459923137,-1.0757267182115322,-1.0020067186075552,-0.9242519915997721,-0.842775628030799,-0.7579057044601524,-0.6699839621157403,-0.5793644308225516,-0.4864120034495075,-0.39150096661465794,-0.29501349356507633,-0.19733810530008386,-0.09886810613430255,-3.8180708594096647e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.8, Eccentricity = 0.50"}],"label":"1.8","method":"update"},{"args":[{"x":[[1.9,1.8961746852965804,1.8847141443785111,1.8656645247991426,1.8391025326530768,1.8051351237077962,1.7638990727305377,1.7155604227445802,1.6603138164325912,1.5983817123792443,1.5300134893090114,1.4554844419260582,1.3750946723996331,1.289167881958551,1.1980500674605927,1.1021081281852765,1.0017283884599544,0.8973150420680971,0.7892885247035842,0.6780838210245566,0.5641487131237223,0.4479419774679118,0.32993153756716775,0.2105925798119211,0.09040564006511013,-0.030145331286135252,-0.1505749180278982,-0.2703981927192419,-0.38913266932386237,-0.5063002460110665,-0.6214291303031011,-0.7340557388169444,-0.8437265639509708,-0.9500000000000004,-1.0524481213456094,-1.150658405561567,-1.2442353944960414,-1.3328022866420106,-1.4160024543839338,-1.493500880011296,-1.564985504716682,-1.6301684851464564,-1.6887873524443544,-1.7406060691209322,-1.7854159794932256,-1.823036649867545,-1.8533165950822732,-1.876133888485149,-1.8913966528888606,-1.8990434305280515,-1.8990434305280515,-1.8913966528888606,-1.876133888485149,-1.8533165950822732,-1.823036649867545,-1.7854159794932258,-1.7406060691209322,-1.6887873524443546,-1.6301684851464562,-1.5649855047166823,-1.4935008800112959,-1.416002454383934,-1.3328022866420104,-1.2442353944960418,-1.1506584055615665,-1.0524481213456098,-0.9499999999999992,-0.8437265639509705,-0.7340557388169444,-0.6214291303031015,-0.5063002460110658,-0.38913266932386203,-0.2703981927192419,-0.15057491802789869,-0.030145331286134454,0.09040564006511052,0.21059257981192062,0.3299315375671669,0.4479419774679122,0.5641487131237223,0.6780838210245561,0.7892885247035849,0.8973150420680974,1.0017283884599544,1.102108128185276,1.1980500674605934,1.2891678819585513,1.3750946723996331,1.4554844419260577,1.5300134893090116,1.5983817123792443,1.6603138164325912,1.71556042274458,1.763899072730538,1.8051351237077962,1.8391025326530768,1.8656645247991428,1.8847141443785111,1.8961746852965804,1.9]],"y":[[0.0,0.10436077869731933,0.2083013333723111,0.31140313209647025,0.41325102031547195,0.5134348925300358,0.6115513436460273,0.7072052933443921,0.8000115769301607,0.8895964962547324,0.9755993244664265,1.0576737585301965,1.1354893136677284,1.208732654102998,1.2771088547548528,1.3403425887962224,1.3981792362980745,1.4503859094940033,1.4967523905370685,1.537091977972871,1.5712422385204121,1.599065661133589,1.620450210709642,1.6353097792149718,1.6435845324117992,1.645241150789524,1.6402729637306313,1.628699976370917,1.610568789045865,1.5859524096475435,1.554949959647592,1.5176862749700388,1.474311403321095,1.4249999999999996,1.3699506246237756,1.3093849415977274,1.243546827551122,1.1727013893320715,1.0971338965158295,1.0171486327248895,0.9330676703862394,0.8452295738593631,0.7539880361570671,0.6597104547485451,0.5627764521794455,0.46357634746586074,0.3625095844174147,0.2599831232180181,0.1564098017408458,0.05220667319592873,-0.05220667319592906,-0.1564098017408461,-0.2599831232180184,-0.3625095844174143,-0.463576347465861,-0.5627764521794452,-0.6597104547485453,-0.7539880361570668,-0.8452295738593633,-0.933067670386239,-1.01714863272489,-1.097133896515829,-1.1727013893320717,-1.2435468275511217,-1.3093849415977277,-1.3699506246237754,-1.4250000000000003,-1.4743114033210951,-1.5176862749700388,-1.554949959647592,-1.5859524096475437,-1.610568789045865,-1.628699976370917,-1.640272963730631,-1.645241150789524,-1.6435845324117992,-1.6353097792149718,-1.6204502107096421,-1.599065661133589,-1.5712422385204121,-1.537091977972871,-1.4967523905370683,-1.450385909494003,-1.3981792362980745,-1.3403425887962226,-1.2771088547548524,-1.2087326541029977,-1.1354893136677284,-1.0576737585301972,-0.975599324466426,-0.8895964962547322,-0.8000115769301608,-0.7072052933443925,-0.6115513436460267,-0.5134348925300357,-0.41325102031547223,-0.31140313209646947,-0.20830133337231074,-0.10436077869731936,-4.030185907154646e-16]]},{"title":"Ellipse with Semi-Major Axis = 1.9, Eccentricity = 0.50"}],"label":"1.9","method":"update"},{"args":[{"x":[[2.0,1.9959733529437689,1.9839096256615907,1.9638573945254134,1.9358974027927125,1.9001422354818909,1.8567358660321451,1.8058530765732423,1.7476987541395699,1.6825070656623624,1.6105405150621173,1.532088886237956,1.4474680762101402,1.3570188231142644,1.261105334169045,1.1601138191423963,1.0544509352210047,0.9445421495453654,0.8308300260037729,0.7137724431837438,0.5938407506565498,0.47151787101885456,0.34729635533386083,0.2216763998020222,0.09516383164748436,-0.03173192766961606,-0.15849991371357708,-0.28462967654657045,-0.4096133361303815,-0.5329476273800701,-0.6541359266348433,-0.7726902513862574,-0.8881332252115482,-1.0000000000000004,-1.1078401277322205,-1.2112193742753337,-1.30972146789057,-1.4029497754126428,-1.4905288993515093,-1.572106189485575,-1.6473531628596654,-1.7159668264699541,-1.7776708973098467,-1.8322169148641392,-1.8793852415718166,-1.9189859472289947,-1.950859573770814,-1.9748777773527886,-1.9909438451461692,-1.9989930847663702,-1.9989930847663702,-1.9909438451461692,-1.9748777773527886,-1.950859573770814,-1.9189859472289947,-1.8793852415718169,-1.8322169148641392,-1.777670897309847,-1.715966826469954,-1.6473531628596656,-1.5721061894855748,-1.4905288993515096,-1.4029497754126425,-1.3097214678905704,-1.2112193742753332,-1.107840127732221,-0.9999999999999992,-0.8881332252115479,-0.7726902513862574,-0.6541359266348438,-0.5329476273800693,-0.4096133361303811,-0.28462967654657045,-0.15849991371357758,-0.03173192766961522,0.09516383164748476,0.22167639980202172,0.34729635533385994,0.47151787101885495,0.5938407506565498,0.7137724431837433,0.8308300260037736,0.9445421495453658,1.0544509352210047,1.1601138191423959,1.2611053341690457,1.3570188231142646,1.4474680762101402,1.5320888862379556,1.6105405150621175,1.6825070656623624,1.7476987541395699,1.8058530765732421,1.8567358660321454,1.9001422354818909,1.9358974027927125,1.9638573945254136,1.9839096256615907,1.9959733529437689,2.0]],"y":[[0.0,0.10985345126033613,0.21926456144453801,0.32779277062786344,0.4350010740162863,0.540457781610564,0.6437382564695023,0.7444266245730443,0.8421174494001691,0.9364173644786656,1.0269466573330805,1.1133407984528385,1.1952519091239246,1.272350162213682,1.344325110268266,1.410886935574971,1.4717676171558678,1.5267220099936876,1.5755288321442826,1.6179915557609166,1.6539391984425391,1.6832270117195673,1.7057370639048863,1.721378714963128,1.7300889814861045,1.731832790304762,1.726603119716454,1.7144210277588599,1.6953355674167,1.6694235891026774,1.6367894312079916,1.5975644999684617,1.5519067403379945,1.4999999999999996,1.4420532890776585,1.3782999385239236,1.3089966605801282,1.234422515086391,1.154877785806136,1.0706827712893574,0.9821764951434098,0.8897153409045927,0.793671617007439,0.6944320576300475,0.5923962654520479,0.48797510259564286,0.3815890362288576,0.2736664454926506,0.16464189656931136,0.054954392837819714,-0.05495439283782006,-0.1646418965693117,-0.27366644549265096,-0.38158903622885715,-0.48797510259564314,-0.5923962654520475,-0.6944320576300477,-0.7936716170074386,-0.8897153409045929,-0.9821764951434094,-1.0706827712893578,-1.1548777858061359,-1.2344225150863912,-1.308996660580128,-1.3782999385239239,-1.4420532890776583,-1.5000000000000002,-1.5519067403379947,-1.5975644999684617,-1.6367894312079914,-1.6694235891026776,-1.6953355674167,-1.7144210277588599,-1.7266031197164537,-1.731832790304762,-1.7300889814861045,-1.721378714963128,-1.7057370639048866,-1.6832270117195673,-1.6539391984425391,-1.6179915557609168,-1.5755288321442824,-1.5267220099936873,-1.4717676171558678,-1.4108869355749711,-1.3443251102682656,-1.2723501622136817,-1.1952519091239246,-1.1133407984528392,-1.02694665733308,-0.9364173644786655,-0.8421174494001693,-0.7444266245730448,-0.6437382564695018,-0.5404577816105639,-0.43500107401628657,-0.3277927706278626,-0.21926456144453763,-0.10985345126033616,-4.242300954899627e-16]]},{"title":"Ellipse with Semi-Major Axis = 2.0, Eccentricity = 0.50"}],"label":"2.0","method":"update"}],"x":0.1,"xanchor":"left","y":-0.3,"yanchor":"top"}]},                        {"responsive": true}                    ).then(function(){
                             
 var gd = document.getElementById('17ca6d29-c867-4468-9f5e-b272666e1a80');
@@ -3984,239 +4094,407 @@ if (outputEl) {{
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
       }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+      return false;
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
+<script src="../../scripts/leader-line-master/leader-line.min.js"></script>
+
 
 
 
