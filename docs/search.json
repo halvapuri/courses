@@ -1511,14 +1511,14 @@
     "href": "index.html#undergraduate",
     "title": "Course Hub",
     "section": "Undergraduate",
-    "text": "Undergraduate\nCalculus I - MT101\nDifferential Equations & Linear Algebra - MT102\nCalculus II - MT202\nAdvanced Linear Algebra - ES304"
+    "text": "Undergraduate\n\n\n\nMT101\nCalculus I\n\n\nMT102\nDifferential Equations & Linear Algebra\n\n\nMT202\nCalculus II\n\n\nES304\nAdvanced Linear Algebra"
   },
   {
     "objectID": "index.html#graduate",
     "href": "index.html#graduate",
     "title": "Course Hub",
     "section": "Graduate",
-    "text": "Graduate\nNon-equilibrium Thermodynamics - ES696"
+    "text": "Graduate\n\n\n\n\n\nESXXX\nNon-equilibrium Thermodynamics - ES696"
   },
   {
     "objectID": "C0ode/coursematerial/01-MatricesJulia.html#python",
