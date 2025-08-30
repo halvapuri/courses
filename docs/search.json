@@ -179,28 +179,47 @@
     "href": "C0calculusI/home_calculusI.html",
     "title": "Calculus I",
     "section": "",
-    "text": "This is the home page for calculus I (MT-101). All assignments, announcements, and other relevant materials will be posted here."
+    "text": "This is the home page for calculus I (MT-101). All assignments, announcements, and other relevant materials will be posted here.",
+    "crumbs": [
+      "About",
+      "Undergraduate Courses",
+      "MT101 - Calculus I"
+    ]
   },
   {
     "objectID": "C0calculusI/home_calculusI.html#announcements",
     "href": "C0calculusI/home_calculusI.html#announcements",
     "title": "Calculus I",
     "section": "Announcements",
-    "text": "Announcements"
+    "text": "Announcements",
+    "crumbs": [
+      "About",
+      "Undergraduate Courses",
+      "MT101 - Calculus I"
+    ]
   },
   {
     "objectID": "C0calculusI/home_calculusI.html#other-resources",
     "href": "C0calculusI/home_calculusI.html#other-resources",
     "title": "Calculus I",
     "section": "Other Resources",
-    "text": "Other Resources\n\nPython related\n\nCalculus I in python"
+    "text": "Other Resources\n\nPython related\n\nCalculus I in python",
+    "crumbs": [
+      "About",
+      "Undergraduate Courses",
+      "MT101 - Calculus I"
+    ]
   },
   {
     "objectID": "C0calculusII/home_calculusII.html",
     "href": "C0calculusII/home_calculusII.html",
     "title": "Calculus II",
     "section": "",
-    "text": "As announced in class, there will be a project.\nThe task: Reproduce 3 figures (two 2D and one 3D) from your textbook.\nNote that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.\nFurthermore:\n\nThe project will be done in groups of 3.\nThe marks will be credited as bonus (i.e. they will not have a separate category)\nThere will be a viva in the 15th week.\nThe individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.)"
+    "text": "As announced in class, there will be a project.\nThe task: Reproduce 3 figures (two 2D and one 3D) from your textbook.\nNote that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.\nFurthermore:\n\nThe project will be done in groups of 3.\nThe marks will be credited as bonus (i.e. they will not have a separate category)\nThere will be a viva in the 15th week.\nThe individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.)",
+    "crumbs": [
+      "Home",
+      "Calculus II Home"
+    ]
   },
   {
     "objectID": "C0calculusII/notebooks/11_2,3,4DotCrossProduct.html",
@@ -627,14 +646,24 @@
     "href": "C0calculusI/home_calculusI.html#course-outline",
     "title": "Calculus I",
     "section": "Course Outline",
-    "text": "Course Outline\nOutline (pdf)"
+    "text": "Course Outline\nOutline (pdf)",
+    "crumbs": [
+      "About",
+      "Undergraduate Courses",
+      "MT101 - Calculus I"
+    ]
   },
   {
     "objectID": "C0calculusI/home_calculusI.html#slides-and-notebooks",
     "href": "C0calculusI/home_calculusI.html#slides-and-notebooks",
     "title": "Calculus I",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\n\nFunctions\nLimits and Continuity"
+    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\n\nFunctions\nLimits and Continuity",
+    "crumbs": [
+      "About",
+      "Undergraduate Courses",
+      "MT101 - Calculus I"
+    ]
   },
   {
     "objectID": "C0calculusI/lectures/test.html",
@@ -655,21 +684,29 @@
     "href": "C0calculusII/home_calculusII.html#slides-and-notebooks",
     "title": "Calculus II",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\nParametric Curves\nParametric Curves Calculus\nParametric Curves Polar\nConic Sections\nVectors\nQuadric Surfaces\nPartial Derivatives\nDouble Integrals"
+    "text": "Slides and Notebooks\nNote: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.\nIf you want a quick solution, then you can use sympy on Google colab as shown here\n\nParametric Curves\nParametric Curves Calculus\nParametric Curves Polar\nConic Sections\nVectors\nQuadric Surfaces\nPartial Derivatives\nDouble Integrals",
+    "crumbs": [
+      "Home",
+      "Calculus II Home"
+    ]
   },
   {
     "objectID": "C0calculusII/home_calculusII.html#course-outline",
     "href": "C0calculusII/home_calculusII.html#course-outline",
     "title": "Calculus II",
     "section": "Course Outline",
-    "text": "Course Outline\nOutline (pdf)"
+    "text": "Course Outline\nOutline (pdf)",
+    "crumbs": [
+      "Home",
+      "Calculus II Home"
+    ]
   },
   {
     "objectID": "C0calculusII/lectures/10_1ParametricPlots.html",
     "href": "C0calculusII/lectures/10_1ParametricPlots.html",
     "title": "Parametric Plots",
     "section": "",
-    "text": "Basic parametrizations\n\n\n\n\nSome plotting routines. Click to expand\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef plotter(x, y, create = False):\n    if create: plt.figure(figsize=(6, 6))\n    plt.plot(x, y)\n    plt.gca().set_aspect('equal', adjustable='box')\n\n    return\n\ndef centeraxes():\n    ax = plt.gca()\n    # Move left y-axis and bottom x-axis to centre, passing through (0,0)\n\n    ax.spines['left'].set_position('zero')\n    ax.spines['bottom'].set_position('zero')\n\n    # Eliminate upper and right axes\n    ax.spines['right'].set_color('none')\n    ax.spines['top'].set_color('none')\n\n    # Show ticks in the left and lower axes only\n    ax.xaxis.set_ticks_position('bottom')\n    ax.yaxis.set_ticks_position('left')\n    return\n\n\n\nParabola\n\n\nCircle and Ellipse\n\nt = np.linspace(0, 2 * np.pi, 400)\n\nx = np.cos(t)\ny = np.sin(t)\nplotter(x,y, create = True)\n\nx = 2* np.cos(t)\ny = np.sin(t)\nplotter(x,y)\ncenteraxes()\nplt.show()\n\n\n\n\n\n\nHyperpola\n\nt = np.linspace(0.1, 10, 400)\n\nx = t + 1/t\ny = t - 1/t\nplotter(x,y)\ncenteraxes()\n\nplt.show()\n\n\n\n\n\n\nCycloid\n\nt = np.linspace(0, 8*np.pi, 400)\n\na = 1\n\nx = a * (t - np.sin(t))\ny = a * (1 - np.cos(t))\nplotter(x,y)\ncenteraxes()\n\nplt.show()\n\n\n\n\n\n\nBrachistochrone and Tautochrone\n\n\n\n\n\nMiscellaneous\n\n\nDrawing the Batman curve.\n\n\nNon-parametric version\nimport numpy as np\nimport matplotlib.pyplot as plt\nx = np.linspace(-6,6,1000)\n\ndef sf(x):\n    return np.sqrt(1-x**2)                           # semicircle\ndef ef(x):\n    return 3*sf(x/7)                             # ellipse\ndef sh(x):\n    return 4.2 - .5*x -2.8*sf(.5*x -.5)          # shoulders\ndef bf(x):\n    return sf(abs(2 - x) - 1) - x**2/11 + .5*x -3 # bottom\n\ncl_x = [0,0.5,0.8,1]\ncl_xn = [-x for x in cl_x]\ncl_y = [1.7, 1.7, 2.6, 0.9]\n\ndef p(f,xmin,xmax, flipy = False):\n    \"symmetric plot across y-axis\"\n    \n    x = np.linspace(xmin, xmax, 100)\n    y = f(x)\n    if flipy: \n        y = -y\n    p1 = plt.plot(x, y)\n    \n    x = [-i for i in x]\n    ax = plt.plot(x, y)\n    \n    return ax\n\np(ef,3,7) \np(ef,4,7, flipy = True) \np(sh,1,3)\np(bf,0,4) \nplt.plot(cl_x, cl_y)\nplt.plot(cl_xn, cl_y)\nplt.show()\n\n\n\n\n\nBelow is a parametrized version of the plot.\n\n\nParametric version\nimport sympy as sm\n\n\nx = sm.symbols('x', real=True)\nh_ = sm.symbols('h_')\n\nw = 3 * sm.sqrt(1 - (x / 7)**2)\nl = ((x + 3) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x + 1)**2) +\n        sm.S(6) / 7 * sm.sqrt(10))\nr = ((3 - x) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x - 1)**2) +\n        sm.S(6) / 7 * sm.sqrt(10))\nh = (3*(sm.Abs(x - sm.S.Half) + sm.Abs(x + sm.S.Half) + 6) -\n                11*(sm.Abs(x - sm.S(3)/4) + sm.Abs(x + sm.S(3)/4)))/2 \nf = ((h - l) * sm.Heaviside(x + 1, 0) +\n        (r - h) * sm.Heaviside(x - 1, 0) +\n        (l - w) * sm.Heaviside(x + 3, 0) +\n        (w - r) * sm.Heaviside(x - 3, 0) + \n        w)\ng = (sm.S(1) / 2 * (sm.Abs(x / 2) + sm.sqrt(1 - (sm.Abs(sm.Abs(x) - 2) -\n        1)**2) - sm.S(1) / 112 * (3 * sm.sqrt(33) - 7) * x**2 + 3 *\n        sm.sqrt(1 - (sm.S(1) / 7 * x)**2) - 3) * ((x + 4) / sm.Abs(x + 4) -\n        (x - 4) / sm.Abs(x - 4)) - 3 * sm.sqrt(1 - (x / 7)**2))\nsm.plot(f, g)\n\n\n&lt;lambdifygenerated-3&gt;:2: RuntimeWarning: invalid value encountered in sqrt\n  return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x1515a06c8be0&gt;\n\n\nThe bottom wings are missing. Most likely some part of the equation is missing. You can experiment with the equations if you want.\n\n\n\nTaken from Math World"
+    "text": "Basic parametrizations\n\n\n\n\nSome plotting routines. Click to expand\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef plotter(x, y, create = False):\n    if create: plt.figure(figsize=(6, 6))\n    plt.plot(x, y)\n    plt.gca().set_aspect('equal', adjustable='box')\n\n    return\n\ndef centeraxes():\n    ax = plt.gca()\n    # Move left y-axis and bottom x-axis to centre, passing through (0,0)\n\n    ax.spines['left'].set_position('zero')\n    ax.spines['bottom'].set_position('zero')\n\n    # Eliminate upper and right axes\n    ax.spines['right'].set_color('none')\n    ax.spines['top'].set_color('none')\n\n    # Show ticks in the left and lower axes only\n    ax.xaxis.set_ticks_position('bottom')\n    ax.yaxis.set_ticks_position('left')\n    return\n\n\n\nParabola\n\n\nCircle and Ellipse\n\nt = np.linspace(0, 2 * np.pi, 400)\n\nx = np.cos(t)\ny = np.sin(t)\nplotter(x,y, create = True)\n\nx = 2* np.cos(t)\ny = np.sin(t)\nplotter(x,y)\ncenteraxes()\nplt.show()\n\n\n\n\n\n\n\n\n\n\nHyperpola\n\nt = np.linspace(0.1, 10, 400)\n\nx = t + 1/t\ny = t - 1/t\nplotter(x,y)\ncenteraxes()\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\nCycloid\n\nt = np.linspace(0, 8*np.pi, 400)\n\na = 1\n\nx = a * (t - np.sin(t))\ny = a * (1 - np.cos(t))\nplotter(x,y)\ncenteraxes()\n\nplt.show()\n\n\n\n\n\n\n\n\n\n\nBrachistochrone and Tautochrone\n\n\n\n\n\nMiscellaneous\n\n\nDrawing the Batman curve.\n\n\nNon-parametric version\nimport numpy as np\nimport matplotlib.pyplot as plt\nx = np.linspace(-6,6,1000)\n\ndef sf(x):\n    return np.sqrt(1-x**2)                           # semicircle\ndef ef(x):\n    return 3*sf(x/7)                             # ellipse\ndef sh(x):\n    return 4.2 - .5*x -2.8*sf(.5*x -.5)          # shoulders\ndef bf(x):\n    return sf(abs(2 - x) - 1) - x**2/11 + .5*x -3 # bottom\n\ncl_x = [0,0.5,0.8,1]\ncl_xn = [-x for x in cl_x]\ncl_y = [1.7, 1.7, 2.6, 0.9]\n\ndef p(f,xmin,xmax, flipy = False):\n    \"symmetric plot across y-axis\"\n    \n    x = np.linspace(xmin, xmax, 100)\n    y = f(x)\n    if flipy: \n        y = -y\n    p1 = plt.plot(x, y)\n    \n    x = [-i for i in x]\n    ax = plt.plot(x, y)\n    \n    return ax\n\np(ef,3,7) \np(ef,4,7, flipy = True) \np(sh,1,3)\np(bf,0,4) \nplt.plot(cl_x, cl_y)\nplt.plot(cl_xn, cl_y)\nplt.show()\n\n\n\n\n\n\n\n\n\nBelow is a parametrized version of the plot.\n\n\nParametric version\nimport sympy as sm\n\n\nx = sm.symbols('x', real=True)\nh_ = sm.symbols('h_')\n\nw = 3 * sm.sqrt(1 - (x / 7)**2)\nl = ((x + 3) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x + 1)**2) +\n        sm.S(6) / 7 * sm.sqrt(10))\nr = ((3 - x) / 2 - sm.S(3) / 7 * sm.sqrt(10) * sm.sqrt(4 - (x - 1)**2) +\n        sm.S(6) / 7 * sm.sqrt(10))\nh = (3*(sm.Abs(x - sm.S.Half) + sm.Abs(x + sm.S.Half) + 6) -\n                11*(sm.Abs(x - sm.S(3)/4) + sm.Abs(x + sm.S(3)/4)))/2 \nf = ((h - l) * sm.Heaviside(x + 1, 0) +\n        (r - h) * sm.Heaviside(x - 1, 0) +\n        (l - w) * sm.Heaviside(x + 3, 0) +\n        (w - r) * sm.Heaviside(x - 3, 0) + \n        w)\ng = (sm.S(1) / 2 * (sm.Abs(x / 2) + sm.sqrt(1 - (sm.Abs(sm.Abs(x) - 2) -\n        1)**2) - sm.S(1) / 112 * (3 * sm.sqrt(33) - 7) * x**2 + 3 *\n        sm.sqrt(1 - (sm.S(1) / 7 * x)**2) - 3) * ((x + 4) / sm.Abs(x + 4) -\n        (x - 4) / sm.Abs(x - 4)) - 3 * sm.sqrt(1 - (x / 7)**2))\nsm.plot(f, g)\n\n\n&lt;lambdifygenerated-3&gt;:2: RuntimeWarning: invalid value encountered in sqrt\n  return -3*sqrt(1 - 1/49*x**2) + (-(x - 4)/abs(x - 4) + (x + 4)/abs(x + 4))*(-1/2*x**2*(-1/16 + (3/112)*sqrt(33)) + (3/2)*sqrt(1 - 1/49*x**2) + (1/2)*sqrt(1 - (abs(abs(x) - 2) - 1)**2) + (1/4)*abs(x) - 3/2)\n\n\n\n\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x1515a06c8be0&gt;\n\n\nThe bottom wings are missing. Most likely some part of the equation is missing. You can experiment with the equations if you want.\n\n\n\nTaken from Math World"
   },
   {
     "objectID": "C0calculusII/notebooks/10_1aParametricCurvesAnimated.html",
@@ -725,7 +762,12 @@
     "href": "C0calculusI/home_calculusI.html#contacts",
     "title": "Calculus I",
     "section": "Contacts",
-    "text": "Contacts\nIn case of queries regarding attendance, quizzes, and assignments contact:\nMr. Hassan Ali\nEmail: hassan.ali@giki.edu.pk\nMr. Aamir Shehzad\nEmail: aamir.shehzad@giki.edu.pk"
+    "text": "Contacts\nIn case of queries regarding attendance, quizzes, and assignments contact:\nMr. Hassan Ali\nEmail: hassan.ali@giki.edu.pk\nMr. Aamir Shehzad\nEmail: aamir.shehzad@giki.edu.pk",
+    "crumbs": [
+      "About",
+      "Undergraduate Courses",
+      "MT101 - Calculus I"
+    ]
   },
   {
     "objectID": "C0calculusI/lectures/1functions.html#plotting-functions",
@@ -788,7 +830,11 @@
     "href": "C0calculusII/home_calculusII.html#other-resources",
     "title": "Calculus II",
     "section": "Other Resources",
-    "text": "Other Resources\n\nPython related\n\nCalculus I in python\nCalculus II in python\nSympy tutorial ## Teaching Assistants\n\nIn case of queries regarding attendance, quizzes, and assignments contact:\nMs. Iqra Anjum\nEmail: ges2319@giki.edu.pk"
+    "text": "Other Resources\n\nPython related\n\nCalculus I in python\nCalculus II in python\nSympy tutorial ## Teaching Assistants\n\nIn case of queries regarding attendance, quizzes, and assignments contact:\nMs. Iqra Anjum\nEmail: ges2319@giki.edu.pk",
+    "crumbs": [
+      "Home",
+      "Calculus II Home"
+    ]
   },
   {
     "objectID": "C0QuickReference/sympy/01sympybasic.html#integration",
@@ -858,28 +904,46 @@
     "href": "C0calculusII/home_calculusII.html#quizzes",
     "title": "Calculus II",
     "section": "Quizzes",
-    "text": "Quizzes\nWe will most likely have three quizzes:\n\nQuiz 1 [5 Marks]\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nDecember 10 (Tuesday), 6:00pm at LH4, FES \nFrom chapters 13 & 14"
+    "text": "Quizzes\nWe will most likely have three quizzes:\n\nQuiz 1 [5 Marks]\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nDecember 10 (Tuesday), 6:00pm at LH4, FES \nFrom chapters 13 & 14",
+    "crumbs": [
+      "Home",
+      "Calculus II Home"
+    ]
   },
   {
     "objectID": "C0calculusII/home_calculusII.html#assignments",
     "href": "C0calculusII/home_calculusII.html#assignments",
     "title": "Calculus II",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5"
+    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5",
+    "crumbs": [
+      "Home",
+      "Calculus II Home"
+    ]
   },
   {
     "objectID": "C0calculusI/home_calculusI.html#quizzes",
     "href": "C0calculusI/home_calculusI.html#quizzes",
     "title": "Calculus I",
     "section": "Quizzes",
-    "text": "Quizzes\nWe will most likely have three quizzes. Tentatively:\n\nQuiz 1 [5 Marks]\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nDecember 10 (Tuesday), 6:00pm at LH4, FES \n4.3 to 4.5, 5.1 to 5.6 (as studied in class), 6.1, 6.2\n\n\nN.B.: If you can’t take the quiz for some reason, you need to inform us in advance."
+    "text": "Quizzes\nWe will most likely have three quizzes. Tentatively:\n\nQuiz 1 [5 Marks]\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nDecember 10 (Tuesday), 6:00pm at LH4, FES \n4.3 to 4.5, 5.1 to 5.6 (as studied in class), 6.1, 6.2\n\n\nN.B.: If you can’t take the quiz for some reason, you need to inform us in advance.",
+    "crumbs": [
+      "About",
+      "Undergraduate Courses",
+      "MT101 - Calculus I"
+    ]
   },
   {
     "objectID": "C0calculusI/home_calculusI.html#assignments",
     "href": "C0calculusI/home_calculusI.html#assignments",
     "title": "Calculus I",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5"
+    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5",
+    "crumbs": [
+      "About",
+      "Undergraduate Courses",
+      "MT101 - Calculus I"
+    ]
   },
   {
     "objectID": "C0calculusII/notebooks/test.html",
@@ -935,7 +999,11 @@
     "href": "C0calculusII/home_calculusII.html#temp",
     "title": "Calculus II",
     "section": "Temp",
-    "text": "Temp\n\nJulia test"
+    "text": "Temp\n\nJulia test",
+    "crumbs": [
+      "Home",
+      "Calculus II Home"
+    ]
   },
   {
     "objectID": "C0calculusII/lectures/10_3ParametricPolar.html#intersecting-curves",
@@ -1187,7 +1255,12 @@
     "href": "C0calculusI/home_calculusI.html#midterm",
     "title": "Calculus I",
     "section": "Midterm",
-    "text": "Midterm\nThe midterm will include everything studied in class up till (and including) section 4.1."
+    "text": "Midterm\nThe midterm will include everything studied in class up till (and including) section 4.1.",
+    "crumbs": [
+      "About",
+      "Undergraduate Courses",
+      "MT101 - Calculus I"
+    ]
   },
   {
     "objectID": "C0TopologicalMaterials/home_topmat.html",
@@ -1236,7 +1309,11 @@
     "href": "C0calculusII/home_calculusII.html#project",
     "title": "Calculus II",
     "section": "",
-    "text": "As announced in class, there will be a project.\nThe task: Reproduce 3 figures (two 2D and one 3D) from your textbook.\nNote that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.\nFurthermore:\n\nThe project will be done in groups of 3.\nThe marks will be credited as bonus (i.e. they will not have a separate category)\nThere will be a viva in the 15th week.\nThe individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.)"
+    "text": "As announced in class, there will be a project.\nThe task: Reproduce 3 figures (two 2D and one 3D) from your textbook.\nNote that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.\nFurthermore:\n\nThe project will be done in groups of 3.\nThe marks will be credited as bonus (i.e. they will not have a separate category)\nThere will be a viva in the 15th week.\nThe individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.)",
+    "crumbs": [
+      "Home",
+      "Calculus II Home"
+    ]
   },
   {
     "objectID": "C0calculusII/lectures/14_6SphericalCylindrical.html",
@@ -1299,28 +1376,44 @@
     "href": "C0ode/home_ode.html#quizzes",
     "title": "Ordinary Differential Equations",
     "section": "",
-    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nApr 29 (Tuesday)\nVenue: Brabers building (Subject to availability)\n\nSyllabus: Chapter 4 (Zill: 10th Ed.)"
+    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nApr 29 (Tuesday)\nVenue: Brabers building (Subject to availability)\n\nSyllabus: Chapter 4 (Zill: 10th Ed.)",
+    "crumbs": [
+      "Undergraduate Courses",
+      "MT102 - Ordinary Differential Equations"
+    ]
   },
   {
     "objectID": "C0ode/home_ode.html#assignments",
     "href": "C0ode/home_ode.html#assignments",
     "title": "Ordinary Differential Equations",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5"
+    "text": "Assignments\nAssignment 1\nAssignment 2\nAssignment 3\nAssignment 4\nAssignment 5",
+    "crumbs": [
+      "Undergraduate Courses",
+      "MT102 - Ordinary Differential Equations"
+    ]
   },
   {
     "objectID": "C0ode/home_ode.html#slides-and-notebooks",
     "href": "C0ode/home_ode.html#slides-and-notebooks",
     "title": "Ordinary Differential Equations",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nPractice questions\nJulia: Quick reference for matrices\nGaussian Elimination\nJulia: ODEs\nSummary of 1st order ODEs"
+    "text": "Slides and Notebooks\nYou can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.\n\nPractice questions\nJulia: Quick reference for matrices\nGaussian Elimination\nJulia: ODEs\nSummary of 1st order ODEs",
+    "crumbs": [
+      "Undergraduate Courses",
+      "MT102 - Ordinary Differential Equations"
+    ]
   },
   {
     "objectID": "C0ode/home_ode.html#course-outline",
     "href": "C0ode/home_ode.html#course-outline",
     "title": "Ordinary Differential Equations",
     "section": "Course Outline",
-    "text": "Course Outline\nOutline (pdf)"
+    "text": "Course Outline\nOutline (pdf)",
+    "crumbs": [
+      "Undergraduate Courses",
+      "MT102 - Ordinary Differential Equations"
+    ]
   },
   {
     "objectID": "C0noneqthermo/lectures/langevinandfokkerplanck.html",
@@ -1446,7 +1539,11 @@
     "href": "C0ode/home_ode.html#other-info",
     "title": "Ordinary Differential Equations",
     "section": "Other info",
-    "text": "Other info\nCourse TA: Ms. Misbah Shaheen Email: misbah.shaheen [at] giki.edu.pk"
+    "text": "Other info\nCourse TA: Ms. Misbah Shaheen Email: misbah.shaheen [at] giki.edu.pk",
+    "crumbs": [
+      "Undergraduate Courses",
+      "MT102 - Ordinary Differential Equations"
+    ]
   },
   {
     "objectID": "C0ode/coursematerial/01-GaussElimination.html",
@@ -1537,7 +1634,11 @@
     "href": "C0ode/home_ode.html",
     "title": "Ordinary Differential Equations",
     "section": "",
-    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nApr 29 (Tuesday)\nVenue: Brabers building (Subject to availability)\n\nSyllabus: Chapter 4 (Zill: 10th Ed.)"
+    "text": "We will three quizzes:\n\nQuiz 1 (5 Marks)\nQuiz 2 (10 marks, 8th week)\nQuiz 3 (10 marks, 13th week)\n\n\nApr 29 (Tuesday)\nVenue: Brabers building (Subject to availability)\n\nSyllabus: Chapter 4 (Zill: 10th Ed.)",
+    "crumbs": [
+      "Undergraduate Courses",
+      "MT102 - Ordinary Differential Equations"
+    ]
   },
   {
     "objectID": "C0QuickReference/julia/matrices.html",
@@ -1775,7 +1876,11 @@
     "href": "C0linalg/lectures/01-vectorspaces.html",
     "title": "Vector Spaces",
     "section": "",
-    "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector.\n\n\n\nLinear algebra is the study of linear maps on finite-dimensional vector spaces.\nSome more text."
+    "text": "What is a Vector Space?\nA vector space (also called a linear space) is a collection of objects called vectors, along with two operations:\n\nVector addition: You can add two vectors to get another vector.\n\nScalar multiplication: You can multiply a vector by a number (a scalar) to get another vector.\n\nThe scalars usually come from the real numbers \\(\\mathbb{R}\\), but they can also come from the complex numbers \\(\\mathbb{C}\\) or other fields.\n\n\n\nExample\nThe set \\(\\mathbb{R}^2\\) (the plane) is a vector space. Vectors are pairs of real numbers:\n\\[\n\\mathbf{v} = \\begin{bmatrix} x \\\\ y \\end{bmatrix}, \\quad x,y \\in \\mathbb{R}\n\\]\n\nAddition: \\[\n\\begin{bmatrix} x_1 \\\\ y_1 \\end{bmatrix} +\n\\begin{bmatrix} x_2 \\\\ y_2 \\end{bmatrix}\n= \\begin{bmatrix} x_1 + x_2 \\\\ y_1 + y_2 \\end{bmatrix}\n\\]\nScalar multiplication: \\[\nc \\begin{bmatrix} x \\\\ y \\end{bmatrix} =\n\\begin{bmatrix} c x \\\\ c y \\end{bmatrix}\n\\]\n\n\n\n\nAxioms of a Vector Space\nFor a set \\(V\\) to be a vector space (over scalars in a field \\(F\\)), it must satisfy:\n\nClosure under addition and scalar multiplication\n\nCommutativity: \\(\\mathbf{u} + \\mathbf{v} = \\mathbf{v} + \\mathbf{u}\\)\n\nAssociativity: \\((\\mathbf{u} + \\mathbf{v}) + \\mathbf{w} = \\mathbf{u} + (\\mathbf{v} + \\mathbf{w})\\)\n\nAdditive identity: There exists a vector \\(\\mathbf{0}\\) such that \\(\\mathbf{v} + \\mathbf{0} = \\mathbf{v}\\)\n\nAdditive inverse: For every \\(\\mathbf{v}\\) there exists \\(-\\mathbf{v}\\) with \\(\\mathbf{v} + (-\\mathbf{v}) = \\mathbf{0}\\)\n\nDistributivity: \\(a(\\mathbf{u} + \\mathbf{v}) = a\\mathbf{u} + a\\mathbf{v}\\) and \\((a+b)\\mathbf{v} = a\\mathbf{v} + b\\mathbf{v}\\)\n\nScalar multiplication identity: \\(1\\mathbf{v} = \\mathbf{v}\\)\n\n\n\n\nExample with Python\n\nimport numpy as np\n\n# define two vectors\nu = np.array([2, 1])\nv = np.array([1, 3])\n\n# addition\nu_plus_v = u + v\n\n# scalar multiplication\nscalar_mult = 3 * u\n\nu_plus_v, scalar_mult\n\n(array([3, 4]), array([6, 3]))",
+    "crumbs": [
+      "Lectures",
+      "Vector Spaces"
+    ]
   },
   {
     "objectID": "C0linalg/coursematerial/01.html",
@@ -1789,42 +1894,66 @@
     "href": "C0linalg/home_linalg.html",
     "title": "Linear Algebra",
     "section": "",
-    "text": "We will take two quizzes:\n\nQuiz 1 (10 marks, 8th week)\nQuiz 2 (10 marks, 13th week)"
+    "text": "The project will be done in groups of two.",
+    "crumbs": [
+      "Home",
+      "Linear Algebra Home"
+    ]
   },
   {
     "objectID": "C0linalg/home_linalg.html#quizzes",
     "href": "C0linalg/home_linalg.html#quizzes",
     "title": "Linear Algebra",
-    "section": "",
-    "text": "We will take two quizzes:\n\nQuiz 1 (10 marks, 8th week)\nQuiz 2 (10 marks, 13th week)"
+    "section": "Quizzes",
+    "text": "Quizzes",
+    "crumbs": [
+      "Home",
+      "Linear Algebra Home"
+    ]
   },
   {
     "objectID": "C0linalg/home_linalg.html#assignments",
     "href": "C0linalg/home_linalg.html#assignments",
     "title": "Linear Algebra",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1"
+    "text": "Assignments\nAssignment 1",
+    "crumbs": [
+      "Home",
+      "Linear Algebra Home"
+    ]
   },
   {
     "objectID": "C0linalg/home_linalg.html#slides-and-notebooks",
     "href": "C0linalg/home_linalg.html#slides-and-notebooks",
     "title": "Linear Algebra",
     "section": "Slides and Notebooks",
-    "text": "Slides and Notebooks"
+    "text": "Slides and Notebooks\nVector spaces",
+    "crumbs": [
+      "Home",
+      "Linear Algebra Home"
+    ]
   },
   {
     "objectID": "C0linalg/home_linalg.html#course-outline",
     "href": "C0linalg/home_linalg.html#course-outline",
     "title": "Linear Algebra",
     "section": "Course Outline",
-    "text": "Course Outline\nOutline (pdf)"
+    "text": "Course Outline\nOutline (pdf)",
+    "crumbs": [
+      "Home",
+      "Linear Algebra Home"
+    ]
   },
   {
     "objectID": "C0linalg/home_linalg.html#other-info",
     "href": "C0linalg/home_linalg.html#other-info",
     "title": "Linear Algebra",
     "section": "Other info",
-    "text": "Other info"
+    "text": "Other info",
+    "crumbs": [
+      "Home",
+      "Linear Algebra Home"
+    ]
   },
   {
     "objectID": "C0linalg/figs/linmap.html",
@@ -2658,5 +2787,16 @@
     "title": "Excitons",
     "section": "",
     "text": "Ground state = \\(\\Phi_g\\). Filled up to band \\(\\mu\\). Bands from \\(\\nu\\) and above are completely empty.\nelectron-hole interaction necessitates that we consider the configuration interaction.\nEnergy eigenstates within the subspace of one-electron excitation should be a linear combination of \\(\\Psi_{\\nu\\mu k K} = \\Psi (\\nu k \\leftarrow \\mu k - K)\\)."
+  },
+  {
+    "objectID": "C0linalg/home_linalg.html#complex-engineering-project",
+    "href": "C0linalg/home_linalg.html#complex-engineering-project",
+    "title": "Linear Algebra",
+    "section": "",
+    "text": "The project will be done in groups of two.",
+    "crumbs": [
+      "Home",
+      "Linear Algebra Home"
+    ]
   }
 ]
