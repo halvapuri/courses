@@ -2939,7 +2939,7 @@
     "href": "C0ode/lecture_notes/dev/using_plotly.html",
     "title": "Using Plotly",
     "section": "",
-    "text": "By using echo: false the code will not show but the figure will.\n\nStyle 1Style 2Video\n\n\nExample and solutions could go here.\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\n\nWe can also use a two column format for figures that can be smaller.\nWe can have some explanatory text here on the left.\n\n\n\n                            \n                                            \n\n\n\n\n\n\nv=DL-ozRGDlkY” width=“100%” height=“600px” style=“border: none;”&gt;"
+    "text": "By using echo: false the code will not show but the figure will.\n\nStyle 1Style 2Video\n\n\nExample and solutions could go here.\n\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\n\nWe can also use a two column format for figures that can be smaller.\nWe can have some explanatory text here on the left.\n\n\n\n                            \n                                            \n\n\n\n\n\n\n\n\n:::"
   },
   {
     "objectID": "C0ode/lecture_notes/dev/Ch_Differential_Equations/main.html",
