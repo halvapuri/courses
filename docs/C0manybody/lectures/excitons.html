@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-3c90b8450f3be678cdf591e425017e4f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -260,7 +260,10 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#elementary-excitations-in-many-electron-system-of-insulators" id="toc-elementary-excitations-in-many-electron-system-of-insulators" class="nav-link active" data-scroll-target="#elementary-excitations-in-many-electron-system-of-insulators">Elementary excitations in many electron system of insulators</a></li>
+  <li><a href="#frenkel-excitons" id="toc-frenkel-excitons" class="nav-link active" data-scroll-target="#frenkel-excitons">Frenkel Excitons</a>
+  <ul class="collapse">
+  <li><a href="#elaboration-on-toyozawa-eq.-8.1.6" id="toc-elaboration-on-toyozawa-eq.-8.1.6" class="nav-link" data-scroll-target="#elaboration-on-toyozawa-eq.-8.1.6">Elaboration on Toyozawa (Eq. 8.1.6)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -286,13 +289,72 @@ window.Quarto = {
 </header>
 
 
-<section id="elementary-excitations-in-many-electron-system-of-insulators" class="level2">
-<h2 class="anchored" data-anchor-id="elementary-excitations-in-many-electron-system-of-insulators">Elementary excitations in many electron system of insulators</h2>
-<p>Ground state = <span class="math inline">\(\Phi_g\)</span>. Filled up to band <span class="math inline">\(\mu\)</span>. Bands from <span class="math inline">\(\nu\)</span> and above are completely empty.</p>
-<p>electron-hole interaction necessitates that we consider the configuration interaction.</p>
-<p>Energy eigenstates within the subspace of one-electron excitation should be a linear combination of <span class="math inline">\(\Psi_{\nu\mu k K} = \Psi (\nu k \leftarrow \mu k - K)\)</span>.</p>
-<section id="section" class="level4">
-<h4 class="anchored" data-anchor-id="section"></h4>
+<section id="frenkel-excitons" class="level2">
+<h2 class="anchored" data-anchor-id="frenkel-excitons">Frenkel Excitons</h2>
+<section id="elaboration-on-toyozawa-eq.-8.1.6" class="level3">
+<h3 class="anchored" data-anchor-id="elaboration-on-toyozawa-eq.-8.1.6">Elaboration on Toyozawa (Eq. 8.1.6)</h3>
+<p>In lattice systems with localized excitations (e.g., excitons, dipole excitations), the Hamiltonian often has <strong>translational invariance</strong>. This means the coupling between two sites depends only on their <em>relative</em> positions. This property allows us to diagonalize the Hamiltonian using <strong>Bloch-like states</strong>, just as in the theory of lattice vibrations or electrons in a periodic potential.</p>
+<p>We start with the dipole–dipole interaction Hamiltonian (see Toyozawa, eq 8.1.6):</p>
+<p><span class="math display">\[
+H_{nm} = D(\mathbf R_{nm}), \quad
+\mathbf R_{nm} = \mathbf R_n - \mathbf R_m,
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+D(\mathbf R_{nm}) =
+\left[ \frac{\mu^2}{R_{nm}^3} - \frac{3(\mu \cdot \mathbf R_{nm})^2}{R_{nm}^5} \right]
+\frac{1}{4\pi \epsilon_0}.
+\]</span></p>
+<p>Equivalently, in the localized basis the Hamiltonian is:</p>
+<p><span class="math display">\[
+H^{(e)} = \sum_{n,m} H_{nm} |\Phi_n\rangle \langle \Phi_m|.
+\]</span></p>
+<p>By analogy with lattice vibrations, we consider the trial wavefunction that will help diagonalize this:</p>
+<p><span class="math display">\[
+\Psi^{(e)}_{\mathbf K}
+= \frac{1}{\sqrt N} \sum_n e^{i \mathbf K \cdot \mathbf R_n} \Phi_n,
+\]</span></p>
+<p>where <span class="math inline">\(\Phi_n\)</span> is a localized excitation at site <span class="math inline">\(n\)</span>. Submitting this Bloch state to the Hamiltonian:</p>
+<p><span class="math display">\[
+H^{(e)} \Psi^{(e)}_{\mathbf K}
+= \frac{1}{\sqrt N} \sum_m e^{i \mathbf K \cdot \mathbf R_m}
+\sum_n H_{nm} \Phi_n.
+\]</span></p>
+<p>Since <span class="math inline">\(H_{nm} = D(\mathbf R_{n} - \mathbf R_{m})\)</span> depends only on the difference:</p>
+<p><span class="math display">\[
+\sum_m H_{nm} e^{i\mathbf K \cdot \mathbf R_m}
+= \sum_m D(\mathbf R_n - \mathbf R_m)\, e^{i\mathbf K \cdot \mathbf R_m}.
+\]</span></p>
+<p>Make the substitution <span class="math inline">\(\mathbf R_m = \mathbf R_n - \mathbf R_{nm}\)</span>:</p>
+<p><span class="math display">\[
+= \sum_m D(\mathbf R_{nm})\, e^{i\mathbf K \cdot (\mathbf R_n - \mathbf R_{nm})}.
+\]</span></p>
+<p>Factor the <span class="math inline">\(n\)</span>-dependence:</p>
+<p><span class="math display">\[
+= e^{i\mathbf K \cdot \mathbf R_n}
+\sum_m D(\mathbf R_{nm}) e^{-i\mathbf K \cdot \mathbf R_{nm}}.
+\]</span></p>
+<p>Therefore:</p>
+<p><span class="math display">\[
+H^{(e)} \Psi^{(e)}_{\mathbf K}
+= \Bigg(\sum_{m} D(\mathbf R_{nm}) e^{-i \mathbf K \cdot \mathbf R_{nm}} \Bigg)
+\frac{1}{\sqrt N} \sum_n e^{i \mathbf K \cdot \mathbf R_n} \Phi_n.
+\]</span></p>
+<p>But the last sum is exactly <span class="math inline">\(\Psi^{(e)}_{\mathbf K}\)</span>.</p>
+<p>Thus, the Bloch state is an <strong>eigenfunction</strong>:</p>
+<p><span class="math display">\[
+H^{(e)} \Psi^{(e)}_{\mathbf K} = D_{\mathbf K} \Psi^{(e)}_{\mathbf K},
+\]</span></p>
+<p>with eigenvalue</p>
+<p><span class="math display">\[
+D_{\mathbf K} = \sum_{n \neq 0} D(\mathbf R_n) e^{-i \mathbf K \cdot \mathbf R_n}.
+\]</span></p>
+<p>and thus, the diagonalized energy reads:</p>
+<p><span class="math display">\[
+E^{(e)}_{\mathbf K} = E^{(g)} + (\varepsilon + D_{\mathbf K}),
+\]</span></p>
+<p>where <span class="math inline">\(E^{(g)}\)</span> is the ground-state energy and <span class="math inline">\(\varepsilon\)</span> is the excitation energy in the absence of interactions.</p>
+<p>Note that <strong>form of the Bloch state</strong> is not arbitrary. It is dictated by the <strong>translational invariance</strong> of the Hamiltonian, which ensures that wave-like superpositions diagonalize the interaction matrix. Fascinatingly, this is why excitonic, vibrational, and electronic states in lattices share the same mathematical structure.</p>
 
 
 </section>
