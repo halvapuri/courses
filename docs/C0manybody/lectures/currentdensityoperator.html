@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Current Density Operator and Polarization – Worldlines</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+function toggleBox(header) {
+  // Use jQuery to find the associated container and toggle its visibility
+  $(header).next('.dd-box').slideToggle();
+  $(header).next('.ddm-box').slideToggle();
+}
+</script>
+
+
+<script>
+function openCity(evt, cityName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+
+</script>
+
+
+
+
+
+
+<script>
+//Draws leader between 'from' and 'to' on 'stage'. Uses existing objects if ids exist, otherwise creates them according to given style parameter.
+//lineOptions to stylize.
+//Issues. May need to create id via html if container is to keep equations.
+function drawLeader({
+  
+  containerId = 'stage',
+  from = { id: 'from', text: '', className: '', style: {} },
+  to = { id: 'to', text: '', className: '', style: {} },
+  lineOptions = {}
+}) {
+  // Creates 'from' and 'to' in 'containerId'. Ignores creation if ids already exist and draws a leaderline between them.
+  window.addEventListener('load', () => {
+    const container = document.getElementById(containerId);
+    const elements = { from, to };
+    const createdDivs = {};
+
+    for (const key in elements) {
+      const { id, text, className, style } = elements[key];
+      let el = document.getElementById(id);
+
+      if (!el || !container.contains(el)) {
+        el = document.createElement('div');
+        el.id = id;
+        el.textContent = text;
+        el.className = className || 'anchor80-line';
+        Object.assign(el.style, {
+          position: 'relative',
+          ...style
+        });
+        container.appendChild(el);
+      }
+
+      createdDivs[key] = el;
+    }
+
+    new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
+  });
+}
+
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
+<link rel="stylesheet" href="../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../css/shapes.css">
+<link rel="stylesheet" href="../../css/leaders.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Worldlines</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Courses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
+        <li>
+    <a class="dropdown-item" href="../../C0calculusI/home_calculusI.html">
+ <span class="dropdown-text">Calculus I</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0calculusII/home_calculusII.html">
+ <span class="dropdown-text">Calculus II</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0ode/home_ode.html">
+ <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../C0noneqthermo/home_noneqthermo.html">
+ <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-guides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Guides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
+        <li>
+    <a class="dropdown-item" href="../../D0abinit/home_abinit.html">
+ <span class="dropdown-text">Ab initio calculation</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Topics</a></li><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Current Density Operator and Polarization</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Many-Body Physics Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/currentdensityoperator.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Current Density Operator and Polarization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/exchangecorrelation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exchange &amp; Correlation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/excitons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Excitons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/greensfunctions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Green’s Functions in Many-Body Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/homogeneouselectrongas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HEG/jellium</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kohnsham.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kohn Sham Equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/linearresponse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linearresponse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/phonons_optic_acoustic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acoustic vs Optical Phonons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/quasiparticles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quasiparticles and Fermi Liquid Theory</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#current-density-as-the-time-derivative-of-polarization" id="toc-current-density-as-the-time-derivative-of-polarization" class="nav-link active" data-scroll-target="#current-density-as-the-time-derivative-of-polarization">Current Density as the Time Derivative of Polarization?</a>
+  <ul class="collapse">
+  <li><a href="#physically" id="toc-physically" class="nav-link" data-scroll-target="#physically">Physically…</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Topics</a></li><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Current Density Operator and Polarization</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Current Density Operator and Polarization</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The current-density operator can be written in first quantization as</p>
+<p><span class="math display">\[
+\hat{J}(x) = \sum_{n=1}^N \hat{j}(x, \hat{r}_n), \qquad
+\hat{j}(x, \hat{r}) = \tfrac{1}{2} \left\{ \tfrac{\hat{p}}{m}, \, \delta(x - \hat{r}) \right\},
+\tag{1}
+\]</span></p>
+<p>where <span class="math inline">\(\hat{p} = -i\hbar \nabla_r\)</span>, and <span class="math inline">\(x\)</span> is a parameter indicating the position.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Origin of the Current-Density Operator
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Classically, the current density of a particle with position <span class="math inline">\(\mathbf{r}(t)\)</span> and momentum <span class="math inline">\(\mathbf{p}(t)\)</span> is</p>
+<p><span class="math display">\[
+\mathbf{j}(\mathbf{x},t) = \frac{\mathbf{p}(t)}{m}\,\delta(\mathbf{x}-\mathbf{r}(t)).
+\]</span></p>
+<p>That is, the particle velocity <span class="math inline">\(\mathbf{v} = \mathbf{p}/m\)</span> multiplied by a delta function <em>locating</em> the particle.</p>
+<p>In quantum mechanics, <span class="math inline">\(\mathbf{r}\)</span> and <span class="math inline">\(\mathbf{p}\)</span> are promoted to operators <span class="math inline">\(\hat{\mathbf{r}}, \hat{\mathbf{p}}\)</span>. But since, <span class="math inline">\(\hat{\mathbf{p}}\)</span> and <span class="math inline">\(\delta(\mathbf{x}-\hat{\mathbf{r}})\)</span> do not commute, one must be careful with operator ordering.</p>
+<p>To resolve this ambiguity, the current operator is defined by symmetrizing the classical expression:</p>
+<p><span class="math display">\[
+\hat{j}(\mathbf{x}, \hat{\mathbf{r}})
+= \frac{1}{2m}\Big\{ \hat{\mathbf{p}}, \, \delta(\mathbf{x} - \hat{\mathbf{r}}) \Big\}.
+\]</span></p>
+<p>This definition ensures:</p>
+<ul>
+<li><p><strong>Hermiticity:</strong> the operator is an observable and must be Hermitian.<br>
+</p></li>
+<li><p><strong>Continuity equation:</strong> combined with the density operator <span class="math inline">\(\hat{\rho}(\mathbf{x}) = \delta(\mathbf{x} - \hat{\mathbf{r}})\)</span>, one finds</p>
+<p><span class="math display">\[
+\frac{\partial \hat{\rho}(\mathbf{x})}{\partial t} + \nabla \cdot \hat{\mathbf{j}}(\mathbf{x}) = 0,
+\]</span></p>
+<p>which is the operator version of particle-number conservation.</p></li>
+</ul>
+<p>The anticommutator form is therefore not arbitrary.<br>
+It arises because we need a <strong>symmetrized (Hermitian) operator</strong> that (i) reduces to the classical expression in the appropriate limit, and (ii) ensures the correct continuity relation between density and current.</p>
+<p>Thus,</p>
+<p><span class="math display">\[
+\hat{j}(x,\hat{r}) = \frac{1}{2} \left\{ \frac{\hat{p}}{m}, \, \delta(x - \hat{r}) \right\}
+\]</span></p>
+<p>is the natural definition of the current-density operator.</p>
+</div>
+</div>
+</div>
+<p>Remember that a one-body operator</p>
+<p><span class="math display">\[
+\hat{O}_1 = \sum_{n=1}^N \hat{o}_n,
+\]</span></p>
+<p>is represented in second quantization as</p>
+<p><span class="math display">\[
+\hat{O}_1 = \sum_{\mu,\nu} \langle \mu | \hat{o} | \nu \rangle \, \hat{c}^\dagger_\mu \hat{c}_\nu.
+\tag{2}
+\]</span></p>
+<section id="current-density-as-the-time-derivative-of-polarization" class="level2">
+<h2 class="anchored" data-anchor-id="current-density-as-the-time-derivative-of-polarization">Current Density as the Time Derivative of Polarization?</h2>
+<p>The polarization field <span class="math inline">\(\mathbf{P}(\mathbf{x},t)\)</span> is defined as the electric dipole moment per unit volume:</p>
+<p><span class="math display">\[
+\mathbf{P}(\mathbf{x},t) = \frac{1}{V} \sum_i q_i \, \mathbf{r}_i(t) \, \delta(\mathbf{x}-\mathbf{r}_i(t)).
+\]</span></p>
+<p>It measures how charges are displaced from equilibrium.</p>
+<p>The <em>microscopic</em> current density is given by</p>
+<p><span class="math display">\[
+\mathbf{j}(\mathbf{x},t) = \sum_i q_i \, \dot{\mathbf{r}}_i(t) \, \delta(\mathbf{x}-\mathbf{r}_i(t)).
+\]</span></p>
+<p>Here <span class="math inline">\(\dot{\mathbf{r}}_i(t)\)</span> is the velocity of each charge.</p>
+<p>Taking the time derivative of polarization gives</p>
+<p><span class="math display">\[
+\frac{\partial \mathbf{P}(\mathbf{x},t)}{\partial t}
+= \frac{1}{V} \sum_i q_i \, \dot{\mathbf{r}}_i(t) \, \delta(\mathbf{x}-\mathbf{r}_i(t)) + \cdots,
+\]</span></p>
+<p>where the first term is exactly the microscopic current density. The omitted terms come from differentiating the delta function; these reorganize into divergence terms consistent with charge conservation. Thus, in the macroscopic sense,</p>
+<p><span class="math display">\[
+\mathbf{j}(\mathbf{x},t) = \frac{\partial \mathbf{P}(\mathbf{x},t)}{\partial t}.
+\]</span></p>
+<section id="physically" class="level3">
+<h3 class="anchored" data-anchor-id="physically">Physically…</h3>
+<ul>
+<li>Polarization <span class="math inline">\(\mathbf{P}\)</span> measures <strong>how much charge has been displaced</strong>.<br>
+</li>
+<li>Current density <span class="math inline">\(\mathbf{j}\)</span> measures <strong>how fast that displacement changes in time</strong>.</li>
+</ul>
+<p>Therefore, current is naturally the time derivative of polarization.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Maxwell’s Equations Connection
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In Maxwell’s equations with matter, this appears explicitly:</p>
+<p><span class="math display">\[
+\mathbf{J}_{\text{bound}} = \frac{\partial \mathbf{P}}{\partial t} + \nabla \times \mathbf{M},
+\]</span></p>
+<p>where <span class="math inline">\(\mathbf{M}\)</span> is the magnetization.<br>
+In the absence of magnetization, the polarization current reduces to</p>
+<p><span class="math display">\[
+\mathbf{J}_{\text{bound}} = \frac{\partial \mathbf{P}}{\partial t}.
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Microscopic derivation: time derivative of polarization including delta derivatives
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Let point charges <span class="math inline">\(q_i\)</span> have positions <span class="math inline">\(\mathbf{r}_i(t)\)</span> and velocities <span class="math inline">\(\mathbf{v}_i(t)=\dot{\mathbf{r}}_i(t)\)</span>.<br>
+Define the microscopic charge density and polarization density by</p>
+<p><span class="math display">\[
+\rho(\mathbf{x},t)=\sum_i q_i\,\delta(\mathbf{x}-\mathbf{r}_i(t)),
+\qquad
+\mathbf{P}(\mathbf{x},t)=\sum_i q_i\,\mathbf{r}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t)).
+\]</span></p>
+<p>The microscopic current density is</p>
+<p><span class="math display">\[
+\mathbf{j}(\mathbf{x},t)=\sum_i q_i\,\mathbf{v}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t)).
+\]</span></p>
+<p>We now take the time derivative of <span class="math inline">\(\mathbf{P}(\mathbf{x},t)\)</span>. Using the product and chain rules,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{P}(\mathbf{x},t)}{\partial t}
+&amp;= \sum_i q_i \frac{d}{dt}\big[ \mathbf{r}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t))\big] \\[6pt]
+&amp;= \sum_i q_i \big[ \dot{\mathbf{r}}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t))
+  + \mathbf{r}_i(t)\,\frac{d}{dt}\delta(\mathbf{x}-\mathbf{r}_i(t))\big].
+\end{aligned}
+\]</span></p>
+<p>The derivative of the delta follows from the chain rule:</p>
+<p><span class="math display">\[
+\frac{d}{dt}\delta(\mathbf{x}-\mathbf{r}_i(t))
+= -\dot{\mathbf{r}}_i(t)\cdot\nabla_{\!x}\,\delta(\mathbf{x}-\mathbf{r}_i(t))
+= -\mathbf{v}_i(t)\cdot\nabla\,\delta(\mathbf{x}-\mathbf{r}_i(t)).
+\]</span></p>
+<p>Substitute this back:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{P}}{\partial t}
+&amp;= \sum_i q_i \big[ \mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)
+  - \mathbf{r}_i \,(\mathbf{v}_i\cdot\nabla)\delta(\mathbf{x}-\mathbf{r}_i)\big] \\
+&amp;= \underbrace{\sum_i q_i\,\mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)}_{\mathbf{j}(\mathbf{x},t)}
+  \;-\; \sum_i q_i\,\mathbf{r}_i \,(\mathbf{v}_i\cdot\nabla)\delta(\mathbf{x}-\mathbf{r}_i).
+\end{aligned}
+\]</span></p>
+<p>Now use the vector identity <span class="math inline">\((\mathbf{v}\cdot\nabla)\delta = \nabla\cdot(\mathbf{v}\,\delta)\)</span> because <span class="math inline">\(\mathbf{v}_i(t)\)</span> depends on time (and particle index) but not on the spatial variable <span class="math inline">\(\mathbf{x}\)</span> — therefore <span class="math inline">\(\nabla\cdot\mathbf{v}_i=0\)</span> with respect to <span class="math inline">\(\mathbf{x}\)</span>. Thus</p>
+<p><span class="math display">\[
+(\mathbf{v}_i\cdot\nabla)\delta(\mathbf{x}-\mathbf{r}_i)
+= \nabla\cdot\big(\mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)\big).
+\]</span></p>
+<p>Apply this to the second term:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{\partial \mathbf{P}}{\partial t}
+&amp;= \mathbf{j}(\mathbf{x},t) \;-\; \sum_i q_i\,\mathbf{r}_i\,\nabla\cdot\big(\mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)\big) \\
+&amp;= \mathbf{j}(\mathbf{x},t) \;-\; \nabla\cdot\underbrace{\Big(\sum_i q_i\,\mathbf{r}_i\otimes\mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)\Big)}_{\mathbf{Q}(\mathbf{x},t)}.
+\end{aligned}
+\]</span></p>
+<p>Here <span class="math inline">\(\mathbf{Q}(\mathbf{x},t)\)</span> is a second-rank tensor field with components <span class="math inline">\(Q_{\alpha\beta}=\sum_i q_i r_{i,\alpha} v_{i,\beta}\,\delta(\mathbf{x}-\mathbf{r}_i)\)</span>, and <span class="math inline">\(\nabla\cdot\mathbf{Q}\)</span> denotes the divergence on the second index producing a vector.</p>
+<p>Rewriting,</p>
+<p><span class="math display">\[
+\boxed{\qquad \mathbf{j}(\mathbf{x},t)
+= \frac{\partial \mathbf{P}(\mathbf{x},t)}{\partial t} \;+\; \nabla\cdot\mathbf{Q}(\mathbf{x},t).\qquad}
+\]</span></p>
+<p>So microscopically the current equals the time-derivative of the polarization <strong>plus</strong> the divergence of the tensor <span class="math inline">\(\mathbf{Q}\)</span> built from <span class="math inline">\(\mathbf{r}_i\otimes\mathbf{v}_i\)</span> (this is the explicit term coming from differentiating the deltas).</p>
+<section id="coarse-graining-the-macroscopic-relation" class="level3">
+<h3 class="anchored" data-anchor-id="coarse-graining-the-macroscopic-relation">Coarse-graining → the macroscopic relation</h3>
+<p>If we average (coarse-grain) the microscopic fields over a small volume <span class="math inline">\(V\)</span> large compared to atomic scale but small on macroscopic scales, surface contributions from derivatives of delta functions become negligible in the interior. Formally, integrate both sides over a small volume <span class="math inline">\(V\)</span> and use the divergence theorem:</p>
+<p><span class="math display">\[
+\int_V \mathbf{j}\,d^3x
+= \int_V \partial_t\mathbf{P}\,d^3x + \int_V \nabla\cdot\mathbf{Q}\,d^3x
+= \partial_t\!\int_V \mathbf{P}\,d^3x + \oint_{\partial V} \mathbf{Q}\cdot d\mathbf{S}.
+\]</span></p>
+<p>If <span class="math inline">\(V\)</span> contains many microscopic charges, the surface integral <span class="math inline">\(\oint_{\partial V}\mathbf{Q}\cdot d\mathbf{S}\)</span> is a surface (boundary) term; when forming a smoothly varying macroscopic polarization field by averaging, these boundary terms either cancel between neighboring averaging volumes or become negligible compared with the volume terms. After coarse-graining we therefore obtain the familiar macroscopic relation (pointwise for the coarse-grained fields):</p>
+<p><span class="math display">\[
+\boxed{\qquad \mathbf{J}_{\text{mac}}(\mathbf{x},t) = \partial_t\mathbf{P}_{\text{mac}}(\mathbf{x},t). \qquad}
+\]</span></p>
+<p>(If magnetization is present, the standard decomposition of the total bound current is <span class="math inline">\(\mathbf{J}_{\text{bound}}=\partial_t\mathbf{P}+\nabla\times\mathbf{M}\)</span>. The <span class="math inline">\(\nabla\times\mathbf{M}\)</span> term arises when internal circulations of charge (magnetic moments) are present; it is a different rearrangement of the microscopic <span class="math inline">\(\mathbf{Q}\)</span>-type terms.)</p>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<ul>
+<li>Differentiating <span class="math inline">\(\mathbf{P}=\sum_i q_i \mathbf{r}_i\delta(\mathbf{x}-\mathbf{r}_i)\)</span> produces an explicit term containing derivatives of the delta, which can be rewritten as <span class="math inline">\(-\nabla\cdot\mathbf{Q}\)</span> where <span class="math inline">\(\mathbf{Q}=\sum_i q_i \mathbf{r}_i\otimes\mathbf{v}_i\delta(\mathbf{x}-\mathbf{r}_i)\)</span>.</li>
+<li>Microscopically: <span class="math inline">\(\mathbf{j}=\partial_t\mathbf{P}+\nabla\cdot\mathbf{Q}.\)</span></li>
+<li>After coarse-graining (averaging over volumes containing many charges) the divergence term becomes a boundary/surface contribution and the local macroscopic relation reduces to <span class="math inline">\(\mathbf{j}_{\text{mac}}=\partial_t\mathbf{P}_{\text{mac}}.\)</span></li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Subtlety: Relationship doesn’t hold at operator level
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In classical theory the polarization density is</p>
+<p><span class="math display">\[
+\mathbf{P}(\mathbf{x},t) = \sum_i q_i\, \mathbf{r}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t)),
+\]</span></p>
+<p>and the current density is</p>
+<p><span class="math display">\[
+\mathbf{j}(\mathbf{x},t) = \sum_i q_i\, \dot{\mathbf{r}}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t)).
+\]</span></p>
+<p>Differentiating <span class="math inline">\(\mathbf{P}\)</span> gives <span class="math inline">\(\mathbf{j}\)</span> plus divergence terms, which after coarse-graining reduce to the clean macroscopic relation.</p>
+<p>In quantum mechanics, however, positions <span class="math inline">\(\hat{\mathbf{r}}_i\)</span> and momenta <span class="math inline">\(\hat{\mathbf{p}}_i\)</span> are operators satisfying</p>
+<p><span class="math display">\[
+[\hat{r}_{i,\alpha}, \hat{p}_{j,\beta}] = i\hbar\,\delta_{ij}\,\delta_{\alpha\beta}.
+\]</span></p>
+<p>This non-commutativity complicates the definition of operator-valued polarization.</p>
+<hr>
+<section id="polarization-operator" class="level4">
+<h4 class="anchored" data-anchor-id="polarization-operator">Polarization operator</h4>
+<p>A natural definition is</p>
+<p><span class="math display">\[
+\hat{\mathbf{P}}(\mathbf{x}) = \sum_i q_i\, \hat{\mathbf{r}}_i \,\delta(\mathbf{x}-\hat{\mathbf{r}}_i).
+\]</span></p>
+<p>But here the delta function is an <strong>operator-valued distribution</strong>. Differentiating it in time using the Heisenberg equation,</p>
+<p><span class="math display">\[
+\frac{d\hat{O}}{dt} = \frac{i}{\hbar}[\hat{H},\hat{O}] + \frac{\partial \hat{O}}{\partial t},
+\]</span></p>
+<p>produces extra terms where operator ordering matters. For instance, <span class="math inline">\(\hat{\mathbf{r}}_i\otimes \hat{\mathbf{v}}_i\)</span> and <span class="math inline">\(\hat{\mathbf{v}}_i\otimes \hat{\mathbf{r}}_i\)</span> are not equal.</p>
+</section>
+<section id="current-operator" class="level4">
+<h4 class="anchored" data-anchor-id="current-operator">Current operator</h4>
+<p>In quantum mechanics the current density operator is defined via the continuity equation for the charge density operator <span class="math inline">\(\hat{\rho}(\mathbf{x}) = \sum_i q_i \,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\)</span></p>
+<p>The correct Hermitian form is given below and its <strong>anticommutator structure</strong> ensures Hermiticity and guarantees charge conservation.</p>
+<p><span class="math display">\[
+\hat{\mathbf{j}}(\mathbf{x}) =
+\frac{1}{2m} \sum_i q_i \left[
+\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\,\hat{\mathbf{p}}_i +
+\hat{\mathbf{p}}_i \,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)
+\right].
+\]</span></p>
+<p>Thus <span class="math inline">\(\hat{\mathbf{j}}\)</span> is not simply <span class="math inline">\(\frac{d}{dt}\hat{\mathbf{P}}\)</span>.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof the quantum current operator from the continuity equation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Let the charge-density operator be <span class="math display">\[
+\hat{\rho}(\mathbf{x}) = \sum_i q_i \,\delta(\mathbf{x}-\hat{\mathbf{r}}_i).
+\]</span> We require the operator continuity equation <span class="math display">\[
+\frac{\partial \hat{\rho}(\mathbf{x},t)}{\partial t} + \nabla\cdot \hat{\mathbf{j}}(\mathbf{x},t) = 0.
+\]</span></p>
+<p>Work in the Heisenberg picture so <span class="math inline">\(\partial_t\hat{O} = \frac{i}{\hbar}[\hat{H},\hat{O}]\)</span> (we assume no explicit time dependence in <span class="math inline">\(\hat{\rho}\)</span>).<br>
+For a system of non-relativistic particles with Hamiltonian <span class="math display">\[
+\hat{H}=\sum_i \frac{\hat{\mathbf{p}}_i^2}{2m_i} + \hat{V},
+\]</span> the dominant contribution to <span class="math inline">\(\partial_t\hat{\rho}\)</span> comes from the kinetic part (the potential <span class="math inline">\(\hat{V}\)</span>, if it depends only on positions, commutes with <span class="math inline">\(\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\)</span> or produces only contact terms handled similarly). Consider the commutator with the kinetic term for particle (i):</p>
+<p><span class="math display">\[
+\frac{\partial \hat{\rho}(\mathbf{x})}{\partial t}
+= \frac{i}{\hbar}\sum_i \left[\frac{\hat{\mathbf{p}}_i^2}{2m_i},\, q_i\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\right] + \cdots
+\]</span></p>
+<p>Use the basic commutator identity (component-wise) and <span class="math display">\[
+[\hat{p}_{i,\alpha}, f(\hat{\mathbf{r}}_i)] = -i\hbar\,\partial_{x_\alpha} f(\hat{\mathbf{r}}_i)
+\quad\text{(acting on the $x$ variable of the delta).}
+\]</span></p>
+<p>Compute <span class="math display">\[
+\begin{aligned}
+\left[\hat{\mathbf{p}}_i^2,\, \delta(\mathbf{x}-\hat{\mathbf{r}}_i)\right]
+&amp;= \hat{\mathbf{p}}_i\,[\hat{\mathbf{p}}_i,\delta] + [\hat{\mathbf{p}}_i,\delta]\,\hat{\mathbf{p}}_i \\
+&amp;= -i\hbar\left(\hat{\mathbf{p}}_i\cdot\nabla\delta + \nabla\delta\cdot\hat{\mathbf{p}}_i\right)
+\\
+&amp;= -i\hbar\;\Big\{\hat{\mathbf{p}}_i,\;\nabla\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\Big\},
+\end{aligned}
+\]</span> where <span class="math inline">\(\nabla\)</span> differentiates with respect to the spatial argument <span class="math inline">\(\mathbf{x}\)</span>.<br>
+Therefore <span class="math display">\[
+\begin{aligned}
+\frac{i}{\hbar}\left[\frac{\hat{\mathbf{p}}_i^2}{2m_i},\, q_i\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\right]
+&amp;= \frac{q_i}{2m_i}\left(-\hat{\mathbf{p}}_i\cdot\nabla\delta - \nabla\delta\cdot\hat{\mathbf{p}}_i\right) \\
+&amp;= -\nabla\cdot\left(\frac{q_i}{2m_i}\big\{\hat{\mathbf{p}}_i,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}\right).
+\end{aligned}
+\]</span></p>
+<p>Summing over particles gives the continuity equation with the current operator <span class="math display">\[
+\boxed{\qquad
+\hat{\mathbf{j}}(\mathbf{x}) \;=\; \sum_i \frac{q_i}{2m_i}\,\big\{\hat{\mathbf{p}}_i,\; \delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}.
+\qquad}
+\]</span></p>
+<p>This is exactly the Hermitian (anticommutator) form used in the literature: the anticommutator resolves ordering ambiguities and yields a manifestly Hermitian operator that satisfies the continuity equation.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="but-when-does-the-relation-return" class="level4">
+<h4 class="anchored">But when does the relation return?</h4>
+<p>If we take <strong>expectation values</strong> in states and <strong>coarse-grain</strong> over space, operator-ordering subtleties wash out (see below for why). Then we recover</p>
+<p><span class="math display">\[
+\langle \hat{\mathbf{j}}(\mathbf{x},t) \rangle
+= \frac{\partial}{\partial t}\langle \hat{\mathbf{P}}(\mathbf{x},t) \rangle.
+\]</span></p>
+<p>This is the macroscopic relation used in electrodynamics of media.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Consider the integrated (total) current, <span class="math display">\[
+\int d^3x\,\hat{\mathbf{j}}(\mathbf{x})
+= \sum_i \frac{q_i}{2m_i}\int d^3x\; \big\{\hat{\mathbf{p}}_i,\; \delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}.
+\]</span></p>
+<p>Because the delta is a distribution in <span class="math inline">\(\mathbf{x}\)</span>, the spatial integral collapses: <span class="math display">\[
+\int d^3x\;\delta(\mathbf{x}-\hat{\mathbf{r}}_i)=\hat{\mathbb{I}}
+\]</span> (the identity operator), and therefore <span class="math display">\[
+\int d^3x\; \big\{\hat{\mathbf{p}}_i,\; \delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}
+= \big\{\hat{\mathbf{p}}_i,\; \int d^3x\,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}
+= \{\hat{\mathbf{p}}_i,\; \hat{\mathbb{I}}\}
+= 2\hat{\mathbf{p}}_i.
+\]</span></p>
+<p>Hence the integrated current becomes <span class="math display">\[
+\int d^3x\,\hat{\mathbf{j}}(\mathbf{x})
+= \sum_i \frac{q_i}{2m_i}\, 2\hat{\mathbf{p}}_i
+= \sum_i \frac{q_i}{m_i}\,\hat{\mathbf{p}}_i.
+\]</span></p>
+<p>Now compare with the time derivative of the total dipole (total polarization moment) <span class="math display">\[
+\hat{\mathbf{D}} := \sum_i q_i \,\hat{\mathbf{r}}_i,
+\qquad
+\frac{d\hat{\mathbf{D}}}{dt} = \frac{i}{\hbar}[\hat{H},\hat{\mathbf{D}}]
+= \sum_i \frac{q_i}{m_i}\,\hat{\mathbf{p}}_i,
+\]</span> where we used <span class="math inline">\([\hat{\mathbf{p}}_i^2/(2m_i),\hat{\mathbf{r}}_i]= -i\hbar\,\hat{\mathbf{p}}_i/m_i\)</span> (and potential terms that depend only on positions either commute or give contact terms that vanish for the total).</p>
+<p>Therefore <span class="math display">\[
+\boxed{\qquad
+\int d^3x\,\hat{\mathbf{j}}(\mathbf{x}) \;=\; \frac{d\hat{\mathbf{D}}}{dt}.
+\qquad}
+\]</span></p>
+<p><strong>Key point:</strong> the spatial integral removes the <span class="math inline">\(\mathbf{x}\)</span>-dependent delta, replacing it by the identity operator. That collapse kills all the operator-ordering issues that were tied to the non-commutativity of <span class="math inline">\(\hat{\mathbf{p}}_i\)</span> and <span class="math inline">\(\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\)</span>. After integration the anticommutator simply gives <span class="math inline">\(2\hat{\mathbf{p}}_i\)</span> and the usual velocity operator <span class="math inline">\(\hat{\mathbf{p}}_i/m_i\)</span> appears without ambiguity.</p>
+<hr>
+<section id="intuition-summary" class="level3">
+<h3 class="anchored" data-anchor-id="intuition-summary">Intuition / summary</h3>
+<ul>
+<li>Locally (pointwise in space) we must keep an anticommutator <span class="math inline">\(\{\hat{\mathbf{p}}_i,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\}\)</span> to obtain a Hermitian current operator and to satisfy the operator continuity equation.<br>
+</li>
+<li>Globally (after integrating over all space) the delta integrates out and the anticommutator reduces to <span class="math inline">\(2\hat{\mathbf{p}}_i\)</span>, so ordering issues vanish: the integrated current equals the time derivative of the total dipole moment operator.<br>
+</li>
+<li>Equivalently, expectation values and coarse-graining (which effectively average over space) also wash out these local ordering subtleties, which is why the classical/macroscopic statement <span class="math inline">\(\langle\hat{\mathbf{j}}\rangle = \partial_t\langle\hat{\mathbf{P}}\rangle\)</span> holds.</li>
+</ul>
+<p>If you’d like, I can (a) add the same derivation in component/index notation for full rigor, or (b) produce a short Quarto snippet showing the corresponding derivation for a system with identical masses (m) and charges (q) to be copy-pasted into your notes. Which would you prefer?</p>
+</section>
+</div>
+</div>
+</div>
+</section>
+<section id="summary-1" class="level3">
+<h3 class="anchored" data-anchor-id="summary-1">Summary</h3>
+<ul>
+<li>Classically: <span class="math inline">\(\mathbf{j} = \dot{\mathbf{P}} + \nabla\cdot\mathbf{Q}\)</span>, reducing to <span class="math inline">\(\mathbf{j} = \dot{\mathbf{P}}\)</span> after coarse-graining.<br>
+</li>
+<li>Quantum mechanically: <span class="math inline">\(\hat{\mathbf{j}}\)</span> must be defined through the continuity equation with <strong>symmetrization</strong>, not as <span class="math inline">\(\dot{\hat{\mathbf{P}}}\)</span>.<br>
+</li>
+<li>At the level of <strong>expectation values</strong>, the simple relation re-emerges and matches the macroscopic classical result.</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<script src="../../scripts/leader-line-master/leader-line.min.js"></script>
+
+
+
+
+</body></html>

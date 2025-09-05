@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Many-Body Systems – Worldlines</title>
+<title>Acoustic vs Optical Phonons – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -141,24 +141,53 @@ function drawLeader({
 
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
-<link rel="stylesheet" href="../css/fonts-ebgaramond.css">
-<link rel="stylesheet" href="../css/fonts-hand.css">
-<link rel="stylesheet" href="../css/shapes.css">
-<link rel="stylesheet" href="../css/leaders.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
+<link rel="stylesheet" href="../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../css/shapes.css">
+<link rel="stylesheet" href="../../css/leaders.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -169,11 +198,11 @@ function drawLeader({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -182,19 +211,19 @@ function drawLeader({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="../C0calculusI/home_calculusI.html">
+    <a class="dropdown-item" href="../../C0calculusI/home_calculusI.html">
  <span class="dropdown-text">Calculus I</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0calculusII/home_calculusII.html">
+    <a class="dropdown-item" href="../../C0calculusII/home_calculusII.html">
  <span class="dropdown-text">Calculus II</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0ode/home_ode.html">
+    <a class="dropdown-item" href="../../C0ode/home_ode.html">
  <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0noneqthermo/home_noneqthermo.html">
+    <a class="dropdown-item" href="../../C0noneqthermo/home_noneqthermo.html">
  <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
   </li>  
     </ul>
@@ -205,7 +234,7 @@ function drawLeader({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
         <li>
-    <a class="dropdown-item" href="../D0abinit/home_abinit.html">
+    <a class="dropdown-item" href="../../D0abinit/home_abinit.html">
  <span class="dropdown-text">Ab initio calculation</span></a>
   </li>  
     </ul>
@@ -221,118 +250,25 @@ function drawLeader({
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0manybody/home_manybody.html">Many-Body Physics Home</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Many-Body Physics Home</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Topics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/lectures/currentdensityoperator.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Current Density Operator and Polarization</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/lectures/exchangecorrelation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exchange &amp; Correlation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/lectures/excitons.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Excitons</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/lectures/greensfunctions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Green’s Functions in Many-Body Theory</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/lectures/homogeneouselectrongas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">HEG/jellium</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/lectures/kohnsham.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Kohn Sham Equations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/lectures/linearresponse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Linearresponse</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/lectures/phonons_optic_acoustic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Acoustic vs Optical Phonons</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/lectures/quasiparticles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quasiparticles and Fermi Liquid Theory</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#topics" id="toc-topics" class="nav-link active" data-scroll-target="#topics">Topics</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#acoustic-phonons" id="toc-acoustic-phonons" class="nav-link" data-scroll-target="#acoustic-phonons">Acoustic Phonons</a></li>
+  <li><a href="#optical-phonons" id="toc-optical-phonons" class="nav-link" data-scroll-target="#optical-phonons">Optical Phonons</a></li>
+  <li><a href="#why-the-names" id="toc-why-the-names" class="nav-link" data-scroll-target="#why-the-names">Why the Names?</a></li>
+  <li><a href="#phononlight-interaction" id="toc-phononlight-interaction" class="nav-link" data-scroll-target="#phononlight-interaction">Phonon–Light Interaction</a>
+  <ul class="collapse">
+  <li><a href="#why-do-optical-phonons-couple" id="toc-why-do-optical-phonons-couple" class="nav-link" data-scroll-target="#why-do-optical-phonons-couple">Why do Optical Phonons Couple</a></li>
+  <li><a href="#but-acoustic-phonons-dont" id="toc-but-acoustic-phonons-dont" class="nav-link" data-scroll-target="#but-acoustic-phonons-dont">… But Acoustic Phonons Don’t</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -341,7 +277,7 @@ function drawLeader({
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Many-Body Systems</h1>
+<h1 class="title">Acoustic vs Optical Phonons</h1>
 </div>
 
 
@@ -358,15 +294,93 @@ function drawLeader({
 </header>
 
 
-<section id="topics" class="level2">
-<h2 class="anchored" data-anchor-id="topics">Topics</h2>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>In crystalline solids, lattice vibrations (phonons) fall into two broad classes: <strong>acoustic</strong> and <strong>optical</strong> modes. These names are not arbitrary: they reflect how the vibrations manifest physically, and whether they can couple to light.</p>
+</section>
+<section id="acoustic-phonons" class="level1">
+<h1>Acoustic Phonons</h1>
+<p>In acoustic modes, atoms in the unit cell move <em>in phase</em> (together in the same direction) when the wavevector ().</p>
 <ul>
-<li><a href="../C0manybody/lectures/excitons.html">Excitons</a></li>
-<li><a href="../C0manybody/lectures/greensfunctions.html">Green’s functions/Propagators</a></li>
-<li><a href="../C0manybody/lectures/linearresponse.html">Linear response</a></li>
+<li><strong>Dispersion:</strong> Their frequency vanishes at <span class="math inline">\(\mathbf{k}=0\)</span>, with a linear slope: <span class="math display">\[
+\omega \approx v_s k,
+\]</span> where <span class="math inline">\(v_s\)</span> is the speed of sound.</li>
+<li><strong>Physical meaning:</strong> These vibrations correspond to sound waves propagating through the crystal. Density oscillations travel as in a continuous elastic medium.</li>
+<li><strong>Coupling to light:</strong> No net dipole is created because all charge centers shift together. Therefore, acoustic modes do <strong>not</strong> interact with light directly (except weakly via higher-order effects such as Brillouin scattering).</li>
 </ul>
+<hr>
+</section>
+<section id="optical-phonons" class="level1">
+<h1>Optical Phonons</h1>
+<p>In optical modes, atoms in the unit cell move <em>out of phase</em> (positive and negative ions oscillate in opposite directions).</p>
+<ul>
+<li><strong>Dispersion:</strong> At (=0), the frequency remains finite. These modes occupy the <strong>optical branch</strong> of the phonon dispersion.</li>
+<li><strong>Physical meaning:</strong> Out-of-phase motion produces a time-varying macroscopic polarization</li>
+</ul>
+<p><span class="math display">\[
+  \mathbf{P}(t) = \frac{Z^*}{V}\,\mathbf{u}(t),
+\]</span></p>
+<p>where <span class="math inline">\(Z^*\)</span> is the effective charge and () is the displacement. This oscillating dipole can radiate or absorb light. - <strong>Coupling to light:</strong> Because the polarization oscillates at the phonon frequency, optical phonons are <em>infrared-active</em> and can also appear in Raman spectra. This is why they are called “optical.”</p>
+</section>
+<section id="why-the-names" class="level1">
+<h1>Why the Names?</h1>
+<ul>
+<li><p><strong>Acoustic:</strong> These modes behave like sound waves in the lattice, carrying vibrations through elastic deformations.</p></li>
+<li><p><strong>Optical:</strong> These modes couple strongly to electromagnetic radiation, especially in the infrared and visible range. Early infrared absorption experiments on ionic crystals revealed them, leading to the term “optical phonons.”</p></li>
+<li><p><strong>Acoustic phonons:</strong> Atoms move in phase, no dipole change, interact with sound but not light.<br>
+</p></li>
+<li><p><strong>Optical phonons:</strong> Atoms move out of phase, create oscillating dipoles, interact strongly with light.</p></li>
+</ul>
+<p>Thus the terminology reflects both the physical behavior and the experimental signatures of these fundamental lattice vibrations.</p>
+</section>
+<section id="phononlight-interaction" class="level1">
+<h1>Phonon–Light Interaction</h1>
+<p>Light is an electromagnetic wave. For lattice vibrations to interact with it, two conditions must be satisfied:</p>
+<ul>
+<li><strong>Dipole moment oscillation</strong><br>
+The vibration must create a time-varying macroscopic polarization <span class="math inline">\(P(t)\)</span>.
+<ul>
+<li>This occurs if positive and negative ions move <em>out of phase</em> (opposite directions).<br>
+</li>
+<li>Such displacements shift charge centers, producing a dipole that oscillates at the phonon frequency.<br>
+</li>
+<li>The oscillating dipole couples to the electric field <span class="math inline">\(E(t)\)</span> of light.</li>
+</ul></li>
+<li><strong>Momentum matching</strong><br>
+Photons in the optical/IR range carry very small wavevectors:<br>
+<span class="math display">\[|\mathbf{k}_{\text{ph}}| \approx 10^{-3} \,\text{Å}^{-1}.\]</span><br>
+Only phonons near the Brillouin zone center (<span class="math inline">\(\mathbf{q}\approx 0\)</span>) can couple directly.<br>
+This is why IR absorption probes only the zone-center optical phonons.</li>
+</ul>
+<hr>
+<section id="why-do-optical-phonons-couple" class="level2">
+<h2 class="anchored" data-anchor-id="why-do-optical-phonons-couple">Why do Optical Phonons Couple</h2>
+<p>In an optical mode, sublattices move against each other:</p>
+<p><span class="math display">\[
++Z^* \;\;\longleftrightarrow\;\; -Z^*.
+\]</span></p>
+<p>This produces a nonzero polarization:</p>
+<p><span class="math display">\[
+P(t) = \frac{Z^*}{V} \, u(t),
+\]</span></p>
+<p>where <span class="math inline">\(Z^*\)</span> is the effective charge, <span class="math inline">\(V\)</span> the unit cell volume, and <span class="math inline">\(u(t)\)</span> the displacement.</p>
+<p>The polarization oscillates at the phonon frequency, which means it can radiate or absorb light.<br>
+Therefore, optical phonons appear in <strong>infrared absorption</strong> (IR-active modes) and <strong>Raman scattering</strong> (if they modulate polarizability).</p>
+<hr>
+</section>
+<section id="but-acoustic-phonons-dont" class="level2">
+<h2 class="anchored" data-anchor-id="but-acoustic-phonons-dont">… But Acoustic Phonons Don’t</h2>
+<p>In an acoustic mode, all atoms in the unit cell move <em>in phase</em>.</p>
+<ul>
+<li><p>The positive and negative charge centers shift together, so no macroscopic dipole is created: <span class="math display">\[
+P(t) \approx 0 \quad \text{for } \mathbf{q} \to 0.
+\]</span></p></li>
+<li><p>Since there is no oscillating dipole, the electric field of light has nothing to couple to.</p></li>
+</ul>
+<p>Acoustic phonons still play a role in electron scattering and heat transport, but they do not directly interact with light (except weakly through higher-order processes such as Brillouin scattering).</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -770,7 +784,7 @@ function drawLeader({
   });
   </script>
 </div> <!-- /content -->
-<script src="../scripts/leader-line-master/leader-line.min.js"></script>
+<script src="../../scripts/leader-line-master/leader-line.min.js"></script>
 
 
 
