@@ -103,6 +103,23 @@
   }
 
 
+/* Make tabs pill-shaped */
+.pill-tabs .nav-tabs .nav-link {
+  border-radius: 50rem; /* pill shape */
+  padding: 0.4rem 1rem;
+  margin: 0.2rem;
+  border: 1px solid #ddd;
+  transition: background-color 0.2s ease;
+}
+
+/* Active tab */
+.pill-tabs .nav-tabs .nav-link.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+
 /*~~~~~~~~~~Example
 
   <div class="goals">

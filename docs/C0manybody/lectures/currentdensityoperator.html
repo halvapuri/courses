@@ -141,8 +141,22 @@ function drawLeader({
 
 </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -333,6 +347,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kuboformula.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kubo formula and response functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../C0manybody/lectures/linearresponse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Linearresponse</span></a>
   </div>
@@ -391,12 +411,12 @@ window.Quarto = {
 
 
 <p>The current-density operator can be written in first quantization as</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \hat{J}(x) = \sum_{n=1}^N \hat{j}(x, \hat{r}_n), \qquad
 \hat{j}(x, \hat{r}) = \tfrac{1}{2} \left\{ \tfrac{\hat{p}}{m}, \, \delta(x - \hat{r}) \right\},
 \tag{1}
-\]</span></p>
-<p>where <span class="math inline">\(\hat{p} = -i\hbar \nabla_r\)</span>, and <span class="math inline">\(x\)</span> is a parameter indicating the position.</p>
+</span></p>
+<p>where <span class="math inline">\hat{p} = -i\hbar \nabla_r</span>, and <span class="math inline">x</span> is a parameter indicating the position.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -409,73 +429,73 @@ Origin of the Current-Density Operator
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Classically, the current density of a particle with position <span class="math inline">\(\mathbf{r}(t)\)</span> and momentum <span class="math inline">\(\mathbf{p}(t)\)</span> is</p>
-<p><span class="math display">\[
+<p>Classically, the current density of a particle with position <span class="math inline">\mathbf{r}(t)</span> and momentum <span class="math inline">\mathbf{p}(t)</span> is</p>
+<p><span class="math display">
 \mathbf{j}(\mathbf{x},t) = \frac{\mathbf{p}(t)}{m}\,\delta(\mathbf{x}-\mathbf{r}(t)).
-\]</span></p>
-<p>That is, the particle velocity <span class="math inline">\(\mathbf{v} = \mathbf{p}/m\)</span> multiplied by a delta function <em>locating</em> the particle.</p>
-<p>In quantum mechanics, <span class="math inline">\(\mathbf{r}\)</span> and <span class="math inline">\(\mathbf{p}\)</span> are promoted to operators <span class="math inline">\(\hat{\mathbf{r}}, \hat{\mathbf{p}}\)</span>. But since, <span class="math inline">\(\hat{\mathbf{p}}\)</span> and <span class="math inline">\(\delta(\mathbf{x}-\hat{\mathbf{r}})\)</span> do not commute, one must be careful with operator ordering.</p>
+</span></p>
+<p>That is, the particle velocity <span class="math inline">\mathbf{v} = \mathbf{p}/m</span> multiplied by a delta function <em>locating</em> the particle.</p>
+<p>In quantum mechanics, <span class="math inline">\mathbf{r}</span> and <span class="math inline">\mathbf{p}</span> are promoted to operators <span class="math inline">\hat{\mathbf{r}}, \hat{\mathbf{p}}</span>. But since, <span class="math inline">\hat{\mathbf{p}}</span> and <span class="math inline">\delta(\mathbf{x}-\hat{\mathbf{r}})</span> do not commute, one must be careful with operator ordering.</p>
 <p>To resolve this ambiguity, the current operator is defined by symmetrizing the classical expression:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \hat{j}(\mathbf{x}, \hat{\mathbf{r}})
 = \frac{1}{2m}\Big\{ \hat{\mathbf{p}}, \, \delta(\mathbf{x} - \hat{\mathbf{r}}) \Big\}.
-\]</span></p>
+</span></p>
 <p>This definition ensures:</p>
 <ul>
 <li><p><strong>Hermiticity:</strong> the operator is an observable and must be Hermitian.<br>
 </p></li>
-<li><p><strong>Continuity equation:</strong> combined with the density operator <span class="math inline">\(\hat{\rho}(\mathbf{x}) = \delta(\mathbf{x} - \hat{\mathbf{r}})\)</span>, one finds</p>
-<p><span class="math display">\[
+<li><p><strong>Continuity equation:</strong> combined with the density operator <span class="math inline">\hat{\rho}(\mathbf{x}) = \delta(\mathbf{x} - \hat{\mathbf{r}})</span>, one finds</p>
+<p><span class="math display">
 \frac{\partial \hat{\rho}(\mathbf{x})}{\partial t} + \nabla \cdot \hat{\mathbf{j}}(\mathbf{x}) = 0,
-\]</span></p>
+</span></p>
 <p>which is the operator version of particle-number conservation.</p></li>
 </ul>
 <p>The anticommutator form is therefore not arbitrary.<br>
 It arises because we need a <strong>symmetrized (Hermitian) operator</strong> that (i) reduces to the classical expression in the appropriate limit, and (ii) ensures the correct continuity relation between density and current.</p>
 <p>Thus,</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \hat{j}(x,\hat{r}) = \frac{1}{2} \left\{ \frac{\hat{p}}{m}, \, \delta(x - \hat{r}) \right\}
-\]</span></p>
+</span></p>
 <p>is the natural definition of the current-density operator.</p>
 </div>
 </div>
 </div>
 <p>Remember that a one-body operator</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \hat{O}_1 = \sum_{n=1}^N \hat{o}_n,
-\]</span></p>
+</span></p>
 <p>is represented in second quantization as</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \hat{O}_1 = \sum_{\mu,\nu} \langle \mu | \hat{o} | \nu \rangle \, \hat{c}^\dagger_\mu \hat{c}_\nu.
 \tag{2}
-\]</span></p>
+</span></p>
 <section id="current-density-as-the-time-derivative-of-polarization" class="level2">
 <h2 class="anchored" data-anchor-id="current-density-as-the-time-derivative-of-polarization">Current Density as the Time Derivative of Polarization?</h2>
-<p>The polarization field <span class="math inline">\(\mathbf{P}(\mathbf{x},t)\)</span> is defined as the electric dipole moment per unit volume:</p>
-<p><span class="math display">\[
+<p>The polarization field <span class="math inline">\mathbf{P}(\mathbf{x},t)</span> is defined as the electric dipole moment per unit volume:</p>
+<p><span class="math display">
 \mathbf{P}(\mathbf{x},t) = \frac{1}{V} \sum_i q_i \, \mathbf{r}_i(t) \, \delta(\mathbf{x}-\mathbf{r}_i(t)).
-\]</span></p>
+</span></p>
 <p>It measures how charges are displaced from equilibrium.</p>
 <p>The <em>microscopic</em> current density is given by</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{j}(\mathbf{x},t) = \sum_i q_i \, \dot{\mathbf{r}}_i(t) \, \delta(\mathbf{x}-\mathbf{r}_i(t)).
-\]</span></p>
-<p>Here <span class="math inline">\(\dot{\mathbf{r}}_i(t)\)</span> is the velocity of each charge.</p>
+</span></p>
+<p>Here <span class="math inline">\dot{\mathbf{r}}_i(t)</span> is the velocity of each charge.</p>
 <p>Taking the time derivative of polarization gives</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \frac{\partial \mathbf{P}(\mathbf{x},t)}{\partial t}
 = \frac{1}{V} \sum_i q_i \, \dot{\mathbf{r}}_i(t) \, \delta(\mathbf{x}-\mathbf{r}_i(t)) + \cdots,
-\]</span></p>
+</span></p>
 <p>where the first term is exactly the microscopic current density. The omitted terms come from differentiating the delta function; these reorganize into divergence terms consistent with charge conservation. Thus, in the macroscopic sense,</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{j}(\mathbf{x},t) = \frac{\partial \mathbf{P}(\mathbf{x},t)}{\partial t}.
-\]</span></p>
+</span></p>
 <section id="physically" class="level3">
 <h3 class="anchored" data-anchor-id="physically">Physically…</h3>
 <ul>
-<li>Polarization <span class="math inline">\(\mathbf{P}\)</span> measures <strong>how much charge has been displaced</strong>.<br>
+<li>Polarization <span class="math inline">\mathbf{P}</span> measures <strong>how much charge has been displaced</strong>.<br>
 </li>
-<li>Current density <span class="math inline">\(\mathbf{j}\)</span> measures <strong>how fast that displacement changes in time</strong>.</li>
+<li>Current density <span class="math inline">\mathbf{j}</span> measures <strong>how fast that displacement changes in time</strong>.</li>
 </ul>
 <p>Therefore, current is naturally the time derivative of polarization.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
@@ -491,14 +511,14 @@ Maxwell’s Equations Connection
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In Maxwell’s equations with matter, this appears explicitly:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{J}_{\text{bound}} = \frac{\partial \mathbf{P}}{\partial t} + \nabla \times \mathbf{M},
-\]</span></p>
-<p>where <span class="math inline">\(\mathbf{M}\)</span> is the magnetization.<br>
+</span></p>
+<p>where <span class="math inline">\mathbf{M}</span> is the magnetization.<br>
 In the absence of magnetization, the polarization current reduces to</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{J}_{\text{bound}} = \frac{\partial \mathbf{P}}{\partial t}.
-\]</span></p>
+</span></p>
 </div>
 </div>
 </div>
@@ -514,34 +534,34 @@ Microscopic derivation: time derivative of polarization including delta derivati
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Let point charges <span class="math inline">\(q_i\)</span> have positions <span class="math inline">\(\mathbf{r}_i(t)\)</span> and velocities <span class="math inline">\(\mathbf{v}_i(t)=\dot{\mathbf{r}}_i(t)\)</span>.<br>
+<p>Let point charges <span class="math inline">q_i</span> have positions <span class="math inline">\mathbf{r}_i(t)</span> and velocities <span class="math inline">\mathbf{v}_i(t)=\dot{\mathbf{r}}_i(t)</span>.<br>
 Define the microscopic charge density and polarization density by</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \rho(\mathbf{x},t)=\sum_i q_i\,\delta(\mathbf{x}-\mathbf{r}_i(t)),
 \qquad
 \mathbf{P}(\mathbf{x},t)=\sum_i q_i\,\mathbf{r}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t)).
-\]</span></p>
+</span></p>
 <p>The microscopic current density is</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{j}(\mathbf{x},t)=\sum_i q_i\,\mathbf{v}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t)).
-\]</span></p>
-<p>We now take the time derivative of <span class="math inline">\(\mathbf{P}(\mathbf{x},t)\)</span>. Using the product and chain rules,</p>
-<p><span class="math display">\[
+</span></p>
+<p>We now take the time derivative of <span class="math inline">\mathbf{P}(\mathbf{x},t)</span>. Using the product and chain rules,</p>
+<p><span class="math display">
 \begin{aligned}
 \frac{\partial \mathbf{P}(\mathbf{x},t)}{\partial t}
 &amp;= \sum_i q_i \frac{d}{dt}\big[ \mathbf{r}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t))\big] \\[6pt]
 &amp;= \sum_i q_i \big[ \dot{\mathbf{r}}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t))
   + \mathbf{r}_i(t)\,\frac{d}{dt}\delta(\mathbf{x}-\mathbf{r}_i(t))\big].
 \end{aligned}
-\]</span></p>
+</span></p>
 <p>The derivative of the delta follows from the chain rule:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \frac{d}{dt}\delta(\mathbf{x}-\mathbf{r}_i(t))
 = -\dot{\mathbf{r}}_i(t)\cdot\nabla_{\!x}\,\delta(\mathbf{x}-\mathbf{r}_i(t))
 = -\mathbf{v}_i(t)\cdot\nabla\,\delta(\mathbf{x}-\mathbf{r}_i(t)).
-\]</span></p>
+</span></p>
 <p>Substitute this back:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \begin{aligned}
 \frac{\partial \mathbf{P}}{\partial t}
 &amp;= \sum_i q_i \big[ \mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)
@@ -549,47 +569,47 @@ Define the microscopic charge density and polarization density by</p>
 &amp;= \underbrace{\sum_i q_i\,\mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)}_{\mathbf{j}(\mathbf{x},t)}
   \;-\; \sum_i q_i\,\mathbf{r}_i \,(\mathbf{v}_i\cdot\nabla)\delta(\mathbf{x}-\mathbf{r}_i).
 \end{aligned}
-\]</span></p>
-<p>Now use the vector identity <span class="math inline">\((\mathbf{v}\cdot\nabla)\delta = \nabla\cdot(\mathbf{v}\,\delta)\)</span> because <span class="math inline">\(\mathbf{v}_i(t)\)</span> depends on time (and particle index) but not on the spatial variable <span class="math inline">\(\mathbf{x}\)</span> — therefore <span class="math inline">\(\nabla\cdot\mathbf{v}_i=0\)</span> with respect to <span class="math inline">\(\mathbf{x}\)</span>. Thus</p>
-<p><span class="math display">\[
+</span></p>
+<p>Now use the vector identity <span class="math inline">(\mathbf{v}\cdot\nabla)\delta = \nabla\cdot(\mathbf{v}\,\delta)</span> because <span class="math inline">\mathbf{v}_i(t)</span> depends on time (and particle index) but not on the spatial variable <span class="math inline">\mathbf{x}</span> — therefore <span class="math inline">\nabla\cdot\mathbf{v}_i=0</span> with respect to <span class="math inline">\mathbf{x}</span>. Thus</p>
+<p><span class="math display">
 (\mathbf{v}_i\cdot\nabla)\delta(\mathbf{x}-\mathbf{r}_i)
 = \nabla\cdot\big(\mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)\big).
-\]</span></p>
+</span></p>
 <p>Apply this to the second term:</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \begin{aligned}
 \frac{\partial \mathbf{P}}{\partial t}
 &amp;= \mathbf{j}(\mathbf{x},t) \;-\; \sum_i q_i\,\mathbf{r}_i\,\nabla\cdot\big(\mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)\big) \\
 &amp;= \mathbf{j}(\mathbf{x},t) \;-\; \nabla\cdot\underbrace{\Big(\sum_i q_i\,\mathbf{r}_i\otimes\mathbf{v}_i\,\delta(\mathbf{x}-\mathbf{r}_i)\Big)}_{\mathbf{Q}(\mathbf{x},t)}.
 \end{aligned}
-\]</span></p>
-<p>Here <span class="math inline">\(\mathbf{Q}(\mathbf{x},t)\)</span> is a second-rank tensor field with components <span class="math inline">\(Q_{\alpha\beta}=\sum_i q_i r_{i,\alpha} v_{i,\beta}\,\delta(\mathbf{x}-\mathbf{r}_i)\)</span>, and <span class="math inline">\(\nabla\cdot\mathbf{Q}\)</span> denotes the divergence on the second index producing a vector.</p>
+</span></p>
+<p>Here <span class="math inline">\mathbf{Q}(\mathbf{x},t)</span> is a second-rank tensor field with components <span class="math inline">Q_{\alpha\beta}=\sum_i q_i r_{i,\alpha} v_{i,\beta}\,\delta(\mathbf{x}-\mathbf{r}_i)</span>, and <span class="math inline">\nabla\cdot\mathbf{Q}</span> denotes the divergence on the second index producing a vector.</p>
 <p>Rewriting,</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \boxed{\qquad \mathbf{j}(\mathbf{x},t)
 = \frac{\partial \mathbf{P}(\mathbf{x},t)}{\partial t} \;+\; \nabla\cdot\mathbf{Q}(\mathbf{x},t).\qquad}
-\]</span></p>
-<p>So microscopically the current equals the time-derivative of the polarization <strong>plus</strong> the divergence of the tensor <span class="math inline">\(\mathbf{Q}\)</span> built from <span class="math inline">\(\mathbf{r}_i\otimes\mathbf{v}_i\)</span> (this is the explicit term coming from differentiating the deltas).</p>
+</span></p>
+<p>So microscopically the current equals the time-derivative of the polarization <strong>plus</strong> the divergence of the tensor <span class="math inline">\mathbf{Q}</span> built from <span class="math inline">\mathbf{r}_i\otimes\mathbf{v}_i</span> (this is the explicit term coming from differentiating the deltas).</p>
 <section id="coarse-graining-the-macroscopic-relation" class="level3">
 <h3 class="anchored" data-anchor-id="coarse-graining-the-macroscopic-relation">Coarse-graining → the macroscopic relation</h3>
-<p>If we average (coarse-grain) the microscopic fields over a small volume <span class="math inline">\(V\)</span> large compared to atomic scale but small on macroscopic scales, surface contributions from derivatives of delta functions become negligible in the interior. Formally, integrate both sides over a small volume <span class="math inline">\(V\)</span> and use the divergence theorem:</p>
-<p><span class="math display">\[
+<p>If we average (coarse-grain) the microscopic fields over a small volume <span class="math inline">V</span> large compared to atomic scale but small on macroscopic scales, surface contributions from derivatives of delta functions become negligible in the interior. Formally, integrate both sides over a small volume <span class="math inline">V</span> and use the divergence theorem:</p>
+<p><span class="math display">
 \int_V \mathbf{j}\,d^3x
 = \int_V \partial_t\mathbf{P}\,d^3x + \int_V \nabla\cdot\mathbf{Q}\,d^3x
 = \partial_t\!\int_V \mathbf{P}\,d^3x + \oint_{\partial V} \mathbf{Q}\cdot d\mathbf{S}.
-\]</span></p>
-<p>If <span class="math inline">\(V\)</span> contains many microscopic charges, the surface integral <span class="math inline">\(\oint_{\partial V}\mathbf{Q}\cdot d\mathbf{S}\)</span> is a surface (boundary) term; when forming a smoothly varying macroscopic polarization field by averaging, these boundary terms either cancel between neighboring averaging volumes or become negligible compared with the volume terms. After coarse-graining we therefore obtain the familiar macroscopic relation (pointwise for the coarse-grained fields):</p>
-<p><span class="math display">\[
+</span></p>
+<p>If <span class="math inline">V</span> contains many microscopic charges, the surface integral <span class="math inline">\oint_{\partial V}\mathbf{Q}\cdot d\mathbf{S}</span> is a surface (boundary) term; when forming a smoothly varying macroscopic polarization field by averaging, these boundary terms either cancel between neighboring averaging volumes or become negligible compared with the volume terms. After coarse-graining we therefore obtain the familiar macroscopic relation (pointwise for the coarse-grained fields):</p>
+<p><span class="math display">
 \boxed{\qquad \mathbf{J}_{\text{mac}}(\mathbf{x},t) = \partial_t\mathbf{P}_{\text{mac}}(\mathbf{x},t). \qquad}
-\]</span></p>
-<p>(If magnetization is present, the standard decomposition of the total bound current is <span class="math inline">\(\mathbf{J}_{\text{bound}}=\partial_t\mathbf{P}+\nabla\times\mathbf{M}\)</span>. The <span class="math inline">\(\nabla\times\mathbf{M}\)</span> term arises when internal circulations of charge (magnetic moments) are present; it is a different rearrangement of the microscopic <span class="math inline">\(\mathbf{Q}\)</span>-type terms.)</p>
+</span></p>
+<p>(If magnetization is present, the standard decomposition of the total bound current is <span class="math inline">\mathbf{J}_{\text{bound}}=\partial_t\mathbf{P}+\nabla\times\mathbf{M}</span>. The <span class="math inline">\nabla\times\mathbf{M}</span> term arises when internal circulations of charge (magnetic moments) are present; it is a different rearrangement of the microscopic <span class="math inline">\mathbf{Q}</span>-type terms.)</p>
 </section>
 <section id="summary" class="level3">
 <h3 class="anchored" data-anchor-id="summary">Summary</h3>
 <ul>
-<li>Differentiating <span class="math inline">\(\mathbf{P}=\sum_i q_i \mathbf{r}_i\delta(\mathbf{x}-\mathbf{r}_i)\)</span> produces an explicit term containing derivatives of the delta, which can be rewritten as <span class="math inline">\(-\nabla\cdot\mathbf{Q}\)</span> where <span class="math inline">\(\mathbf{Q}=\sum_i q_i \mathbf{r}_i\otimes\mathbf{v}_i\delta(\mathbf{x}-\mathbf{r}_i)\)</span>.</li>
-<li>Microscopically: <span class="math inline">\(\mathbf{j}=\partial_t\mathbf{P}+\nabla\cdot\mathbf{Q}.\)</span></li>
-<li>After coarse-graining (averaging over volumes containing many charges) the divergence term becomes a boundary/surface contribution and the local macroscopic relation reduces to <span class="math inline">\(\mathbf{j}_{\text{mac}}=\partial_t\mathbf{P}_{\text{mac}}.\)</span></li>
+<li>Differentiating <span class="math inline">\mathbf{P}=\sum_i q_i \mathbf{r}_i\delta(\mathbf{x}-\mathbf{r}_i)</span> produces an explicit term containing derivatives of the delta, which can be rewritten as <span class="math inline">-\nabla\cdot\mathbf{Q}</span> where <span class="math inline">\mathbf{Q}=\sum_i q_i \mathbf{r}_i\otimes\mathbf{v}_i\delta(\mathbf{x}-\mathbf{r}_i)</span>.</li>
+<li>Microscopically: <span class="math inline">\mathbf{j}=\partial_t\mathbf{P}+\nabla\cdot\mathbf{Q}.</span></li>
+<li>After coarse-graining (averaging over volumes containing many charges) the divergence term becomes a boundary/surface contribution and the local macroscopic relation reduces to <span class="math inline">\mathbf{j}_{\text{mac}}=\partial_t\mathbf{P}_{\text{mac}}.</span></li>
 </ul>
 </section>
 </div>
@@ -608,44 +628,43 @@ Subtlety: Relationship doesn’t hold at operator level
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In classical theory the polarization density is</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{P}(\mathbf{x},t) = \sum_i q_i\, \mathbf{r}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t)),
-\]</span></p>
+</span></p>
 <p>and the current density is</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \mathbf{j}(\mathbf{x},t) = \sum_i q_i\, \dot{\mathbf{r}}_i(t)\,\delta(\mathbf{x}-\mathbf{r}_i(t)).
-\]</span></p>
-<p>Differentiating <span class="math inline">\(\mathbf{P}\)</span> gives <span class="math inline">\(\mathbf{j}\)</span> plus divergence terms, which after coarse-graining reduce to the clean macroscopic relation.</p>
-<p>In quantum mechanics, however, positions <span class="math inline">\(\hat{\mathbf{r}}_i\)</span> and momenta <span class="math inline">\(\hat{\mathbf{p}}_i\)</span> are operators satisfying</p>
-<p><span class="math display">\[
+</span></p>
+<p>Differentiating <span class="math inline">\mathbf{P}</span> gives <span class="math inline">\mathbf{j}</span> plus divergence terms, which after coarse-graining reduce to the clean macroscopic relation <span class="math inline">\hat{\mathbf{j}} = \frac{d}{dt}\hat{\mathbf{P}}</span>.</p>
+<p>In quantum mechanics, however, positions <span class="math inline">\hat{\mathbf{r}}_i</span> and momenta <span class="math inline">\hat{\mathbf{p}}_i</span> are operators satisfying</p>
+<p><span class="math display">
 [\hat{r}_{i,\alpha}, \hat{p}_{j,\beta}] = i\hbar\,\delta_{ij}\,\delta_{\alpha\beta}.
-\]</span></p>
+</span></p>
 <p>This non-commutativity complicates the definition of operator-valued polarization.</p>
-<hr>
 <section id="polarization-operator" class="level4">
 <h4 class="anchored" data-anchor-id="polarization-operator">Polarization operator</h4>
 <p>A natural definition is</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \hat{\mathbf{P}}(\mathbf{x}) = \sum_i q_i\, \hat{\mathbf{r}}_i \,\delta(\mathbf{x}-\hat{\mathbf{r}}_i).
-\]</span></p>
+</span></p>
 <p>But here the delta function is an <strong>operator-valued distribution</strong>. Differentiating it in time using the Heisenberg equation,</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \frac{d\hat{O}}{dt} = \frac{i}{\hbar}[\hat{H},\hat{O}] + \frac{\partial \hat{O}}{\partial t},
-\]</span></p>
-<p>produces extra terms where operator ordering matters. For instance, <span class="math inline">\(\hat{\mathbf{r}}_i\otimes \hat{\mathbf{v}}_i\)</span> and <span class="math inline">\(\hat{\mathbf{v}}_i\otimes \hat{\mathbf{r}}_i\)</span> are not equal.</p>
+</span></p>
+<p>produces extra terms where operator ordering matters. For instance, <span class="math inline">\hat{\mathbf{r}}_i\otimes \hat{\mathbf{v}}_i</span> and <span class="math inline">\hat{\mathbf{v}}_i\otimes \hat{\mathbf{r}}_i</span> are not equal.</p>
 </section>
 <section id="current-operator" class="level4">
 <h4 class="anchored" data-anchor-id="current-operator">Current operator</h4>
-<p>In quantum mechanics the current density operator is defined via the continuity equation for the charge density operator <span class="math inline">\(\hat{\rho}(\mathbf{x}) = \sum_i q_i \,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\)</span></p>
+<p>In quantum mechanics the current density operator is defined via the continuity equation for the charge density operator <span class="math inline">\hat{\rho}(\mathbf{x}) = \sum_i q_i \,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)</span></p>
 <p>The correct Hermitian form is given below and its <strong>anticommutator structure</strong> ensures Hermiticity and guarantees charge conservation.</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \hat{\mathbf{j}}(\mathbf{x}) =
 \frac{1}{2m} \sum_i q_i \left[
 \delta(\mathbf{x}-\hat{\mathbf{r}}_i)\,\hat{\mathbf{p}}_i +
 \hat{\mathbf{p}}_i \,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)
 \right].
-\]</span></p>
-<p>Thus <span class="math inline">\(\hat{\mathbf{j}}\)</span> is not simply <span class="math inline">\(\frac{d}{dt}\hat{\mathbf{P}}\)</span>.</p>
+</span></p>
+<p>Thus <span class="math inline">\hat{\mathbf{j}}</span> is not simply <span class="math inline">\frac{d}{dt}\hat{\mathbf{P}}</span>.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -658,24 +677,24 @@ Proof the quantum current operator from the continuity equation
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Let the charge-density operator be <span class="math display">\[
+<p>Let the charge-density operator be <span class="math display">
 \hat{\rho}(\mathbf{x}) = \sum_i q_i \,\delta(\mathbf{x}-\hat{\mathbf{r}}_i).
-\]</span> We require the operator continuity equation <span class="math display">\[
+</span> We require the operator continuity equation <span class="math display">
 \frac{\partial \hat{\rho}(\mathbf{x},t)}{\partial t} + \nabla\cdot \hat{\mathbf{j}}(\mathbf{x},t) = 0.
-\]</span></p>
-<p>Work in the Heisenberg picture so <span class="math inline">\(\partial_t\hat{O} = \frac{i}{\hbar}[\hat{H},\hat{O}]\)</span> (we assume no explicit time dependence in <span class="math inline">\(\hat{\rho}\)</span>).<br>
-For a system of non-relativistic particles with Hamiltonian <span class="math display">\[
+</span></p>
+<p>Work in the Heisenberg picture so <span class="math inline">\partial_t\hat{O} = \frac{i}{\hbar}[\hat{H},\hat{O}]</span> (we assume no explicit time dependence in <span class="math inline">\hat{\rho}</span>).<br>
+For a system of non-relativistic particles with Hamiltonian <span class="math display">
 \hat{H}=\sum_i \frac{\hat{\mathbf{p}}_i^2}{2m_i} + \hat{V},
-\]</span> the dominant contribution to <span class="math inline">\(\partial_t\hat{\rho}\)</span> comes from the kinetic part (the potential <span class="math inline">\(\hat{V}\)</span>, if it depends only on positions, commutes with <span class="math inline">\(\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\)</span> or produces only contact terms handled similarly). Consider the commutator with the kinetic term for particle (i):</p>
-<p><span class="math display">\[
+</span> the dominant contribution to <span class="math inline">\partial_t\hat{\rho}</span> comes from the kinetic part (the potential <span class="math inline">\hat{V}</span>, if it depends only on positions, commutes with <span class="math inline">\delta(\mathbf{x}-\hat{\mathbf{r}}_i)</span> or produces only contact terms handled similarly). Consider the commutator with the kinetic term for particle (i):</p>
+<p><span class="math display">
 \frac{\partial \hat{\rho}(\mathbf{x})}{\partial t}
 = \frac{i}{\hbar}\sum_i \left[\frac{\hat{\mathbf{p}}_i^2}{2m_i},\, q_i\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\right] + \cdots
-\]</span></p>
-<p>Use the basic commutator identity (component-wise) and <span class="math display">\[
+</span></p>
+<p>Use the basic commutator identity (component-wise) and <span class="math display">
 [\hat{p}_{i,\alpha}, f(\hat{\mathbf{r}}_i)] = -i\hbar\,\partial_{x_\alpha} f(\hat{\mathbf{r}}_i)
 \quad\text{(acting on the $x$ variable of the delta).}
-\]</span></p>
-<p>Compute <span class="math display">\[
+</span></p>
+<p>Compute <span class="math display">
 \begin{aligned}
 \left[\hat{\mathbf{p}}_i^2,\, \delta(\mathbf{x}-\hat{\mathbf{r}}_i)\right]
 &amp;= \hat{\mathbf{p}}_i\,[\hat{\mathbf{p}}_i,\delta] + [\hat{\mathbf{p}}_i,\delta]\,\hat{\mathbf{p}}_i \\
@@ -683,19 +702,19 @@ For a system of non-relativistic particles with Hamiltonian <span class="math di
 \\
 &amp;= -i\hbar\;\Big\{\hat{\mathbf{p}}_i,\;\nabla\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\Big\},
 \end{aligned}
-\]</span> where <span class="math inline">\(\nabla\)</span> differentiates with respect to the spatial argument <span class="math inline">\(\mathbf{x}\)</span>.<br>
-Therefore <span class="math display">\[
+</span> where <span class="math inline">\nabla</span> differentiates with respect to the spatial argument <span class="math inline">\mathbf{x}</span>.<br>
+Therefore <span class="math display">
 \begin{aligned}
 \frac{i}{\hbar}\left[\frac{\hat{\mathbf{p}}_i^2}{2m_i},\, q_i\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\right]
 &amp;= \frac{q_i}{2m_i}\left(-\hat{\mathbf{p}}_i\cdot\nabla\delta - \nabla\delta\cdot\hat{\mathbf{p}}_i\right) \\
 &amp;= -\nabla\cdot\left(\frac{q_i}{2m_i}\big\{\hat{\mathbf{p}}_i,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}\right).
 \end{aligned}
-\]</span></p>
-<p>Summing over particles gives the continuity equation with the current operator <span class="math display">\[
+</span></p>
+<p>Summing over particles gives the continuity equation with the current operator <span class="math display">
 \boxed{\qquad
 \hat{\mathbf{j}}(\mathbf{x}) \;=\; \sum_i \frac{q_i}{2m_i}\,\big\{\hat{\mathbf{p}}_i,\; \delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}.
 \qquad}
-\]</span></p>
+</span></p>
 <p>This is exactly the Hermitian (anticommutator) form used in the literature: the anticommutator resolves ordering ambiguities and yields a manifestly Hermitian operator that satisfies the continuity equation.</p>
 </div>
 </div>
@@ -704,10 +723,10 @@ Therefore <span class="math display">\[
 <section id="but-when-does-the-relation-return" class="level4">
 <h4 class="anchored">But when does the relation return?</h4>
 <p>If we take <strong>expectation values</strong> in states and <strong>coarse-grain</strong> over space, operator-ordering subtleties wash out (see below for why). Then we recover</p>
-<p><span class="math display">\[
+<p><span class="math display">
 \langle \hat{\mathbf{j}}(\mathbf{x},t) \rangle
 = \frac{\partial}{\partial t}\langle \hat{\mathbf{P}}(\mathbf{x},t) \rangle.
-\]</span></p>
+</span></p>
 <p>This is the macroscopic relation used in electrodynamics of media.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
@@ -721,44 +740,44 @@ Why?
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Consider the integrated (total) current, <span class="math display">\[
+<p>Consider the integrated (total) current, <span class="math display">
 \int d^3x\,\hat{\mathbf{j}}(\mathbf{x})
 = \sum_i \frac{q_i}{2m_i}\int d^3x\; \big\{\hat{\mathbf{p}}_i,\; \delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}.
-\]</span></p>
-<p>Because the delta is a distribution in <span class="math inline">\(\mathbf{x}\)</span>, the spatial integral collapses: <span class="math display">\[
+</span></p>
+<p>Because the delta is a distribution in <span class="math inline">\mathbf{x}</span>, the spatial integral collapses: <span class="math display">
 \int d^3x\;\delta(\mathbf{x}-\hat{\mathbf{r}}_i)=\hat{\mathbb{I}}
-\]</span> (the identity operator), and therefore <span class="math display">\[
+</span> (the identity operator), and therefore <span class="math display">
 \int d^3x\; \big\{\hat{\mathbf{p}}_i,\; \delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}
 = \big\{\hat{\mathbf{p}}_i,\; \int d^3x\,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\big\}
 = \{\hat{\mathbf{p}}_i,\; \hat{\mathbb{I}}\}
 = 2\hat{\mathbf{p}}_i.
-\]</span></p>
-<p>Hence the integrated current becomes <span class="math display">\[
+</span></p>
+<p>Hence the integrated current becomes <span class="math display">
 \int d^3x\,\hat{\mathbf{j}}(\mathbf{x})
 = \sum_i \frac{q_i}{2m_i}\, 2\hat{\mathbf{p}}_i
 = \sum_i \frac{q_i}{m_i}\,\hat{\mathbf{p}}_i.
-\]</span></p>
-<p>Now compare with the time derivative of the total dipole (total polarization moment) <span class="math display">\[
+</span></p>
+<p>Now compare with the time derivative of the total dipole (total polarization moment) <span class="math display">
 \hat{\mathbf{D}} := \sum_i q_i \,\hat{\mathbf{r}}_i,
 \qquad
 \frac{d\hat{\mathbf{D}}}{dt} = \frac{i}{\hbar}[\hat{H},\hat{\mathbf{D}}]
 = \sum_i \frac{q_i}{m_i}\,\hat{\mathbf{p}}_i,
-\]</span> where we used <span class="math inline">\([\hat{\mathbf{p}}_i^2/(2m_i),\hat{\mathbf{r}}_i]= -i\hbar\,\hat{\mathbf{p}}_i/m_i\)</span> (and potential terms that depend only on positions either commute or give contact terms that vanish for the total).</p>
-<p>Therefore <span class="math display">\[
+</span> where we used <span class="math inline">[\hat{\mathbf{p}}_i^2/(2m_i),\hat{\mathbf{r}}_i]= -i\hbar\,\hat{\mathbf{p}}_i/m_i</span> (and potential terms that depend only on positions either commute or give contact terms that vanish for the total).</p>
+<p>Therefore <span class="math display">
 \boxed{\qquad
 \int d^3x\,\hat{\mathbf{j}}(\mathbf{x}) \;=\; \frac{d\hat{\mathbf{D}}}{dt}.
 \qquad}
-\]</span></p>
-<p><strong>Key point:</strong> the spatial integral removes the <span class="math inline">\(\mathbf{x}\)</span>-dependent delta, replacing it by the identity operator. That collapse kills all the operator-ordering issues that were tied to the non-commutativity of <span class="math inline">\(\hat{\mathbf{p}}_i\)</span> and <span class="math inline">\(\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\)</span>. After integration the anticommutator simply gives <span class="math inline">\(2\hat{\mathbf{p}}_i\)</span> and the usual velocity operator <span class="math inline">\(\hat{\mathbf{p}}_i/m_i\)</span> appears without ambiguity.</p>
+</span></p>
+<p><strong>Key point:</strong> the spatial integral removes the <span class="math inline">\mathbf{x}</span>-dependent delta, replacing it by the identity operator. That collapse kills all the operator-ordering issues that were tied to the non-commutativity of <span class="math inline">\hat{\mathbf{p}}_i</span> and <span class="math inline">\delta(\mathbf{x}-\hat{\mathbf{r}}_i)</span>. After integration the anticommutator simply gives <span class="math inline">2\hat{\mathbf{p}}_i</span> and the usual velocity operator <span class="math inline">\hat{\mathbf{p}}_i/m_i</span> appears without ambiguity.</p>
 <hr>
 <section id="intuition-summary" class="level3">
 <h3 class="anchored" data-anchor-id="intuition-summary">Intuition / summary</h3>
 <ul>
-<li>Locally (pointwise in space) we must keep an anticommutator <span class="math inline">\(\{\hat{\mathbf{p}}_i,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\}\)</span> to obtain a Hermitian current operator and to satisfy the operator continuity equation.<br>
+<li>Locally (pointwise in space) we must keep an anticommutator <span class="math inline">\{\hat{\mathbf{p}}_i,\delta(\mathbf{x}-\hat{\mathbf{r}}_i)\}</span> to obtain a Hermitian current operator and to satisfy the operator continuity equation.<br>
 </li>
-<li>Globally (after integrating over all space) the delta integrates out and the anticommutator reduces to <span class="math inline">\(2\hat{\mathbf{p}}_i\)</span>, so ordering issues vanish: the integrated current equals the time derivative of the total dipole moment operator.<br>
+<li>Globally (after integrating over all space) the delta integrates out and the anticommutator reduces to <span class="math inline">2\hat{\mathbf{p}}_i</span>, so ordering issues vanish: the integrated current equals the time derivative of the total dipole moment operator.<br>
 </li>
-<li>Equivalently, expectation values and coarse-graining (which effectively average over space) also wash out these local ordering subtleties, which is why the classical/macroscopic statement <span class="math inline">\(\langle\hat{\mathbf{j}}\rangle = \partial_t\langle\hat{\mathbf{P}}\rangle\)</span> holds.</li>
+<li>Equivalently, expectation values and coarse-graining (which effectively average over space) also wash out these local ordering subtleties, which is why the classical/macroscopic statement <span class="math inline">\langle\hat{\mathbf{j}}\rangle = \partial_t\langle\hat{\mathbf{P}}\rangle</span> holds.</li>
 </ul>
 <p>If you’d like, I can (a) add the same derivation in component/index notation for full rigor, or (b) produce a short Quarto snippet showing the corresponding derivation for a system with identical masses (m) and charges (q) to be copy-pasted into your notes. Which would you prefer?</p>
 </section>
@@ -769,11 +788,133 @@ Why?
 <section id="summary-1" class="level3">
 <h3 class="anchored" data-anchor-id="summary-1">Summary</h3>
 <ul>
-<li>Classically: <span class="math inline">\(\mathbf{j} = \dot{\mathbf{P}} + \nabla\cdot\mathbf{Q}\)</span>, reducing to <span class="math inline">\(\mathbf{j} = \dot{\mathbf{P}}\)</span> after coarse-graining.<br>
+<li>Classically: <span class="math inline">\mathbf{j} = \dot{\mathbf{P}} + \nabla\cdot\mathbf{Q}</span>, reducing to <span class="math inline">\mathbf{j} = \dot{\mathbf{P}}</span> after coarse-graining.<br>
 </li>
-<li>Quantum mechanically: <span class="math inline">\(\hat{\mathbf{j}}\)</span> must be defined through the continuity equation with <strong>symmetrization</strong>, not as <span class="math inline">\(\dot{\hat{\mathbf{P}}}\)</span>.<br>
+<li>Quantum mechanically: <span class="math inline">\hat{\mathbf{j}}</span> must be defined through the continuity equation with <strong>symmetrization</strong>, not as <span class="math inline">\dot{\hat{\mathbf{P}}}</span>.<br>
 </li>
 <li>At the level of <strong>expectation values</strong>, the simple relation re-emerges and matches the macroscopic classical result.</li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Alternative relation between polarization and current density
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We can find a spatially integrated version of the relation and the Heisenberg derivation We work in the Heisenberg picture. The polarization operator in the Schrödinger representation is <span class="math display">
+\hat{\mathbf P}(\mathbf r)=\sum_i e_i\,\hat{\mathbf r}_i\,\Lambda(\mathbf r-\hat{\mathbf r}_i),
+</span> where <span class="math inline">\Lambda(\mathbf r-\hat{\mathbf r}_i)</span> is a smoothed delta (or a localization kernel that reduces to <span class="math inline">\delta</span> in the limit). In the Heisenberg picture <span class="math display">
+\hat{\mathbf P}(\mathbf r,t)=e^{\,i\hat H t/\hbar}\,\hat{\mathbf P}(\mathbf r)\,e^{-i\hat H t/\hbar}.
+</span> Hence <span class="math display">
+\frac{\partial \hat{\mathbf P}(\mathbf r,t)}{\partial t}
+=\frac{i}{\hbar}\,[\hat H,\; \hat{\mathbf P}(\mathbf r,t)].
+</span></p>
+<hr>
+<section id="start-from-the-local-current-operator-and-integrate-it-against-mathbf-a" class="level4">
+<h4 class="anchored" data-anchor-id="start-from-the-local-current-operator-and-integrate-it-against-mathbf-a">1. Start from the (local) current operator and integrate it against <span class="math inline">\mathbf A</span></h4>
+<p>The standard Hermitian current operator (for particle <span class="math inline">i</span>) is <span class="math display">
+\hat{\mathbf j}(\mathbf r)=\sum_i \frac{e_i}{2m_i}\,\big\{\hat{\mathbf p}_i,\;\Lambda(\mathbf r-\hat{\mathbf r}_i)\big\},
+</span> so the spatially integrated coupling to a (classical) vector potential <span class="math inline">\mathbf A(\mathbf r,t)</span> is <span class="math display">
+\begin{aligned}
+\int d\mathbf r\;\hat{\mathbf j}(\mathbf r)\!\cdot\!\mathbf A(\mathbf r,t)
+&amp;= \sum_i \frac{e_i}{2m_i}\int d\mathbf r\; \big\{\hat{\mathbf p}_i,\;\Lambda(\mathbf r-\hat{\mathbf r}_i)\big\}\!\cdot\!\mathbf A(\mathbf r,t) \\
+&amp;= \sum_i \frac{e_i}{2m_i}\; \big\{\hat{\mathbf p}_i,\; \underbrace{\int d\mathbf r\;\Lambda(\mathbf r-\hat{\mathbf r}_i)\,\mathbf A(\mathbf r,t)}_{\,\mathbf A(\hat{\mathbf r}_i,t)\,}\big\}.
+\end{aligned}
+</span></p>
+<p>In the last step the integral collapses the kernel <span class="math inline">\Lambda</span> onto the operator position <span class="math inline">\hat{\mathbf r}_i</span>, i.e. <span class="math display">
+\int d\mathbf r\;\Lambda(\mathbf r-\hat{\mathbf r}_i)\,\mathbf A(\mathbf r,t)=\mathbf A(\hat{\mathbf r}_i,t),
+</span> so <span class="math display">
+\boxed{\qquad
+\int d\mathbf r\;\hat{\mathbf j}(\mathbf r)\!\cdot\!\mathbf A(\mathbf r,t)
+= \sum_i \frac{e_i}{2m_i}\,\big\{\hat{\mathbf p}_i,\;\mathbf A(\hat{\mathbf r}_i,t)\big\}.
+\qquad}
+</span></p>
+<p>Thus the operator <span class="math inline">-\int d\mathbf r\,\hat{\mathbf j}\cdot\mathbf A</span> appearing in minimal-coupling interactions equals the negative of the anticommutator form on the right above.</p>
+<hr>
+</section>
+<section id="compute-the-spatial-integral-of-partial_thatmathbf-pcdotmathbf-a-via-heisenberg-equation" class="level4">
+<h4 class="anchored" data-anchor-id="compute-the-spatial-integral-of-partial_thatmathbf-pcdotmathbf-a-via-heisenberg-equation">2. Compute the spatial integral of <span class="math inline">\partial_t\hat{\mathbf P}\cdot\mathbf A</span> via Heisenberg equation</h4>
+<p>Using the Heisenberg equation, <span class="math display">
+\frac{\partial \hat{\mathbf P}(\mathbf r,t)}{\partial t}
+= \frac{i}{\hbar}\,[\hat H,\; \hat{\mathbf P}(\mathbf r,t)].
+</span> Focus on the kinetic term in the Hamiltonian, <span class="math display">
+\hat H_{\text{kin}}=\sum_i \frac{\hat{\mathbf p}_i^2}{2m_i},
+</span> since this gives the dominant contribution that produces the current-like terms. Evaluate the commutator piece (drop explicit time dependence on operators to keep notation concise):</p>
+<p><span class="math display">
+\begin{aligned}
+\int d\mathbf r\;\frac{\partial \hat{\mathbf P}(\mathbf r,t)}{\partial t}\cdot\mathbf A(\mathbf r,t)
+&amp;= \frac{i}{\hbar}\int d\mathbf r\; \big[\hat H_{\text{kin}},\;\hat{\mathbf P}(\mathbf r,t)\big]\!\cdot\!\mathbf A(\mathbf r,t) + \cdots \\
+&amp;= \frac{i}{\hbar}\sum_i \int d\mathbf r\; \bigg[\frac{\hat{\mathbf p}_i^2}{2m_i},\; e_i\,\hat{\mathbf r}_i\,\Lambda(\mathbf r-\hat{\mathbf r}_i,t)\bigg]\!\cdot\!\mathbf A(\mathbf r,t) + \cdots,
+\end{aligned}
+</span> which is the operator form used in your equation <span class="math inline">(6.1.21)</span> (we have pulled out charges and masses and written the commutator explicitly).</p>
+<p>Write the <span class="math inline">\alpha</span> component to match your notation: <span class="math display">
+\frac{\partial \hat P_\alpha(\mathbf r,t)}{\partial t}
+= \frac{i}{\hbar}\sum_i \frac{e_i}{2m_i}\Big[\hat{\mathbf p}_i^2,\;\hat r_{i\alpha}\,\Lambda(\mathbf r-\hat{\mathbf r}_i)\Big] + \cdots,
+</span> so (contracting with <span class="math inline">A_\alpha</span> and integrating <span class="math inline">\mathbf r</span>) reproduces the structure of <span class="math inline">(6.1.21)</span>: <span class="math display">
+\boxed{\;
+\int d\mathbf r\;\frac{\partial \hat{\mathbf P}(\mathbf r,t)}{\partial t}\!\cdot\!\mathbf A(\mathbf r,t)
+= \frac{i}{\hbar}\sum_i \frac{e_i}{2m_i}\int d\mathbf r\; \Big[\hat{\mathbf p}_i^2,\; \hat{\mathbf r}_i\,\Lambda(\mathbf r-\hat{\mathbf r}_i)\Big]\!\cdot\!\mathbf A(\mathbf r,t) + \cdots
+\; }.
+</span></p>
+<p>This is the integrated Heisenberg form that underlies your equation (6.1.21). (The omitted terms indicate contributions from potentials or explicit time dependence of <span class="math inline">\Lambda</span>; they are handled in the same way and either vanish or produce contact pieces.)</p>
+<hr>
+</section>
+<section id="manipulate-the-commutator-to-recover-the-anticommutatorcurrent-form" class="level4">
+<h4 class="anchored" data-anchor-id="manipulate-the-commutator-to-recover-the-anticommutatorcurrent-form">3. Manipulate the commutator to recover the anticommutator/current form</h4>
+<p>Evaluate the commutator inside the integral using component indices and the basic identity <span class="math display">
+[\hat p_{i\beta},\, f(\hat{\mathbf r}_i)] = -\,i\hbar\,\partial_{r_{i\beta}} f(\hat{\mathbf r}_i).
+</span></p>
+<p>Compute <span class="math display">
+\begin{aligned}
+\big[\hat{\mathbf p}_i^2,\; \hat r_{i\alpha}\,\Lambda(\mathbf r-\hat{\mathbf r}_i)\big]
+&amp;= \hat p_{i\beta}\,[\hat p_{i\beta},\, \hat r_{i\alpha}\Lambda] + [\hat p_{i\beta},\, \hat r_{i\alpha}\Lambda]\,\hat p_{i\beta} \\
+&amp;= -i\hbar\left(\hat p_{i\beta}\,\partial_{r_{i\beta}}\big(\hat r_{i\alpha}\Lambda\big)
++ \partial_{r_{i\beta}}\big(\hat r_{i\alpha}\Lambda\big)\,\hat p_{i\beta}\right) \\
+&amp;= -i\hbar\; \big\{ \hat{\mathbf p}_i,\; \nabla_{r_i}\big(\hat r_{i\alpha}\Lambda(\mathbf r-\hat{\mathbf r}_i)\big) \big\}.
+\end{aligned}
+</span></p>
+<p>Now insert this into the integrated expression and move the spatial derivative by parts (the derivative acts on the function of <span class="math inline">\mathbf r</span> through the kernel <span class="math inline">\Lambda</span>). After integrating over <span class="math inline">\mathbf r</span> the gradient acting on <span class="math inline">\Lambda(\mathbf r-\hat{\mathbf r}_i)</span> pulls the spatial dependence onto <span class="math inline">\mathbf A(\mathbf r,t)</span> (integration by parts), generating terms of the form <span class="math inline">\{\hat{\mathbf p}_i,\;\mathbf A(\hat{\mathbf r}_i,t)\}</span> (the boundary terms vanish for localized kernels or rapidly decaying fields). Concretely one finds</p>
+<p><span class="math display">
+\int d\mathbf r\; \Big[\hat{\mathbf p}_i^2,\; \hat{\mathbf r}_i\,\Lambda(\mathbf r-\hat{\mathbf r}_i)\Big]\!\cdot\!\mathbf A(\mathbf r,t)
+= -\,i\hbar\; \int d\mathbf r\; \big\{\hat{\mathbf p}_i,\; \Lambda(\mathbf r-\hat{\mathbf r}_i)\big\}\!\cdot\!\mathbf A(\mathbf r,t),
+</span></p>
+<p>and thus (using the collapse property as in section 1) <span class="math display">
+\begin{aligned}
+\int d\mathbf r\;\frac{\partial \hat{\mathbf P}(\mathbf r,t)}{\partial t}\!\cdot\!\mathbf A(\mathbf r,t)
+&amp;= \frac{i}{\hbar}\sum_i \frac{e_i}{2m_i}\left(-i\hbar\right)\int d\mathbf r\; \big\{\hat{\mathbf p}_i,\; \Lambda(\mathbf r-\hat{\mathbf r}_i)\big\}\!\cdot\!\mathbf A(\mathbf r,t) \\
+&amp;= \sum_i \frac{e_i}{2m_i}\int d\mathbf r\; \big\{\hat{\mathbf p}_i,\; \Lambda(\mathbf r-\hat{\mathbf r}_i)\big\}\!\cdot\!\mathbf A(\mathbf r,t) \\
+&amp;= \int d\mathbf r\;\hat{\mathbf j}(\mathbf r)\!\cdot\!\mathbf A(\mathbf r,t).
+\end{aligned}
+</span></p>
+<p>Hence <span class="math display">
+\boxed{\qquad
+\int d\mathbf r\;\frac{\partial \hat{\mathbf P}(\mathbf r,t)}{\partial t}\!\cdot\!\mathbf A(\mathbf r,t)
+= \int d\mathbf r\;\hat{\mathbf j}(\mathbf r)\!\cdot\!\mathbf A(\mathbf r,t).
+\qquad}
+</span></p>
+<p>Moving the minus sign to match your equation <span class="math inline">(6.1.20)</span> gives <span class="math display">
+- \int d\mathbf r\;\hat{\mathbf j}(\mathbf r)\!\cdot\!\mathbf A(\mathbf r,t)
+= - \int d\mathbf r\;\frac{\partial \hat{\mathbf P}(\mathbf r,t)}{\partial t}\!\cdot\!\mathbf A(\mathbf r,t),
+</span> which is exactly <span class="math inline">(6.1.20)</span>.</p>
+<hr>
+</section>
+<section id="remarks-interpretations" class="level3">
+<h3 class="anchored" data-anchor-id="remarks-interpretations">Remarks / interpretations</h3>
+<ul>
+<li>The manipulations above are formal but standard: the commutator <span class="math inline">[\hat p^2,\; \hat r\,\Lambda]</span> produces gradients of the localization kernel <span class="math inline">\Lambda</span>, and integrating by parts transfers those gradients onto the test field <span class="math inline">\mathbf A(\mathbf r,t)</span>. Collapsing the kernel afterwards yields the anticommutator <span class="math inline">\{\hat p,\; \mathbf A(\hat r)\}</span> (i.e.&nbsp;the integrated current).<br>
+</li>
+<li>The key technical steps are (i) using <span class="math inline">[\hat p, f(\hat r)]=-i\hbar\nabla f(\hat r)</span>, (ii) integrating by parts in <span class="math inline">\mathbf r</span>, and (iii) using the collapse <span class="math inline">\int d\mathbf r\,\Lambda(\mathbf r-\hat{\mathbf r}_i)\,\mathbf A(\mathbf r)=\mathbf A(\hat{\mathbf r}_i)</span>.<br>
+</li>
+<li>This shows why the macroscopic-looking relation between <span class="math inline">\mathbf J</span> and <span class="math inline">\partial_t\mathbf P</span> does <strong>not</strong> hold as a local operator identity pointwise, but <strong>does</strong> hold after spatial integration (and, equivalently, for total dipole / integrated current). The ordering subtleties are eliminated by the spatial integral and by the integration-by-parts step that moves derivatives off operator-valued kernels onto the c-number field <span class="math inline">\mathbf A</span>.</li>
 </ul>
 </section>
 </div>

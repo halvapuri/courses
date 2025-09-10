@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Calculus II – Worldlines</title>
+<title>Kubo formula and response functions – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -76,27 +76,59 @@ function toggleBox(header) {
 }
 </script>
 
-
 <script>
-function openCity(evt, cityName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-red";
-}
+function togglePill(header) {
+  const box = header.nextElementSibling;
 
+  // toggle active pill state
+  header.classList.toggle("active");
+
+  // toggle content
+  if (box.style.display === "block") {
+    box.style.display = "none";
+  } else {
+    box.style.display = "block";
+  }
+}
 </script>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".pill").forEach(pill => {
+    const title = pill.getAttribute("title") || "";
+    const bodyHtml = pill.innerHTML;
 
+    // header
+    const header = document.createElement("div");
+    header.className = "pill-header";
+    header.textContent = title;
 
+    // body
+    const body = document.createElement("div");
+    body.className = "pill-body";
+    body.innerHTML = bodyHtml;
+
+    // reset pill
+    pill.innerHTML = "";
+    pill.appendChild(header);
+    pill.appendChild(body);
+
+    // toggle
+    header.addEventListener("click", () => {
+      header.classList.toggle("active");
+
+      if (body.style.display === "block") {
+        body.style.display = "none";
+        pill.style.flexBasis = "auto";   // collapse back
+      } else {
+        body.style.display = "block";
+        pill.style.flexBasis = "100%";   // expand pill to full row
+      }
+    });
+  });
+});
+</script>
 
 
 <script>
@@ -141,14 +173,57 @@ function drawLeader({
 
 </script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
-<link rel="stylesheet" href="../css/fonts-ebgaramond.css">
-<link rel="stylesheet" href="../css/fonts-hand.css">
-<link rel="stylesheet" href="../css/shapes.css">
-<link rel="stylesheet" href="../css/leaders.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../css/buttons.css">
+<link rel="stylesheet" href="../../css/tabs.css">
+<link rel="stylesheet" href="../../css/callouts.css">
+<link rel="stylesheet" href="../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../css/shapes.css">
+<link rel="stylesheet" href="../../css/leaders.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -158,7 +233,7 @@ function drawLeader({
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -169,11 +244,11 @@ function drawLeader({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -182,19 +257,19 @@ function drawLeader({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="../C0calculusI/home_calculusI.html">
+    <a class="dropdown-item" href="../../C0calculusI/home_calculusI.html">
  <span class="dropdown-text">Calculus I</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0calculusII/home_calculusII.html">
+    <a class="dropdown-item" href="../../C0calculusII/home_calculusII.html">
  <span class="dropdown-text">Calculus II</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0ode/home_ode.html">
+    <a class="dropdown-item" href="../../C0ode/home_ode.html">
  <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0noneqthermo/home_noneqthermo.html">
+    <a class="dropdown-item" href="../../C0noneqthermo/home_noneqthermo.html">
  <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
   </li>  
     </ul>
@@ -205,7 +280,7 @@ function drawLeader({
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
         <li>
-    <a class="dropdown-item" href="../D0abinit/home_abinit.html">
+    <a class="dropdown-item" href="../../D0abinit/home_abinit.html">
  <span class="dropdown-text">Ab initio calculation</span></a>
   </li>  
     </ul>
@@ -226,7 +301,7 @@ function drawLeader({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusII/home_calculusII.html">Calculus II Home</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Topics</a></li><li class="breadcrumb-item"><a href="../../C0manybody/lectures/kuboformula.html">Kubo formula and response functions</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -240,8 +315,8 @@ function drawLeader({
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -253,14 +328,14 @@ function drawLeader({
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Calculus II Home</span></a>
+  <a href="../../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Many-Body Physics Home</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Lectures</span></a>
+ <span class="menu-text">Topics</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -268,56 +343,68 @@ function drawLeader({
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/lectures/10_1ParametricPlots.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Parametric Plots</span></a>
+  <a href="../../C0manybody/lectures/currentdensityoperator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Current Density Operator and Polarization</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/lectures/10_2ParametricCalculus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Calculus with Parametric Curves</span></a>
+  <a href="../../C0manybody/lectures/exchangecorrelation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exchange &amp; Correlation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/lectures/10_3ParametricPolar.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Parametric Curves and Polar Coordinates</span></a>
+  <a href="../../C0manybody/lectures/excitons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Excitons</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/lectures/10_5ConicSections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conic Sections</span></a>
+  <a href="../../C0manybody/lectures/greensfunctions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Green’s Functions in Many-Body Theory</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/lectures/11_1VectorsGeometryofSpace.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Vectors and Geometry of Space</span></a>
+  <a href="../../C0manybody/lectures/homogeneouselectrongas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HEG/jellium</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/lectures/11_6Quadric.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Quadric Surfaces</span></a>
+  <a href="../../C0manybody/lectures/kohnsham.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kohn Sham Equations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/lectures/13_3PartialDerivatives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Partial Derivatives</span></a>
+  <a href="../../C0manybody/lectures/kramerskronig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analyticity, Causality, and Kramers-Kronig Relations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/lectures/14_2DoubleIntegrals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Partial Derivatives</span></a>
+  <a href="../../C0manybody/lectures/kuboformula.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Kubo formula and response functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/lectures/14_6SphericalCylindrical.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spherical and Cylindrical Coodrinates</span></a>
+  <a href="../../C0manybody/lectures/linearresponse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linearresponse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/phonons_optic_acoustic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acoustic vs Optical Phonons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/quasiparticles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quasiparticles and Fermi Liquid Theory</span></a>
   </div>
 </li>
       </ul>
@@ -332,14 +419,11 @@ function drawLeader({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#project" id="toc-project" class="nav-link active" data-scroll-target="#project">Project</a></li>
-  <li><a href="#quizzes" id="toc-quizzes" class="nav-link" data-scroll-target="#quizzes">Quizzes</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#slides-and-notebooks" id="toc-slides-and-notebooks" class="nav-link" data-scroll-target="#slides-and-notebooks">Slides and Notebooks</a></li>
-  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course Outline</a></li>
-  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other Resources</a>
+  <li><a href="#susceptibility-as-a-greens-function" id="toc-susceptibility-as-a-greens-function" class="nav-link active" data-scroll-target="#susceptibility-as-a-greens-function">Susceptibility as a Green’s Function</a>
   <ul class="collapse">
-  <li><a href="#python-related" id="toc-python-related" class="nav-link" data-scroll-target="#python-related">Python related</a></li>
+  <li><a href="#kubo-formula-derivation" id="toc-kubo-formula-derivation" class="nav-link" data-scroll-target="#kubo-formula-derivation">Kubo Formula Derivation</a></li>
+  <li><a href="#definition-of-the-retarded-susceptibility" id="toc-definition-of-the-retarded-susceptibility" class="nav-link" data-scroll-target="#definition-of-the-retarded-susceptibility">Definition of the Retarded Susceptibility</a></li>
+  <li><a href="#why-chi-is-a-greens-function" id="toc-why-chi-is-a-greens-function" class="nav-link" data-scroll-target="#why-chi-is-a-greens-function">Why <span class="math inline">\chi</span> is a Green’s Function</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -347,9 +431,9 @@ function drawLeader({
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Topics</a></li><li class="breadcrumb-item"><a href="../../C0manybody/lectures/kuboformula.html">Kubo formula and response functions</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Calculus II</h1>
+<h1 class="title">Kubo formula and response functions</h1>
 </div>
 
 
@@ -366,76 +450,95 @@ function drawLeader({
 </header>
 
 
-<section id="project" class="level2">
-<h2 class="anchored" data-anchor-id="project">Project</h2>
-<p>As announced in class, there will be a project.</p>
-<p>The task: Reproduce 3 figures (two 2D and one 3D) from your textbook.</p>
-<p>Note that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.</p>
-<p>Furthermore:</p>
+<div class="pillset">
+<div class="pill" title="1">
+<p>Content</p>
+</div>
+<div class="pill" title="2">
+<p>This is content for tab two.</p>
+</div>
+<div class="pill" title="3">
+<p>This is content for tab three.</p>
+</div>
+</div>
+<section id="susceptibility-as-a-greens-function" class="level2">
+<h2 class="anchored" data-anchor-id="susceptibility-as-a-greens-function">Susceptibility as a Green’s Function</h2>
+<p>When a weak external electric field <span class="math inline">\mathbf E(\mathbf r,t)</span> is applied, the system responds linearly with an induced polarization <span class="math inline">\mathbf P(\mathbf r,t)</span>. In the <strong>linear response regime</strong>, the most general linear relation between cause (field) and effect (polarization) is</p>
+<p><span id="eq-polarization"><span class="math display">
+P_i(\mathbf r,t) = \int d\mathbf r' \int_{-\infty}^\infty dt' \,
+\chi_{ij}(\mathbf r,t;\mathbf r',t') \, E_j(\mathbf r',t').
+\tag{1}</span></span></p>
+<p>Here <span class="math inline">\chi</span> is the <strong>susceptibility tensor</strong>, which has the following key properties:</p>
+<ol type="1">
+<li><p><strong>Linearity &amp; Superposition.</strong><br>
+Because the system is weakly perturbed, the polarization is a linear functional of the applied field.</p></li>
+<li><p><strong>Nonlocality in Space and Time.</strong><br>
+A perturbation at <span class="math inline">(\mathbf r',t')</span> can influence the polarization at <span class="math inline">(\mathbf r,t)</span>. This makes <span class="math inline">\chi</span> depend on two spacetime points.</p></li>
+<li><p><strong>Causality.</strong><br>
+A result cannot precede its cause. Therefore, <span class="math display">
+\chi_{ij}(\mathbf r,t;\mathbf r',t') = 0 \quad \text{for } t &lt; t' .
+</span></p></li>
+</ol>
+<p>We can extract <a href="#eq-polarization" class="quarto-xref">Equation&nbsp;1</a> from the <a href="https://en.wikipedia.org/wiki/Kubo_formula">Kubo formula</a>, which which expresses the linear response of an observable quantity due to a time-dependent perturbation.</p>
+<section id="kubo-formula-derivation" class="level3">
+<h3 class="anchored" data-anchor-id="kubo-formula-derivation">Kubo Formula Derivation</h3>
+<p>Start with the Hamiltonian</p>
+<p><span id="eq-hamiltonian"><span class="math display">
+\hat H(t) = H_0 - \int d\mathbf r'\,\hat{\mathbf P}(\mathbf r') \cdot \mathbf E(\mathbf r',t),
+\tag{2}</span></span></p>
+<p>where <span class="math inline">\hat{\mathbf P}(\mathbf r)</span> is the polarization operator.</p>
+<p>From linear response theory (Kubo formula), the change in expectation value of an operator <span class="math inline">\hat A</span> is <span id="eq-kubo"><span class="math display">
+\delta\langle \hat A(t)\rangle
+= \frac{i}{\hbar}\int_{-\infty}^t dt' \,
+\langle [\hat H_I(t'), \hat A(t)] \rangle_0 ,
+\tag{3}</span></span></p>
+<p>with <span class="math inline">\hat H_I(t')</span> the interaction Hamiltonian.</p>
+<p>For <span class="math inline">\hat A(t) = \hat P_i(\mathbf r,t)</span>, <span class="math display">
+\delta \langle \hat P_i(\mathbf r,t)\rangle
+= \frac{i}{\hbar}\int_{-\infty}^t dt' \int d\mathbf r' \,
+\Big\langle \big[ -\hat P_j(\mathbf r',t') E_j(\mathbf r',t'), \,
+\hat P_i(\mathbf r,t) \big] \Big\rangle_0 .
+</span></p>
+<p>Since <span class="math inline">E_j(\mathbf r',t')</span> is a classical field (a c-number, not an operator), it commutes with operators and can be pulled out: <span class="math display">
+= -\frac{i}{\hbar}\int_{-\infty}^t dt' \int d\mathbf r' \,
+E_j(\mathbf r',t') \, \langle [\hat P_j(\mathbf r',t'), \hat P_i(\mathbf r,t)] \rangle_0 .
+</span></p>
+<p>Using <span class="math inline">[X,Y] = -[Y,X]</span>, this becomes <span class="math display">
+\delta \langle \hat P_i(\mathbf r,t)\rangle
+= \frac{i}{\hbar}\int_{-\infty}^t dt' \int d\mathbf r' \,
+\langle [\hat P_i(\mathbf r,t), \hat P_j(\mathbf r',t')] \rangle_0 \,
+E_j(\mathbf r',t') .
+</span></p>
+<hr>
+</section>
+<section id="definition-of-the-retarded-susceptibility" class="level3">
+<h3 class="anchored" data-anchor-id="definition-of-the-retarded-susceptibility">Definition of the Retarded Susceptibility</h3>
+<p>Introduce the retarded susceptibility (response function): <span class="math display">
+\chi_{ij}^R(\mathbf r,t;\mathbf r',t')
+= \frac{i}{\hbar} \, \Theta(t-t') \,
+\langle [\hat P_i(\mathbf r,t), \hat P_j(\mathbf r',t')] \rangle_0 .
+</span></p>
+<p>Then the response takes the compact Green’s-function form: <span class="math display">
+\delta \langle \hat P_i(\mathbf r,t)\rangle
+= \int d\mathbf r' \int_{-\infty}^\infty dt' \,
+\chi_{ij}^R(\mathbf r,t;\mathbf r',t') \, E_j(\mathbf r',t').
+</span></p>
+<hr>
+</section>
+<section id="why-chi-is-a-greens-function" class="level3">
+<h3 class="anchored" data-anchor-id="why-chi-is-a-greens-function">Why <span class="math inline">\chi</span> is a Green’s Function</h3>
 <ul>
-<li>The project will be done in groups of 3.</li>
-<li>The marks will be credited as bonus (i.e.&nbsp;they will not have a separate category)</li>
-<li>There will be a viva in the 15th week.</li>
-<li>The individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.)</li>
+<li><p>If the applied field is a <span class="math inline">\delta</span>-pulse at <span class="math inline">(\mathbf r',t')</span>, then <span class="math display">
+\delta \langle \hat P_i(\mathbf r,t)\rangle = \chi_{ij}^R(\mathbf r,t;\mathbf r',t'),
+</span> exactly the defining property of a Green’s function.</p></li>
+<li><p>The step function <span class="math inline">\Theta(t-t')</span> enforces causality: only past fields influence present responses.</p></li>
+<li><p>In frequency space, causality implies that <span class="math inline">\chi_{ij}^R(\omega)</span> is analytic in the upper half-plane, which leads to the <strong>Kramers–Kronig relations</strong> between the real and imaginary parts of the susceptibility.</p></li>
 </ul>
-</section>
-<section id="quizzes" class="level2">
-<h2 class="anchored" data-anchor-id="quizzes">Quizzes</h2>
-<!-- We will most likely have three quizzes:
-
-* Quiz 1 [5 Marks]
-* Quiz 2 (10 marks, 8th week)
-* Quiz 3 (10 marks, 13th week)\
-  + <span style="color:crimson;">December 10 (Tuesday), 6:00pm at LH4, FES </span>
-  + <span style="color:crimson;">From chapters 13 & 14</span>   
-   -->
-</section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<p><a href="coursematerial/Assignments/MT202Assignment_I.pdf">Assignment 1</a><br>
-<a href="coursematerial/Assignments/MT202Assignment_II.pdf">Assignment 2</a><br>
-<a href="coursematerial/Assignments/MT202Assignment_III.pdf">Assignment 3</a><br>
-<a href="coursematerial/Assignments/MT202Assignment_IV.pdf">Assignment 4</a><br>
-<a href="coursematerial/Assignments/MT202Assignment_V.pdf">Assignment 5</a><br>
-</p>
-</section>
-<section id="slides-and-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-notebooks">Slides and Notebooks</h2>
-<p>Note: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.</p>
-<p>If you want a quick solution, then you can use sympy on Google colab as shown <a href="https://colab.research.google.com/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-5-Sympy.ipynb">here</a></p>
-<ul>
-<li><a href="../C0calculusII/lectures/10_1ParametricPlots.html">Parametric Curves</a></li>
-<li><a href="../C0calculusII/lectures/10_2ParametricCalculus.html">Parametric Curves Calculus</a></li>
-<li><a href="../C0calculusII/lectures/10_3ParametricPolar.html">Parametric Curves Polar</a></li>
-<li><a href="../C0calculusII/lectures/10_5ConicSections.html">Conic Sections</a></li>
-<li><a href="../C0calculusII/lectures/11_1VectorsGeometryofSpace.html">Vectors</a></li>
-<li><a href="../C0calculusII/lectures/11_6Quadric.html">Quadric Surfaces</a></li>
-<li><a href="../C0calculusII/lectures/13_3PartialDerivatives.html">Partial Derivatives</a></li>
-<li><a href="../C0calculusII/lectures/14_2DoubleIntegrals.html">Double Integrals</a></li>
-</ul>
-</section>
-<section id="course-outline" class="level2">
-<h2 class="anchored" data-anchor-id="course-outline">Course Outline</h2>
-<p><a href="coursematerial/MT202 - Course Outline - Fall 2024.pdf">Outline (pdf)</a></p>
-</section>
-<section id="other-resources" class="level2">
-<h2 class="anchored" data-anchor-id="other-resources">Other Resources</h2>
-<section id="python-related" class="level3">
-<h3 class="anchored" data-anchor-id="python-related">Python related</h3>
-<ul>
-<li><a href="https://www.youtube.com/watch?v=-SdIZHPuW9o">Calculus I in python</a></li>
-<li><a href="https://www.youtube.com/watch?v=Teb28OFMVFc">Calculus II in python</a></li>
-<li><a href="https://www.youtube.com/watch?v=1yBPEPhq54M">Sympy tutorial</a></li>
-</ul>
-<!-- ## Teaching Assistants 
-
-In case of queries regarding attendance, quizzes, and assignments contact:
-
-Ms. Iqra Anjum\
-Email: ges2319@giki.edu.pk -->
-<!-- 
-## Temp
-- [Julia test](notebooks/juliatest.qmd) -->
+<hr>
+<p>The susceptibility <span class="math inline">\chi</span> then is <strong>formally the retarded Green’s function</strong> of the polarization operator. It is introduced because: - Linearity <span class="math inline">\Rightarrow</span> convolution with a kernel.<br>
+- Spatial/temporal memory <span class="math inline">\Rightarrow</span> dependence on <span class="math inline">(\mathbf r,t;\mathbf r',t')</span>.<br>
+- Causality <span class="math inline">\Rightarrow</span> retarded boundary condition.<br>
+- Kubo formula <span class="math inline">\Rightarrow</span> explicit commutator expression, confirming its Green’s-function character.</p>
 
 
 </section>
@@ -842,7 +945,7 @@ Email: ges2319@giki.edu.pk -->
   });
   </script>
 </div> <!-- /content -->
-<script src="../scripts/leader-line-master/leader-line.min.js"></script>
+<script src="../../scripts/leader-line-master/leader-line.min.js"></script>
 
 
 

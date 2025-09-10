@@ -48,3 +48,43 @@
 
 
 
+
+
+
+
+
+
+.pillset {
+  display: flex;        /* pills start in one row */
+  flex-wrap: wrap;      /* allow wrapping if needed */
+  gap: .5rem;
+}
+
+.pill {
+  flex: 0 0 auto;       /* don’t stretch, keep pill size */
+}
+
+.pill-header {
+  display: inline-block;
+  border-radius: 50rem;
+  padding: .35rem .9rem;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pill-header.active {
+  background-color: #367d92;
+  color: white;
+  border-color: #367d92;
+}
+
+.pill-body {
+  display: none;
+  margin-top: .5rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  background-color: #a5c7d1;
+}
+
