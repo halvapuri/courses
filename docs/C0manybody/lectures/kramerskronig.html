@@ -419,10 +419,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-analyticity-implies-causality" id="toc-why-analyticity-implies-causality" class="nav-link active" data-scroll-target="#why-analyticity-implies-causality">Why Analyticity Implies Causality</a>
-  <ul class="collapse">
-  <li><a href="#contour-integration-picture" id="toc-contour-integration-picture" class="nav-link" data-scroll-target="#contour-integration-picture">Contour Integration Picture</a></li>
-  </ul></li>
+  <li><a href="#why-upper-half-analyticity-implies-causality" id="toc-why-upper-half-analyticity-implies-causality" class="nav-link active" data-scroll-target="#why-upper-half-analyticity-implies-causality">Why Upper Half Analyticity Implies Causality</a></li>
   <li><a href="#kramers-kronig-relations" id="toc-kramers-kronig-relations" class="nav-link" data-scroll-target="#kramers-kronig-relations">Kramers-Kronig Relations</a></li>
   </ul>
 </nav>
@@ -456,8 +453,8 @@ window.Quarto = {
 </div>
 <p>In linear response theory, the response function (for instance the susceptibility tensor <span class="math inline">\chi(\omega)</span> that we use below for concreteness) encodes how a system responds to an external perturbation.</p>
 <p>Its analytic properties in the complex frequency plane are intimately connected to <strong>causality</strong> (response cannot precede the perturbation) and to <strong>irreversibility</strong> (systems relax to equilibrium).</p>
-<section id="why-analyticity-implies-causality" class="level2">
-<h2 class="anchored" data-anchor-id="why-analyticity-implies-causality">Why Analyticity Implies Causality</h2>
+<section id="why-upper-half-analyticity-implies-causality" class="level2">
+<h2 class="anchored" data-anchor-id="why-upper-half-analyticity-implies-causality">Why Upper Half Analyticity Implies Causality</h2>
 <div class="pillset">
 <div class="pill" title="The Stage: Analyticity and Poles">
 <p>Schematically, the susceptibility has the form</p>
@@ -485,18 +482,20 @@ window.Quarto = {
 → The integral converges and <span class="math inline">\chi(\omega)</span> is analytic there.</p></li>
 <li><p>For <span class="math inline">\omega_i &lt; 0</span> (lower half-plane), the factor grows exponentially, and singularities (poles) can occur.</p></li>
 </ul>
+<p>So technically, the response would pick up unphysical terms if there are poles in the upper-half plane.</p>
 <p>Thus, <strong>causality in time <span class="math inline">\chi(t&lt;0)=0</span> is equivalent to analyticity of <span class="math inline">\chi(\omega)</span> in the upper half-plane</strong>.</p>
-<section id="contour-integration-picture" class="level3">
-<h3 class="anchored" data-anchor-id="contour-integration-picture">Contour Integration Picture</h3>
-<p>The inverse transform is</p>
+<p>Alternatively, the inverse transform is</p>
 <p><span class="math display">
 \chi(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \chi(\omega) e^{-i\omega t} \, d\omega.
 </span></p>
+<p>Since we have poles in the lower half:</p>
 <ul>
 <li><p>If <span class="math inline">t &lt; 0</span>: close the contour in the <strong>upper half-plane</strong>. Since <span class="math inline">\chi(\omega)</span> is analytic there, the integral vanishes <span class="math inline">\Rightarrow \chi(t&lt;0)=0</span>.</p></li>
 <li><p>If <span class="math inline">t &gt; 0</span>: close the contour in the <strong>lower half-plane</strong>. Now the poles contribute, yielding a nonzero response.</p></li>
 </ul>
-<p>This demonstrates explicitly that <strong>analyticity <span class="math inline">\leftrightarrow</span> causality</strong>. The behavior of lower and upper half-plane poles is contrasted below:</p>
+<p>That is exactly how we want it. No response for <span class="math inline">t&lt;0</span>.</p>
+<p>This demonstrates explicitly that <strong>analyticity <span class="math inline">\leftrightarrow</span> causality</strong>.</p>
+<p>The contrasting behavior of lower and upper half-plane poles is contrasted below:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -542,7 +541,6 @@ window.Quarto = {
 </ul>
 <p>This guarantees that the system responds only <em>after</em> being perturbed and decays irreversibly toward equilibrium.</p>
 <p>These analytic properties also underlie the <strong>Kramers–Kronig relations</strong>, which link the real and imaginary parts of <span class="math inline">\chi(\omega)</span> via Hilbert transforms.</p>
-</section>
 </section>
 <section id="kramers-kronig-relations" class="level2">
 <h2 class="anchored" data-anchor-id="kramers-kronig-relations">Kramers-Kronig Relations</h2>

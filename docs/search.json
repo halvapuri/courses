@@ -3145,8 +3145,8 @@
     "objectID": "C0ode/lecture_notes/dev/MakingFigures/Strategy2_RevJS/extension_test.html#leaderline",
     "href": "C0ode/lecture_notes/dev/MakingFigures/Strategy2_RevJS/extension_test.html#leaderline",
     "title": "Leader-line Example",
-    "section": "",
-    "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector."
+    "section": "Leaderline",
+    "text": "Leaderline\n\n\n\n\n\n\n\n\nHere is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector."
   },
   {
     "objectID": "C0ode/lecture_notes/dev/reduction_of_order.html",
@@ -3228,7 +3228,7 @@
     "href": "C0manybody/lectures/kuboformula.html",
     "title": "Kubo formula and response functions",
     "section": "",
-    "text": "Content\n\n\nThis is content for tab two.\n\n\nThis is content for tab three.",
+    "text": "We want to see how the Kubo formula connects time dependent perturbations and their linear responses.\nWe can then apply a forcing field (electric, magnetic, mechanic) and determine susceptibilities in the linear response regime.",
     "crumbs": [
       "Topics",
       "Kubo formula and response functions"
@@ -3239,7 +3239,7 @@
     "href": "C0manybody/lectures/kuboformula.html#susceptibility-as-a-greens-function",
     "title": "Kubo formula and response functions",
     "section": "Susceptibility as a Green’s Function",
-    "text": "Susceptibility as a Green’s Function\nWhen a weak external electric field \\mathbf E(\\mathbf r,t) is applied, the system responds linearly with an induced polarization \\mathbf P(\\mathbf r,t). In the linear response regime, the most general linear relation between cause (field) and effect (polarization) is\n\nP_i(\\mathbf r,t) = \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').\n\\tag{1}\nHere \\chi is the susceptibility tensor, which has the following key properties:\n\nLinearity & Superposition.\nBecause the system is weakly perturbed, the polarization is a linear functional of the applied field.\nNonlocality in Space and Time.\nA perturbation at (\\mathbf r',t') can influence the polarization at (\\mathbf r,t). This makes \\chi depend on two spacetime points.\nCausality.\nA result cannot precede its cause. Therefore, \n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') = 0 \\quad \\text{for } t &lt; t' .\n\n\nWe can extract Equation 1 from the Kubo formula, which which expresses the linear response of an observable quantity due to a time-dependent perturbation.\n\nKubo Formula Derivation\nStart with the Hamiltonian\n\n\\hat H(t) = H_0 - \\int d\\mathbf r'\\,\\hat{\\mathbf P}(\\mathbf r') \\cdot \\mathbf E(\\mathbf r',t),\n\\tag{2}\nwhere \\hat{\\mathbf P}(\\mathbf r) is the polarization operator.\nFrom linear response theory (Kubo formula), the change in expectation value of an operator \\hat A is \n\\delta\\langle \\hat A(t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\,\n\\langle [\\hat H_I(t'), \\hat A(t)] \\rangle_0 ,\n\\tag{3}\nwith \\hat H_I(t') the interaction Hamiltonian.\nFor \\hat A(t) = \\hat P_i(\\mathbf r,t), \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\n\\Big\\langle \\big[ -\\hat P_j(\\mathbf r',t') E_j(\\mathbf r',t'), \\,\n\\hat P_i(\\mathbf r,t) \\big] \\Big\\rangle_0 .\n\nSince E_j(\\mathbf r',t') is a classical field (a c-number, not an operator), it commutes with operators and can be pulled out: \n= -\\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\nE_j(\\mathbf r',t') \\, \\langle [\\hat P_j(\\mathbf r',t'), \\hat P_i(\\mathbf r,t)] \\rangle_0 .\n\nUsing [X,Y] = -[Y,X], this becomes \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\n\\langle [\\hat P_i(\\mathbf r,t), \\hat P_j(\\mathbf r',t')] \\rangle_0 \\,\nE_j(\\mathbf r',t') .\n\n\n\n\nDefinition of the Retarded Susceptibility\nIntroduce the retarded susceptibility (response function): \n\\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t')\n= \\frac{i}{\\hbar} \\, \\Theta(t-t') \\,\n\\langle [\\hat P_i(\\mathbf r,t), \\hat P_j(\\mathbf r',t')] \\rangle_0 .\n\nThen the response takes the compact Green’s-function form: \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').\n\n\n\n\nWhy \\chi is a Green’s Function\n\nIf the applied field is a \\delta-pulse at (\\mathbf r',t'), then \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle = \\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t'),\n exactly the defining property of a Green’s function.\nThe step function \\Theta(t-t') enforces causality: only past fields influence present responses.\nIn frequency space, causality implies that \\chi_{ij}^R(\\omega) is analytic in the upper half-plane, which leads to the Kramers–Kronig relations between the real and imaginary parts of the susceptibility.\n\n\nThe susceptibility \\chi then is formally the retarded Green’s function of the polarization operator. It is introduced because: - Linearity \\Rightarrow convolution with a kernel.\n- Spatial/temporal memory \\Rightarrow dependence on (\\mathbf r,t;\\mathbf r',t').\n- Causality \\Rightarrow retarded boundary condition.\n- Kubo formula \\Rightarrow explicit commutator expression, confirming its Green’s-function character.",
+    "text": "Susceptibility as a Green’s Function\nWhen a weak external electric field \\mathbf E(\\mathbf r,t) is applied, the system responds linearly with an induced polarization \\mathbf P(\\mathbf r,t). In the linear response regime, the most general linear relation between cause (field) and effect (polarization) is\n\nP_i(\\mathbf r,t) = \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').\n\\tag{1}\nHere \\chi is the susceptibility tensor, has certain properties by default or by imposition:\n\n\nBecause the system is weakly perturbed, the polarization is a linear functional of the applied field.\n\n\nA perturbation at (\\mathbf r',t') can influence the polarization at (\\mathbf r,t). This makes \\chi depend on two spacetime points.\n\n\nA result cannot precede its cause. Therefore, \n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') = 0 \\quad \\text{for } t &lt; t' .\n\n\n\nWe can extract Equation 1 from the Kubo formula, which which expresses the linear response of an observable quantity due to a time-dependent perturbation.\n\nFrom Kubo Formula to Response\nWe start with the Hamiltonian\n\n\\hat H(t) = H_0 - \\int d\\mathbf r'\\,\\hat{\\mathbf P}(\\mathbf r') \\cdot \\mathbf E(\\mathbf r',t),\n\\tag{2}\nwhere \\hat{\\mathbf P}(\\mathbf r) is the polarization operator.\nFrom linear response theory (Kubo formula), the change in expectation value of an operator \\hat A is \n\\delta\\langle \\hat A(t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\,\n\\langle [\\hat H_I(t'), \\hat A(t)] \\rangle_0 ,\n\\tag{3}\nwith \\hat H_I(t') the interaction Hamiltonian.\nFor \\hat A(t) = \\hat P_i(\\mathbf r,t), \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\n\\Big\\langle \\big[ -\\hat P_j(\\mathbf r',t') E_j(\\mathbf r',t'), \\,\n\\hat P_i(\\mathbf r,t) \\big] \\Big\\rangle_0 .\n\nSince E_j(\\mathbf r',t') is a classical field (a c-number, not an operator), it commutes with operators and can be pulled out: \n= -\\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\nE_j(\\mathbf r',t') \\, \\langle [\\hat P_j(\\mathbf r',t'), \\hat P_i(\\mathbf r,t)] \\rangle_0 .\n\nUsing [X,Y] = -[Y,X], this becomes \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\n\\langle [\\hat P_i(\\mathbf r,t), \\hat P_j(\\mathbf r',t')] \\rangle_0 \\,\nE_j(\\mathbf r',t') .\n\n\n\n\nDefinition of the Retarded Susceptibility\nIntroduce the retarded susceptibility (response function): \n\\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t')\n= \\frac{i}{\\hbar} \\, \\Theta(t-t') \\,\n\\langle [\\hat P_i(\\mathbf r,t), \\hat P_j(\\mathbf r',t')] \\rangle_0 .\n\nThen the response takes the compact Green’s-function form: \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').\n\n\n\n\nWhy \\chi is a Green’s Function\n\nIf the applied field is a \\delta-pulse at (\\mathbf r',t'), then \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle = \\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t'),\n exactly the defining property of a Green’s function.\nThe step function \\Theta(t-t') enforces causality: only past fields influence present responses.\nIn frequency space, causality implies that \\chi_{ij}^R(\\omega) is analytic in the upper half-plane, which leads to the Kramers–Kronig relations between the real and imaginary parts of the susceptibility.\n\n\nThe susceptibility \\chi then is formally the retarded Green’s function of the polarization operator. It is introduced because: - Linearity \\Rightarrow convolution with a kernel.\n- Spatial/temporal memory \\Rightarrow dependence on (\\mathbf r,t;\\mathbf r',t').\n- Causality \\Rightarrow retarded boundary condition.\n- Kubo formula \\Rightarrow explicit commutator expression, confirming its Green’s-function character.",
     "crumbs": [
       "Topics",
       "Kubo formula and response functions"
@@ -3382,6 +3382,57 @@
     "crumbs": [
       "Topics",
       "Analyticity, Causality, and Kramers-Kronig Relations"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/kramerskronig.html#why-upper-half-analyticity-implies-causality",
+    "href": "C0manybody/lectures/kramerskronig.html#why-upper-half-analyticity-implies-causality",
+    "title": "Analyticity, Causality, and Kramers-Kronig Relations",
+    "section": "Why Upper Half Analyticity Implies Causality",
+    "text": "Why Upper Half Analyticity Implies Causality\n\n\nSchematically, the susceptibility has the form\n\n\\chi(\\omega) \\sim \\sum_n \\frac{f_n}{\\omega - \\omega_n + i0^+},\n\nwhere the poles \\omega_n lie in the lower half-plane.\nIf all poles are in the lower half-plane, then \\chi(\\omega) is analytic in the upper half-plane, which is another way of saying it has no singularities in that region, so contour deformations in the upper half-plane are always allowed.\n\n\nThe time-domain susceptibility is defined as\n\n\\chi(t) = 0 \\quad \\text{for } t &lt; 0,\n\nreflecting the fact that the system cannot respond before the perturbation is applied.\nThe two are connected by a Fourier transform: \n\\chi(\\omega) = \\int_{-\\infty}^{\\infty} \\chi(t) e^{i\\omega t} \\, dt\n= \\int_{0}^{\\infty} \\chi(t) e^{i\\omega t} \\, dt.\n\n\n\nGiven \\chi(t) \\xrightarrow{\\mathscr{F}} \\chi(\\omega), we let \\omega = \\omega_r + i\\omega_i (see pills):\n\nFor \\omega_i &gt; 0 (upper half-plane), the factor e^{i\\omega t} = e^{i\\omega_r t} e^{-\\omega_i t} decays as t \\to \\infty.\n→ The integral converges and \\chi(\\omega) is analytic there.\nFor \\omega_i &lt; 0 (lower half-plane), the factor grows exponentially, and singularities (poles) can occur.\n\nSo technically, the response would pick up unphysical terms if there are poles in the upper-half plane.\nThus, causality in time \\chi(t&lt;0)=0 is equivalent to analyticity of \\chi(\\omega) in the upper half-plane.\nAlternatively, the inverse transform is\n\n\\chi(t) = \\frac{1}{2\\pi} \\int_{-\\infty}^{\\infty} \\chi(\\omega) e^{-i\\omega t} \\, d\\omega.\n\nSince we have poles in the lower half:\n\nIf t &lt; 0: close the contour in the upper half-plane. Since \\chi(\\omega) is analytic there, the integral vanishes \\Rightarrow \\chi(t&lt;0)=0.\nIf t &gt; 0: close the contour in the lower half-plane. Now the poles contribute, yielding a nonzero response.\n\nThat is exactly how we want it. No response for t&lt;0.\nThis demonstrates explicitly that analyticity \\leftrightarrow causality.\nThe contrasting behavior of lower and upper half-plane poles is contrasted below:\n\n\n\n\n\n\n\nLower Half-Plane Poles\nUpper Half-Plane Poles\n\n\n\n\ne^{-i(\\omega_r - i\\gamma)t} = e^{-i\\omega_r t} e^{-\\gamma t}, \\qquad \\gamma &gt; 0\ne^{+\\gamma t}, \\quad t &gt; 0\n\n\nExponentially decaying response\nExponentially growing response\n\n\nEncodes irreversible relaxation to equilibrium\nLeads to instability and growth without bound\n\n\nResponse exists only for t&gt;0 → causal\nProduces contributions for t&lt;0 → acausal\n\n\n✅ Physical\n❌ Unphysical\n\n\n\n\nSo the following statements are equivalent:\n\nCausality (time domain): \\chi(t)=0 for t&lt;0.\n\nAnalyticity (frequency domain): \\chi(\\omega) analytic in the upper half-plane.\n\nPole structure: all poles confined to the lower half-plane.\n\nThis guarantees that the system responds only after being perturbed and decays irreversibly toward equilibrium.\nThese analytic properties also underlie the Kramers–Kronig relations, which link the real and imaginary parts of \\chi(\\omega) via Hilbert transforms.",
+    "crumbs": [
+      "Topics",
+      "Analyticity, Causality, and Kramers-Kronig Relations"
+    ]
+  },
+  {
+    "objectID": "C0ode/lecture_notes/dev/MakingFigures/Strategy2_RevJS/extension_test.html#section",
+    "href": "C0ode/lecture_notes/dev/MakingFigures/Strategy2_RevJS/extension_test.html#section",
+    "title": "Leader-line Example",
+    "section": "",
+    "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector."
+  },
+  {
+    "objectID": "C0manybody/lectures/kuboformula.html#section",
+    "href": "C0manybody/lectures/kuboformula.html#section",
+    "title": "Leader-line Example",
+    "section": "",
+    "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector.",
+    "crumbs": [
+      "Topics",
+      "Leader-line Example"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/kubofigure.html",
+    "href": "C0manybody/lectures/kubofigure.html",
+    "title": "Leader-line Example",
+    "section": "",
+    "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector.",
+    "crumbs": [
+      "Topics",
+      "Leader-line Example"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/kubofigure.html#section",
+    "href": "C0manybody/lectures/kubofigure.html#section",
+    "title": "Worldlines",
+    "section": "",
+    "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector.",
+    "crumbs": [
+      "Topics",
+      "Kubofigure"
     ]
   }
 ]

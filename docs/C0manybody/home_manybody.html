@@ -76,27 +76,59 @@ function toggleBox(header) {
 }
 </script>
 
-
 <script>
-function openCity(evt, cityName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-red";
-}
+function togglePill(header) {
+  const box = header.nextElementSibling;
 
+  // toggle active pill state
+  header.classList.toggle("active");
+
+  // toggle content
+  if (box.style.display === "block") {
+    box.style.display = "none";
+  } else {
+    box.style.display = "block";
+  }
+}
 </script>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".pill").forEach(pill => {
+    const title = pill.getAttribute("title") || "";
+    const bodyHtml = pill.innerHTML;
 
+    // header
+    const header = document.createElement("div");
+    header.className = "pill-header";
+    header.textContent = title;
 
+    // body
+    const body = document.createElement("div");
+    body.className = "pill-body";
+    body.innerHTML = bodyHtml;
+
+    // reset pill
+    pill.innerHTML = "";
+    pill.appendChild(header);
+    pill.appendChild(body);
+
+    // toggle
+    header.addEventListener("click", () => {
+      header.classList.toggle("active");
+
+      if (body.style.display === "block") {
+        body.style.display = "none";
+        pill.style.flexBasis = "auto";   // collapse back
+      } else {
+        body.style.display = "block";
+        pill.style.flexBasis = "100%";   // expand pill to full row
+      }
+    });
+  });
+});
+</script>
 
 
 <script>
@@ -300,6 +332,18 @@ function drawLeader({
   <div class="sidebar-item-container"> 
   <a href="../C0manybody/lectures/kohnsham.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kohn Sham Equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../C0manybody/lectures/kramerskronig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analyticity, Causality, and Kramers-Kronig Relations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../C0manybody/lectures/kuboformula.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kubo formula and response functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
