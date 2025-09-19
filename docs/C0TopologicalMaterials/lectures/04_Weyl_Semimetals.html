@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Differentiable Manifolds – Worldlines</title>
+<title>Weyl Semi-Metals – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -260,8 +240,7 @@ function drawLeader(config) {
 
       const line = new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
       LeaderLineRegistry.register(line);
-//      resolve(line);
-      return line;
+      resolve(line);
     });
   });
 }
@@ -406,9 +385,14 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#whats-the-fuss" id="toc-whats-the-fuss" class="nav-link active" data-scroll-target="#whats-the-fuss">What’s the fuss?</a></li>
-  <li><a href="#from-charts-to-atlases-to-differentiable-manifolds" id="toc-from-charts-to-atlases-to-differentiable-manifolds" class="nav-link" data-scroll-target="#from-charts-to-atlases-to-differentiable-manifolds">From charts to atlases to differentiable manifolds</a></li>
-  <li><a href="#differentiable-mainfold" id="toc-differentiable-mainfold" class="nav-link" data-scroll-target="#differentiable-mainfold">Differentiable mainfold</a></li>
+  <li><a href="#start-from-atomic-orbitals" id="toc-start-from-atomic-orbitals" class="nav-link active" data-scroll-target="#start-from-atomic-orbitals">Start from atomic orbitals…</a></li>
+  <li><a href="#and-include-spinorbit-coupling-soc" id="toc-and-include-spinorbit-coupling-soc" class="nav-link" data-scroll-target="#and-include-spinorbit-coupling-soc">and include spin–orbit coupling (SOC)…</a></li>
+  <li><a href="#effecting-band-inversion-seen-via-the-kcdot-p-hamiltonian-bhz-model" id="toc-effecting-band-inversion-seen-via-the-kcdot-p-hamiltonian-bhz-model" class="nav-link" data-scroll-target="#effecting-band-inversion-seen-via-the-kcdot-p-hamiltonian-bhz-model">effecting band inversion seen via the <span class="math inline">k\cdot p</span> Hamiltonian: BHZ model</a></li>
+  <li><a href="#this-topological-transition-and-invariant" id="toc-this-topological-transition-and-invariant" class="nav-link" data-scroll-target="#this-topological-transition-and-invariant">This topological transition and invariant…</a></li>
+  <li><a href="#is-how-dirac-and-weyl-semimetals-appear" id="toc-is-how-dirac-and-weyl-semimetals-appear" class="nav-link" data-scroll-target="#is-how-dirac-and-weyl-semimetals-appear">is how Dirac and Weyl semimetals appear</a></li>
+  <li><a href="#break-mathcalp-or-mathcalt-weyl-semimetal" id="toc-break-mathcalp-or-mathcalt-weyl-semimetal" class="nav-link" data-scroll-target="#break-mathcalp-or-mathcalt-weyl-semimetal">Break <span class="math inline">\mathcal{P}</span> or <span class="math inline">\mathcal{T}</span> → Weyl semimetal</a></li>
+  <li><a href="#phase-diagram-summary" id="toc-phase-diagram-summary" class="nav-link" data-scroll-target="#phase-diagram-summary">Phase diagram summary</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -417,7 +401,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Differentiable Manifolds</h1>
+<h1 class="title">Weyl Semi-Metals</h1>
 </div>
 
 
@@ -434,78 +418,366 @@ window.Quarto = {
 </header>
 
 
-<section id="whats-the-fuss" class="level2">
-<h2 class="anchored" data-anchor-id="whats-the-fuss">What’s the fuss?</h2>
-<p>In a simplistic senses spacetime can be encoded as a set, the elements of which correspond to spacetime points <span class="citation" data-cites="Isham1999">(<a href="#ref-Isham1999" role="doc-biblioref">Isham 1999</a>)</span>.</p>
-<p>Additional structure must be imposed however. A topological space encapsulates the basic notions of nearness, without quantifying what that nearness is.</p>
-<p>But ultimately we want to be bring our calculus toolkit to this set which represents our spacetime.</p>
-<p>Ultimately we have two aims:</p>
-<ol type="1">
-<li>To be able to locate spacetime points via a set of real numbers.</li>
-<li>To be able to perform calculus related operations to study the dynamical evolution of systems.</li>
-</ol>
+<div class="pill" title="Objective">
+<p>How do Weyl Semi-Metals emerge? We shall see that central to this is the role of SOC in causing the conduction and valence bands to invert.</p>
+</div>
+<section id="start-from-atomic-orbitals" class="level2">
+<h2 class="anchored" data-anchor-id="start-from-atomic-orbitals">Start from atomic orbitals…</h2>
+<p>Imagine a crystal made of atoms contributing <span class="math inline">s</span>-like and <span class="math inline">p</span>-like orbitals. At the <span class="math inline">\Gamma</span>-point (<span class="math inline">k=0</span>), the bands can be labeled by their <strong>parity eigenvalues</strong> under inversion symmetry <span class="math inline">\mathcal{P}</span>. Let’s call:</p>
+<ul>
+<li><span class="math inline">|s\rangle</span>: even parity <span class="math inline">(+)</span><br>
+</li>
+<li><span class="math inline">|p\rangle</span>: odd parity <span class="math inline">(-)</span></li>
+</ul>
+<p>The unperturbed energies are:</p>
+<p><span class="math display">
+E_s &gt; E_p.
+</span></p>
+<p>So normally the <span class="math inline">s</span>-like band becomes the <strong>conduction band</strong> and <span class="math inline">p</span>-like the <strong>valence band</strong>.</p>
+<p>More mathematically using the <span class="math inline">k\cdot p</span> expansion:</p>
+<p><span class="math display">
+E_n(\mathbf{k}) = E_n(0) + \frac{\hbar^2 k^2}{2m^*} + \dots
+</span></p>
+<p>Thus the <strong>ordering at <span class="math inline">k=0</span></strong> sets the <strong>global band topology</strong> but if SOC pushes <span class="math inline">E_{p}(0)</span> above <span class="math inline">E_{s}(0)</span>, the bands are <strong>inverted at <span class="math inline">\Gamma</span></strong>.</p>
+<p>Away from <span class="math inline">\Gamma</span>, the <span class="math inline">k^2</span>-term (<span class="math inline">Bk^2</span> in the BHZ model) restores normal ordering, so the band gap opens up again — but the <strong>parity order at <span class="math inline">\Gamma</span> stays inverted</strong>, and that’s what counts topologically.</p>
+<div class="pillset">
+<div class="pill" title="Incidentally why Gamma?">
+<ul>
+<li><span class="math inline">\Gamma = (0,0,0)</span>, the center of the Brillouin zone, is a <strong>time-reversal invariant momentum (TRIM)</strong>. <span class="math inline">\Gamma \equiv -\Gamma \; (\text{mod reciprocal lattice vector})</span>.</li>
+<li>There are only a few TRIMs: <span class="math inline">\Gamma</span>, X, L, M, etc., depending on the lattice. These are <strong>high-symmetry points</strong> where crystal momentum is zero (why?), so <strong>Bloch states have the same symmetry as the atomic orbitals</strong>.</li>
+<li>Each state can be labeled by <strong>parity eigenvalues</strong> and other crystal quantum numbers.</li>
+</ul>
+<p>This is crucial for topology.</p>
+<section id="why-does-inversion-occure-there" class="level3">
+<h3 class="anchored" data-anchor-id="why-does-inversion-occure-there">Why does inversion occure there?</h3>
+<p>Well in local terms… - Near <span class="math inline">\Gamma</span>, the band energies are close to the <strong>atomic orbital levels</strong> because <span class="math inline">k</span> is small, meaning there is no kinetic energy term yet.<br>
+- This is where the <strong><span class="math inline">s</span>- and <span class="math inline">p</span>-like states from atoms interact and hybridize</strong>. - In fact topological invariants are defined at TRIMs. Fu &amp; Kane showed the <strong><span class="math inline">\mathbb{Z}_2</span> topological invariant</strong> can be computed as a product of <strong>parity eigenvalues at TRIMs</strong>:</p>
+<p><span class="math display">
+(-1)^\nu = \prod_{i\in \text{TRIM}} \prod_{n\in\text{occ}} \xi_n(\Gamma_i),
+</span></p>
+<p>where <span class="math inline">\xi_n=\pm1</span> are parity eigenvalues.</p>
+<ul>
+<li>This only works at TRIMs because <strong>time-reversal forces Kramers degeneracy</strong> there.</li>
+<li>So <strong>band inversion must occur at a TRIM</strong> (like <span class="math inline">\Gamma</span>) to flip the parity product and change the topological invariant. It’s the <strong>natural place where atomic <span class="math inline">s</span>- and <span class="math inline">p</span>-states meet</strong>.<br>
+</li>
+<li>Only inversion at a TRIM like <span class="math inline">\Gamma</span> can <strong>change</strong> the topological invariant. If inversion happened at some generic <span class="math inline">\mathbf{k}</span>-point, it would happen at <span class="math inline">\mathbf{k}</span> and <span class="math inline">-\mathbf{k}</span> simultaneously (due to time-reversal symmetry), and their contributions would cancel — leaving the <span class="math inline">\mathbb{Z}_2</span> invariant unchanged. In other words <strong>only inversions at TRIMs can drive topological phase transitions.</strong></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Why <span class="math inline">\Gamma</span> point matters</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>High symmetry</td>
+<td>Wavefunctions have well-defined parity at <span class="math inline">k=0</span>.</td>
+</tr>
+<tr class="even">
+<td>SOC is strongest here</td>
+<td>Small <span class="math inline">k</span>: atomic character dominates.</td>
+</tr>
+<tr class="odd">
+<td>TRIM condition</td>
+<td>Needed for parity-based topological invariant.</td>
+</tr>
+<tr class="even">
+<td>Topology changes here first</td>
+<td>Inversion here forces gap closure → topological transition.</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="from-charts-to-atlases-to-differentiable-manifolds" class="level2">
-<h2 class="anchored" data-anchor-id="from-charts-to-atlases-to-differentiable-manifolds">From charts to atlases to differentiable manifolds</h2>
-<p>Remember that our calculus works on certain sets of real numbers called <em>Euclidean Space</em>. Hence we need mathematical machines that can lead us back and forth from the world of curved spaces to the flat Euclidean lands.</p>
-<p>Let’s take a top down approach.</p>
-<p>An <em>atlas</em> is a family of <strong>coordinate charts</strong>. A coordinate chart is pair <span class="math inline">(U,\phi)</span></p>
-<p>A topological space is a <strong>differentiable manifold</strong> if it has a differential structure on it in the form of a <strong>complete atlas</strong>. Complete here simply means that the atlas is maximal i.e.&nbsp;not contained in any other atlas.</p>
-
-<div id="stage" class="stage" style="position: relative; height: 300px;">
-<p><!-- <div class="tbox"  id="nodeA" >
-  <div class="handwrith" id="nodeAh" style="">Manifold</div>
-  <div class="handwrit" id="nodeAc" style="">Topological space locally $R^n$ covered by a family of </div>
-  </div> --></p>
-<div id="nodeA" class="bbcbox">
-<div id="nodeA4" class="bbcheader" style="">
-Manifold
 </div>
-<div id="nodeA4" class="bbcbody" style="">
-Topological space locally <span class="math inline">R^n</span> covered by a family of
+<div class="pill" title="and why can bands at Gamma be labeled by parity eigenvalues">
+<p>Parity eigenvalues are <strong>only well-defined at TRIM points such as <span class="math inline">\Gamma</span></strong>, because only there does inversion act within the same Bloch subspace. Equivalently, only at TRIMs are the Bloch States also parity eigenstates. Take a Bloch state:</p>
+<p><span class="math display">
+\psi_{n\mathbf{k}}(\mathbf{r}) = e^{i\mathbf{k}\cdot\mathbf{r}}\,u_{n\mathbf{k}}(\mathbf{r}),
+\qquad u_{n\mathbf{k}}(\mathbf{r}+\mathbf{R})=u_{n\mathbf{k}}(\mathbf{r}),
+</span></p>
+<p>where <span class="math inline">u_{n\mathbf{k}}</span> has the periodicity of the lattice and applying inversion you get:</p>
+<p><span class="math display">
+\hat{P}\,\psi_{n\mathbf{k}}(\mathbf{r})
+= \psi_{n\mathbf{k}}(-\mathbf{r})
+= e^{-i\mathbf{k}\cdot\mathbf{r}}\,u_{n\mathbf{k}}(-\mathbf{r})
+\;\propto\; \psi_{n,-\mathbf{k}}(\mathbf{r}).
+</span></p>
+<p>Thus inversion maps <span class="math inline">\mathbf{k}\to -\mathbf{k}</span>. Only when <span class="math inline">\mathbf{k}=-\mathbf{k}</span> (mod a reciprocal lattice vector) does <span class="math inline">\hat{P}</span> act <strong>within the same subspace</strong>. These special points are the <strong>time-reversal invariant momenta (TRIMs)</strong>, including <span class="math inline">\Gamma = (0,0,0)</span>. At TRIM points, each Bloch state can be chosen as an eigenstate of inversion:</p>
+<p><span class="math display">
+\hat{P}\,\psi_{n\mathbf{k}} = \xi_n(\mathbf{k})\,\psi_{n\mathbf{k}}, \qquad \xi_n(\mathbf{k})=\pm1.
+</span></p>
+<section id="but-why-are-mathbfk-and--mathbfk-different-subspaces" class="level3">
+<h3 class="anchored" data-anchor-id="but-why-are-mathbfk-and--mathbfk-different-subspaces">But why are <span class="math inline">\mathbf{k}</span> and <span class="math inline">-\mathbf{k}</span> different subspaces?</h3>
+<p>Because Bloch states are eigenstates of lattice translations <span class="math inline">T_\mathbf{R}</span>:</p>
+<p><span class="math display">
+T_\mathbf{R}\psi_{n\mathbf{k}} = e^{i\mathbf{k}\cdot\mathbf{R}} \psi_{n\mathbf{k}}.
+</span></p>
+<p>States with different <span class="math inline">\mathbf{k}</span> have different translation eigenvalues and thus belong to <strong>orthogonal invariant subspaces</strong>.</p>
+<p>For <span class="math inline">\mathbf{k}\neq -\mathbf{k}</span>:</p>
+<p><span class="math display">
+T_\mathbf{R}\psi_{n\mathbf{k}} = e^{+i\mathbf{k}\cdot\mathbf{R}}\psi_{n\mathbf{k}},\qquad
+T_\mathbf{R}\psi_{n,-\mathbf{k}} = e^{-i\mathbf{k}\cdot\mathbf{R}}\psi_{n,-\mathbf{k}}.
+</span></p>
+<p>These are <strong>inequivalent irreducible representations</strong> of the translation group. Therefore, <span class="math inline">\hat{P}</span> maps between two <strong>different subspaces</strong> unless <span class="math inline">\mathbf{k}=-\mathbf{k}</span>.</p>
+<p>To summarize:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 37%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\mathbf{k}</span> point</th>
+<th>Action of <span class="math inline">\hat{P}</span></th>
+<th>Parity eigenvalues possible?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Generic <span class="math inline">\mathbf{k}</span></td>
+<td><span class="math inline">\psi_{\mathbf{k}} \mapsto \psi_{-\mathbf{k}}</span> (different subspace)</td>
+<td>❌ No</td>
+</tr>
+<tr class="even">
+<td>TRIM (<span class="math inline">\mathbf{k}=-\mathbf{k}</span>)</td>
+<td><span class="math inline">\psi_{\mathbf{k}} \mapsto \pm\psi_{\mathbf{k}}</span> (same subspace)</td>
+<td>✅ Yes</td>
+</tr>
+</tbody>
+</table>
+</section>
 </div>
 </div>
+</section>
+<section id="and-include-spinorbit-coupling-soc" class="level2">
+<h2 class="anchored" data-anchor-id="and-include-spinorbit-coupling-soc">and include spin–orbit coupling (SOC)…</h2>
+<p>The atomic SOC Hamiltonian is</p>
+<p><span class="math display">
+H_\text{SOC} = \lambda \,\mathbf{L}\cdot\mathbf{S},
+</span></p>
+<p>which splits the <span class="math inline">p</span>-states into:</p>
+<p><span class="math display">
+|p_{3/2}\rangle \; \text{(4-fold)}, \qquad |p_{1/2}\rangle \; \text{(2-fold)}.
+</span></p>
+<p>If SOC is <strong>weak</strong>, the ordering stays the same: <span class="math inline">E_s &gt; E_{p_{3/2}}&gt;E_{p_{1/2}}</span>.<br>
+If SOC is <strong>strong</strong>, it can <strong>push the <span class="math inline">p_{1/2}</span>-like state above the <span class="math inline">s</span>-like state</strong>, <strong>inverting the order</strong>.</p>
+</section>
+<section id="effecting-band-inversion-seen-via-the-kcdot-p-hamiltonian-bhz-model" class="level2">
+<h2 class="anchored" data-anchor-id="effecting-band-inversion-seen-via-the-kcdot-p-hamiltonian-bhz-model">effecting band inversion seen via the <span class="math inline">k\cdot p</span> Hamiltonian: BHZ model</h2>
+<p>The simplest way to see inversion mathematically is the <strong>Bernevig–Hughes–Zhang (BHZ)</strong> model for HgTe/CdTe:</p>
+<p><span class="math display">
+H(\mathbf{k}) =
+\begin{pmatrix}
+M(\mathbf{k}) &amp; A k_+ &amp; 0 &amp; 0 \\
+A k_- &amp; -M(\mathbf{k}) &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; M(\mathbf{k}) &amp; -A k_- \\
+0 &amp; 0 &amp; -A k_+ &amp; -M(\mathbf{k})
+\end{pmatrix},
+</span></p>
+<p>where</p>
+<p><span class="math display">
+M(\mathbf{k}) = M_0 - B k^2,\qquad k_\pm = k_x \pm i k_y.
+</span></p>
+<ul>
+<li>The <strong>sign of <span class="math inline">M_0</span></strong> determines the <strong>ordering</strong> at <span class="math inline">k=0</span>:
+<ul>
+<li><span class="math inline">M_0&gt;0</span>: normal (<span class="math inline">s</span>-above-<span class="math inline">p</span>)<br>
+</li>
+<li><span class="math inline">M_0&lt;0</span>: inverted (<span class="math inline">p</span>-above-<span class="math inline">s</span>)</li>
+</ul></li>
+</ul>
+<p><strong>Band energies:</strong></p>
+<p><span class="math display">
+E(\mathbf{k}) = \pm \sqrt{M(\mathbf{k})^2 + A^2 k^2}.
+</span></p>
+<hr>
+</section>
+<section id="this-topological-transition-and-invariant" class="level2">
+<h2 class="anchored" data-anchor-id="this-topological-transition-and-invariant">This topological transition and invariant…</h2>
+<p>When <span class="math inline">M_0</span> changes sign:</p>
+<ul>
+<li>The gap closes at <span class="math inline">\mathbf{k}=0</span> when <span class="math inline">M_0=0</span>.</li>
+<li>The <strong>parity eigenvalues at time-reversal invariant momenta (TRIMs)</strong> change.</li>
+<li>This changes the <strong><span class="math inline">\mathbb{Z}_2</span> topological invariant</strong> (Fu–Kane formula):</li>
+</ul>
+<p><span class="math display">
+(-1)^\nu = \prod_{i=1}^{8} \prod_{n\in\text{occ}} \xi_{2n}(\Gamma_i),
+</span></p>
+<p>where <span class="math inline">\xi=\pm1</span> are the parity eigenvalues of the occupied bands at each TRIM <span class="math inline">\Gamma_i</span>.</p>
+<ul>
+<li>Normal insulator: <span class="math inline">\nu = 0</span><br>
+</li>
+<li>Band-inverted: <span class="math inline">\nu = 1</span> → <strong>topological insulator</strong></li>
+</ul>
+<p>This is the rigorous meaning of:<br>
+&gt; “You cannot undo inversion without closing the gap somewhere.”</p>
+<hr>
+</section>
+<section id="is-how-dirac-and-weyl-semimetals-appear" class="level2">
+<h2 class="anchored" data-anchor-id="is-how-dirac-and-weyl-semimetals-appear">is how Dirac and Weyl semimetals appear</h2>
+<p>Now suppose you <strong>tune <span class="math inline">M_0</span> to exactly zero</strong>:</p>
+<p><span class="math display">
+M(\mathbf{k}) = - Bk^2.
+</span></p>
+<p>Then the bands <strong>touch at <span class="math inline">\mathbf{k}=0</span></strong>:</p>
+<p><span class="math display">
+E(\mathbf{k}) = \pm A|\mathbf{k}|.
+</span></p>
+<p>This is a <strong>Dirac point</strong>: a 4-fold degeneracy (2 spin × 2 orbital).<br>
+This gives a <strong>Dirac semimetal (DSM)</strong> phase.</p>
+<ul>
+<li>Dirac point is protected if both <strong>inversion (<span class="math inline">\mathcal{P}</span>)</strong> and <strong>time-reversal (<span class="math inline">\mathcal{T}</span>)</strong> symmetries are present and <strong>band crossings are symmetry-protected</strong>.</li>
+</ul>
+<hr>
+</section>
+<section id="break-mathcalp-or-mathcalt-weyl-semimetal" class="level2">
+<h2 class="anchored" data-anchor-id="break-mathcalp-or-mathcalt-weyl-semimetal">Break <span class="math inline">\mathcal{P}</span> or <span class="math inline">\mathcal{T}</span> → Weyl semimetal</h2>
+<p>If you <strong>break either inversion or time-reversal</strong>, the Dirac point <strong>splits into two Weyl points</strong> of opposite chirality.</p>
+<p>Mathematically:</p>
+<ul>
+<li>Add a term like <span class="math inline">b\,\sigma_z</span> (breaking inversion) or <span class="math inline">b\,s_z</span> (breaking time-reversal) to the Dirac Hamiltonian:</li>
+</ul>
+<p><span class="math display">
+H_\text{Dirac} = v\mathbf{k}\cdot \boldsymbol{\Gamma} + b\Gamma_5.
+</span></p>
+<p>→ This shifts the Weyl nodes to <span class="math inline">\pm \mathbf{k}_0</span> in the Brillouin zone.</p>
+<ul>
+<li>Each Weyl node is a <strong>Berry curvature monopole</strong> with <strong>Chern number <span class="math inline">\pm1</span></strong>.</li>
+<li>This gives <strong>Weyl semimetal (WSM)</strong> with <strong>Fermi arc surface states</strong>.</li>
+</ul>
+<hr>
+</section>
+<section id="phase-diagram-summary" class="level2">
+<h2 class="anchored" data-anchor-id="phase-diagram-summary">Phase diagram summary</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 9%">
+<col style="width: 22%">
+<col style="width: 27%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">M_0</span> value</th>
+<th>SOC gap?</th>
+<th>Symmetries</th>
+<th>Phase</th>
+<th>Key feature</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">M_0&gt;0</span></td>
+<td>yes</td>
+<td><span class="math inline">\mathcal{P},\mathcal{T}</span></td>
+<td>Normal insulator</td>
+<td>trivial gap</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">M_0&lt;0</span></td>
+<td>yes</td>
+<td><span class="math inline">\mathcal{P},\mathcal{T}</span></td>
+<td>Topological insulator</td>
+<td>protected edge/surface states</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">M_0=0</span></td>
+<td>gap closes</td>
+<td><span class="math inline">\mathcal{P},\mathcal{T}</span></td>
+<td>Dirac semimetal (DSM)</td>
+<td>Dirac point</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">M_0=0</span>, break <span class="math inline">\mathcal{P}</span> or <span class="math inline">\mathcal{T}</span></td>
+<td>gapless</td>
+<td>broken <span class="math inline">\mathcal{P}</span> or <span class="math inline">\mathcal{T}</span></td>
+<td>Weyl semimetal (WSM)</td>
+<td>Weyl points + Fermi arcs</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>Band inversion flips orbital/parity order → changes topological invariant.<br>
+</li>
+<li>If SOC gaps the crossing → <strong>topological insulator</strong>.<br>
+</li>
+<li>If gap doesn’t open → <strong>Dirac semimetal</strong>.<br>
+</li>
+<li>If inversion/time-reversal is broken → Dirac point splits → <strong>Weyl semimetal.</strong></li>
+</ul>
+<p>This entire sequence is a <strong>single continuous picture</strong> governed by the sign of the <strong>mass term <span class="math inline">M_0</span></strong> and the presence of <strong>symmetries</strong>.</p>
+<div class="pill" title="Kramers degeneracy at TRIMs matters">
+<p>Bloch states at <span class="math inline">\mathbf{k}</span> and <span class="math inline">-\mathbf{k}</span> are linked by time-reversal. This also means that TRS complex conjugates the wavefunction.</p>
+<p>At TRIMs, they become Kramers pairs with guaranteed degeneracy.</p>
+<section id="why-kramers-degeneracy-at-trims-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-kramers-degeneracy-at-trims-matters">Why Kramers degeneracy at TRIMs matters</h2>
+<p>The time-reversal operator is anti-unitary: <span class="math inline">\Theta = U_T \mathcal{K}</span>, where <span class="math inline">\mathcal{K}</span> is complex conjugation and <span class="math inline">U_T = e^{-i\pi S_y/\hbar}</span> for spin-<span class="math inline">\frac{1}{2}</span> particles. For spin-<span class="math inline">\frac{1}{2}</span>, it satisfies <span class="math inline">\Theta^2 = -1</span>.</p>
+<p>At TRIM, Kramers theorem then guarantees that each state <span class="math inline">|u_n(\mathbf{k})\rangle</span> has a degenerate partner <span class="math inline">\Theta|u_n(\mathbf{k})\rangle</span> with the same energy.</p>
+<p>Because <span class="math inline">\Theta</span> also flips momentum: <span class="math inline">\Theta|u_n(\mathbf{k})\rangle = |u_n(-\mathbf{k})\rangle</span>, the degeneracy occurs only when <span class="math inline">\mathbf{k} = -\mathbf{k} + \mathbf{G}</span></p>
+<p>(where <span class="math inline">\mathbf{G}</span> is a reciprocal lattice vector), which defines the <strong>time-reversal invariant momenta (TRIMs)</strong>.</p>
+<p>At TRIMs:</p>
+<ul>
+<li>Every band forms a Kramers pair<br>
+</li>
+<li>Band inversions occur as pairs, allowing well-defined parity eigenvalues<br>
+</li>
+<li>The <span class="math inline">\mathbb{Z}_2</span> topological invariant can be computed purely from the parities of the occupied bands at the TRIMs (Fu–Kane formula)</li>
+</ul>
+<p>Away from TRIMs, such degeneracy is not guaranteed, so the topology cannot be determined locally there.<br>
+TRIMs act as <strong>topological anchors</strong> for time-reversal invariant systems.</p>
+</section>
+<section id="do-we-want-time-reversal-symmetry" class="level2">
+<h2 class="anchored" data-anchor-id="do-we-want-time-reversal-symmetry">❖ Do we want time-reversal symmetry?</h2>
+<p>Whether TRS is desired depends on the target topological phase:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Phase</th>
+<th>TRS required?</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Topological insulator (<span class="math inline">\mathbb{Z}_2</span>)</td>
+<td>Yes</td>
+<td>TRS enforces Kramers degeneracy and protects edge states</td>
+</tr>
+<tr class="even">
+<td>Weyl semimetal</td>
+<td>No (must break TRS or inversion)</td>
+<td>TRS would pair Weyl nodes at <span class="math inline">\mathbf{k}</span> and <span class="math inline">-\mathbf{k}</span>, destroying them</td>
+</tr>
+<tr class="odd">
+<td>Chern insulator</td>
+<td>No (must break TRS)</td>
+<td>TRS forces Berry curvature <span class="math inline">\Omega(\mathbf{k})</span> to cancel: <span class="math inline">\Omega(\mathbf{k}) = -\Omega(-\mathbf{k})</span>, giving zero Chern number</td>
+</tr>
+</tbody>
+</table>
+</section>
 </div>
-<div id="nodeA2" class="tbox" style="top: 20%; left: 70%;">
-<div id="nodeA2h" class="theaderfill" style="">
-Manifold
-</div>
-<div id="nodeA2c" class="tbody" style="">
-Topological space locally <span class="math inline">R^n</span>
-</div>
-</div>
-<div id="nodeC" class="anchor80-line" style="width: 30%; position: absolute; top: 80%; left: 100px;">
-<pre><code>bb</code></pre>
-</div>
-</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Differentiable mainfold</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Isham1999" class="csl-entry" role="listitem">
-Isham, Chris J. 1999. <em>Modern Differential Geometry for Physicists</em>. 2nd ed. WORLD SCIENTIFIC. <a href="https://doi.org/10.1142/3867">https://doi.org/10.1142/3867</a>.
-</div>
-</div></section></div></main></div>
-<script>
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA'},
-    to: {id: 'nodeA2'},
-    lineOptions: {color: 'DarkGoldenRod', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
-
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA'},
-    to: {id: 'nodeC'},
-    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
-</script>
-
-<section id="differentiable-mainfold" class="level2">
-
-
 
 
 </section>
 
- <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -905,7 +1177,7 @@ Isham, Chris J. 1999. <em>Modern Differential Geometry for Physicists</em>. 2nd 
     }
   });
   </script>
- <!-- /content -->
+</div> <!-- /content -->
 <script src="../../scripts/leader-line-master/leader-line.min.js"></script>
 
 

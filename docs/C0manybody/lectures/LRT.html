@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Differentiable Manifolds – Worldlines</title>
+<title>Linear Response Theory – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -260,8 +240,7 @@ function drawLeader(config) {
 
       const line = new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
       LeaderLineRegistry.register(line);
-//      resolve(line);
-      return line;
+      resolve(line);
     });
   });
 }
@@ -326,7 +305,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../css/leaders.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed slimcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -344,7 +323,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -396,28 +375,155 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Topics</a></li><li class="breadcrumb-item"><a href="../../C0manybody/lectures/LRT.html">Linear Response Theory</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Many-Body Physics Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/currentdensityoperator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Current Density Operator and Polarization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/exchangecorrelation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exchange &amp; Correlation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/excitons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Excitons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/greensfunctions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Green’s Functions in Many-Body Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/homogeneouselectrongas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HEG/jellium</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kohnsham.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kohn Sham Equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kramerskronig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analyticity, Causality, and Kramers-Kronig Relations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kubofigure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kubofigure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kuboformula.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kubo formula and response functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/LRT.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Linear Response Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/LRT-electric_susceptiblity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Electric Susceptibility</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/phonons_optic_acoustic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acoustic vs Optical Phonons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/quasiparticles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quasiparticles and Fermi Liquid Theory</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#whats-the-fuss" id="toc-whats-the-fuss" class="nav-link active" data-scroll-target="#whats-the-fuss">What’s the fuss?</a></li>
-  <li><a href="#from-charts-to-atlases-to-differentiable-manifolds" id="toc-from-charts-to-atlases-to-differentiable-manifolds" class="nav-link" data-scroll-target="#from-charts-to-atlases-to-differentiable-manifolds">From charts to atlases to differentiable manifolds</a></li>
-  <li><a href="#differentiable-mainfold" id="toc-differentiable-mainfold" class="nav-link" data-scroll-target="#differentiable-mainfold">Differentiable mainfold</a></li>
+  <li><a href="#from-kubos-formula-to-susceptibility" id="toc-from-kubos-formula-to-susceptibility" class="nav-link active" data-scroll-target="#from-kubos-formula-to-susceptibility">From Kubo’s Formula to Susceptibility</a></li>
+  <li><a href="#fourier-transform-conventions" id="toc-fourier-transform-conventions" class="nav-link" data-scroll-target="#fourier-transform-conventions">Fourier Transform Conventions</a></li>
+  <li><a href="#components-of-chimathbfk-omega" id="toc-components-of-chimathbfk-omega" class="nav-link" data-scroll-target="#components-of-chimathbfk-omega">Components of <span class="math inline">\chi(\mathbf{k}, \omega)</span></a></li>
+  <li><a href="#collect-terms-final-form" id="toc-collect-terms-final-form" class="nav-link" data-scroll-target="#collect-terms-final-form">Collect terms → final form</a></li>
+  <li><a href="#remarks-interpretation" id="toc-remarks-interpretation" class="nav-link" data-scroll-target="#remarks-interpretation">Remarks / interpretation</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Topics</a></li><li class="breadcrumb-item"><a href="../../C0manybody/lectures/LRT.html">Linear Response Theory</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Differentiable Manifolds</h1>
+<h1 class="title">Linear Response Theory</h1>
 </div>
 
 
@@ -434,78 +540,304 @@ window.Quarto = {
 </header>
 
 
-<section id="whats-the-fuss" class="level2">
-<h2 class="anchored" data-anchor-id="whats-the-fuss">What’s the fuss?</h2>
-<p>In a simplistic senses spacetime can be encoded as a set, the elements of which correspond to spacetime points <span class="citation" data-cites="Isham1999">(<a href="#ref-Isham1999" role="doc-biblioref">Isham 1999</a>)</span>.</p>
-<p>Additional structure must be imposed however. A topological space encapsulates the basic notions of nearness, without quantifying what that nearness is.</p>
-<p>But ultimately we want to be bring our calculus toolkit to this set which represents our spacetime.</p>
-<p>Ultimately we have two aims:</p>
+<section id="from-kubos-formula-to-susceptibility" class="level2">
+<h2 class="anchored" data-anchor-id="from-kubos-formula-to-susceptibility">From Kubo’s Formula to Susceptibility</h2>
+<p>We start from the general constitutive relation between the polarization <span class="math inline">P</span> and the electric field <span class="math inline">E</span> in a linear medium:</p>
+<p><span id="eq-polarization_t"><span class="math display">
+P_i(\mathbf{r},t)
+= \varepsilon_0 \int d^3r' \int_{-\infty}^{\infty} dt'\;
+\chi(\mathbf{r}, t; \mathbf{r}',t') \, E(\mathbf{r}',t').
+\tag{1}</span></span></p>
+<p>This Green’s function relation emerges out of the Kubo formula. Below we make two changes to it: (1) We use the component notation with the summation convention in place, and (2) We impose the constraint that time dependence is stationary (i.e.&nbsp;is a function of <span class="math inline">t-t'</span>) and the space dependence exhibits translational invariance or homongeneity (is a function of <span class="math inline">\mathbf{r}-\mathbf{r'}</span>):</p>
+<p><span class="math display">
+P_i(\mathbf{r},t)
+= \varepsilon_0 \int d^3r' \int_{-\infty}^{\infty} dt'\;
+\chi_{ij}(\mathbf{r}-\mathbf{r}',\,t-t') \, E_j(\mathbf{r}',t').
+</span></p>
+<p>So we have gone from the Kubo formula, to a <strong>space-time convolution</strong> because the susceptibility depends only on the differences <span class="math inline">\mathbf{r}-\mathbf{r}'</span> and <span class="math inline">t-t'</span>. The Fourier transform is going to turn it into a multiplication:</p>
+<p><span class="math display">
+\boxed{\tilde{P}_i(\mathbf{k},\omega)=\varepsilon_0\,\tilde\chi_{ij}(\mathbf{k},\omega)\,\tilde{E}_j(\mathbf{k},\omega)}.
+</span></p>
+</section>
+
+<div class="no-row-height column-margin column-container"><section id="fourier-transform-conventions" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-transform-conventions">Fourier Transform Conventions</h2>
+<p>We define the Fourier transform as</p>
+<p><span class="math display">
+f(\mathbf{r},t)
+= \int \frac{d^3k}{(2\pi)^3} \int \frac{d\omega}{2\pi}
+\; \tilde{f}(\mathbf{k},\omega)
+e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)},
+</span></p>
+<p>with the inverse transform</p>
+<p><span class="math display">
+\tilde{f}(\mathbf{k},\omega)
+= \int d^3r \int dt\; f(\mathbf{r},t) e^{-i(\mathbf{k}\cdot\mathbf{r}-\omega t)}.
+</span></p>
+</section></div><div class="pill" title="Convolution becometh Multiplication">
+<p>The Fourier transform <span class="math inline">P_i(\mathbf{r},t)</span>:</p>
+<p><span class="math display">
+\tilde{P}_i(\mathbf{k},\omega)
+= \int d^3r \int dt\; e^{-i(\mathbf{k}\cdot\mathbf{r}-\omega t)} P_i(\mathbf{r},t).
+</span></p>
+<p>Inserting the constitutive relation gives</p>
+<p><span class="math display">
+\tilde{P}_i(\mathbf{k},\omega)
+= \varepsilon_0 \int d^3r \int dt\;
+e^{-i(\mathbf{k}\cdot\mathbf{r}-\omega t)}
+\int d^3r' dt' \,
+\chi_{ij}(\mathbf{r}-\mathbf{r}',t-t') E_j(\mathbf{r}',t').
+</span></p>
+<p>Let <span class="math inline">\mathbf{R}=\mathbf{r}-\mathbf{r}'</span> and <span class="math inline">\tau=t-t'</span>, so <span class="math inline">\mathbf{r}=\mathbf{R}+\mathbf{r}'</span> and <span class="math inline">t=\tau+t'</span>. Then</p>
+<p><span class="math display">
+\tilde{P}_i(\mathbf{k},\omega)
+= \varepsilon_0 \int d^3R d\tau \int d^3r' dt'\;
+e^{-i[\mathbf{k}\cdot(\mathbf{R}+\mathbf{r}') -\omega (\tau+t')]}
+\chi_{ij}(\mathbf{R},\tau) E_j(\mathbf{r}',t').
+</span></p>
+<p>The exponential factor splits into two parts:</p>
+<p><span class="math display">
+e^{-i(\mathbf{k}\cdot\mathbf{R}-\omega \tau)}\,
+e^{-i(\mathbf{k}\cdot\mathbf{r}'-\omega t')}.
+</span></p>
+<p>The integrals factor, giving</p>
+<p><span class="math display">
+\tilde{P}_i(\mathbf{k},\omega)
+= \varepsilon_0
+\underbrace{\int d^3R d\tau\;\chi_{ij}(\mathbf{R},\tau) e^{-i(\mathbf{k}\cdot\mathbf{R}-\omega\tau)}}_{\tilde\chi_{ij}(\mathbf{k},\omega)}
+\underbrace{\int d^3r' dt'\; E_j(\mathbf{r}',t') e^{-i(\mathbf{k}\cdot\mathbf{r}'-\omega t')}}_{\tilde{E}_j(\mathbf{k},\omega)}.
+</span></p>
+<p>So we obtain the diagonal relation:</p>
+<p><span class="math display">
+\boxed{\tilde{P}_i(\mathbf{k},\omega)=\varepsilon_0\,\tilde\chi_{ij}(\mathbf{k},\omega)\,\tilde{E}_j(\mathbf{k},\omega)}.
+</span></p>
+<p>In doing so we have taken the following path: <span class="math display">
+\chi(\mathbf{r}, t; \mathbf{r'}, t') \rightarrow \chi(\mathbf{r} - \mathbf{r'}, t-t')\rightarrow \chi(s, \tau)\rightarrow \chi(\mathbf{k}, \omega)
+</span></p>
+</div>
+<div class="pill" title="Alternatively">
+<p>There is another way of seeing how <span class="math inline">\chi</span> goes over to the Fourier domain. We transform ALL the variables independently:</p>
+<p><span class="math display">
+\chi(\mathbf{r}, t; \mathbf{r'}, t') \rightarrow \chi(\mathbf{k}, \mathbf{k'}, \mathbf{\omega}, \mathbf{\omega'})
+</span></p>
+<p>But the imposition of the stationarity and homogeneity conditions introduces delta functions:</p>
+<p><span class="math display">
+\chi(\mathbf{r} - \mathbf{r'}, t-t') \rightarrow \chi(\mathbf{k}, \mathbf{k'}, \mathbf{\omega}, \mathbf{\omega'}) \delta(\mathbf{k}- \mathbf{k'})\delta(\mathbf{\omega}- \mathbf{\omega'})
+</span></p>
+<p>To see this we start with the most general case (before assuming translational invariance). <span class="math inline">\chi</span> depends on two points and two times:</p>
+<p><span class="math display">
+\chi_{ij}(\mathbf{r},\mathbf{r}',t,t').
+</span></p>
+<p>We could Fourier transform it using two independent sets of variables:</p>
+<p><span class="math display">
+\chi_{ij}(\mathbf{r},\mathbf{r}',t,t')
+= \int \frac{d^3k\,d^3k'}{(2\pi)^6}
+\frac{d\omega\,d\omega'}{(2\pi)^2}\;
+\tilde\chi_{ij}(\mathbf{k},\mathbf{k}',\omega,\omega')
+e^{i(\mathbf{k}\cdot\mathbf{r}-\omega t)}e^{-i(\mathbf{k}'\cdot\mathbf{r}'-\omega' t')}.
+</span></p>
+<p>But if the medium is <strong>homogeneous in space</strong> and <strong>stationary in time</strong>, then</p>
+<p><span class="math display">
+\chi_{ij}(\mathbf{r},\mathbf{r}',t,t')
+= \chi_{ij}(\mathbf{r}-\mathbf{r}',t-t').
+</span></p>
+<p>Letting <span class="math inline">\mathbf{R}=\mathbf{r}-\mathbf{r}'</span> and <span class="math inline">\tau=t-t'</span>, we have</p>
+<p><span class="math display">
+\tilde\chi_{ij}(\mathbf{k},\mathbf{k}',\omega,\omega')
+=\int d^3r\, d^3r'\, dt\, dt' \;
+\chi_{ij}(\mathbf{r}-\mathbf{r}',t-t')
+e^{-i(\mathbf{k}\cdot\mathbf{r}-\omega t)}
+e^{i(\mathbf{k}'\cdot\mathbf{r}'-\omega' t')}.
+</span></p>
+<p>Changing variables to <span class="math inline">(\mathbf{R},\mathbf{r}',\tau,t')</span> gives</p>
+<p><span class="math display">
+\int d^3R\, d^3r'\, d\tau\, dt' \;
+\chi_{ij}(\mathbf{R},\tau)
+e^{-i(\mathbf{k}\cdot\mathbf{R}-\omega\tau)}
+e^{-i(\mathbf{k}-\mathbf{k}')\cdot\mathbf{r}'}
+e^{i(\omega-\omega')t'}.
+</span></p>
+<p>Now do the <span class="math inline">\mathbf{r}'</span> and <span class="math inline">t'</span> integrals:</p>
+<p><span class="math display">
+\int d^3r'\; e^{-i(\mathbf{k}-\mathbf{k}')\cdot\mathbf{r}'}
+=(2\pi)^3\delta(\mathbf{k}-\mathbf{k}')
+</span></p>
+<p><span class="math display">
+\int dt'\; e^{i(\omega-\omega')t'}
+=2\pi\delta(\omega-\omega').
+</span></p>
+<p>So we find</p>
+<p><span class="math display">
+\boxed{\tilde\chi_{ij}(\mathbf{k},\mathbf{k}',\omega,\omega')
+=(2\pi)^4 \delta(\mathbf{k}-\mathbf{k}')\delta(\omega-\omega')\,
+\chi_{ij}(\mathbf{k},\omega)}.
+</span></p>
+<p>Physically</p>
+<ul>
+<li>The delta functions are a <strong>direct mathematical consequence</strong> of space and time translational invariance.</li>
+<li>They enforce <strong>momentum and energy conservation</strong>: a plane wave at <span class="math inline">(\mathbf{k},\omega)</span> can only drive a polarization at the <em>same</em> <span class="math inline">(\mathbf{k},\omega)</span>.</li>
+<li>This is why the constitutive relation becomes <strong>diagonal</strong> in Fourier space:</li>
+</ul>
+<p>So we know that <a href="#eq-polarization_t" class="quarto-xref">Equation&nbsp;1</a> would become the product of Fourier transformed versions of <span class="math inline">\chi</span> and <span class="math inline">\mathbf{E}</span>. We can then substitute them from above to find once again: <span class="math display">
+P_i(\mathbf{k},\omega)=\varepsilon_0\,\chi_{ij}(\mathbf{k},\omega)\,E_j(\mathbf{k},\omega).
+</span></p>
+</div>
+<hr>
+<section id="components-of-chimathbfk-omega" class="level2">
+<h2 class="anchored" data-anchor-id="components-of-chimathbfk-omega">Components of <span class="math inline">\chi(\mathbf{k}, \omega)</span></h2>
+<p>We now want to find an expression for components of <span class="math inline">\chi(\mathbf{k}, \omega)</span>. We follow Kubo linear-response formula step by step and show exactly how resonance terms (with denominators <span class="math inline">\hbar\omega_{\ell\ell'}\mp\hbar\omega\mp i\gamma</span>) appear.</p>
+<p>So now the task is to:</p>
 <ol type="1">
-<li>To be able to locate spacetime points via a set of real numbers.</li>
-<li>To be able to perform calculus related operations to study the dynamical evolution of systems.</li>
+<li>Find <span class="math inline">\chi(s, \tau)</span></li>
+<li>Convert it to <span class="math inline">\chi(\mathbf{k}, \omega)</span> using the recipes above.</li>
 </ol>
 </section>
-<section id="from-charts-to-atlases-to-differentiable-manifolds" class="level2">
-<h2 class="anchored" data-anchor-id="from-charts-to-atlases-to-differentiable-manifolds">From charts to atlases to differentiable manifolds</h2>
-<p>Remember that our calculus works on certain sets of real numbers called <em>Euclidean Space</em>. Hence we need mathematical machines that can lead us back and forth from the world of curved spaces to the flat Euclidean lands.</p>
-<p>Let’s take a top down approach.</p>
-<p>An <em>atlas</em> is a family of <strong>coordinate charts</strong>. A coordinate chart is pair <span class="math inline">(U,\phi)</span></p>
-<p>A topological space is a <strong>differentiable manifold</strong> if it has a differential structure on it in the form of a <strong>complete atlas</strong>. Complete here simply means that the atlas is maximal i.e.&nbsp;not contained in any other atlas.</p>
-
-<div id="stage" class="stage" style="position: relative; height: 300px;">
-<p><!-- <div class="tbox"  id="nodeA" >
-  <div class="handwrith" id="nodeAh" style="">Manifold</div>
-  <div class="handwrit" id="nodeAc" style="">Topological space locally $R^n$ covered by a family of </div>
-  </div> --></p>
-<div id="nodeA" class="bbcbox">
-<div id="nodeA4" class="bbcheader" style="">
-Manifold
+<div class="pill" title="Susceptibility in space-time">
+<section id="step-1-kubo-formula-for-the-polarization-response" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-kubo-formula-for-the-polarization-response">Step 1: Kubo formula for the polarization response</h2>
+<p>Suppose the system is perturbed by a classical electric field that couples to the polarization by</p>
+<p><span class="math display">
+\color{green} H'(t) = -\int d^3r'\; P_j(\mathbf r')\,E_j(\mathbf r',t).
+</span></p>
+<p>To first order in the field, the induced expectation value of the polarization is (Kubo linear response)</p>
+<p><span class="math display">
+\delta\langle P_i(\mathbf r,t)\rangle
+= \frac{i}{\hbar}\int_{-\infty}^{t} dt'\, \big\langle \big[\color{green}H'(t')\color{black},\,P_i(\mathbf r,t)\big]\big\rangle_0,
+</span></p>
+<p>where <span class="math inline">\langle\cdots\rangle_0</span> is the expectation value in the unperturbed equilibrium state. Inserting <span class="math inline">H'(t')</span> and using linearity gives the response kernel</p>
+<p><span class="math display">
+\delta\langle P_i(\mathbf r,t)\rangle
+= \int d^3r'\int_{-\infty}^t dt'\;
+\chi_{ij}(\mathbf r-\mathbf r',t-t')\,E_j(\mathbf r',t'),
+</span></p>
+<p>with the susceptibility (Kubo form):</p>
+<p><span class="math display">
+\boxed{\;
+\chi_{ij}(\mathbf s,\tau)
+= \frac{i}{\hbar}\,\Theta(\tau)\,\langle\,[\,P_i(\mathbf r+\mathbf s,\;t+\tau),\;P_j(\mathbf r,t)\,]\,\rangle_0
+\;}
+</span></p>
+<p>(here <span class="math inline">\mathbf s=\mathbf r-\mathbf r'</span>, <span class="math inline">\tau=t-t'</span>; because of homogeneity the kernel depends only on differences).</p>
+<hr>
+<p><span class="math display">
+\newcommand{\green}[1]{\color{green}{#1}}
+\newcommand{\red}[1]{\color{red}{#1}}
+\newcommand{\gray}[1]{\color{gray}{#1}}
+</span></p>
+</section>
+<section id="move-to-the-energy-eigenbasis-and-heisenberg-time-dependence" class="level2">
+<h2 class="anchored" data-anchor-id="move-to-the-energy-eigenbasis-and-heisenberg-time-dependence">2) Move to the energy eigenbasis and Heisenberg time dependence</h2>
+<p>Let <span class="math inline">\{|\ell\rangle\}</span> be eigenstates of the unperturbed Hamiltonian <span class="math inline">H</span> with energies <span class="math inline">E_\ell</span>. In the Heisenberg picture</p>
+<p><span class="math display">
+P_i(\mathbf r,t) = e^{\frac{i}{\hbar}Ht}\,P_i(\mathbf r)\,e^{-\frac{i}{\hbar}Ht}.
+</span></p>
+<p>Insert a complete set of eigenstates for the commutator and evaluate the expectation value as a thermal (or general diagonal) ensemble with probabilities <span class="math inline">w_\ell</span> (e.g.&nbsp;<span class="math inline">w_\ell=e^{-\beta E_\ell}/Z</span> for thermal equilibrium). Then</p>
+<p><span class="math display">
+\chi_{ij}(\mathbf s,\tau)
+= \frac{i}{\hbar}\Theta(\tau)\sum_{\ell} w_\ell
+\red{\sum_{m}}\Big(\langle\ell|P_i(\mathbf r+\mathbf s,t+\tau)\red{|m\rangle\langle m|}P_j(\mathbf r,t)|\ell\rangle \\
+-
+\langle\ell|P_j(\mathbf r,t)\red{|m\rangle\langle m|}P_i(\mathbf r+\mathbf s,t+\tau)|\ell\rangle\Big).
+</span></p>
+<p><span id="eq-suscep"><span class="math display">\begin{align*}
+\chi_{ij}(\mathbf s,\tau)
+=
+\frac{i}{\hbar}\Theta(\tau)\sum_{\ell} w_\ell
+\sum_{m}\Big(
+  \color{#F4442E}\langle\ell|P_i(\mathbf r+\mathbf s,t+\tau)|m\rangle\color{black}
+  \color{#188FA7}\langle m|P_j(\mathbf r,t)|\ell\rangle \color{black}\\
+-
+\langle\ell|P_j(\mathbf r,t)|m\rangle\langle m|P_i(\mathbf r+\mathbf s,t+\tau)|\ell\rangle\Big).
+\end{align*}
+\tag{2}</span></span></p>
+<p>Where the colored bits can be reduced to their Schrodinger counterparts by using the Heisenberg time dependence:</p>
+<p><span class="math display">\begin{align*}
+\color{#F4442E}\langle\ell|P_i(\mathbf r+\mathbf s,t+\tau)|m\rangle\color{black}
+&amp;= e^{i\color{green}\tfrac{(E_\ell-E_m)}{\hbar}\color{black}
+(t+\tau)}\langle\ell|P_i(\mathbf r+\mathbf s)|m\rangle \\
+&amp;=e^{i\color{green}\omega_{\ell m}\color{black}(t+\tau)}\langle\ell|P_i(\mathbf r+\mathbf s)|m\rangle,
+\end{align*}
+</span></p>
+<p><span class="math display">\begin{align*}
+\color{#188FA7}\langle m|P_j(\mathbf r,t)|\ell\rangle\color{black}
+&amp;= e^{i\color{green}\tfrac{(E_\ell-E_m)}{\hbar}\color{black}t}\langle m|P_j(\mathbf r)|\ell\rangle\\
+&amp;= e^{i\color{green}\omega_{\ell m}\color{black}(t)}\langle m|P_j(\mathbf r)|\ell\rangle
+\end{align*}
+</span></p>
+<p>Where we have introduced the Bohr frequencies</p>
+<p><span class="math display">
+\omega_{m\ell}\equiv\frac{E_m-E_\ell}{\hbar} = -\omega_{\ell m}.
+</span></p>
+<p>Note how the overall <span class="math inline">t</span>-dependence cancels (as it must for a time-translation invariant equilibrium average), leaving <span class="math inline">\tau</span>-dependence through <span class="math inline">e^{\tfrac{i}{\hbar}(E_\ell-E_m)\tau}</span>.</p>
+<p>So the commutator contribution becomes (for <span class="math inline">\tau&gt;0</span>)</p>
+<p><span class="math display">\begin{align*}
+\chi_{ij}(\mathbf s,\tau)
+= \frac{i}{\hbar}\Theta(\tau)\sum_{\ell,m} w_\ell\Big(
+&amp;e^{i\omega_{\ell m}\tau} \langle\ell|P_i(\mathbf r+\mathbf s)|m\rangle\langle m|P_j(\mathbf r)|\ell\rangle\\
+- &amp;e^{i\omega_{m\ell}\tau}\langle\ell|P_j(\mathbf r)|m\rangle\langle m|P_i(\mathbf r+\mathbf s)|\ell\rangle
+\Big).
+\end{align*}
+</span></p>
+</section>
 </div>
-<div id="nodeA4" class="bbcbody" style="">
-Topological space locally <span class="math inline">R^n</span> covered by a family of
+<p>So we have: <span id="eq-susceptibilityST"><span class="math display">\begin{align*}
+\chi_{ij}(\mathbf s,\tau)
+= \frac{i}{\hbar}\Theta(\tau)\sum_{\ell,m} w_\ell\Big(
+&amp;e^{i\omega_{\ell m}\tau} \langle\ell|P_i(\mathbf r+\mathbf s)|m\rangle\langle m|P_j(\mathbf r)|\ell\rangle\\
+- &amp;e^{i\omega_{m\ell}\tau}\langle\ell|P_j(\mathbf r)|m\rangle\langle m|P_i(\mathbf r+\mathbf s)|\ell\rangle
+\Big).
+\end{align*}
+\tag{3}</span></span></p>
+<div class="pill" title="and take it into the Fourier domain">
+<p>Now form the space–time Fourier transform used in the text (including the adiabatic factor <span class="math inline">e^{-\gamma\tau}</span>, <span class="math inline">\gamma\to0^+</span>, to ensure convergence):</p>
+<p><span class="math display">
+\chi_{ij}(\mathbf k,\omega)
+= \lim_{\gamma\to0^+}\int d^3s\int_0^\infty d\tau\;
+\chi_{ij}(\mathbf s,\tau)\,e^{-i\mathbf k\cdot\mathbf s + i\omega \tau -\gamma\tau}.
+</span></p>
+<p>Insert the expression for <span class="math inline">\chi_{ij}(\mathbf s,\tau)</span>. Define the spatial Fourier components of the polarization operator</p>
+<p><span class="math display">
+P_{i,\mathbf k} \equiv V^{-1/2}\int d^3r\;P_i(\mathbf r)\,e^{-i\mathbf k\cdot\mathbf r},
+</span></p>
+<p>so that matrix elements of the spatially shifted operator pick up factors <span class="math inline">e^{\pm i\mathbf k\cdot\mathbf s}</span>. After doing the <span class="math inline">\mathbf s</span>-integral one obtains matrix elements of the Fourier components <span class="math inline">P_{i,\mathbf k}</span> and <span class="math inline">P_{j,-\mathbf k}</span> (this is the reason the final expression involves <span class="math inline">P_{i,\mathbf k}</span> and <span class="math inline">P_{j,-\mathbf k}</span>).</p>
+<p>Carrying out the <span class="math inline">\tau</span>-integral for a generic exponential factor:</p>
+<p><span class="math display">
+\int_0^\infty d\tau\; e^{i\omega_{\ell m}\tau}\,e^{i\omega\tau}\,e^{-\gamma\tau}
+= \int_0^\infty d\tau\; e^{i(\omega_{\ell m}+\omega)\tau-\gamma\tau}
+= \frac{i}{\omega_{\ell m}+\omega + i\gamma}.
+</span></p>
+<p>Be careful with signs: if the integrand was <span class="math inline">e^{i\omega_{\ell m}\tau}\,e^{ - i\omega \tau}</span> then the denominator would be <span class="math inline">\omega_{\ell m}-\omega + i\gamma</span>. Using the combination that arises from the commutator gives the two resonance denominators.</p>
 </div>
-</div>
-</div>
-<div id="nodeA2" class="tbox" style="top: 20%; left: 70%;">
-<div id="nodeA2h" class="theaderfill" style="">
-Manifold
-</div>
-<div id="nodeA2c" class="tbody" style="">
-Topological space locally <span class="math inline">R^n</span>
-</div>
-</div>
-<div id="nodeC" class="anchor80-line" style="width: 30%; position: absolute; top: 80%; left: 100px;">
-<pre><code>bb</code></pre>
-</div>
-</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Differentiable mainfold</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Isham1999" class="csl-entry" role="listitem">
-Isham, Chris J. 1999. <em>Modern Differential Geometry for Physicists</em>. 2nd ed. WORLD SCIENTIFIC. <a href="https://doi.org/10.1142/3867">https://doi.org/10.1142/3867</a>.
-</div>
-</div></section></div></main></div>
-<script>
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA'},
-    to: {id: 'nodeA2'},
-    lineOptions: {color: 'DarkGoldenRod', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
-
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA'},
-    to: {id: 'nodeC'},
-    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
-</script>
-
-<section id="differentiable-mainfold" class="level2">
-
-
+<section id="collect-terms-final-form" class="level2">
+<h2 class="anchored" data-anchor-id="collect-terms-final-form">Collect terms → final form</h2>
+<p>After performing the spatial Fourier transform (producing matrix elements <span class="math inline">(P_{i,\mathbf k})_{\ell m}</span> and <span class="math inline">(P_{j,-\mathbf k})_{m\ell}</span>) and the <span class="math inline">\tau</span>-integrals, and reorganizing the two terms from the commutator, you obtain</p>
+<p><span class="math display">
+\boxed{\;
+\chi_{ij}(\mathbf k,\omega)
+= \sum_{\ell,m} w_\ell\Big[
+\frac{(P_{i,\mathbf k})_{\ell m}\,(P_{j,-\mathbf k})_{m\ell}}{\hbar\omega_{m\ell}-\hbar\omega - i\hbar\gamma}
+\;+\;
+\frac{(P_{j,-\mathbf k})_{\ell m}\,(P_{i,\mathbf k})_{m\ell}}{\hbar\omega_{m\ell}+\hbar\omega + i\hbar\gamma}
+\Big],
+\;}
+</span></p>
+<p>where <span class="math inline">\omega_{m\ell}=(E_m-E_\ell)/\hbar</span> and the infinitesimal <span class="math inline">\gamma\to0^+</span> implements the adiabatic switching (and gives the usual causal <span class="math inline">i0^+</span> prescription).</p>
+<p>This is exactly the structure of equation (6.1.31): two contributions appear corresponding to absorption-like (denominator <span class="math inline">\hbar\omega_{m\ell}-\hbar\omega - i0^+</span>) and emission-like (denominator <span class="math inline">\hbar\omega_{m\ell}+\hbar\omega + i0^+</span>) processes, each weighted by the equilibrium population <span class="math inline">w_\ell</span> and the relevant transition matrix elements of the polarization operator in <span class="math inline">\mathbf k</span>-space.</p>
+<hr>
+</section>
+<section id="remarks-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="remarks-interpretation">Remarks / interpretation</h2>
+<ul>
+<li>The first fraction resonates when <span class="math inline">\hbar\omega\approx\hbar\omega_{m\ell}=E_m-E_\ell</span> (absorption from <span class="math inline">\ell</span> to <span class="math inline">m</span>).</li>
+<li>The second fraction resonates when <span class="math inline">\hbar\omega\approx -\hbar\omega_{m\ell}</span> (the opposite process).</li>
+<li>The small positive <span class="math inline">\gamma</span> enforces causality (the Fourier transform of <span class="math inline">\Theta(\tau)</span> gives poles in the lower/upper half-plane consistent with retarded response).</li>
+<li>If <span class="math inline">w_\ell</span> is thermal, you can combine terms using detailed-balance relations to express <span class="math inline">\chi</span> in alternative forms.</li>
+</ul>
 
 
 </section>
 
- <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -905,7 +1237,7 @@ Isham, Chris J. 1999. <em>Modern Differential Geometry for Physicists</em>. 2nd 
     }
   });
   </script>
- <!-- /content -->
+</div> <!-- /content -->
 <script src="../../scripts/leader-line-master/leader-line.min.js"></script>
 
 

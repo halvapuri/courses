@@ -737,7 +737,7 @@
     "href": "C0calculusI/lectures/1functions.html#some-special-functions",
     "title": "Functions",
     "section": "Some special functions",
-    "text": "Some special functions\n\nLinear functions\n\n\nAbsolute value function/Modulus\n\n\nPower functions\n\n\nPolynomials\n\n\nRational functions\n\n\nAlgebraic functions\n\n\nTrigonometric functions\n\nimport sympy as sp\n\n# Define the variable\nx = sp.Symbol('x')\n\nfunc1 = sp.cos(x)\nfunc2 = sp.sec(x)\n\nfunc3 = sp.sin(x)\nfunc4 = sp.csc(x)\n\nfunc5 = sp.tan(x)\nfunc6 = sp.cot(x)\n# Define the piecewise function\n\n# Display the piecewise function\nsp.plot(func2, func3, (x,-4*sp.pi,4*sp.pi), ylim = (-2,2))\n\nsp.plot(func5, (x,-4*sp.pi,4*sp.pi), ylim = (-10,10))\n\n\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x146bc48345e0&gt;\n\n\n\n\nInverse Trigonometric\n\nimport sympy as sp\n\n# Define the variable\nx = sp.Symbol('x')\n\nfunc1 = sp.acos(x)\nfunc2 = sp.asec(x)\n\nfunc3 = sp.asin(x)\nfunc4 = sp.acsc(x)\n\nfunc5 = sp.atan(x)\nfunc6 = sp.acot(x)\n# Define the piecewise function\n\n# Display the piecewise function\nsp.plot(func2, func3, (x,-4*sp.pi,4*sp.pi), ylim = (-2,2))\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x146bc4850910&gt;\n\n\n\n\nExponential functions\n\n\nLogarithmic functions\n\n\nTranscendental functions\n\n\nPiecewise\n\nimport sympy as sp\n\n# Define the variable\nx = sp.Symbol('x')\n\n# Define the piecewise function\npiecewise_func = sp.Piecewise(\n    (x**2, x &lt; 0),        # x^2 when x &lt; 0\n    (x + 1, (x &gt;= 0) & (x &lt;= 2)),  # x + 1 when 0 &lt;= x &lt;= 2\n    (x**3, x &gt; 2)         # x^3 when x &gt; 2\n)\n\n# Display the piecewise function\nsp.plot(piecewise_func, (x,-3,3))\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x146bc4850700&gt;"
+    "text": "Some special functions\n\nLinear functions\n\n\nAbsolute value function/Modulus\n\n\nPower functions\n\n\nPolynomials\n\n\nRational functions\n\n\nAlgebraic functions\n\n\nTrigonometric functions\n\nimport sympy as sp\n\n# Define the variable\nx = sp.Symbol('x')\n\nfunc1 = sp.cos(x)\nfunc2 = sp.sec(x)\n\nfunc3 = sp.sin(x)\nfunc4 = sp.csc(x)\n\nfunc5 = sp.tan(x)\nfunc6 = sp.cot(x)\n# Define the piecewise function\n\n# Display the piecewise function\nsp.plot(func2, func3, (x,-4*sp.pi,4*sp.pi), ylim = (-2,2))\n\nsp.plot(func5, (x,-4*sp.pi,4*sp.pi), ylim = (-10,10))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInverse Trigonometric\n\nimport sympy as sp\n\n# Define the variable\nx = sp.Symbol('x')\n\nfunc1 = sp.acos(x)\nfunc2 = sp.asec(x)\n\nfunc3 = sp.asin(x)\nfunc4 = sp.acsc(x)\n\nfunc5 = sp.atan(x)\nfunc6 = sp.acot(x)\n# Define the piecewise function\n\n# Display the piecewise function\nsp.plot(func2, func3, (x,-4*sp.pi,4*sp.pi), ylim = (-2,2))\n\n\n\n\n\n\n\n\n\n\nExponential functions\n\n\nLogarithmic functions\n\n\nTranscendental functions\n\n\nPiecewise\n\nimport sympy as sp\n\n# Define the variable\nx = sp.Symbol('x')\n\n# Define the piecewise function\npiecewise_func = sp.Piecewise(\n    (x**2, x &lt; 0),        # x^2 when x &lt; 0\n    (x + 1, (x &gt;= 0) & (x &lt;= 2)),  # x + 1 when 0 &lt;= x &lt;= 2\n    (x**3, x &gt; 2)         # x^3 when x &gt; 2\n)\n\n# Display the piecewise function\nsp.plot(piecewise_func, (x,-3,3))"
   },
   {
     "objectID": "C0calculusI/lectures/1functions.html#some-special-functions.colorred",
@@ -776,7 +776,7 @@
     "href": "C0calculusI/lectures/1functions.html#plotting-functions",
     "title": "Functions",
     "section": "Plotting functions",
-    "text": "Plotting functions\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef centeraxes():\n  \"\"\"Centers axes in the middle\"\"\"\n  ax = plt.gca()\n  ax.spines['top'].set_color('none')\n  ax.spines['left'].set_position('zero')\n  ax.spines['right'].set_color('none')\n  ax.spines['bottom'].set_position('zero')\n  return ax\n\nWe can plot a single function as follows:\n\ndomain = np.linspace(-5,5, 1000)\nfunc = np.sqrt(domain)\n\n# plt.plot(domain, func)\n# plt.plot(domain, func2)\nplt.plot(domain, func)\nplt.gca().set_aspect('equal')\n\ncenteraxes()\n\nplt.show()\n\n/tmp/ipykernel_218466/1562034490.py:2: RuntimeWarning: invalid value encountered in sqrt\n  func = np.sqrt(domain)\n\n\n\n\n\nBut we can also plot multiple functions, although this is not necessarily the neatest way, Matplotlib changes colors by default (but we can control it too):\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndomain = np.linspace(-1,1, 1000)\nfunc = domain**2\nfunc2 = domain**3\nfunc3 = np.cos(domain)\nfunc4 = np.sqrt(domain)\n\nplt.plot(domain, func)\nplt.plot(domain, func2)\nplt.plot(domain, func3)\nplt.plot(domain, func4)\nplt.gca().set_aspect('equal')\n\ncenteraxes()\n\nplt.show()\n\n/tmp/ipykernel_218466/3654791602.py:8: RuntimeWarning: invalid value encountered in sqrt\n  func4 = np.sqrt(domain)"
+    "text": "Plotting functions\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndef centeraxes():\n  \"\"\"Centers axes in the middle\"\"\"\n  ax = plt.gca()\n  ax.spines['top'].set_color('none')\n  ax.spines['left'].set_position('zero')\n  ax.spines['right'].set_color('none')\n  ax.spines['bottom'].set_position('zero')\n  return ax\n\nWe can plot a single function as follows:\n\ndomain = np.linspace(-5,5, 1000)\nfunc = np.sqrt(domain) + 1\nfunc2 = np.sqrt(domain-1)\n# plt.plot(domain, func)\n# plt.plot(domain, func2)\nplt.plot(domain, func)\nplt.plot(domain, func2)\nplt.xlim([-2,2])\nplt.gca().set_aspect('equal')\n\ncenteraxes()\n\nplt.show()\n\n/tmp/ipykernel_85732/4150367370.py:2: RuntimeWarning:\n\ninvalid value encountered in sqrt\n\n/tmp/ipykernel_85732/4150367370.py:3: RuntimeWarning:\n\ninvalid value encountered in sqrt\n\n\n\n\n\n\n\n\n\n\nBut we can also plot multiple functions, although this is not necessarily the neatest way, Matplotlib changes colors by default (but we can control it too):\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndomain = np.linspace(-1,1, 1000)\nfunc = domain**2\nfunc2 = domain**3\nfunc3 = np.cos(domain)\nfunc4 = np.sqrt(domain)\n\nplt.plot(domain, func)\nplt.plot(domain, func2)\nplt.plot(domain, func3)\nplt.plot(domain, func4)\nplt.gca().set_aspect('equal')\n\ncenteraxes()\n\nplt.show()\n\n/tmp/ipykernel_85732/3654791602.py:8: RuntimeWarning:\n\ninvalid value encountered in sqrt\n\n\n\n\n\n\n\n\n\n\n\nimport sympy as sp\n\nx = sp.symbols('x')\ny = x**2 + x\ny2 = x**3\n\nsp.plot(y, y2, (x, 0, 2) )"
   },
   {
     "objectID": "index.html#contact",
@@ -815,7 +815,7 @@
     "href": "C0calculusII/lectures/10_2ParametricCalculus.html#integration-and-differentiation-via-python",
     "title": "Calculus with Parametric Curves",
     "section": "Integration and Differentiation via python",
-    "text": "Integration and Differentiation via python\nA quick reminder, you can perform differentiation and integration (definite or indefinite) as follows:\n\nimport sympy as sp\nx, y, z = sp.symbols('x y z')\n\nf = sp.cos(x)**3\n\nresult = sp.diff(f)\nresult\n## To evaluate a function, substitute the value of x.\n# result.subs(x,sp.pi/3)\n\n\\(\\displaystyle - 3 \\sin{\\left(x \\right)} \\cos^{2}{\\left(x \\right)}\\)\n\n\n\ninf = sp.oo\n\nx, y, z = sp.symbols('x y z')\n\n# Indefinite integrals\nf = sp.ln(x)\nsp.integrate(f,x)\n\n# Definite integrals\nsp.integrate(sp.exp(-x), (x, 0, inf))\n\n\\(\\displaystyle 1\\)\n\n\n\n\n\n\n\n\nWarning\n\n\n\n\n\nIf integrate is unable to compute an integral, it returns an unevaluated Integral object.",
+    "text": "Integration and Differentiation via python\nA quick reminder, you can perform differentiation and integration (definite or indefinite) as follows:\n\nimport sympy as sp\nx, y, z = sp.symbols('x y z')\n\nf = sp.cos(x)**3\n\nresult = sp.diff(f)\nresult\n## To evaluate a function, substitute the value of x.\n# result.subs(x,sp.pi/3)\n\n\\displaystyle - 3 \\sin{\\left(x \\right)} \\cos^{2}{\\left(x \\right)}\n\n\n\ninf = sp.oo\n\nx, y, z = sp.symbols('x y z')\n\n# Indefinite integrals\nf = sp.ln(x)\nsp.integrate(f,x)\n\n# Definite integrals\nsp.integrate(sp.exp(-x), (x, 0, inf))\n\n\\displaystyle 1\n\n\n\n\n\n\n\n\nWarning\n\n\n\n\n\nIf integrate is unable to compute an integral, it returns an unevaluated Integral object.",
     "crumbs": [
       "Lectures",
       "Calculus with Parametric Curves"
@@ -876,7 +876,7 @@
     "href": "C0calculusII/lectures/10_2ParametricCalculus.html#tangents-to-parametric-curves",
     "title": "Calculus with Parametric Curves",
     "section": "Tangents to Parametric Curves",
-    "text": "Tangents to Parametric Curves\nSteps:\n\nFor curve \\(C = (x(t), y(t))\\), find \\(\\frac{dy}{dt}\\) and \\(\\frac{dx}{dt}\\).\nFind \\(\\frac{dy}{dx}\\)\n\n\nExample 1 (First derivative):\nFind the tangent to the line \\(x = sec(t), y = tan(t)\\) at \\((\\sqrt(2),1)\\) where \\(t=\\pi/4\\).\n\nt = symbols('t')\n\nf = sp.sec(t)\ng = sp.tan(t)\n\nsplot((f, g), (t, -sp.pi/3, sp.pi/3))\n\n\n\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x15498a315490&gt;\n\n\nNow we need to find the slope:\n\nevalat = sp.pi/4\n\ndy_dx = sp.diff(g)/sp.diff(f)\nslope = dy_dx.subs(t, evalat)\n\ndisplay(dy_dx)\ndisplay(slope)\n\n\\(\\displaystyle \\frac{\\tan^{2}{\\left(t \\right)} + 1}{\\tan{\\left(t \\right)} \\sec{\\left(t \\right)}}\\)\n\n\n\\(\\displaystyle \\sqrt{2}\\)\n\n\nSo our tangent is a line passing through \\((\\sqrt{2},1)\\) with slope {python} slope. Let’s plot the curve and this tangent line together.\n\n# From question\nx0, y0 = sp.sqrt(2), 1\n\n## Parametric representation of a line\nx   = t\ny_t = slope * (t - x0) + y0\n\n## Plot both the curve and the tangent.\nsplot((f, g,    (t, -sp.pi/3, sp.pi/3)), \n      (t, y_t,  (t, 0, 2)),\n      )\n\n\n\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x1549b90ecaf0&gt;\n\n\n\n\nExample 2 (Second derivatives):\nFind \\(\\frac{d^{2}y}{dx^{2}}\\) as a function of \\(t\\) if: \\[\nx = t − t^2;\\quad y = t − t^3\n\\]\n\n## Paramterizations\nt = symbols('t')\nf = t - t**2\ng = t - t**3\n\n## Plot curve\nsplot((f, g), (t, -1, 1.5))\n\n## Find first and second derivates to curve\ndy_dx = sp.diff(g)/sp.diff(f)\nd2y_dx = sp.simplify(sp.diff(dy_dx)/sp.diff(f))\n\n## Display resulting equations\n_displayM('First derivative:', dy_dx)\n_displayM('Second derivative:', d2y_dx)\n\n\n\n\n\n\n\n\nFirst derivative: \\(\\frac{1 - 3 t^{2}}{1 - 2 t}\\)\n\n\nSecond derivative: \\(\\frac{2 \\left(3 t^{2} - 3 t \\left(2 t - 1\\right) - 1\\right)}{\\left(2 t - 1\\right)^{3}}\\)\n\n\nNow we need to find the slope:\n\nevalat = -0.75\n\nx0 = f.subs(t, evalat)\ny0 = g.subs(t, evalat)\n\nslope = dy_dx.subs(t, evalat)\n\n_displayM(f\"Slope at t = {evalat} is:\", slope)\n\nSlope at t = -0.75 is: \\(-0.275\\)\n\n\nLet’s replot the curve with the tangent.\n\nx   = t\ny_t = slope * (t - x0) + y0\n\n## Plot both the curve and the tangent.\nsplot((f, g,    (t, -sp.pi/3, sp.pi/3)), \n      (t, y_t,  (t, evalat - 1, evalat + 1)),\n      )\n\n\n\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x154983fbca30&gt;",
+    "text": "Tangents to Parametric Curves\nSteps:\n\nFor curve C = (x(t), y(t)), find \\frac{dy}{dt} and \\frac{dx}{dt}.\nFind \\frac{dy}{dx}\n\n\nExample 1 (First derivative):\nFind the tangent to the line x = sec(t), y = tan(t) at (\\sqrt(2),1) where t=\\pi/4.\n\nt = symbols('t')\n\nf = sp.sec(t)\ng = sp.tan(t)\n\nsplot((f, g), (t, -sp.pi/3, sp.pi/3))\n\n\n\n\n\n\n\n\nNow we need to find the slope:\n\nevalat = sp.pi/4\n\ndy_dx = sp.diff(g)/sp.diff(f)\nslope = dy_dx.subs(t, evalat)\n\ndisplay(dy_dx)\ndisplay(slope)\n\n\\displaystyle \\frac{\\tan^{2}{\\left(t \\right)} + 1}{\\tan{\\left(t \\right)} \\sec{\\left(t \\right)}}\n\n\n\\displaystyle \\sqrt{2}\n\n\nSo our tangent is a line passing through (\\sqrt{2},1) with slope sqrt(2). Let’s plot the curve and this tangent line together.\n\n# From question\nx0, y0 = sp.sqrt(2), 1\n\n## Parametric representation of a line\nx   = t\ny_t = slope * (t - x0) + y0\n\n## Plot both the curve and the tangent.\nsplot((f, g,    (t, -sp.pi/3, sp.pi/3)), \n      (t, y_t,  (t, 0, 2)),\n      )\n\n\n\n\n\n\n\n\n\n\nExample 2 (Second derivatives):\nFind \\frac{d^{2}y}{dx^{2}} as a function of t if: \nx = t − t^2;\\quad y = t − t^3\n\n\n## Paramterizations\nt = symbols('t')\nf = t - t**2\ng = t - t**3\n\n## Plot curve\nsplot((f, g), (t, 0, 1))\n\n## Find first and second derivates to curve\ndy_dx = sp.diff(g)/sp.diff(f)\nd2y_dx = sp.simplify(sp.diff(dy_dx)/sp.diff(f))\n\n## Display resulting equations\n_displayM('First derivative:', dy_dx)\n_displayM('Second derivative:', d2y_dx)\n\n\n\n\n\n\n\n\nFirst derivative: \\frac{1 - 3 t^{2}}{1 - 2 t}\n\n\nSecond derivative: \\frac{2 \\left(3 t^{2} - 3 t \\left(2 t - 1\\right) - 1\\right)}{\\left(2 t - 1\\right)^{3}}\n\n\nNow we need to find the slope:\n\nevalat = -0.75\n\nx0 = f.subs(t, evalat)\ny0 = g.subs(t, evalat)\n\nslope = dy_dx.subs(t, evalat)\n\n_displayM(f\"Slope at t = {evalat} is:\", slope)\n\nSlope at t = -0.75 is: -0.275\n\n\nLet’s replot the curve with the tangent.\n\nx   = t\ny_t = slope * (t - x0) + y0 \n\n## Plot both the curve and the tangent.\nsplot((f, g,    (t, -sp.pi/3, sp.pi/3)), \n      (t, y_t,  (t, evalat - 1, evalat + 1)),\n      )",
     "crumbs": [
       "Lectures",
       "Calculus with Parametric Curves"
@@ -887,7 +887,7 @@
     "href": "C0calculusII/lectures/10_2ParametricCalculus.html#areas-of-parametric-cruves",
     "title": "Calculus with Parametric Curves",
     "section": "Areas of Parametric Cruves",
-    "text": "Areas of Parametric Cruves\n\nExample 3 (Area of astroid)\n\n## Paramterizations\nt = symbols('t')\nf = sp.cos(t)**3\ng = sp.sin(t)**3\n\n## Plot curve\nsplot((f, g), (t, 0, 2* sp.pi))\n\n## Find first and second derivates to curve\ndy_dx = sp.diff(g)/sp.diff(f)\nd2y_dx = sp.simplify(sp.diff(dy_dx)/sp.diff(f))\n\n## Display resulting equations\n_displayM('First derivative:', dy_dx)\n_displayM('Second derivative:', d2y_dx)\n\n\n\n\n\n\n\n\nFirst derivative: \\(- \\sin{\\left(t \\right)} / \\cos{\\left(t \\right)}\\)\n\n\nSecond derivative: \\(\\frac{1}{3 \\sin{\\left(t \\right)} \\cos^{4}{\\left(t \\right)}}\\)\n\n\nTo find the area we make use of the symmetry of the object. We integrate \\(y\\) from \\(x=[0,1]\\) and multiply it by 4:\n\ndx = sp.diff(f, t)\ny = g\n_displayM(\"Integrand:\", y*dx)\n\nsp.integrate(4*y*dx, (t, sp.pi/2, 0))\n\nIntegrand: \\(- 3 \\sin^{4}{\\left(t \\right)} \\cos^{2}{\\left(t \\right)}\\)\n\n\n\\(\\displaystyle \\frac{3 \\pi}{8}\\)",
+    "text": "Areas of Parametric Cruves\n\nExample 3 (Area of astroid)\n\n## Paramterizations\nt = symbols('t')\nf = sp.cos(t)**3\ng = sp.sin(t)**3\n\n## Plot curve\nsplot((f, g), (t, 0, 2* sp.pi))\n\n## Find first and second derivates to curve\ndy_dx = sp.diff(g)/sp.diff(f)\nd2y_dx = sp.simplify(sp.diff(dy_dx)/sp.diff(f))\n\n## Display resulting equations\n_displayM('First derivative:', dy_dx)\n_displayM('Second derivative:', d2y_dx)\n\n\n\n\n\n\n\n\nFirst derivative: - \\sin{\\left(t \\right)} / \\cos{\\left(t \\right)}\n\n\nSecond derivative: \\frac{1}{3 \\sin{\\left(t \\right)} \\cos^{4}{\\left(t \\right)}}\n\n\nTo find the area we make use of the symmetry of the object. We integrate y from x=[0,1] and multiply it by 4:\n\ndx = sp.diff(f, t)\ny = g\n_displayM(\"Integrand:\", y*dx)\n\nsp.integrate(4*y*dx, (t, sp.pi/2, 0))\n\nIntegrand: - 3 \\sin^{4}{\\left(t \\right)} \\cos^{2}{\\left(t \\right)}\n\n\n\\displaystyle \\frac{3 \\pi}{8}",
     "crumbs": [
       "Lectures",
       "Calculus with Parametric Curves"
@@ -898,7 +898,7 @@
     "href": "C0calculusII/lectures/10_2ParametricCalculus.html#length-of-parametric-curves",
     "title": "Calculus with Parametric Curves",
     "section": "Length of Parametric Curves",
-    "text": "Length of Parametric Curves\n\nmarker = {\"color\": \"r\", \"marker\": \"s\", \"fillstyle\":'full',\"markerfacecolor\":'white', \"markersize\":3, \"linestyle\":'--'}\n\n\nt = sp.symbols('t')\nf = t**2\ng = sp.cos(50* t)\n\n# Evaluate functions at ten points \nnumpoints = 10\ntval = [i/numpoints for i in list(range(0,numpoints))] + [1]\nfvals = [f.subs(t, t0 ) for t0 in tval]\ngvals = [g.subs(t, t0 ) for t0 in tval]\nmarker[\"args\"] = [fvals,gvals]\n\n# Plot parameters\nsp.plot_parametric(f,g, (t, 0, 1), markers = marker)\n\n\n\n\n\n\n\n\n&lt;sympy.plotting.backends.matplotlibbackend.matplotlib.MatplotlibBackend at 0x154983b01f70&gt;\n\n\n\\[\nL = \\int_a^b\\sqrt{f'(t)^2 + g'(t)^2} dt\n\\]\nTo make things convenient we will convert our operations into a function.\n\ndef _curvelength(f, g, var):\n  \"\"\"\n  Inputs:\n    f, g: x and y parametrizations\n    var (tuple): (sp.symbol, lower lim, upper lim)\n\n    var is a  the variable upon which to integrate.\n  \"\"\"\n  t, a, b = var\n\n  dx_dt = sp.diff(f, t)\n  dy_dt = sp.diff(g, t)\n\n  integ = (dx_dt**2 + dy_dt**2)\n  integ = sp.sqrt(integ)\n  _displayM(\"Integrating: \", integ)\n  _displayM(f\"over [{a}, {b}] w.r.t.\", t)\n\n  res = sp.integrate(integ, (t, a, b))\n  print(\"gives:\")\n\n  return res\n\n\nExample (circle/spiral)\n\nt, r = sp.symbols('t r', positive = True)\n\nf = r * sp.cos(t)\ng = r * sp.sin(t)\n\n_curvelength(f,g, (t, 0, 2 * sp.pi))\n\nIntegrating: \\(\\sqrt{r^{2} \\sin^{2}{\\left(t \\right)} + r^{2} \\cos^{2}{\\left(t \\right)}}\\)\n\n\nover [0, 2*pi] w.r.t. \\(t\\)\n\n\ngives:\n\n\n\\(\\displaystyle 2 \\pi r\\)\n\n\n\n\nExample (astroid)\n\nt = sp.symbols('t')\n\nf = (sp.cos(t))**3\ng = (sp.sin(t))**3\n\n\n_curvelength(f,g, (t, 0, sp.pi/2))\n\nIntegrating: \\(\\sqrt{9 \\sin^{4}{\\left(t \\right)} \\cos^{2}{\\left(t \\right)} + 9 \\sin^{2}{\\left(t \\right)} \\cos^{4}{\\left(t \\right)}}\\)\n\n\nover [0, pi/2] w.r.t. \\(t\\)\n\n\ngives:\n\n\n\\(\\displaystyle \\frac{3}{2}\\)\n\n\n\n\nExample (ellipse)\n\nt, a, b = sp.symbols('t a b', positive=True)\n\nf = a * sp.cos(t)\ng = b * sp.sin(t)\n\n_curvelength(f, g, (t, 0, sp.pi/2))\n\nIntegrating: \\(\\sqrt{a^{2} \\sin^{2}{\\left(t \\right)} + b^{2} \\cos^{2}{\\left(t \\right)}}\\)\n\n\nover [0, pi/2] w.r.t. \\(t\\)\n\n\ngives:\n\n\n\\(\\displaystyle \\int\\limits_{0}^{\\frac{\\pi}{2}} \\sqrt{a^{2} \\sin^{2}{\\left(t \\right)} + b^{2} \\cos^{2}{\\left(t \\right)}}\\, dt\\)\n\n\nThis is a special integral called the complete elliptic integral of the second kind.\n\n\n\n\n\n\nElliptic Integrals\n\n\n\n\n\nElliptic integrals\n\n\n\nLet’s take the parametrization again and look for a series solution.\n\ndx_dt = sp.diff(f,t)\ndy_dt = sp.diff(g,t)\n\necc = sp.symbols('e')\n# e = sp.sqrt(1 - (b/a)**2)\n\n\n\nintegrand = (dx_dt**2 + dy_dt**2)\nintegrand = integrand.subs({a: b/sp.sqrt(1-ecc**2),\n                            sp.cos(t)**2: 1 - sp.sin(t**2)})\nintegrand\n\n\\(\\displaystyle b^{2} \\left(1 - \\sin{\\left(t^{2} \\right)}\\right) + \\frac{b^{2} \\sin^{2}{\\left(t \\right)}}{1 - e^{2}}\\)\n\n\n\nt, e = sp.symbols('t e')\nf = sp.sqrt(1 - e**2 * sp.sin(t**2))\nsp.series(f,t)\n\n\\(\\displaystyle 1 - \\frac{e^{2} t^{2}}{2} - \\frac{e^{4} t^{4}}{8} + O\\left(t^{6}\\right)\\)",
+    "text": "Length of Parametric Curves\n\nmarker = {\"color\": \"r\", \"marker\": \"s\", \"fillstyle\":'full',\"markerfacecolor\":'white', \"markersize\":3, \"linestyle\":'--'}\n\n\nt = sp.symbols('t')\nf = t - t**2\ng = t + t**3\n\n# Evaluate functions at ten points \nnumpoints = 10\ntval = [i/numpoints for i in list(range(0,numpoints))] + [1]\nfvals = [f.subs(t, t0 ) for t0 in tval]\ngvals = [g.subs(t, t0 ) for t0 in tval]\nmarker[\"args\"] = [fvals,gvals]\n\n# Plot parameters\nsp.plot_parametric(f,g, (t, 0, 1), markers = marker)\n\n\n\n\n\n\n\n\n\nL = \\int_a^b\\sqrt{f'(t)^2 + g'(t)^2} dt\n\nTo make things convenient we will convert our operations into a function.\n\ndef _curvelength(f, g, var):\n  \"\"\"\n  Inputs:\n    f, g: x and y parametrizations\n    var (tuple): (sp.symbol, lower lim, upper lim)\n\n    var is a  the variable upon which to integrate.\n  \"\"\"\n  t, a, b = var\n\n  dx_dt = sp.diff(f, t)\n  dy_dt = sp.diff(g, t)\n\n  integ = (dx_dt**2 + dy_dt**2)\n  integ = sp.sqrt(integ)\n  _displayM(\"Integrating: \", integ)\n  _displayM(f\"over [{a}, {b}] w.r.t.\", t)\n\n  res = sp.integrate(integ, (t, a, b))\n  print(\"gives:\")\n\n  return res\n\n\nExample (circle/spiral)\n\nt, r = sp.symbols('t r', positive = True)\n\nf = r * sp.cos(t)\ng = r * sp.sin(t)\n\n_curvelength(f,g, (t, 0, 2 * sp.pi))\n\nIntegrating: \\sqrt{r^{2} \\sin^{2}{\\left(t \\right)} + r^{2} \\cos^{2}{\\left(t \\right)}}\n\n\nover [0, 2*pi] w.r.t. t\n\n\ngives:\n\n\n\\displaystyle 2 \\pi r\n\n\n\n\nExample (astroid)\n\nt = sp.symbols('t')\n\nf = (sp.cos(t))**3\ng = (sp.sin(t))**3\n\n\n_curvelength(f,g, (t, 0, sp.pi/2))\n\nIntegrating: \\sqrt{9 \\sin^{4}{\\left(t \\right)} \\cos^{2}{\\left(t \\right)} + 9 \\sin^{2}{\\left(t \\right)} \\cos^{4}{\\left(t \\right)}}\n\n\nover [0, pi/2] w.r.t. t\n\n\ngives:\n\n\n\\displaystyle \\frac{3}{2}\n\n\n\n\nExample (ellipse)\n\nt, a, b = sp.symbols('t a b', positive=True)\n\nf = a * sp.cos(t)\ng = b * sp.sin(t)\n\n_curvelength(f, g, (t, 0, sp.pi/2))\n\nIntegrating: \\sqrt{a^{2} \\sin^{2}{\\left(t \\right)} + b^{2} \\cos^{2}{\\left(t \\right)}}\n\n\nover [0, pi/2] w.r.t. t\n\n\ngives:\n\n\n\\displaystyle \\int\\limits_{0}^{\\frac{\\pi}{2}} \\sqrt{a^{2} \\sin^{2}{\\left(t \\right)} + b^{2} \\cos^{2}{\\left(t \\right)}}\\, dt\n\n\nThis is a special integral called the complete elliptic integral of the second kind.\n\n\n\n\n\n\nElliptic Integrals\n\n\n\n\n\nElliptic integrals\n\n\n\nLet’s take the parametrization again and look for a series solution.\n\ndx_dt = sp.diff(f,t)\ndy_dt = sp.diff(g,t)\n\necc = sp.symbols('e')\n# e = sp.sqrt(1 - (b/a)**2)\n\n\n\nintegrand = (dx_dt**2 + dy_dt**2)\nintegrand = integrand.subs({a: b/sp.sqrt(1-ecc**2),\n                            sp.cos(t)**2: 1 - sp.sin(t**2)})\nintegrand\n\n\\displaystyle b^{2} \\left(1 - \\sin{\\left(t^{2} \\right)}\\right) + \\frac{b^{2} \\sin^{2}{\\left(t \\right)}}{1 - e^{2}}\n\n\n\nt, e = sp.symbols('t e')\nf = sp.sqrt(1 - e**2 * sp.sin(t**2))\nsp.series(f,t)\n\n\\displaystyle 1 - \\frac{e^{2} t^{2}}{2} - \\frac{e^{4} t^{4}}{8} + O\\left(t^{6}\\right)",
     "crumbs": [
       "Lectures",
       "Calculus with Parametric Curves"
@@ -1258,7 +1258,11 @@
     "href": "C0calculusII/lectures/13_3PartialDerivatives.html",
     "title": "Partial Derivatives",
     "section": "",
-    "text": "import sympy as sp\nx, y = sp.symbols('x y')\n\n# Define the function\nf = x * y**2\n\n\n# Calculate the partial derivatives\npartial_x = sp.diff(f, x)  # Partial derivative with respect to x\npartial_y = sp.diff(f, y)  # Partial derivative with respect to y\n\n# Display the results\nprint(\"Partial derivatives wrt x and y:\")\ndisplay(partial_x, partial_y)\n\nPartial derivatives wrt x and y:\n\n\n\\(\\displaystyle y^{2}\\)\n\n\n\\(\\displaystyle 2 x y\\)\n\n\n\nimport numpy as np\nimport plotly.graph_objects as go\n\n# Define the range for x and y\npi = np.pi\nx = np.linspace(-4 * pi, 4*pi, 100)\ny = np.linspace(-1, 1, 100)\nx, y = np.meshgrid(x, y)\n\n# Calculate z based on the given function\nz = y**2 * np.cos(x * y)\n\n\ncolor1 = 'orange'\ncolor2 = 'orange'\n# Create the surface plot with custom colors\nfig = go.Figure(data=[go.Surface(z=z, x=x, y=y, colorscale=[[0, color1], [1,color2]], showscale=False, hoverinfo = 'skip')])\n\n# Update layout for background and titles\nfig.update_layout(\n    title='Surface Plot of z = y^2 cos(xy)',\n    scene=dict(xaxis_title='X', yaxis_title='Y', zaxis_title='Z')\n)\n\nshowbackground = False\n\nfig.update_layout(scene = dict(\n                    xaxis = dict(\n                         backgroundcolor=\"rgb(200, 200, 230)\",\n                         gridcolor=\"white\",\n                         showbackground=showbackground,\n                         zerolinecolor=\"black\",),\n                    yaxis = dict(\n                        backgroundcolor=\"rgb(230, 200,230)\",\n                        gridcolor=\"white\",\n                        showbackground=showbackground,\n                        zerolinecolor=\"black\"),\n                    zaxis = dict(\n                        backgroundcolor=\"rgb(230, 230,200)\",\n                        gridcolor=\"white\",\n                        showbackground=showbackground,\n                        zerolinecolor=\"black\",),),\n                    # width=700,\n                    margin=dict(\n                    r=10, l=10,\n                    b=10, t=26)\n                  )\n\n\n# Show the plot\nfig.show()\n\n\n                                                \n\n\n\nimport numpy as np\nimport plotly.graph_objects as go\n\n# Define the paraboloid z = x^2 + y^2\ndef paraboloid(x, y):\n    return x**2 + y**2\n\n# Create a grid for x and y\nx = np.linspace(-2.5, 2.5, 100)\ny = np.linspace(-2.5, 2.5, 100)\nx, y = np.meshgrid(x, y)\nz = paraboloid(x, y)\n\nmask = x**2 + y**2 &lt;= 4\nz[~mask] = np.nan  # Set values outside the circle to NaN for visualization\n\n\n# Define the intersection plane x = 1\nx_intersection = 1\ny_intersection = np.linspace(-2, 2, 100)\nz_intersection = paraboloid(x_intersection, y_intersection)\n\n# Point of tangency on the intersection\ny_tangent_point = 1  # You can choose another point on the parabola\nz_tangent_point = paraboloid(x_intersection, y_tangent_point)\n\n# Calculate the slope of the tangent line\n# Derivative of z with respect to y: dz/dy = 2y\ntangent_slope = 2 * y_tangent_point  # at y = 0, this is 0\n\n# Create the tangent line in the plane z = k + m(y - y0)\ny_tangent = np.linspace(y_tangent_point - 1, y_tangent_point + 1, 100)\nz_tangent = z_tangent_point + tangent_slope * (y_tangent - y_tangent_point)\n\n# Create the figure\nfig = go.Figure()\n\n# Add paraboloid \ncolor1 = 'orange'\ncolor2 = 'orange'\nfig.add_trace(go.Surface(z=z, x=x, y=y, colorscale=[[0, color1], [1,color2]], opacity=0.7, name='Paraboloid', hoverinfo = 'skip'))\n\n# Add intersecting plane\nfig.add_trace(go.Scatter3d(x=[x_intersection]*len(y_intersection), \n                             y=y_intersection, \n                             z=z_intersection, \n                             mode='lines', \n                             name='Intersection Parabola', \n                             line=dict(color='red', width=5)))\n\n# Add tangent line\nfig.add_trace(go.Scatter3d(x=[x_intersection]*len(y_tangent), \n                             y=y_tangent, \n                             z=z_tangent, \n                             mode='lines', \n                             name='Tangent Line', \n                             line=dict(color='blue', width=5)))\n\n# Update layout\nfig.update_layout(title='Paraboloid with Intersection and Tangent Line',\n                  scene=dict(xaxis_title='X', yaxis_title='Y', zaxis_title='Z'),\n                  width=800, height=600,\n                  paper_bgcolor='white')\n\n# Show the plot\nfig.show()"
+    "text": "import sympy as sp\nx, y = sp.symbols('x y')\n\n# Define the function\nf = x * y**2\n\n\n# Calculate the partial derivatives\npartial_x = sp.diff(f, x)  # Partial derivative with respect to x\npartial_y = sp.diff(f, y)  # Partial derivative with respect to y\n\n# Display the results\nprint(\"Partial derivatives wrt x and y:\")\ndisplay(partial_x, partial_y)\n\nPartial derivatives wrt x and y:\n\n\n\\displaystyle y^{2}\n\n\n\\displaystyle 2 x y\n\n\n\nimport numpy as np\nimport plotly.graph_objects as go\n\n# Define the range for x and y\npi = np.pi\nx = np.linspace(-2 * pi, 2*pi, 100)\ny = np.linspace(-2*pi, 2*pi, 100)\nx, y = np.meshgrid(x, y)\n\n# Calculate z based on the given function\nz =  np.sin(x) + np.sin(y)\n\n\ncolor1 = 'orange'\ncolor2 = 'orange'\n# Create the surface plot with custom colors\nfig = go.Figure(data=[go.Surface(z=z, x=x, y=y, colorscale='viridis', showscale=False, hoverinfo = 'skip')])\n\n# Update layout for background and titles\nfig.update_layout(\n    title='Surface Plot of z = y^2 cos(xy)',\n    scene=dict(xaxis_title='X', yaxis_title='Y', zaxis_title='Z')\n)\n\nshowbackground = False\n\nfig.update_layout(scene = dict(\n                    xaxis = dict(\n                         backgroundcolor=\"rgb(200, 200, 230)\",\n                         gridcolor=\"white\",\n                         showbackground=showbackground,\n                         zerolinecolor=\"black\",),\n                    yaxis = dict(\n                        backgroundcolor=\"rgb(230, 200,230)\",\n                        gridcolor=\"white\",\n                        showbackground=showbackground,\n                        zerolinecolor=\"black\"),\n                    zaxis = dict(\n                        backgroundcolor=\"rgb(230, 230,200)\",\n                        gridcolor=\"white\",\n                        showbackground=showbackground,\n                        zerolinecolor=\"black\",),),\n                    # width=700,\n                    margin=dict(\n                    r=10, l=10,\n                    b=10, t=26)\n                  )\n\n\n# Show the plot\nfig.show()\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\nimport numpy as np\nimport plotly.graph_objects as go\n\n# Define the paraboloid z = x^2 + y^2\ndef paraboloid(x, y):\n    return x**2 + y**2\n\n# Create a grid for x and y\nx = np.linspace(-2.5, 2.5, 100)\ny = np.linspace(-2.5, 2.5, 100)\nx, y = np.meshgrid(x, y)\nz = paraboloid(x, y)\n\nmask = x**2 + y**2 &lt;= 4\nz[~mask] = np.nan  # Set values outside the circle to NaN for visualization\n\n\n# Define the intersection plane x = 1\nx_intersection = 1\ny_intersection = np.linspace(-2, 2, 100)\nz_intersection = paraboloid(x_intersection, y_intersection)\n\n# Point of tangency on the intersection\ny_tangent_point = 0.5  # You can choose another point on the parabola\nz_tangent_point = paraboloid(x_intersection, y_tangent_point)\n\n# Calculate the slope of the tangent line\n# Derivative of z with respect to y: dz/dy = 2y\ntangent_slope = 2 * y_tangent_point  # at y = 0, this is 0\n\n# Create the tangent line in the plane z = k + m(y - y0)\ny_tangent = np.linspace(y_tangent_point - 1, y_tangent_point + 1, 100)\nz_tangent = z_tangent_point + tangent_slope * (y_tangent - y_tangent_point)\n\n# Create the figure\nfig = go.Figure()\n\n# Add paraboloid \ncolor1 = 'orange'\ncolor2 = 'orange'\nfig.add_trace(go.Surface(z=z, x=x, y=y, colorscale=[[0, color1], [1,color2]], opacity=0.7, name='Paraboloid', hoverinfo = 'skip'))\n\n# Add intersecting plane\nfig.add_trace(go.Scatter3d(x=[x_intersection]*len(y_intersection), \n                             y=y_intersection, \n                             z=z_intersection, \n                             mode='lines', \n                             name='Intersection Parabola', \n                             line=dict(color='red', width=5)))\n\n# Add tangent line\nfig.add_trace(go.Scatter3d(x=[x_intersection]*len(y_tangent), \n                             y=y_tangent, \n                             z=z_tangent, \n                             mode='lines', \n                             name='Tangent Line', \n                             line=dict(color='blue', width=5)))\n\n# Update layout\nfig.update_layout(title='Paraboloid with Intersection and Tangent Line',\n                  scene=dict(xaxis_title='X', yaxis_title='Y', zaxis_title='Z'),\n                  width=800, height=600,\n                  paper_bgcolor='white')\n\n# Show the plot\nfig.show()",
+    "crumbs": [
+      "Lectures",
+      "Partial Derivatives"
+    ]
   },
   {
     "objectID": "C0calculusI/lectures/4derivativesapplications.html",
@@ -1895,7 +1899,7 @@
     "href": "C0diffgeom/lectures/differentiablemanifolds.html#from-charts-to-atlases-to-differentiable-manifolds",
     "title": "Differentiable Manifolds",
     "section": "From charts to atlases to differentiable manifolds",
-    "text": "From charts to atlases to differentiable manifolds\nRemember that our calculus works on certain sets of real numbers called Euclidean Space. Hence we need mathematical machines that can lead us back and forth from the world of curved spaces to the flat Euclidean lands.\nLet’s take a top down approach.\nAn atlas is a family of coordinate charts. A coordinate chart is pair \\((U,\\phi)\\)\nA topological space is a differentiable manifold if it has a differential structure on it in the form of a complete atlas. Complete here simply means that the atlas is maximal i.e. not contained in any other atlas.\n\n\n\n\n\nManifold\n\n\nTopological space locally \\(R^n\\) covered by a family of\n\n\n\n\n\nManifold\n\n\nTopological space locally \\(R^n\\)\n\n\n\nbb"
+    "text": "From charts to atlases to differentiable manifolds\nRemember that our calculus works on certain sets of real numbers called Euclidean Space. Hence we need mathematical machines that can lead us back and forth from the world of curved spaces to the flat Euclidean lands.\nLet’s take a top down approach.\nAn atlas is a family of coordinate charts. A coordinate chart is pair (U,\\phi)\nA topological space is a differentiable manifold if it has a differential structure on it in the form of a complete atlas. Complete here simply means that the atlas is maximal i.e. not contained in any other atlas.\n\n\n\n\n\nManifold\n\n\nTopological space locally R^n covered by a family of\n\n\n\n\n\nManifold\n\n\nTopological space locally R^n\n\n\n\nbb"
   },
   {
     "objectID": "C0diffgeom/lectures/differentiablemanifolds.html#q-from-charts-to-atlases-to-differentiable-manifolds",
@@ -3416,12 +3420,12 @@
   {
     "objectID": "C0manybody/lectures/kubofigure.html",
     "href": "C0manybody/lectures/kubofigure.html",
-    "title": "Leader-line Example",
+    "title": "Worldlines",
     "section": "",
     "text": "Here is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector.",
     "crumbs": [
       "Topics",
-      "Leader-line Example"
+      "Kubofigure"
     ]
   },
   {
@@ -3433,6 +3437,503 @@
     "crumbs": [
       "Topics",
       "Kubofigure"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/electric_susceptiblity.html",
+    "href": "C0manybody/lectures/electric_susceptiblity.html",
+    "title": "Electric Susceptibility",
+    "section": "",
+    "text": "Much of what follows is an elboration of Toyozawa, Optical Processes in Solids, Chapter 6\nSince we are going to apply time-dependent perturbations in the linear response regime, we need to remind ourselves, how the values of an observable vary when the perturbation comes into play. That is to say we need to remind ourselves of the Kubo formula.",
+    "crumbs": [
+      "Topics",
+      "Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/electric_susceptiblity.html#susceptibility-as-a-greens-function",
+    "href": "C0manybody/lectures/electric_susceptiblity.html#susceptibility-as-a-greens-function",
+    "title": "Electric Susceptibility",
+    "section": "Susceptibility as a Green’s Function",
+    "text": "Susceptibility as a Green’s Function\nSo susceptibility is really a Green’s function. When a weak external electric field \\mathbf E(\\mathbf r,t) is applied, the system responds linearly with an induced polarization \\mathbf P(\\mathbf r,t). In the linear response regime, the most general linear relation between cause (field) and effect (polarization) is\n\nP_i(\\mathbf r,t) = \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').\n\\tag{3}\nHere \\chi is the susceptibility tensor, has certain properties by default or by imposition:\n\n\nBecause the system is weakly perturbed, the polarization is a linear functional of the applied field.\n\n\nA perturbation at (\\mathbf r',t') can influence the polarization at (\\mathbf r,t). This makes \\chi depend on two spacetime points.\n\n\nA result cannot precede its cause. Therefore, \n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') = 0 \\quad \\text{for } t &lt; t' .\n\n\n\n\n\nReferences",
+    "crumbs": [
+      "Topics",
+      "Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/electric_susceptiblity.html#polarization-and-electric-field",
+    "href": "C0manybody/lectures/electric_susceptiblity.html#polarization-and-electric-field",
+    "title": "Electric Susceptibility",
+    "section": "Polarization and Electric Field",
+    "text": "Polarization and Electric Field\nSo susceptibility is really a Green’s function and when a weak external electric field \\mathbf E(\\mathbf r,t) is applied, the system responds linearly with an induced polarization \\mathbf P(\\mathbf r,t). In the linear response regime, the most general linear relation between cause (field) and effect (polarization) is\n\nP_i(\\mathbf r,t) = \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').\n\\tag{3}\nHere \\chi is the susceptibility tensor, has certain properties by default or by imposition:\n\n\nBecause the system is weakly perturbed, the polarization is a linear functional of the applied field.\n\n\nA perturbation at (\\mathbf r',t') can influence the polarization at (\\mathbf r,t). This makes \\chi depend on two spacetime points.\n\n\nA result cannot precede its cause. Therefore, \n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') = 0 \\quad \\text{for } t &lt; t' .",
+    "crumbs": [
+      "Topics",
+      "Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/electric_susceptiblity.html#now-focus-on-the-pertubration",
+    "href": "C0manybody/lectures/electric_susceptiblity.html#now-focus-on-the-pertubration",
+    "title": "Electric Susceptibility",
+    "section": "Now focus on the pertubration",
+    "text": "Now focus on the pertubration\n\nReferences",
+    "crumbs": [
+      "Topics",
+      "Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/electric_susceptiblity.html#susceptibility-links-polarization-and-electric-field-greenly",
+    "href": "C0manybody/lectures/electric_susceptiblity.html#susceptibility-links-polarization-and-electric-field-greenly",
+    "title": "Electric Susceptibility",
+    "section": "Susceptibility links Polarization and Electric Field Greenly:",
+    "text": "Susceptibility links Polarization and Electric Field Greenly:\nSo susceptibility is really a Green’s function and when a weak external electric field \\mathbf E(\\mathbf r,t) is applied, the system responds linearly with an induced polarization \\mathbf P(\\mathbf r,t). In the linear response regime, the most general linear relation between cause (field) and effect (polarization) is\n\nP_i(\\mathbf r,t) = \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').\n\\tag{3}\nHere \\chi is the susceptibility tensor, has certain properties by default or by imposition:\n\n\nBecause the system is weakly perturbed, the polarization is a linear functional of the applied field.\n\n\nA perturbation at (\\mathbf r',t') can influence the polarization at (\\mathbf r,t). This makes \\chi depend on two spacetime points.\n\n\nA result cannot precede its cause. Therefore, \n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') = 0 \\quad \\text{for } t &lt; t' .",
+    "crumbs": [
+      "Topics",
+      "Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/electric_susceptiblity.html#but-how-to-express-susceptibility",
+    "href": "C0manybody/lectures/electric_susceptiblity.html#but-how-to-express-susceptibility",
+    "title": "Electric Susceptibility",
+    "section": "But how to express susceptibility?",
+    "text": "But how to express susceptibility?\nTo find an expression for suceptibility, we need the following steps:\n\nUse the interaction hamiltonian to find the perturbed wavefunction.\nFind the elements of the polarization operator.\nExploit the relationship between the current density and polarization operator.\nTake the statistical average on initial states to find the susceptibility.\n\nFor brownie points we then try to find frequency domain alternatives too.\n\nReferences",
+    "crumbs": [
+      "Topics",
+      "Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html",
+    "title": "Weyl Semi-Metals",
+    "section": "",
+    "text": "How do Weyl Semi-Metals emerge? We shall see that central to this is the role of SOC in causing the conduction and valence bands to invert."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-1-start-from-atomic-orbitals-and-crystal-symmetry",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-1-start-from-atomic-orbitals-and-crystal-symmetry",
+    "title": "Weyl Semi-Metals",
+    "section": "",
+    "text": "Imagine a crystal made of atoms contributing s-like and p-like orbitals.\n\nAt the \\Gamma-point (k=0), the bands can be labeled by their parity eigenvalues under inversion symmetry \\mathcal{P}.\n\nLet’s call:\n\n|s\\rangle: even parity (+)\n\n|p\\rangle: odd parity (-)\n\nThe unperturbed energies are:\n\nE_s &gt; E_p.\n\nSo normally the s-like band becomes the conduction band and p-like the valence band.\n\n\n\\Gamma = (0,0,0) is the center of the Brillouin zone.\nIt’s a time-reversal invariant momentum (TRIM):\n\\Gamma \\equiv -\\Gamma \\; (\\text{mod reciprocal lattice vector}).\nThere are only a few TRIMs: \\Gamma, X, L, M, etc., depending on the lattice.\n\nThese are high-symmetry points where: - Crystal momentum is zero, so Bloch states have the same symmetry as the atomic orbitals. - Each state can be labeled by parity eigenvalues and other crystal quantum numbers.\nThis is crucial for topology.\n\n\n\n\n\n\nNear \\Gamma, the band energies are close to the atomic orbital levels because k is small (no kinetic energy term yet).\n\nThis is where the s- and p-like states from atoms interact and hybridize.\n\n\n\n\nUsing the k\\cdot p expansion:\n\nE_n(\\mathbf{k}) = E_n(0) + \\frac{\\hbar^2 k^2}{2m^*} + \\dots\n\nso the ordering at k=0 sets the global band topology.\nIf SOC pushes E_{p}(0) above E_{s}(0), the bands are inverted at \\Gamma.\nAway from \\Gamma, the k^2-term (Bk^2 in the BHZ model) restores normal ordering, so the band gap opens up again — but the parity order at \\Gamma stays inverted, and that’s what counts topologically.\n\n\n\n\n\n\nFu & Kane showed the \\mathbb{Z}_2 topological invariant can be computed as a product of parity eigenvalues at TRIMs:\n\n\n(-1)^\\nu = \\prod_{i\\in \\text{TRIM}} \\prod_{n\\in\\text{occ}} \\xi_n(\\Gamma_i),\n\nwhere \\xi_n=\\pm1 are parity eigenvalues.\n\nThis only works at TRIMs because time-reversal forces Kramers degeneracy there.\nSo band inversion must occur at a TRIM (like \\Gamma) to flip the parity product and change the topological invariant.\n\nIf inversion happened at some generic \\mathbf{k}-point, it would happen at \\mathbf{k} and -\\mathbf{k} simultaneously (due to time-reversal symmetry), and their contributions would cancel — leaving the \\mathbb{Z}_2 invariant unchanged.\nSo only inversions at TRIMs can drive a topological phase transition.\n\n\n\n\n\n\n\n\n\n\n\nWhy \\Gamma point matters\nExplanation\n\n\n\n\nHigh symmetry\nWavefunctions have well-defined parity at k=0.\n\n\nSOC is strongest here\nSmall k: atomic character dominates.\n\n\nTRIM condition\nNeeded for parity-based topological invariant.\n\n\nTopology changes here first\nInversion here forces gap closure → topological transition.\n\n\n\n\n\n\n\n\nBand inversion usually happens at \\Gamma because it’s the natural place where atomic s- and p-states meet,\n\nand because only inversion at a TRIM like \\Gamma can change the topological invariant."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#why-inversion-occurs-there",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#why-inversion-occurs-there",
+    "title": "Weyl Semi-Metals",
+    "section": "",
+    "text": "Near \\Gamma, the band energies are close to the atomic orbital levels because k is small (no kinetic energy term yet).\n\nThis is where the s- and p-like states from atoms interact and hybridize.\n\n\n\n\nUsing the k\\cdot p expansion:\n\nE_n(\\mathbf{k}) = E_n(0) + \\frac{\\hbar^2 k^2}{2m^*} + \\dots\n\nso the ordering at k=0 sets the global band topology.\nIf SOC pushes E_{p}(0) above E_{s}(0), the bands are inverted at \\Gamma.\nAway from \\Gamma, the k^2-term (Bk^2 in the BHZ model) restores normal ordering, so the band gap opens up again — but the parity order at \\Gamma stays inverted, and that’s what counts topologically."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#why-topological-invariants-are-defined-at-trims",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#why-topological-invariants-are-defined-at-trims",
+    "title": "Weyl Semi-Metals",
+    "section": "Why topological invariants are defined at TRIMs",
+    "text": "Why topological invariants are defined at TRIMs\n\nFu & Kane showed the \\mathbb{Z}_2 topological invariant can be computed as a product of parity eigenvalues at TRIMs:\n\n\n(-1)^\\nu = \\prod_{i\\in \\text{TRIM}} \\prod_{n\\in\\text{occ}} \\xi_n(\\Gamma_i),\n\nwhere \\xi_n=\\pm1 are parity eigenvalues.\n\nThis only works at TRIMs because time-reversal forces Kramers degeneracy there.\nSo band inversion must occur at a TRIM (like \\Gamma) to flip the parity product and change the topological invariant. It’s the natural place where atomic s- and p-states meet.\n\nOnly inversion at a TRIM like \\Gamma can change the topological invariant. If inversion happened at some generic \\mathbf{k}-point, it would happen at \\mathbf{k} and -\\mathbf{k} simultaneously (due to time-reversal symmetry), and their contributions would cancel — leaving the \\mathbb{Z}_2 invariant unchanged. In other words only inversions at TRIMs can drive topological phase transitions.\n\n\n\n\n\n\n\n\nWhy \\Gamma point matters\nExplanation\n\n\n\n\nHigh symmetry\nWavefunctions have well-defined parity at k=0.\n\n\nSOC is strongest here\nSmall k: atomic character dominates.\n\n\nTRIM condition\nNeeded for parity-based topological invariant.\n\n\nTopology changes here first\nInversion here forces gap closure → topological transition."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#summary",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#summary",
+    "title": "Weyl Semi-Metals",
+    "section": "Summary",
+    "text": "Summary\n\nBand inversion flips orbital/parity order → changes topological invariant.\n\nIf SOC gaps the crossing → topological insulator.\n\nIf gap doesn’t open → Dirac semimetal.\n\nIf inversion/time-reversal is broken → Dirac point splits → Weyl semimetal.\n\nThis entire sequence is a single continuous picture governed by the sign of the mass term M_0 and the presence of symmetries.\n\nBloch states at \\mathbf{k} and -\\mathbf{k} are linked by time-reversal. This also means that TRS complex conjugates the wavefunction.\nAt TRIMs, they become Kramers pairs with guaranteed degeneracy.\n\nWhy Kramers degeneracy at TRIMs matters\nThe time-reversal operator is anti-unitary: \\Theta = U_T \\mathcal{K}, where \\mathcal{K} is complex conjugation and U_T = e^{-i\\pi S_y/\\hbar} for spin-\\frac{1}{2} particles. For spin-\\frac{1}{2}, it satisfies \\Theta^2 = -1.\nAt TRIM, Kramers theorem then guarantees that each state |u_n(\\mathbf{k})\\rangle has a degenerate partner \\Theta|u_n(\\mathbf{k})\\rangle with the same energy.\nBecause \\Theta also flips momentum: \\Theta|u_n(\\mathbf{k})\\rangle = |u_n(-\\mathbf{k})\\rangle, the degeneracy occurs only when \\mathbf{k} = -\\mathbf{k} + \\mathbf{G}\n(where \\mathbf{G} is a reciprocal lattice vector), which defines the time-reversal invariant momenta (TRIMs).\nAt TRIMs:\n\nEvery band forms a Kramers pair\n\nBand inversions occur as pairs, allowing well-defined parity eigenvalues\n\nThe \\mathbb{Z}_2 topological invariant can be computed purely from the parities of the occupied bands at the TRIMs (Fu–Kane formula)\n\nAway from TRIMs, such degeneracy is not guaranteed, so the topology cannot be determined locally there.\nTRIMs act as topological anchors for time-reversal invariant systems.\n\n\n❖ Do we want time-reversal symmetry?\nWhether TRS is desired depends on the target topological phase:\n\n\n\n\n\n\n\n\nPhase\nTRS required?\nReason\n\n\n\n\nTopological insulator (\\mathbb{Z}_2)\nYes\nTRS enforces Kramers degeneracy and protects edge states\n\n\nWeyl semimetal\nNo (must break TRS or inversion)\nTRS would pair Weyl nodes at \\mathbf{k} and -\\mathbf{k}, destroying them\n\n\nChern insulator\nNo (must break TRS)\nTRS forces Berry curvature \\Omega(\\mathbf{k}) to cancel: \\Omega(\\mathbf{k}) = -\\Omega(-\\mathbf{k}), giving zero Chern number"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#so",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#so",
+    "title": "Weyl Semi-Metals",
+    "section": "📌 So",
+    "text": "📌 So\n\nBand inversion usually happens at \\Gamma because it’s the natural place where atomic s- and p-states meet,\n\nand because only inversion at a TRIM like \\Gamma can change the topological invariant."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-2-include-spinorbit-coupling-soc",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-2-include-spinorbit-coupling-soc",
+    "title": "Weyl Semi-Metals",
+    "section": "⚡ Step 2 — Include spin–orbit coupling (SOC)",
+    "text": "⚡ Step 2 — Include spin–orbit coupling (SOC)\nThe atomic SOC Hamiltonian is\n\nH_\\text{SOC} = \\lambda \\,\\mathbf{L}\\cdot\\mathbf{S},\n\nwhich splits the p-states into:\n\n|p_{3/2}\\rangle \\; \\text{(4-fold)}, \\qquad |p_{1/2}\\rangle \\; \\text{(2-fold)}.\n\nIf SOC is weak, the ordering stays the same: E_s &gt; E_{p_{3/2}}&gt;E_{p_{1/2}}.\nIf SOC is strong, it can push the p_{1/2}-like state above the s-like state, inverting the order."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-3-effective-kcdot-p-hamiltonian-bhz-model",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-3-effective-kcdot-p-hamiltonian-bhz-model",
+    "title": "Weyl Semi-Metals",
+    "section": "🌀 Step 3 — Effective k\\cdot p Hamiltonian: BHZ model",
+    "text": "🌀 Step 3 — Effective k\\cdot p Hamiltonian: BHZ model\nThe simplest way to see inversion mathematically is the Bernevig–Hughes–Zhang (BHZ) model for HgTe/CdTe:\n\nH(\\mathbf{k}) =\n\\begin{pmatrix}\nM(\\mathbf{k}) & A k_+ & 0 & 0 \\\\\nA k_- & -M(\\mathbf{k}) & 0 & 0 \\\\\n0 & 0 & M(\\mathbf{k}) & -A k_- \\\\\n0 & 0 & -A k_+ & -M(\\mathbf{k})\n\\end{pmatrix},\n\nwhere\n\nM(\\mathbf{k}) = M_0 - B k^2,\\qquad k_\\pm = k_x \\pm i k_y.\n\n\nThe sign of M_0 determines the ordering at k=0:\n\nM_0&gt;0: normal (s-above-p)\n\nM_0&lt;0: inverted (p-above-s)\n\n\nBand energies:\n\nE(\\mathbf{k}) = \\pm \\sqrt{M(\\mathbf{k})^2 + A^2 k^2}."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-4-topological-transition-and-invariant",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-4-topological-transition-and-invariant",
+    "title": "Weyl Semi-Metals",
+    "section": "🧭 Step 4 — Topological transition and invariant",
+    "text": "🧭 Step 4 — Topological transition and invariant\nWhen M_0 changes sign:\n\nThe gap closes at \\mathbf{k}=0 when M_0=0.\nThe parity eigenvalues at time-reversal invariant momenta (TRIMs) change.\nThis changes the \\mathbb{Z}_2 topological invariant (Fu–Kane formula):\n\n\n(-1)^\\nu = \\prod_{i=1}^{8} \\prod_{n\\in\\text{occ}} \\xi_{2n}(\\Gamma_i),\n\nwhere \\xi=\\pm1 are the parity eigenvalues of the occupied bands at each TRIM \\Gamma_i.\n\nNormal insulator: \\nu = 0\n\nBand-inverted: \\nu = 1 → topological insulator\n\nThis is the rigorous meaning of:\n&gt; “You cannot undo inversion without closing the gap somewhere.”"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-5-how-dirac-and-weyl-semimetals-appear",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-5-how-dirac-and-weyl-semimetals-appear",
+    "title": "Weyl Semi-Metals",
+    "section": "⚡ Step 5 — How Dirac and Weyl semimetals appear",
+    "text": "⚡ Step 5 — How Dirac and Weyl semimetals appear\nNow suppose you tune M_0 to exactly zero:\n\nM(\\mathbf{k}) = - Bk^2.\n\nThen the bands touch at \\mathbf{k}=0:\n\nE(\\mathbf{k}) = \\pm A|\\mathbf{k}|.\n\nThis is a Dirac point: a 4-fold degeneracy (2 spin × 2 orbital).\nThis gives a Dirac semimetal (DSM) phase.\n\nDirac point is protected if both inversion (\\mathcal{P}) and time-reversal (\\mathcal{T}) symmetries are present and band crossings are symmetry-protected."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-6-break-mathcalp-or-mathcalt-weyl-semimetal",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-6-break-mathcalp-or-mathcalt-weyl-semimetal",
+    "title": "Weyl Semi-Metals",
+    "section": "⚡ Step 6 — Break \\mathcal{P} or \\mathcal{T} → Weyl semimetal",
+    "text": "⚡ Step 6 — Break \\mathcal{P} or \\mathcal{T} → Weyl semimetal\nIf you break either inversion or time-reversal, the Dirac point splits into two Weyl points of opposite chirality.\nMathematically:\n\nAdd a term like b\\,\\sigma_z (breaking inversion) or b\\,s_z (breaking time-reversal) to the Dirac Hamiltonian:\n\n\nH_\\text{Dirac} = v\\mathbf{k}\\cdot \\boldsymbol{\\Gamma} + b\\Gamma_5.\n\n→ This shifts the Weyl nodes to \\pm \\mathbf{k}_0 in the Brillouin zone.\n\nEach Weyl node is a Berry curvature monopole with Chern number \\pm1.\nThis gives Weyl semimetal (WSM) with Fermi arc surface states."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-7-phase-diagram-summary",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#step-7-phase-diagram-summary",
+    "title": "Weyl Semi-Metals",
+    "section": "📌 Step 7 — Phase diagram summary",
+    "text": "📌 Step 7 — Phase diagram summary\npython | M_0 value | SOC gap? | Symmetries | Phase | Key feature | |———————-|————-|——————————-|————————————-|——————————–| | M_0&gt;0 | yes | \\mathcal{P},\\mathcal{T} | Normal insulator | trivial gap | | M_0&lt;0 | yes | \\mathcal{P},\\mathcal{T} | Topological insulator | protected edge/surface states | | M_0=0 | gap closes | \\mathcal{P},\\mathcal{T} | Dirac semimetal (DSM) | Dirac point | | M_0=0, break \\mathcal{P} or \\mathcal{T} | gapless | broken \\mathcal{P} or \\mathcal{T} | Weyl semimetal (WSM) | Weyl points + Fermi arcs |"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#conceptual-recap",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#conceptual-recap",
+    "title": "Weyl Semi-Metals",
+    "section": "🧠 Conceptual recap",
+    "text": "🧠 Conceptual recap\n\nBand inversion flips orbital/parity order → changes topological invariant.\n\nIf SOC gaps the crossing → topological insulator.\n\nIf gap doesn’t open → Dirac semimetal.\n\nIf inversion/time-reversal is broken → Dirac point splits → Weyl semimetal.\n\nThis entire sequence is a single continuous picture governed by the sign of the mass term M_0 and the presence of symmetries."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#start-from-atomic-orbitals-and-crystal-symmetry",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#start-from-atomic-orbitals-and-crystal-symmetry",
+    "title": "Weyl Semi-Metals",
+    "section": "Start from atomic orbitals and crystal symmetry",
+    "text": "Start from atomic orbitals and crystal symmetry\nImagine a crystal made of atoms contributing s-like and p-like orbitals. At the \\Gamma-point (k=0), the bands can be labeled by their parity eigenvalues under inversion symmetry \\mathcal{P}. Let’s call:\n\n|s\\rangle: even parity (+)\n\n|p\\rangle: odd parity (-)\n\nThe unperturbed energies are:\n\nE_s &gt; E_p.\n\nSo normally the s-like band becomes the conduction band and p-like the valence band.\nMore mathematically using the k\\cdot p expansion:\n\nE_n(\\mathbf{k}) = E_n(0) + \\frac{\\hbar^2 k^2}{2m^*} + \\dots\n\nThus the ordering at k=0 sets the global band topology but if SOC pushes E_{p}(0) above E_{s}(0), the bands are inverted at \\Gamma.\nAway from \\Gamma, the k^2-term (Bk^2 in the BHZ model) restores normal ordering, so the band gap opens up again — but the parity order at \\Gamma stays inverted, and that’s what counts topologically.\n\n\n\\Gamma = (0,0,0) is the center of the Brillouin zone.\nIt’s a time-reversal invariant momentum (TRIM):\n\\Gamma \\equiv -\\Gamma \\; (\\text{mod reciprocal lattice vector}).\nThere are only a few TRIMs: \\Gamma, X, L, M, etc., depending on the lattice.\n\nThese are high-symmetry points where: - Crystal momentum is zero (why?), so Bloch states have the same symmetry as the atomic orbitals. - Each state can be labeled by parity eigenvalues and other crystal quantum numbers.\nThis is crucial for topology.\n\nWhy does inversion occure there?\n\nIn local terms…\n\nNear \\Gamma, the band energies are close to the atomic orbital levels because k is small, meaning there is no kinetic energy term yet.\n\nThis is where the s- and p-like states from atoms interact and hybridize.\n\n\n\n\n\nWhy topological invariants are defined at TRIMs\n\nFu & Kane showed the \\mathbb{Z}_2 topological invariant can be computed as a product of parity eigenvalues at TRIMs:\n\n\n(-1)^\\nu = \\prod_{i\\in \\text{TRIM}} \\prod_{n\\in\\text{occ}} \\xi_n(\\Gamma_i),\n\nwhere \\xi_n=\\pm1 are parity eigenvalues.\n\nThis only works at TRIMs because time-reversal forces Kramers degeneracy there.\nSo band inversion must occur at a TRIM (like \\Gamma) to flip the parity product and change the topological invariant. It’s the natural place where atomic s- and p-states meet.\n\nOnly inversion at a TRIM like \\Gamma can change the topological invariant. If inversion happened at some generic \\mathbf{k}-point, it would happen at \\mathbf{k} and -\\mathbf{k} simultaneously (due to time-reversal symmetry), and their contributions would cancel — leaving the \\mathbb{Z}_2 invariant unchanged. In other words only inversions at TRIMs can drive topological phase transitions.\n\n\n\n\n\n\n\n\nWhy \\Gamma point matters\nExplanation\n\n\n\n\nHigh symmetry\nWavefunctions have well-defined parity at k=0.\n\n\nSOC is strongest here\nSmall k: atomic character dominates.\n\n\nTRIM condition\nNeeded for parity-based topological invariant.\n\n\nTopology changes here first\nInversion here forces gap closure → topological transition."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#why-does-inversion-occure-there",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#why-does-inversion-occure-there",
+    "title": "Weyl Semi-Metals",
+    "section": "Why does inversion occure there?",
+    "text": "Why does inversion occure there?\n\nIn local terms…\n\nNear \\Gamma, the band energies are close to the atomic orbital levels because k is small, meaning there is no kinetic energy term yet.\n\nThis is where the s- and p-like states from atoms interact and hybridize."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#from-atomic-orbitals-to-band-inversion",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#from-atomic-orbitals-to-band-inversion",
+    "title": "Weyl Semi-Metals",
+    "section": "From atomic orbitals to band inversion",
+    "text": "From atomic orbitals to band inversion\nImagine a crystal made of atoms contributing s-like and p-like orbitals. At the \\Gamma-point (k=0), the bands can be labeled by their parity eigenvalues under inversion symmetry \\mathcal{P}. Let’s call:\n\n|s\\rangle: even parity (+)\n\n|p\\rangle: odd parity (-)\n\nThe unperturbed energies are:\n\nE_s &gt; E_p.\n\nSo normally the s-like band becomes the conduction band and p-like the valence band.\nMore mathematically using the k\\cdot p expansion:\n\nE_n(\\mathbf{k}) = E_n(0) + \\frac{\\hbar^2 k^2}{2m^*} + \\dots\n\nThus the ordering at k=0 sets the global band topology but if SOC pushes E_{p}(0) above E_{s}(0), the bands are inverted at \\Gamma.\nAway from \\Gamma, the k^2-term (Bk^2 in the BHZ model) restores normal ordering, so the band gap opens up again — but the parity order at \\Gamma stays inverted, and that’s what counts topologically.\n\n\n\\Gamma = (0,0,0) is the center of the Brillouin zone.\nIt’s a time-reversal invariant momentum (TRIM):\n\\Gamma \\equiv -\\Gamma \\; (\\text{mod reciprocal lattice vector}).\nThere are only a few TRIMs: \\Gamma, X, L, M, etc., depending on the lattice.\n\nThese are high-symmetry points where: - Crystal momentum is zero (why?), so Bloch states have the same symmetry as the atomic orbitals. - Each state can be labeled by parity eigenvalues and other crystal quantum numbers.\nThis is crucial for topology.\n\nWhy does inversion occure there?\nWell in local terms… - Near \\Gamma, the band energies are close to the atomic orbital levels because k is small, meaning there is no kinetic energy term yet.\n- This is where the s- and p-like states from atoms interact and hybridize. - In fact topological invariants are defined at TRIMs. Fu & Kane showed the \\mathbb{Z}_2 topological invariant can be computed as a product of parity eigenvalues at TRIMs:\n\n(-1)^\\nu = \\prod_{i\\in \\text{TRIM}} \\prod_{n\\in\\text{occ}} \\xi_n(\\Gamma_i),\n\nwhere \\xi_n=\\pm1 are parity eigenvalues.\n\nThis only works at TRIMs because time-reversal forces Kramers degeneracy there.\nSo band inversion must occur at a TRIM (like \\Gamma) to flip the parity product and change the topological invariant. It’s the natural place where atomic s- and p-states meet.\n\nOnly inversion at a TRIM like \\Gamma can change the topological invariant. If inversion happened at some generic \\mathbf{k}-point, it would happen at \\mathbf{k} and -\\mathbf{k} simultaneously (due to time-reversal symmetry), and their contributions would cancel — leaving the \\mathbb{Z}_2 invariant unchanged. In other words only inversions at TRIMs can drive topological phase transitions.\n\n\n\n\n\n\n\n\nWhy \\Gamma point matters\nExplanation\n\n\n\n\nHigh symmetry\nWavefunctions have well-defined parity at k=0.\n\n\nSOC is strongest here\nSmall k: atomic character dominates.\n\n\nTRIM condition\nNeeded for parity-based topological invariant.\n\n\nTopology changes here first\nInversion here forces gap closure → topological transition."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#include-spinorbit-coupling-soc",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#include-spinorbit-coupling-soc",
+    "title": "Weyl Semi-Metals",
+    "section": "Include spin–orbit coupling (SOC)",
+    "text": "Include spin–orbit coupling (SOC)\nThe atomic SOC Hamiltonian is\n\nH_\\text{SOC} = \\lambda \\,\\mathbf{L}\\cdot\\mathbf{S},\n\nwhich splits the p-states into:\n\n|p_{3/2}\\rangle \\; \\text{(4-fold)}, \\qquad |p_{1/2}\\rangle \\; \\text{(2-fold)}.\n\nIf SOC is weak, the ordering stays the same: E_s &gt; E_{p_{3/2}}&gt;E_{p_{1/2}}.\nIf SOC is strong, it can push the p_{1/2}-like state above the s-like state, inverting the order."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#start-from-atomic-orbitals",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#start-from-atomic-orbitals",
+    "title": "Weyl Semi-Metals",
+    "section": "Start from atomic orbitals…",
+    "text": "Start from atomic orbitals…\nImagine a crystal made of atoms contributing s-like and p-like orbitals. At the \\Gamma-point (k=0), the bands can be labeled by their parity eigenvalues under inversion symmetry \\mathcal{P}. Let’s call:\n\n|s\\rangle: even parity (+)\n\n|p\\rangle: odd parity (-)\n\nThe unperturbed energies are:\n\nE_s &gt; E_p.\n\nSo normally the s-like band becomes the conduction band and p-like the valence band.\nMore mathematically using the k\\cdot p expansion:\n\nE_n(\\mathbf{k}) = E_n(0) + \\frac{\\hbar^2 k^2}{2m^*} + \\dots\n\nThus the ordering at k=0 sets the global band topology but if SOC pushes E_{p}(0) above E_{s}(0), the bands are inverted at \\Gamma.\nAway from \\Gamma, the k^2-term (Bk^2 in the BHZ model) restores normal ordering, so the band gap opens up again — but the parity order at \\Gamma stays inverted, and that’s what counts topologically.\n\n\n\n\\Gamma = (0,0,0), the center of the Brillouin zone, is a time-reversal invariant momentum (TRIM). \\Gamma \\equiv -\\Gamma \\; (\\text{mod reciprocal lattice vector}).\nThere are only a few TRIMs: \\Gamma, X, L, M, etc., depending on the lattice. These are high-symmetry points where crystal momentum is zero (why?), so Bloch states have the same symmetry as the atomic orbitals.\nEach state can be labeled by parity eigenvalues and other crystal quantum numbers.\n\nThis is crucial for topology.\n\nWhy does inversion occure there?\nWell in local terms… - Near \\Gamma, the band energies are close to the atomic orbital levels because k is small, meaning there is no kinetic energy term yet.\n- This is where the s- and p-like states from atoms interact and hybridize. - In fact topological invariants are defined at TRIMs. Fu & Kane showed the \\mathbb{Z}_2 topological invariant can be computed as a product of parity eigenvalues at TRIMs:\n\n(-1)^\\nu = \\prod_{i\\in \\text{TRIM}} \\prod_{n\\in\\text{occ}} \\xi_n(\\Gamma_i),\n\nwhere \\xi_n=\\pm1 are parity eigenvalues.\n\nThis only works at TRIMs because time-reversal forces Kramers degeneracy there.\nSo band inversion must occur at a TRIM (like \\Gamma) to flip the parity product and change the topological invariant. It’s the natural place where atomic s- and p-states meet.\n\nOnly inversion at a TRIM like \\Gamma can change the topological invariant. If inversion happened at some generic \\mathbf{k}-point, it would happen at \\mathbf{k} and -\\mathbf{k} simultaneously (due to time-reversal symmetry), and their contributions would cancel — leaving the \\mathbb{Z}_2 invariant unchanged. In other words only inversions at TRIMs can drive topological phase transitions.\n\n\n\n\n\n\n\n\nWhy \\Gamma point matters\nExplanation\n\n\n\n\nHigh symmetry\nWavefunctions have well-defined parity at k=0.\n\n\nSOC is strongest here\nSmall k: atomic character dominates.\n\n\nTRIM condition\nNeeded for parity-based topological invariant.\n\n\nTopology changes here first\nInversion here forces gap closure → topological transition.\n\n\n\n\n\n\nParity eigenvalues are only well-defined at TRIM points such as \\Gamma, because only there does inversion act within the same Bloch subspace. Equivalently, only at TRIMs are the Bloch States also parity eigenstates. Take a Bloch state:\n\n\\psi_{n\\mathbf{k}}(\\mathbf{r}) = e^{i\\mathbf{k}\\cdot\\mathbf{r}}\\,u_{n\\mathbf{k}}(\\mathbf{r}),\n\\qquad u_{n\\mathbf{k}}(\\mathbf{r}+\\mathbf{R})=u_{n\\mathbf{k}}(\\mathbf{r}),\n\nwhere u_{n\\mathbf{k}} has the periodicity of the lattice and applying inversion you get:\n\n\\hat{P}\\,\\psi_{n\\mathbf{k}}(\\mathbf{r})\n= \\psi_{n\\mathbf{k}}(-\\mathbf{r})\n= e^{-i\\mathbf{k}\\cdot\\mathbf{r}}\\,u_{n\\mathbf{k}}(-\\mathbf{r})\n\\;\\propto\\; \\psi_{n,-\\mathbf{k}}(\\mathbf{r}).\n\nThus inversion maps \\mathbf{k}\\to -\\mathbf{k}. Only when \\mathbf{k}=-\\mathbf{k} (mod a reciprocal lattice vector) does \\hat{P} act within the same subspace. These special points are the time-reversal invariant momenta (TRIMs), including \\Gamma = (0,0,0). At TRIM points, each Bloch state can be chosen as an eigenstate of inversion:\n\n\\hat{P}\\,\\psi_{n\\mathbf{k}} = \\xi_n(\\mathbf{k})\\,\\psi_{n\\mathbf{k}}, \\qquad \\xi_n(\\mathbf{k})=\\pm1.\n\n\nBut why are \\mathbf{k} and -\\mathbf{k} different subspaces?\nBecause Bloch states are eigenstates of lattice translations T_\\mathbf{R}:\n\nT_\\mathbf{R}\\psi_{n\\mathbf{k}} = e^{i\\mathbf{k}\\cdot\\mathbf{R}} \\psi_{n\\mathbf{k}}.\n\nStates with different \\mathbf{k} have different translation eigenvalues and thus belong to orthogonal invariant subspaces.\nFor \\mathbf{k}\\neq -\\mathbf{k}:\n\nT_\\mathbf{R}\\psi_{n\\mathbf{k}} = e^{+i\\mathbf{k}\\cdot\\mathbf{R}}\\psi_{n\\mathbf{k}},\\qquad\nT_\\mathbf{R}\\psi_{n,-\\mathbf{k}} = e^{-i\\mathbf{k}\\cdot\\mathbf{R}}\\psi_{n,-\\mathbf{k}}.\n\nThese are inequivalent irreducible representations of the translation group. Therefore, \\hat{P} maps between two different subspaces unless \\mathbf{k}=-\\mathbf{k}.\nTo summarize:\n\n\n\n\n\n\n\n\n\\mathbf{k} point\nAction of \\hat{P}\nParity eigenvalues possible?\n\n\n\n\nGeneric \\mathbf{k}\n\\psi_{\\mathbf{k}} \\mapsto \\psi_{-\\mathbf{k}} (different subspace)\n❌ No\n\n\nTRIM (\\mathbf{k}=-\\mathbf{k})\n\\psi_{\\mathbf{k}} \\mapsto \\pm\\psi_{\\mathbf{k}} (same subspace)\n✅ Yes"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#and-include-spinorbit-coupling-soc",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#and-include-spinorbit-coupling-soc",
+    "title": "Weyl Semi-Metals",
+    "section": "and include spin–orbit coupling (SOC)…",
+    "text": "and include spin–orbit coupling (SOC)…\nThe atomic SOC Hamiltonian is\n\nH_\\text{SOC} = \\lambda \\,\\mathbf{L}\\cdot\\mathbf{S},\n\nwhich splits the p-states into:\n\n|p_{3/2}\\rangle \\; \\text{(4-fold)}, \\qquad |p_{1/2}\\rangle \\; \\text{(2-fold)}.\n\nIf SOC is weak, the ordering stays the same: E_s &gt; E_{p_{3/2}}&gt;E_{p_{1/2}}.\nIf SOC is strong, it can push the p_{1/2}-like state above the s-like state, inverting the order."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#effecting-band-inversion-seen-via-the-kcdot-p-hamiltonian-bhz-model",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#effecting-band-inversion-seen-via-the-kcdot-p-hamiltonian-bhz-model",
+    "title": "Weyl Semi-Metals",
+    "section": "effecting band inversion seen via the k\\cdot p Hamiltonian: BHZ model",
+    "text": "effecting band inversion seen via the k\\cdot p Hamiltonian: BHZ model\nThe simplest way to see inversion mathematically is the Bernevig–Hughes–Zhang (BHZ) model for HgTe/CdTe:\n\nH(\\mathbf{k}) =\n\\begin{pmatrix}\nM(\\mathbf{k}) & A k_+ & 0 & 0 \\\\\nA k_- & -M(\\mathbf{k}) & 0 & 0 \\\\\n0 & 0 & M(\\mathbf{k}) & -A k_- \\\\\n0 & 0 & -A k_+ & -M(\\mathbf{k})\n\\end{pmatrix},\n\nwhere\n\nM(\\mathbf{k}) = M_0 - B k^2,\\qquad k_\\pm = k_x \\pm i k_y.\n\n\nThe sign of M_0 determines the ordering at k=0:\n\nM_0&gt;0: normal (s-above-p)\n\nM_0&lt;0: inverted (p-above-s)\n\n\nBand energies:\n\nE(\\mathbf{k}) = \\pm \\sqrt{M(\\mathbf{k})^2 + A^2 k^2}."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#this-topological-transition-and-invariant",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#this-topological-transition-and-invariant",
+    "title": "Weyl Semi-Metals",
+    "section": "This topological transition and invariant…",
+    "text": "This topological transition and invariant…\nWhen M_0 changes sign:\n\nThe gap closes at \\mathbf{k}=0 when M_0=0.\nThe parity eigenvalues at time-reversal invariant momenta (TRIMs) change.\nThis changes the \\mathbb{Z}_2 topological invariant (Fu–Kane formula):\n\n\n(-1)^\\nu = \\prod_{i=1}^{8} \\prod_{n\\in\\text{occ}} \\xi_{2n}(\\Gamma_i),\n\nwhere \\xi=\\pm1 are the parity eigenvalues of the occupied bands at each TRIM \\Gamma_i.\n\nNormal insulator: \\nu = 0\n\nBand-inverted: \\nu = 1 → topological insulator\n\nThis is the rigorous meaning of:\n&gt; “You cannot undo inversion without closing the gap somewhere.”"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#is-how-dirac-and-weyl-semimetals-appear",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#is-how-dirac-and-weyl-semimetals-appear",
+    "title": "Weyl Semi-Metals",
+    "section": "is how Dirac and Weyl semimetals appear",
+    "text": "is how Dirac and Weyl semimetals appear\nNow suppose you tune M_0 to exactly zero:\n\nM(\\mathbf{k}) = - Bk^2.\n\nThen the bands touch at \\mathbf{k}=0:\n\nE(\\mathbf{k}) = \\pm A|\\mathbf{k}|.\n\nThis is a Dirac point: a 4-fold degeneracy (2 spin × 2 orbital).\nThis gives a Dirac semimetal (DSM) phase.\n\nDirac point is protected if both inversion (\\mathcal{P}) and time-reversal (\\mathcal{T}) symmetries are present and band crossings are symmetry-protected."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#break-mathcalp-or-mathcalt-weyl-semimetal",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#break-mathcalp-or-mathcalt-weyl-semimetal",
+    "title": "Weyl Semi-Metals",
+    "section": "Break \\mathcal{P} or \\mathcal{T} → Weyl semimetal",
+    "text": "Break \\mathcal{P} or \\mathcal{T} → Weyl semimetal\nIf you break either inversion or time-reversal, the Dirac point splits into two Weyl points of opposite chirality.\nMathematically:\n\nAdd a term like b\\,\\sigma_z (breaking inversion) or b\\,s_z (breaking time-reversal) to the Dirac Hamiltonian:\n\n\nH_\\text{Dirac} = v\\mathbf{k}\\cdot \\boldsymbol{\\Gamma} + b\\Gamma_5.\n\n→ This shifts the Weyl nodes to \\pm \\mathbf{k}_0 in the Brillouin zone.\n\nEach Weyl node is a Berry curvature monopole with Chern number \\pm1.\nThis gives Weyl semimetal (WSM) with Fermi arc surface states."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#phase-diagram-summary",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#phase-diagram-summary",
+    "title": "Weyl Semi-Metals",
+    "section": "Phase diagram summary",
+    "text": "Phase diagram summary\n\n\n\n\n\n\n\n\n\n\nM_0 value\nSOC gap?\nSymmetries\nPhase\nKey feature\n\n\n\n\nM_0&gt;0\nyes\n\\mathcal{P},\\mathcal{T}\nNormal insulator\ntrivial gap\n\n\nM_0&lt;0\nyes\n\\mathcal{P},\\mathcal{T}\nTopological insulator\nprotected edge/surface states\n\n\nM_0=0\ngap closes\n\\mathcal{P},\\mathcal{T}\nDirac semimetal (DSM)\nDirac point\n\n\nM_0=0, break \\mathcal{P} or \\mathcal{T}\ngapless\nbroken \\mathcal{P} or \\mathcal{T}\nWeyl semimetal (WSM)\nWeyl points + Fermi arcs"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#why-kramers-degeneracy-at-trims-matters",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#why-kramers-degeneracy-at-trims-matters",
+    "title": "Weyl Semi-Metals",
+    "section": "Why Kramers degeneracy at TRIMs matters",
+    "text": "Why Kramers degeneracy at TRIMs matters\nThe time-reversal operator is anti-unitary: \\Theta = U_T \\mathcal{K}, where \\mathcal{K} is complex conjugation and U_T = e^{-i\\pi S_y/\\hbar} for spin-\\frac{1}{2} particles. For spin-\\frac{1}{2}, it satisfies \\Theta^2 = -1.\nAt TRIM, Kramers theorem then guarantees that each state |u_n(\\mathbf{k})\\rangle has a degenerate partner \\Theta|u_n(\\mathbf{k})\\rangle with the same energy.\nBecause \\Theta also flips momentum: \\Theta|u_n(\\mathbf{k})\\rangle = |u_n(-\\mathbf{k})\\rangle, the degeneracy occurs only when \\mathbf{k} = -\\mathbf{k} + \\mathbf{G}\n(where \\mathbf{G} is a reciprocal lattice vector), which defines the time-reversal invariant momenta (TRIMs).\nAt TRIMs:\n\nEvery band forms a Kramers pair\n\nBand inversions occur as pairs, allowing well-defined parity eigenvalues\n\nThe \\mathbb{Z}_2 topological invariant can be computed purely from the parities of the occupied bands at the TRIMs (Fu–Kane formula)\n\nAway from TRIMs, such degeneracy is not guaranteed, so the topology cannot be determined locally there.\nTRIMs act as topological anchors for time-reversal invariant systems."
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#do-we-want-time-reversal-symmetry",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#do-we-want-time-reversal-symmetry",
+    "title": "Weyl Semi-Metals",
+    "section": "❖ Do we want time-reversal symmetry?",
+    "text": "❖ Do we want time-reversal symmetry?\nWhether TRS is desired depends on the target topological phase:\n\n\n\n\n\n\n\n\nPhase\nTRS required?\nReason\n\n\n\n\nTopological insulator (\\mathbb{Z}_2)\nYes\nTRS enforces Kramers degeneracy and protects edge states\n\n\nWeyl semimetal\nNo (must break TRS or inversion)\nTRS would pair Weyl nodes at \\mathbf{k} and -\\mathbf{k}, destroying them\n\n\nChern insulator\nNo (must break TRS)\nTRS forces Berry curvature \\Omega(\\mathbf{k}) to cancel: \\Omega(\\mathbf{k}) = -\\Omega(-\\mathbf{k}), giving zero Chern number"
+  },
+  {
+    "objectID": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#parity-eigenvalues-at-gamma-and-the-role-of-k-vs--k-subspaces",
+    "href": "C0TopologicalMaterials/lectures/04_Weyl_Semimetals.html#parity-eigenvalues-at-gamma-and-the-role-of-k-vs--k-subspaces",
+    "title": "Weyl Semi-Metals",
+    "section": "Parity Eigenvalues at \\Gamma and the Role of k vs -k Subspaces",
+    "text": "Parity Eigenvalues at \\Gamma and the Role of k vs -k Subspaces\n\n1. Parity and Bloch States\nIn a crystal with inversion symmetry, the inversion operator \\hat{P} acts as\n\n\\hat{P}\\,\\psi(\\mathbf{r}) = \\psi(-\\mathbf{r}).\n\nBloch states are of the form\n\n\\psi_{n\\mathbf{k}}(\\mathbf{r}) = e^{i\\mathbf{k}\\cdot\\mathbf{r}}\\,u_{n\\mathbf{k}}(\\mathbf{r}),\n\\qquad u_{n\\mathbf{k}}(\\mathbf{r}+\\mathbf{R})=u_{n\\mathbf{k}}(\\mathbf{r}),\n\nwhere u_{n\\mathbf{k}} has the periodicity of the lattice.\n\n\n\n2. Why Only \\Gamma (and TRIM) Can Have Parity Eigenvalues\nApplying inversion to a Bloch state gives\n\n\\hat{P}\\,\\psi_{n\\mathbf{k}}(\\mathbf{r})\n= \\psi_{n\\mathbf{k}}(-\\mathbf{r})\n= e^{-i\\mathbf{k}\\cdot\\mathbf{r}}\\,u_{n\\mathbf{k}}(-\\mathbf{r})\n\\;\\propto\\; \\psi_{n,-\\mathbf{k}}(\\mathbf{r}).\n\nThus inversion maps \\mathbf{k}\\to -\\mathbf{k}.\nOnly when \\mathbf{k}=-\\mathbf{k} (mod a reciprocal lattice vector) does \\hat{P} act within the same subspace.\nThese special points are the time-reversal invariant momenta (TRIMs), including \\Gamma = (0,0,0).\nAt TRIM points, each Bloch state can be chosen as an eigenstate of inversion:\n\n\\hat{P}\\,\\psi_{n\\mathbf{k}} = \\xi_n(\\mathbf{k})\\,\\psi_{n\\mathbf{k}}, \\qquad \\xi_n(\\mathbf{k})=\\pm1.\n\nThis is why only \\Gamma and other TRIM states can be characterized by parity eigenvalues.\n\n\n\n3. Why \\mathbf{k} and -\\mathbf{k} Are Different Subspaces\nBloch states are eigenstates of lattice translations T_\\mathbf{R}:\n\nT_\\mathbf{R}\\psi_{n\\mathbf{k}} = e^{i\\mathbf{k}\\cdot\\mathbf{R}} \\psi_{n\\mathbf{k}}.\n\nStates with different \\mathbf{k} have different translation eigenvalues and thus belong to orthogonal invariant subspaces.\nFor \\mathbf{k}\\neq -\\mathbf{k}:\n\nT_\\mathbf{R}\\psi_{n\\mathbf{k}} = e^{+i\\mathbf{k}\\cdot\\mathbf{R}}\\psi_{n\\mathbf{k}},\\qquad\nT_\\mathbf{R}\\psi_{n,-\\mathbf{k}} = e^{-i\\mathbf{k}\\cdot\\mathbf{R}}\\psi_{n,-\\mathbf{k}}.\n\nThese are inequivalent irreducible representations of the translation group.\nTherefore, \\hat{P} maps between two different subspaces unless \\mathbf{k}=-\\mathbf{k}.\n\n\n\n4. Summary Table\n\n\n\n\n\n\n\n\n\\mathbf{k} point\nAction of \\hat{P}\nParity eigenvalues possible?\n\n\n\n\nGeneric \\mathbf{k}\n\\psi_{\\mathbf{k}} \\mapsto \\psi_{-\\mathbf{k}} (different subspace)\n❌ No\n\n\nTRIM (\\mathbf{k}=-\\mathbf{k})\n\\psi_{\\mathbf{k}} \\mapsto \\pm\\psi_{\\mathbf{k}} (same subspace)\n✅ Yes\n\n\n\nThus, parity eigenvalues are only well-defined at TRIM points such as \\Gamma, because only there does inversion act within the same Bloch subspace."
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html",
+    "href": "C0manybody/lectures/LRT.html",
+    "title": "Linear Response Theory",
+    "section": "",
+    "text": "We start from the general constitutive relation between the polarization P and the electric field E in a linear medium:\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi(\\mathbf{r}, t; \\mathbf{r}',t') \\, E(\\mathbf{r}',t').\n\\tag{1}\nThis Green’s function relation emerges out of the Kubo formula. Below we make two changes to it: (1) We use the component notation with the summation convention in place, and (2) We impose the constraint that time dependence is stationary (i.e. is a function of t-t') and the space dependence exhibits translational invariance or homongeneity (is a function of \\mathbf{r}-\\mathbf{r'}):\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi_{ij}(\\mathbf{r}-\\mathbf{r}',\\,t-t') \\, E_j(\\mathbf{r}',t').\n\nSo we have gone from the Kubo formula, to a space-time convolution because the susceptibility depends only on the differences \\mathbf{r}-\\mathbf{r}' and t-t'. The Fourier transform is going to turn it into a multiplication:\n\n\\boxed{\\tilde{P}_i(\\mathbf{k},\\omega)=\\varepsilon_0\\,\\tilde\\chi_{ij}(\\mathbf{k},\\omega)\\,\\tilde{E}_j(\\mathbf{k},\\omega)}.\nSo we have: \\begin{align*}\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell,m} w_\\ell\\Big(\n&e^{i\\omega_{\\ell m}\\tau} \\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle\\langle m|P_j(\\mathbf r)|\\ell\\rangle\\\\\n- &e^{i\\omega_{m\\ell}\\tau}\\langle\\ell|P_j(\\mathbf r)|m\\rangle\\langle m|P_i(\\mathbf r+\\mathbf s)|\\ell\\rangle\n\\Big).\n\\end{align*}\n\\tag{3}",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#from-kubos-formula-to-susceptibility",
+    "href": "C0manybody/lectures/LRT.html#from-kubos-formula-to-susceptibility",
+    "title": "Linear Response Theory",
+    "section": "",
+    "text": "We start from the general constitutive relation between the polarization P and the electric field E in a linear medium:\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi(\\mathbf{r}, t; \\mathbf{r}',t') \\, E(\\mathbf{r}',t').\n\\tag{1}\nThis Green’s function relation emerges out of the Kubo formula. Below we make two changes to it: (1) We use the component notation with the summation convention in place, and (2) We impose the constraint that time dependence is stationary (i.e. is a function of t-t') and the space dependence exhibits translational invariance or homongeneity (is a function of \\mathbf{r}-\\mathbf{r'}):\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi_{ij}(\\mathbf{r}-\\mathbf{r}',\\,t-t') \\, E_j(\\mathbf{r}',t').\n\nSo we have gone from the Kubo formula, to a space-time convolution because the susceptibility depends only on the differences \\mathbf{r}-\\mathbf{r}' and t-t'. The Fourier transform is going to turn it into a multiplication:\n\n\\boxed{\\tilde{P}_i(\\mathbf{k},\\omega)=\\varepsilon_0\\,\\tilde\\chi_{ij}(\\mathbf{k},\\omega)\\,\\tilde{E}_j(\\mathbf{k},\\omega)}.",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#fourier-transform-conventions",
+    "href": "C0manybody/lectures/LRT.html#fourier-transform-conventions",
+    "title": "Linear Response Theory",
+    "section": "Fourier Transform Conventions",
+    "text": "Fourier Transform Conventions\nWe define the Fourier transform as\n\nf(\\mathbf{r},t)\n= \\int \\frac{d^3k}{(2\\pi)^3} \\int \\frac{d\\omega}{2\\pi}\n\\; \\tilde{f}(\\mathbf{k},\\omega)\ne^{i(\\mathbf{k}\\cdot\\mathbf{r}-\\omega t)},\n\nwith the inverse transform\n\n\\tilde{f}(\\mathbf{k},\\omega)\n= \\int d^3r \\int dt\\; f(\\mathbf{r},t) e^{-i(\\mathbf{k}\\cdot\\mathbf{r}-\\omega t)}.",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#from-convolution-to-multiplication",
+    "href": "C0manybody/lectures/LRT.html#from-convolution-to-multiplication",
+    "title": "Linear Response Theory",
+    "section": "From Convolution to Multiplication",
+    "text": "From Convolution to Multiplication\nWe now Fourier transform P_i(\\mathbf{r},t):\n\n\\tilde{P}_i(\\mathbf{k},\\omega)\n= \\int d^3r \\int dt\\; e^{-i(\\mathbf{k}\\cdot\\mathbf{r}-\\omega t)} P_i(\\mathbf{r},t).\n\nInserting the constitutive relation gives\n\n\\tilde{P}_i(\\mathbf{k},\\omega)\n= \\varepsilon_0 \\int d^3r \\int dt\\;\ne^{-i(\\mathbf{k}\\cdot\\mathbf{r}-\\omega t)}\n\\int d^3r' dt' \\,\n\\chi_{ij}(\\mathbf{r}-\\mathbf{r}',t-t') E_j(\\mathbf{r}',t').\n\nLet \\mathbf{R}=\\mathbf{r}-\\mathbf{r}' and \\tau=t-t', so \\mathbf{r}=\\mathbf{R}+\\mathbf{r}' and t=\\tau+t'. Then\n\n\\tilde{P}_i(\\mathbf{k},\\omega)\n= \\varepsilon_0 \\int d^3R d\\tau \\int d^3r' dt'\\;\ne^{-i[\\mathbf{k}\\cdot(\\mathbf{R}+\\mathbf{r}') -\\omega (\\tau+t')]}\n\\chi_{ij}(\\mathbf{R},\\tau) E_j(\\mathbf{r}',t').\n\nThe exponential factor splits into two parts:\n\ne^{-i(\\mathbf{k}\\cdot\\mathbf{R}-\\omega \\tau)}\\,\ne^{-i(\\mathbf{k}\\cdot\\mathbf{r}'-\\omega t')}.\n\nThe integrals factor, giving\n\n\\tilde{P}_i(\\mathbf{k},\\omega)\n= \\varepsilon_0\n\\underbrace{\\int d^3R d\\tau\\;\\chi_{ij}(\\mathbf{R},\\tau) e^{-i(\\mathbf{k}\\cdot\\mathbf{R}-\\omega\\tau)}}_{\\tilde\\chi_{ij}(\\mathbf{k},\\omega)}\n\\underbrace{\\int d^3r' dt'\\; E_j(\\mathbf{r}',t') e^{-i(\\mathbf{k}\\cdot\\mathbf{r}'-\\omega t')}}_{\\tilde{E}_j(\\mathbf{k},\\omega)}.\n\nSo we obtain the diagonal relation:\n\n\\boxed{\\tilde{P}_i(\\mathbf{k},\\omega)=\\varepsilon_0\\,\\tilde\\chi_{ij}(\\mathbf{k},\\omega)\\,\\tilde{E}_j(\\mathbf{k},\\omega)}.",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#why-delta-functions-appear-in-tildechi",
+    "href": "C0manybody/lectures/LRT.html#why-delta-functions-appear-in-tildechi",
+    "title": "Linear Response Theory",
+    "section": "Why Delta Functions Appear in \\tilde{\\chi}",
+    "text": "Why Delta Functions Appear in \\tilde{\\chi}\nIn the most general case (before assuming translational invariance), \\chi depends on two points and two times:\n\n\\chi_{ij}(\\mathbf{r},\\mathbf{r}',t,t').\n\nWe could Fourier transform it using two independent sets of variables:\n\n\\chi_{ij}(\\mathbf{r},\\mathbf{r}',t,t')\n= \\int \\frac{d^3k\\,d^3k'}{(2\\pi)^6}\n\\frac{d\\omega\\,d\\omega'}{(2\\pi)^2}\\;\n\\tilde\\chi_{ij}(\\mathbf{k},\\mathbf{k}',\\omega,\\omega')\ne^{i(\\mathbf{k}\\cdot\\mathbf{r}-\\omega t)}e^{-i(\\mathbf{k}'\\cdot\\mathbf{r}'-\\omega' t')}.\n\nBut if the medium is homogeneous in space and stationary in time, then\n\n\\chi_{ij}(\\mathbf{r},\\mathbf{r}',t,t')\n= \\chi_{ij}(\\mathbf{r}-\\mathbf{r}',t-t').\n\nLetting \\mathbf{R}=\\mathbf{r}-\\mathbf{r}' and \\tau=t-t', we have\n\n\\tilde\\chi_{ij}(\\mathbf{k},\\mathbf{k}',\\omega,\\omega')\n=\\int d^3r\\, d^3r'\\, dt\\, dt' \\;\n\\chi_{ij}(\\mathbf{r}-\\mathbf{r}',t-t')\ne^{-i(\\mathbf{k}\\cdot\\mathbf{r}-\\omega t)}\ne^{i(\\mathbf{k}'\\cdot\\mathbf{r}'-\\omega' t')}.\n\nChanging variables to (\\mathbf{R},\\mathbf{r}',\\tau,t') gives\n\n\\int d^3R\\, d^3r'\\, d\\tau\\, dt' \\;\n\\chi_{ij}(\\mathbf{R},\\tau)\ne^{-i(\\mathbf{k}\\cdot\\mathbf{R}-\\omega\\tau)}\ne^{-i(\\mathbf{k}-\\mathbf{k}')\\cdot\\mathbf{r}'}\ne^{i(\\omega-\\omega')t'}.\n\nNow do the \\mathbf{r}' and t' integrals:\n\n\\int d^3r'\\; e^{-i(\\mathbf{k}-\\mathbf{k}')\\cdot\\mathbf{r}'}\n=(2\\pi)^3\\delta(\\mathbf{k}-\\mathbf{k}')\n\n\n\\int dt'\\; e^{i(\\omega-\\omega')t'}\n=2\\pi\\delta(\\omega-\\omega').\n\nSo we find\n\n\\boxed{\\tilde\\chi_{ij}(\\mathbf{k},\\mathbf{k}',\\omega,\\omega')\n=(2\\pi)^4 \\delta(\\mathbf{k}-\\mathbf{k}')\\delta(\\omega-\\omega')\\,\n\\chi_{ij}(\\mathbf{k},\\omega)}.",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#physical-meaning",
+    "href": "C0manybody/lectures/LRT.html#physical-meaning",
+    "title": "Linear Response Theory",
+    "section": "✅ Physical Meaning",
+    "text": "✅ Physical Meaning\n\nThe delta functions are a direct mathematical consequence of space and time translational invariance.\nThey enforce momentum and energy conservation: a plane wave at (\\mathbf{k},\\omega) can only drive a polarization at the same (\\mathbf{k},\\omega).\nThis is why the constitutive relation becomes diagonal in Fourier space:\n\n\nP_i(\\mathbf{k},\\omega)=\\varepsilon_0\\,\\chi_{ij}(\\mathbf{k},\\omega)\\,E_j(\\mathbf{k},\\omega).",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT-electric_susceptiblity.html",
+    "href": "C0manybody/lectures/LRT-electric_susceptiblity.html",
+    "title": "Electric Susceptibility",
+    "section": "",
+    "text": "Much of what follows is an elboration of Toyozawa, Optical Processes in Solids, Chapter 6\nSince we are going to apply time-dependent perturbations in the linear response regime, we need to remind ourselves, how the values of an observable vary when the perturbation comes into play. That is to say we need to remind ourselves of:",
+    "crumbs": [
+      "Topics",
+      "Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT-electric_susceptiblity.html#susceptibility-links-polarization-and-electric-field-greenly",
+    "href": "C0manybody/lectures/LRT-electric_susceptiblity.html#susceptibility-links-polarization-and-electric-field-greenly",
+    "title": "Electric Susceptibility",
+    "section": "Susceptibility links Polarization and Electric Field Greenly:",
+    "text": "Susceptibility links Polarization and Electric Field Greenly:\nSo susceptibility is really a Green’s function and when a weak external electric field \\mathbf E(\\mathbf r,t) is applied, the system responds linearly with an induced polarization \\mathbf P(\\mathbf r,t). In the linear response regime, the most general linear relation between cause (field) and effect (polarization) is\n\nP_i(\\mathbf r,t) = \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').\n\\tag{3}\nHere \\chi is the susceptibility tensor, has certain properties by default or by imposition:\n\n\nBecause the system is weakly perturbed, the polarization is a linear functional of the applied field.\n\n\nA perturbation at (\\mathbf r',t') can influence the polarization at (\\mathbf r,t). This makes \\chi depend on two spacetime points.\n\n\nA result cannot precede its cause. Therefore, \n\\chi_{ij}(\\mathbf r,t;\\mathbf r',t') = 0 \\quad \\text{for } t &lt; t' .",
+    "crumbs": [
+      "Topics",
+      "Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT-electric_susceptiblity.html#but-how-to-express-susceptibility",
+    "href": "C0manybody/lectures/LRT-electric_susceptiblity.html#but-how-to-express-susceptibility",
+    "title": "Electric Susceptibility",
+    "section": "But how to express susceptibility?",
+    "text": "But how to express susceptibility?\nTo find an expression for suceptibility, we:\n\nUse the interaction hamiltonian to find the perturbed wavefunction.\nFind the elements of the polarization operator.\nExploit the relationship between the current density and polarization operator.\nTake the statistical average on initial states to find the susceptibility.\n\nFor brownie points we then try to find frequency domain alternatives too.\n\n\nWe resort to the time-dependent perturbation theory:\n\n\n\n\nInteraction Picture\n\n\n\n  i\\hbar\\frac{\\partial\\Psi}{\\partial t} = (H_0+H'(t))\\Psi\n   \n  \\Psi(t)=e^{-iH_0 t/\\hbar}\\,\\Psi'(t)\n   \n  i\\hbar\\frac{\\partial\\Psi'}{\\partial t}=H'_I(t)\\Psi'(t)\n  \n\n\n\n\n\nInteraction Hamiltonian\n\n\n\n  H'(t) = -\\int d^3r\\; \\mathbf{j}(\\mathbf{r},t)\\cdot \\mathbf{A}(\\mathbf{r},t)\n  \n\n\n\n\n\nUnperturbed States\n\n\n\n  \\Psi'(t)=\\sum\\limits_l c_l(t)\\,\\phi_l\n   \n  i\\hbar \\frac{d c_m}{d t} =\n  \\sum\\limits_l c_l(t) \\langle \\phi_m|H'_I(t)|\\phi_l\\rangle\n  \n\n\n\n\n\nCorrected Wavefunction\n\n\n\n  \\Psi(t)=\\sum\\limits_l c_l(t)\n  e^{-iE_lt/\\hbar}\\,\\phi_l\n  \n\n\n\n\n\n\n\nReferences",
+    "crumbs": [
+      "Topics",
+      "Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#starting-point-kubo-linear-response-formula",
+    "href": "C0manybody/lectures/LRT.html#starting-point-kubo-linear-response-formula",
+    "title": "Derivation of (6.1.31) from the Kubo Linear-Response Formula",
+    "section": "Starting Point: Kubo Linear-Response Formula",
+    "text": "Starting Point: Kubo Linear-Response Formula\nWe start from the Kubo formula for the response of an observable \\hat{A} to a perturbation \\hat{B}:\n\n\\delta \\langle \\hat{A}(t) \\rangle\n= \\frac{i}{\\hbar} \\int_{-\\infty}^t dt'\n\\langle [\\hat{B}(t'),\\hat{A}(t)] \\rangle_0 \\, f(t')\n\nHere, f(t') is the time dependence of the perturbation and \\langle\\cdots\\rangle_0 means the thermal equilibrium average with respect to the unperturbed Hamiltonian.\nDefine the retarded response function:\n\n\\chi_{AB}(t-t')\n= \\frac{i}{\\hbar} \\Theta(t-t') \\langle [\\hat{A}(t),\\hat{B}(t')] \\rangle_0.\n\nTaking the Fourier transform, we get:\n\n\\chi_{AB}(\\omega) = \\int_{-\\infty}^{\\infty} dt \\, e^{i\\omega t} \\chi_{AB}(t).",
+    "crumbs": [
+      "Topics",
+      "Derivation of (6.1.31) from the Kubo Linear-Response Formula"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#expanding-in-the-energy-eigenbasis",
+    "href": "C0manybody/lectures/LRT.html#expanding-in-the-energy-eigenbasis",
+    "title": "Derivation of (6.1.31) from the Kubo Linear-Response Formula",
+    "section": "Expanding in the Energy Eigenbasis",
+    "text": "Expanding in the Energy Eigenbasis\nInsert a complete set of energy eigenstates \\{|n\\rangle\\} with eigenvalues E_n.\n[ (t) = e^{iHt/} e^{-iHt/} ]\nThen:\n[ 0 = {m,n} e^{-E_n} ( e^{i{nm}t} A{nm} B_{mn} - e^{-i{nm}t} B{nm} A_{mn} ) ]\nwhere\n[ {nm} = , A{nm} = n||m,B_{mn} = m||n. ]",
+    "crumbs": [
+      "Topics",
+      "Derivation of (6.1.31) from the Kubo Linear-Response Formula"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#putting-this-into-chi_abt",
+    "href": "C0manybody/lectures/LRT.html#putting-this-into-chi_abt",
+    "title": "Derivation of (6.1.31) from the Kubo Linear-Response Formula",
+    "section": "Putting This into \\chi_{AB}(t)",
+    "text": "Putting This into \\chi_{AB}(t)\nUsing \\Theta(t) from the definition of the retarded function:\n[ {AB}(t) = (t) {n,m} e^{-E_n} ( e^{i{nm}t} A{nm} B_{mn} - e^{-i{nm}t} B{nm} A_{mn} ) ]",
+    "crumbs": [
+      "Topics",
+      "Derivation of (6.1.31) from the Kubo Linear-Response Formula"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#fourier-transform-to-chi_abomega",
+    "href": "C0manybody/lectures/LRT.html#fourier-transform-to-chi_abomega",
+    "title": "Derivation of (6.1.31) from the Kubo Linear-Response Formula",
+    "section": "Fourier Transform to \\chi_{AB}(\\omega)",
+    "text": "Fourier Transform to \\chi_{AB}(\\omega)\nTake the Fourier transform:\n[ {AB}() = {-}^dt , e^{it} _{AB}(t) ]\nThe \\Theta(t) makes this become a Laplace-type integral:\n[ 0^dt , e^{i(+{nm})t} = (+_{nm}) + i . ]\nUsing this identity, we get:\n[ {AB}() = {n,m} (e{-E_n}-e{-E_m}) . ]",
+    "crumbs": [
+      "Topics",
+      "Derivation of (6.1.31) from the Kubo Linear-Response Formula"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#final-form-eq.-6.1.31",
+    "href": "C0manybody/lectures/LRT.html#final-form-eq.-6.1.31",
+    "title": "Derivation of (6.1.31) from the Kubo Linear-Response Formula",
+    "section": "Final Form — Eq. (6.1.31)",
+    "text": "Final Form — Eq. (6.1.31)\nThus we arrive at:\n\n\\boxed{\\chi_{AB}(\\omega)\n= \\frac{1}{\\hbar Z}\\sum_{n,m} (e^{-\\beta E_n}-e^{-\\beta E_m})\n\\frac{A_{nm} B_{mn}}{\\omega - \\omega_{mn}+i\\eta}}\n\nThis is the desired spectral representation of the retarded response function, usually labeled as Eq. (6.1.31) in many textbooks.",
+    "crumbs": [
+      "Topics",
+      "Derivation of (6.1.31) from the Kubo Linear-Response Formula"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#interpretation",
+    "href": "C0manybody/lectures/LRT.html#interpretation",
+    "title": "Derivation of (6.1.31) from the Kubo Linear-Response Formula",
+    "section": "Interpretation",
+    "text": "Interpretation\n\nEach pair of energy levels (n,m) gives rise to a resonance pole at \\omega = \\omega_{mn} = (E_m-E_n)/\\hbar.\nThe numerator contains the difference of Boltzmann weights e^{-\\beta E_n}-e^{-\\beta E_m}.\nThe infinitesimal i\\eta ensures causality and enforces the correct retarded boundary condition.",
+    "crumbs": [
+      "Topics",
+      "Derivation of (6.1.31) from the Kubo Linear-Response Formula"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#kubo-formula-for-the-polarization-response",
+    "href": "C0manybody/lectures/LRT.html#kubo-formula-for-the-polarization-response",
+    "title": "Linear Response Theory",
+    "section": "1) Kubo formula for the polarization response",
+    "text": "1) Kubo formula for the polarization response\nSuppose the system is perturbed by a classical electric field that couples to the polarization by\n\nH'(t) = -\\int d^3r'\\; P_j(\\mathbf r')\\,E_j(\\mathbf r',t).\n\nTo first order in the field, the induced expectation value of the polarization is (Kubo linear response)\n\n\\delta\\langle P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^{t} dt'\\, \\big\\langle \\big[H'(t'),\\,P_i(\\mathbf r,t)\\big]\\big\\rangle_0,\n\nwhere \\langle\\cdots\\rangle_0 is the expectation value in the unperturbed equilibrium state. Inserting H'(t') and using linearity gives the response kernel\n\n\\delta\\langle P_i(\\mathbf r,t)\\rangle\n= \\int d^3r'\\int_{-\\infty}^t dt'\\;\n\\chi_{ij}(\\mathbf r-\\mathbf r',t-t')\\,E_j(\\mathbf r',t'),\n\nwith the susceptibility (Kubo form)\n\n\\boxed{\\;\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\,\\Theta(\\tau)\\,\\langle\\,[\\,P_i(\\mathbf r+\\mathbf s,\\;t+\\tau),\\;P_j(\\mathbf r,t)\\,]\\,\\rangle_0\n\\;}\n\n(here \\mathbf s=\\mathbf r-\\mathbf r', \\tau=t-t'; because of homogeneity the kernel depends only on differences).",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#move-to-the-energy-eigenbasis-and-heisenberg-time-dependence",
+    "href": "C0manybody/lectures/LRT.html#move-to-the-energy-eigenbasis-and-heisenberg-time-dependence",
+    "title": "Linear Response Theory",
+    "section": "2) Move to the energy eigenbasis and Heisenberg time dependence",
+    "text": "2) Move to the energy eigenbasis and Heisenberg time dependence\nLet \\{|\\ell\\rangle\\} be eigenstates of the unperturbed Hamiltonian H with energies E_\\ell. In the Heisenberg picture\n\nP_i(\\mathbf r,t) = e^{\\frac{i}{\\hbar}Ht}\\,P_i(\\mathbf r)\\,e^{-\\frac{i}{\\hbar}Ht}.\n\nInsert a complete set of eigenstates for the commutator and evaluate the expectation value as a thermal (or general diagonal) ensemble with probabilities w_\\ell (e.g. w_\\ell=e^{-\\beta E_\\ell}/Z for thermal equilibrium). Then\n\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell} w_\\ell\n\\red{\\sum_{m}}\\Big(\\langle\\ell|P_i(\\mathbf r+\\mathbf s,t+\\tau)\\red{|m\\rangle\\langle m|}P_j(\\mathbf r,t)|\\ell\\rangle \\\\\n-\n\\langle\\ell|P_j(\\mathbf r,t)\\red{|m\\rangle\\langle m|}P_i(\\mathbf r+\\mathbf s,t+\\tau)|\\ell\\rangle\\Big).\n\n\\begin{align*}\n\\chi_{ij}(\\mathbf s,\\tau)\n=\n\\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell} w_\\ell\n\\sum_{m}\\Big(\n  \\color{#F4442E}\\langle\\ell|P_i(\\mathbf r+\\mathbf s,t+\\tau)|m\\rangle\\color{black}\n  \\color{#188FA7}\\langle m|P_j(\\mathbf r,t)|\\ell\\rangle \\color{black}\\\\\n-\n\\langle\\ell|P_j(\\mathbf r,t)|m\\rangle\\langle m|P_i(\\mathbf r+\\mathbf s,t+\\tau)|\\ell\\rangle\\Big).\n\\end{align*}\n\\tag{2}\nWhere the colored bits can be reduced to their Schrodinger counterparts by using the Heisenberg time dependence:\n\\begin{align*}\n\\color{#F4442E}\\langle\\ell|P_i(\\mathbf r+\\mathbf s,t+\\tau)|m\\rangle\\color{black}\n&= e^{i\\color{green}\\tfrac{(E_\\ell-E_m)}{\\hbar}\\color{black}\n(t+\\tau)}\\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle \\\\\n&=e^{i\\color{green}\\omega_{\\ell m}\\color{black}(t+\\tau)}\\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle,\n\\end{align*}\n\n\\begin{align*}\n\\color{#188FA7}\\langle m|P_j(\\mathbf r,t)|\\ell\\rangle\\color{black}\n&= e^{i\\color{green}\\tfrac{(E_\\ell-E_m)}{\\hbar}\\color{black}t}\\langle m|P_j(\\mathbf r)|\\ell\\rangle\\\\\n&= e^{i\\color{green}\\omega_{\\ell m}\\color{black}(t)}\\langle m|P_j(\\mathbf r)|\\ell\\rangle\n\\end{align*}\n\nWhere we have introduced the Bohr frequencies\n\n\\omega_{m\\ell}\\equiv\\frac{E_m-E_\\ell}{\\hbar} = -\\omega_{\\ell m}.\n\nNote how the overall t-dependence cancels (as it must for a time-translation invariant equilibrium average), leaving \\tau-dependence through e^{\\tfrac{i}{\\hbar}(E_\\ell-E_m)\\tau}.\nSo the commutator contribution becomes (for \\tau&gt;0)\n\\begin{align*}\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell,m} w_\\ell\\Big(\n&e^{i\\omega_{\\ell m}\\tau} \\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle\\langle m|P_j(\\mathbf r)|\\ell\\rangle\\\\\n- &e^{i\\omega_{m\\ell}\\tau}\\langle\\ell|P_j(\\mathbf r)|m\\rangle\\langle m|P_i(\\mathbf r+\\mathbf s)|\\ell\\rangle\n\\Big).\n\\end{align*}",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#fourier-transform-to-chimathbf-komega",
+    "href": "C0manybody/lectures/LRT.html#fourier-transform-to-chimathbf-komega",
+    "title": "Linear Response Theory",
+    "section": "3) Fourier transform to \\chi(\\mathbf k,\\omega)",
+    "text": "3) Fourier transform to \\chi(\\mathbf k,\\omega)\nNow form the space–time Fourier transform used in the text (including the adiabatic factor e^{-\\gamma\\tau}, \\gamma\\to0^+, to ensure convergence):\n\n\\chi_{ij}(\\mathbf k,\\omega)\n= \\lim_{\\gamma\\to0^+}\\int d^3s\\int_0^\\infty d\\tau\\;\n\\chi_{ij}(\\mathbf s,\\tau)\\,e^{-i\\mathbf k\\cdot\\mathbf s + i\\omega \\tau -\\gamma\\tau}.\n\nInsert the expression for \\chi_{ij}(\\mathbf s,\\tau). Define the spatial Fourier components of the polarization operator\n\nP_{i,\\mathbf k} \\equiv V^{-1/2}\\int d^3r\\;P_i(\\mathbf r)\\,e^{-i\\mathbf k\\cdot\\mathbf r},\n\nso that matrix elements of the spatially shifted operator pick up factors e^{\\pm i\\mathbf k\\cdot\\mathbf s}. After doing the \\mathbf s-integral one obtains matrix elements of the Fourier components P_{i,\\mathbf k} and P_{j,-\\mathbf k} (this is the reason the final expression involves P_{i,\\mathbf k} and P_{j,-\\mathbf k}).\nCarrying out the \\tau-integral for a generic exponential factor:\n\n\\int_0^\\infty d\\tau\\; e^{i\\omega_{\\ell m}\\tau}\\,e^{i\\omega\\tau}\\,e^{-\\gamma\\tau}\n= \\int_0^\\infty d\\tau\\; e^{i(\\omega_{\\ell m}+\\omega)\\tau-\\gamma\\tau}\n= \\frac{i}{\\omega_{\\ell m}+\\omega + i\\gamma}.\n\nBe careful with signs: if the integrand was e^{i\\omega_{\\ell m}\\tau}\\,e^{ - i\\omega \\tau} then the denominator would be \\omega_{\\ell m}-\\omega + i\\gamma. Using the combination that arises from the commutator gives the two resonance denominators.",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#collect-terms-final-form",
+    "href": "C0manybody/lectures/LRT.html#collect-terms-final-form",
+    "title": "Linear Response Theory",
+    "section": "Collect terms → final form",
+    "text": "Collect terms → final form\nAfter performing the spatial Fourier transform (producing matrix elements (P_{i,\\mathbf k})_{\\ell m} and (P_{j,-\\mathbf k})_{m\\ell}) and the \\tau-integrals, and reorganizing the two terms from the commutator, you obtain\n\n\\boxed{\\;\n\\chi_{ij}(\\mathbf k,\\omega)\n= \\sum_{\\ell,m} w_\\ell\\Big[\n\\frac{(P_{i,\\mathbf k})_{\\ell m}\\,(P_{j,-\\mathbf k})_{m\\ell}}{\\hbar\\omega_{m\\ell}-\\hbar\\omega - i\\hbar\\gamma}\n\\;+\\;\n\\frac{(P_{j,-\\mathbf k})_{\\ell m}\\,(P_{i,\\mathbf k})_{m\\ell}}{\\hbar\\omega_{m\\ell}+\\hbar\\omega + i\\hbar\\gamma}\n\\Big],\n\\;}\n\nwhere \\omega_{m\\ell}=(E_m-E_\\ell)/\\hbar and the infinitesimal \\gamma\\to0^+ implements the adiabatic switching (and gives the usual causal i0^+ prescription).\nThis is exactly the structure of equation (6.1.31): two contributions appear corresponding to absorption-like (denominator \\hbar\\omega_{m\\ell}-\\hbar\\omega - i0^+) and emission-like (denominator \\hbar\\omega_{m\\ell}+\\hbar\\omega + i0^+) processes, each weighted by the equilibrium population w_\\ell and the relevant transition matrix elements of the polarization operator in \\mathbf k-space.",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#remarks-interpretation",
+    "href": "C0manybody/lectures/LRT.html#remarks-interpretation",
+    "title": "Linear Response Theory",
+    "section": "Remarks / interpretation",
+    "text": "Remarks / interpretation\n\nThe first fraction resonates when \\hbar\\omega\\approx\\hbar\\omega_{m\\ell}=E_m-E_\\ell (absorption from \\ell to m).\nThe second fraction resonates when \\hbar\\omega\\approx -\\hbar\\omega_{m\\ell} (the opposite process).\nThe small positive \\gamma enforces causality (the Fourier transform of \\Theta(\\tau) gives poles in the lower/upper half-plane consistent with retarded response).\nIf w_\\ell is thermal, you can combine terms using detailed-balance relations to express \\chi in alternative forms.",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#components-of-chimathbfk-omega",
+    "href": "C0manybody/lectures/LRT.html#components-of-chimathbfk-omega",
+    "title": "Linear Response Theory",
+    "section": "Components of \\chi(\\mathbf{k}, \\omega)",
+    "text": "Components of \\chi(\\mathbf{k}, \\omega)\nWe now want to find an expression for components of \\chi(\\mathbf{k}, \\omega). We follow Kubo linear-response formula step by step and show exactly how resonance terms (with denominators \\hbar\\omega_{\\ell\\ell'}\\mp\\hbar\\omega\\mp i\\gamma) appear.\nSo now the task is to:\n\nFind \\chi(s, \\tau)\nConvert it to \\chi(\\mathbf{k}, \\omega) using the recipes above.",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#step-1-kubo-formula-for-the-polarization-response",
+    "href": "C0manybody/lectures/LRT.html#step-1-kubo-formula-for-the-polarization-response",
+    "title": "Linear Response Theory",
+    "section": "Step 1: Kubo formula for the polarization response",
+    "text": "Step 1: Kubo formula for the polarization response\nSuppose the system is perturbed by a classical electric field that couples to the polarization by\n\n\\color{green} H'(t) = -\\int d^3r'\\; P_j(\\mathbf r')\\,E_j(\\mathbf r',t).\n\nTo first order in the field, the induced expectation value of the polarization is (Kubo linear response)\n\n\\delta\\langle P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^{t} dt'\\, \\big\\langle \\big[\\color{green}H'(t')\\color{black},\\,P_i(\\mathbf r,t)\\big]\\big\\rangle_0,\n\nwhere \\langle\\cdots\\rangle_0 is the expectation value in the unperturbed equilibrium state. Inserting H'(t') and using linearity gives the response kernel\n\n\\delta\\langle P_i(\\mathbf r,t)\\rangle\n= \\int d^3r'\\int_{-\\infty}^t dt'\\;\n\\chi_{ij}(\\mathbf r-\\mathbf r',t-t')\\,E_j(\\mathbf r',t'),\n\nwith the susceptibility (Kubo form):\n\n\\boxed{\\;\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\,\\Theta(\\tau)\\,\\langle\\,[\\,P_i(\\mathbf r+\\mathbf s,\\;t+\\tau),\\;P_j(\\mathbf r,t)\\,]\\,\\rangle_0\n\\;}\n\n(here \\mathbf s=\\mathbf r-\\mathbf r', \\tau=t-t'; because of homogeneity the kernel depends only on differences).\n\n\n\\newcommand{\\green}[1]{\\color{green}{#1}}\n\\newcommand{\\red}[1]{\\color{red}{#1}}\n\\newcommand{\\gray}[1]{\\color{gray}{#1}}",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory"
     ]
   }
 ]

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Differentiable Manifolds – Worldlines</title>
+<title>Electric Susceptibility – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -260,8 +259,7 @@ function drawLeader(config) {
 
       const line = new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
       LeaderLineRegistry.register(line);
-//      resolve(line);
-      return line;
+      resolve(line);
     });
   });
 }
@@ -326,7 +324,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../css/leaders.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -344,7 +342,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link active" href="../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -396,28 +394,155 @@ window.Quarto = {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Topics</a></li><li class="breadcrumb-item"><a href="../../C0manybody/lectures/LRT-electric_susceptiblity.html">Electric Susceptibility</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Many-Body Physics Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/currentdensityoperator.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Current Density Operator and Polarization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/exchangecorrelation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exchange &amp; Correlation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/excitons.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Excitons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/greensfunctions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Green’s Functions in Many-Body Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/homogeneouselectrongas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HEG/jellium</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kohnsham.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kohn Sham Equations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kramerskronig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Analyticity, Causality, and Kramers-Kronig Relations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kubofigure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kubofigure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/kuboformula.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kubo formula and response functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/LRT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Linear Response Theory</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/LRT-electric_susceptiblity.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Electric Susceptibility</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/phonons_optic_acoustic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acoustic vs Optical Phonons</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../C0manybody/lectures/quasiparticles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quasiparticles and Fermi Liquid Theory</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#whats-the-fuss" id="toc-whats-the-fuss" class="nav-link active" data-scroll-target="#whats-the-fuss">What’s the fuss?</a></li>
-  <li><a href="#from-charts-to-atlases-to-differentiable-manifolds" id="toc-from-charts-to-atlases-to-differentiable-manifolds" class="nav-link" data-scroll-target="#from-charts-to-atlases-to-differentiable-manifolds">From charts to atlases to differentiable manifolds</a></li>
-  <li><a href="#differentiable-mainfold" id="toc-differentiable-mainfold" class="nav-link" data-scroll-target="#differentiable-mainfold">Differentiable mainfold</a></li>
+  <li><a href="#susceptibility-links-polarization-and-electric-field-greenly" id="toc-susceptibility-links-polarization-and-electric-field-greenly" class="nav-link active" data-scroll-target="#susceptibility-links-polarization-and-electric-field-greenly">Susceptibility links Polarization and Electric Field Greenly:</a></li>
+  <li><a href="#but-how-to-express-susceptibility" id="toc-but-how-to-express-susceptibility" class="nav-link" data-scroll-target="#but-how-to-express-susceptibility">But how to express susceptibility?</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../C0manybody/lectures/currentdensityoperator.html">Topics</a></li><li class="breadcrumb-item"><a href="../../C0manybody/lectures/LRT-electric_susceptiblity.html">Electric Susceptibility</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Differentiable Manifolds</h1>
+<h1 class="title">Electric Susceptibility</h1>
 </div>
 
 
@@ -434,78 +559,189 @@ window.Quarto = {
 </header>
 
 
-<section id="whats-the-fuss" class="level2">
-<h2 class="anchored" data-anchor-id="whats-the-fuss">What’s the fuss?</h2>
-<p>In a simplistic senses spacetime can be encoded as a set, the elements of which correspond to spacetime points <span class="citation" data-cites="Isham1999">(<a href="#ref-Isham1999" role="doc-biblioref">Isham 1999</a>)</span>.</p>
-<p>Additional structure must be imposed however. A topological space encapsulates the basic notions of nearness, without quantifying what that nearness is.</p>
-<p>But ultimately we want to be bring our calculus toolkit to this set which represents our spacetime.</p>
-<p>Ultimately we have two aims:</p>
-<ol type="1">
-<li>To be able to locate spacetime points via a set of real numbers.</li>
-<li>To be able to perform calculus related operations to study the dynamical evolution of systems.</li>
-</ol>
+<div class="callout callout-style-simple callout-note no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Much of what follows is an elboration of <em>Toyozawa, Optical Processes in Solids, Chapter 6</em></p>
+</div>
+</div>
+</div>
+<p>Since we are going to apply time-dependent perturbations in the linear response regime, we need to remind ourselves, how the values of an observable vary when the perturbation comes into play. That is to say we need to remind ourselves of:</p>
+<div class="pillset">
+<div class="pill" title="The Kubo Formula">
+<p><a href="https://en.wikipedia.org/wiki/Kubo_formula">Derivation of Kubo formula</a></p>
+<p><span class="math display">
+{\displaystyle \langle {\hat {A}}(t)\rangle =\left\langle {\hat {A}}\right\rangle _{0}-{\frac {i}{\hbar }}\int _{t_{0}}^{t}dt'\left\langle \left[{\hat {A}}(t),{\hat {V}}{\mathord {\left(t'\right)}}\right]\right\rangle _{0}}
+</span></p>
+<p>And thus in linear response theory, the change in expectation value of an operator <span class="math inline">\hat A</span> is <span id="eq-kubo"><span class="math display">
+\delta\langle \hat A(t)\rangle
+= \frac{i}{\hbar}\int_{-\infty}^t dt' \,
+\langle [\hat H_I(t'), \hat A(t)] \rangle_0 ,
+\tag{1}</span></span></p>
+<p>with <span class="math inline">\hat H_I(t')</span> the interaction Hamiltonian.</p>
+</div>
+<div class="pill" title="...apply it to polarization and E-field">
+<p>In our case we have a perturbation due to the interaction between electric polarization and the time dependent electric field.</p>
+<p><span id="eq-hamiltonian"><span class="math display">
+\hat H(t) = H_0 - \int d\mathbf r'\,\hat{\mathbf P}(\mathbf r') \cdot \mathbf E(\mathbf r',t),
+\tag{2}</span></span></p>
+<p>where <span class="math inline">\hat{\mathbf P}(\mathbf r)</span> is the polarization operator.</p>
+<p>For <span class="math inline">\hat A(t) = \hat P_i(\mathbf r,t)</span>,<span class="math inline">\ </span> <a href="#eq-kubo" class="quarto-xref">Equation&nbsp;1</a> becomes: <span class="math display">
+\delta \langle \hat P_i(\mathbf r,t)\rangle
+= \frac{i}{\hbar}\int_{-\infty}^t dt' \int d\mathbf r' \,
+\Big\langle \big[ -\hat P_j(\mathbf r',t') E_j(\mathbf r',t'), \,
+\hat P_i(\mathbf r,t) \big] \Big\rangle_0 .
+</span></p>
+<p>Since <span class="math inline">E_j(\mathbf r',t')</span> is a classical field (a c-number, not an operator), it commutes with operators and can be pulled out: <span class="math display">
+= -\frac{i}{\hbar}\int_{-\infty}^t dt' \int d\mathbf r' \,
+E_j(\mathbf r',t') \, \langle [\hat P_j(\mathbf r',t'), \hat P_i(\mathbf r,t)] \rangle_0 .
+</span></p>
+<p>Using <span class="math inline">[X,Y] = -[Y,X]</span>, this becomes <span class="math display">
+\delta \langle \hat P_i(\mathbf r,t)\rangle
+= \frac{i}{\hbar}\int_{-\infty}^t dt' \int d\mathbf r' \,
+\langle [\hat P_i(\mathbf r,t), \hat P_j(\mathbf r',t')] \rangle_0 \,
+E_j(\mathbf r',t') .
+</span></p>
+</div>
+<div class="pill" title="to bring in retarded susceptibility as a Green's function">
+<p>We can now introduce the retarded susceptibility (response function): <span class="math display">
+\chi_{ij}^R(\mathbf r,t;\mathbf r',t')
+= \frac{i}{\hbar} \, \Theta(t-t') \,
+\langle [\hat P_i(\mathbf r,t), \hat P_j(\mathbf r',t')] \rangle_0 .
+</span></p>
+<p>Then the response takes the compact Green’s-function form: <span class="math display">
+\delta \langle \hat P_i(\mathbf r,t)\rangle
+= \int d\mathbf r' \int_{-\infty}^\infty dt' \,
+\chi_{ij}^R(\mathbf r,t;\mathbf r',t') \, E_j(\mathbf r',t').
+</span></p>
+</div>
+</div>
+<hr>
+<section id="susceptibility-links-polarization-and-electric-field-greenly" class="level2">
+<h2 class="anchored" data-anchor-id="susceptibility-links-polarization-and-electric-field-greenly">Susceptibility links Polarization and Electric Field Greenly:</h2>
+<p>So susceptibility is really a Green’s function and when a weak external electric field <span class="math inline">\mathbf E(\mathbf r,t)</span> is applied, the system responds linearly with an induced polarization <span class="math inline">\mathbf P(\mathbf r,t)</span>. In the <strong>linear response regime</strong>, the most general linear relation between cause (field) and effect (polarization) is</p>
+<p><span id="eq-polarization"><span class="math display">
+P_i(\mathbf r,t) = \int d\mathbf r' \int_{-\infty}^\infty dt' \,
+\chi_{ij}(\mathbf r,t;\mathbf r',t') \, E_j(\mathbf r',t').
+\tag{3}</span></span></p>
+<p>Here <span class="math inline">\chi</span> is the <strong>susceptibility tensor</strong>, has certain properties by default or by imposition:</p>
+<div class="pillset">
+<div class="pill" title="Linearity &amp; Superposition">
+<p>Because the system is weakly perturbed, the polarization is a linear functional of the applied field.</p>
+</div>
+<div class="pill" title="Nonlocality in Space and Time">
+<p>A perturbation at <span class="math inline">(\mathbf r',t')</span> can influence the polarization at <span class="math inline">(\mathbf r,t)</span>. This makes <span class="math inline">\chi</span> depend on two spacetime points.</p>
+</div>
+<div class="pill" title="Causality">
+<p>A result cannot precede its cause. Therefore, <span class="math display">
+\chi_{ij}(\mathbf r,t;\mathbf r',t') = 0 \quad \text{for } t &lt; t' .
+</span></p>
+</div>
+</div>
+<hr>
 </section>
-<section id="from-charts-to-atlases-to-differentiable-manifolds" class="level2">
-<h2 class="anchored" data-anchor-id="from-charts-to-atlases-to-differentiable-manifolds">From charts to atlases to differentiable manifolds</h2>
-<p>Remember that our calculus works on certain sets of real numbers called <em>Euclidean Space</em>. Hence we need mathematical machines that can lead us back and forth from the world of curved spaces to the flat Euclidean lands.</p>
-<p>Let’s take a top down approach.</p>
-<p>An <em>atlas</em> is a family of <strong>coordinate charts</strong>. A coordinate chart is pair <span class="math inline">(U,\phi)</span></p>
-<p>A topological space is a <strong>differentiable manifold</strong> if it has a differential structure on it in the form of a <strong>complete atlas</strong>. Complete here simply means that the atlas is maximal i.e.&nbsp;not contained in any other atlas.</p>
-
-<div id="stage" class="stage" style="position: relative; height: 300px;">
-<p><!-- <div class="tbox"  id="nodeA" >
-  <div class="handwrith" id="nodeAh" style="">Manifold</div>
-  <div class="handwrit" id="nodeAc" style="">Topological space locally $R^n$ covered by a family of </div>
-  </div> --></p>
-<div id="nodeA" class="bbcbox">
-<div id="nodeA4" class="bbcheader" style="">
-Manifold
+<section id="but-how-to-express-susceptibility" class="level2">
+<h2 class="anchored" data-anchor-id="but-how-to-express-susceptibility">But how to express susceptibility?</h2>
+<p>To find an expression for suceptibility, we:</p>
+<ul>
+<li>Use the interaction hamiltonian to find the perturbed wavefunction.</li>
+<li>Find the elements of the polarization operator.</li>
+<li>Exploit the relationship between the current density and polarization operator.</li>
+<li>Take the statistical average on initial states to find the susceptibility.</li>
+</ul>
+<p>For brownie points we then try to find frequency domain alternatives too.</p>
+<div class="pillset">
+<div class="pill" title="Step 1: Interaction Hamiltonian &amp; Perturbed Wavefunction">
+<p>We resort to the time-dependent perturbation theory:</p>
+<div id="stage" class="stage" style="position: relative; height: 400px; width: 600px; margin:0.5em;">
+<!-- Interaction Picture -->
+<div id="nodeA" style="position: absolute; width: 260px;">
+<div id="nodeA_h">
+Interaction Picture
 </div>
-<div id="nodeA4" class="bbcbody" style="">
-Topological space locally <span class="math inline">R^n</span> covered by a family of
+<div id="nodeA_b">
+<span class="math display">
+  i\hbar\frac{\partial\Psi}{\partial t} = (H_0+H'(t))\Psi
+  </span> <span class="math display">
+  \Psi(t)=e^{-iH_0 t/\hbar}\,\Psi'(t)
+  </span> <span class="math display">
+  i\hbar\frac{\partial\Psi'}{\partial t}=H'_I(t)\Psi'(t)
+  </span>
+</div>
+</div>
+<!-- Interaction Hamiltonian -->
+<div id="nodeD" style="position: absolute; top: 5%; left: 60%;">
+<div id="nodeD_h">
+Interaction Hamiltonian
+</div>
+<div id="nodeD_b">
+<span class="math display">
+  H'(t) = -\int d^3r\; \mathbf{j}(\mathbf{r},t)\cdot \mathbf{A}(\mathbf{r},t)
+  </span>
+</div>
+</div>
+<!-- Linear superposition + constraints -->
+<div id="nodeB" style="position: absolute; top: 35%; left: 50%; width: 300px;">
+<div id="nodeB_h">
+Unperturbed States
+</div>
+<div id="nodeB_b">
+<span class="math display">
+  \Psi'(t)=\sum\limits_l c_l(t)\,\phi_l
+  </span> <span class="math display">
+  i\hbar \frac{d c_m}{d t} =
+  \sum\limits_l c_l(t) \langle \phi_m|H'_I(t)|\phi_l\rangle
+  </span>
+</div>
+</div>
+<!-- Corrected wavefunction -->
+<div id="nodeC" style="position: absolute; top: 80%; left: 5%; width: 280px;">
+<div id="nodeC_h">
+Corrected Wavefunction
+</div>
+<div id="nodeC_b">
+<span class="math display">
+  \Psi(t)=\sum\limits_l c_l(t)
+  e^{-iE_lt/\hbar}\,\phi_l
+  </span>
 </div>
 </div>
 </div>
-<div id="nodeA2" class="tbox" style="top: 20%; left: 70%;">
-<div id="nodeA2h" class="theaderfill" style="">
-Manifold
-</div>
-<div id="nodeA2c" class="tbody" style="">
-Topological space locally <span class="math inline">R^n</span>
-</div>
-</div>
-<div id="nodeC" class="anchor80-line" style="width: 30%; position: absolute; top: 80%; left: 100px;">
-<pre><code>bb</code></pre>
-</div>
-</section><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Differentiable mainfold</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Isham1999" class="csl-entry" role="listitem">
-Isham, Chris J. 1999. <em>Modern Differential Geometry for Physicists</em>. 2nd ed. WORLD SCIENTIFIC. <a href="https://doi.org/10.1142/3867">https://doi.org/10.1142/3867</a>.
-</div>
-</div></section></div></main></div>
 <script>
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA'},
-    to: {id: 'nodeA2'},
-    lineOptions: {color: 'DarkGoldenRod', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
+drawLeader({
+  from: { id: 'nodeD' },
+  to: { id: 'nodeA' },
+  lineOptions: { color: 'DarkGreen'} 
+});
 
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA'},
-    to: {id: 'nodeC'},
-    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
+drawLeader({
+  from: { id: 'nodeA' },
+  to: { id: 'nodeB' },
+  lineOptions: { color: 'DarkGoldenRod'} 
+});
+
+drawLeader({
+  from: { id: 'nodeB' },
+  to: { id: 'nodeC' },
+  lineOptions: { color: 'DarkGoldenRod', zIndex: 0}
+});
 </script>
+</div>
+</div>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<div id="refs" role="list">
 
-<section id="differentiable-mainfold" class="level2">
-
-
+</div>
 
 
 </section>
+</section>
 
- <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -905,7 +1141,7 @@ Isham, Chris J. 1999. <em>Modern Differential Geometry for Physicists</em>. 2nd 
     }
   });
   </script>
- <!-- /content -->
+</div> <!-- /content -->
 <script src="../../scripts/leader-line-master/leader-line.min.js"></script>
 
 
