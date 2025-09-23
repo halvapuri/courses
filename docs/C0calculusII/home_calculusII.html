@@ -76,70 +76,181 @@ function toggleBox(header) {
 }
 </script>
 
-
 <script>
-function openCity(evt, cityName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("city");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-red";
-}
+function togglePill(header) {
+  const box = header.nextElementSibling;
 
+  // toggle active pill state
+  header.classList.toggle("active");
+
+  // toggle content
+  if (box.style.display === "block") {
+    box.style.display = "none";
+  } else {
+    box.style.display = "block";
+  }
+}
 </script>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".pill").forEach(pill => {
+    const title = pill.getAttribute("title") || "";
+    const bodyHtml = pill.innerHTML;
 
+    // header
+    const header = document.createElement("div");
+    header.className = "pill-header";
+    header.textContent = title;
 
+    // body
+    const body = document.createElement("div");
+    body.className = "pill-body";
+    body.innerHTML = bodyHtml;
+
+    // reset pill
+    pill.innerHTML = "";
+    pill.appendChild(header);
+    pill.appendChild(body);
+
+    // toggle
+    header.addEventListener("click", () => {
+      header.classList.toggle("active");
+
+      if (body.style.display === "block") {
+        body.style.display = "none";
+        pill.style.flexBasis = "auto";   // collapse back
+      } else {
+        body.style.display = "block";
+        pill.style.flexBasis = "100%";   // expand pill to full row
+      }
+    });
+  });
+});
+</script>
 
 
 <script>
-//Draws leader between 'from' and 'to' on 'stage'. Uses existing objects if ids exist, otherwise creates them according to given style parameter.
-//lineOptions to stylize.
-//Issues. May need to create id via html if container is to keep equations.
-function drawLeader({
-  
-  containerId = 'stage',
-  from = { id: 'from', text: '', className: '', style: {} },
-  to = { id: 'to', text: '', className: '', style: {} },
-  lineOptions = {}
-}) {
-  // Creates 'from' and 'to' in 'containerId'. Ignores creation if ids already exist and draws a leaderline between them.
-  window.addEventListener('load', () => {
-    const container = document.getElementById(containerId);
-    const elements = { from, to };
-    const createdDivs = {};
+/**
+ * Global registry and updater for all LeaderLine instances created via drawLeader.
+ * Handles:
+ *  - storing all lines
+ *  - repositioning all lines on resize/scroll
+ *  - smooth real-time repositioning during .pill transitions
+ */
+const LeaderLineRegistry = {
+  lines: [],
+  animating: false,
+  _initialized: false,
 
-    for (const key in elements) {
-      const { id, text, className, style } = elements[key];
-      let el = document.getElementById(id);
+  /**
+   * Initialize one-time global event listeners for updating all registered lines.
+   * This runs only once, automatically when the first line is registered.
+   */
+  init() {
+    if (this._initialized) return;
+    this._initialized = true;
 
-      if (!el || !container.contains(el)) {
-        el = document.createElement('div');
-        el.id = id;
-        el.textContent = text;
-        el.className = className || 'anchor80-line';
-        Object.assign(el.style, {
-          position: 'relative',
-          ...style
-        });
-        container.appendChild(el);
+    // Reposition all lines on window resize
+    window.addEventListener('resize', () => this.positionAll());
+
+    // Reposition all lines on scroll (capturing to catch scrolls on inner containers too)
+    document.addEventListener('scroll', () => this.positionAll(), true);
+
+    // Automatically add smooth animation loop for .pill transitions
+    const pills = document.querySelectorAll('.pill');
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        if (this.animating) return;
+        this.animating = true;
+
+        const step = () => {
+          this.positionAll();
+          if (this.animating) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+
+      pill.addEventListener('transitionend', () => {
+        this.animating = false;
+        this.positionAll();
+      });
+    });
+  },
+
+  /**
+   * Register a newly created LeaderLine instance so it is tracked and updated.
+   * @param {LeaderLine} line - The LeaderLine object to register
+   */
+  register(line) {
+    this.init();
+    this.lines.push(line);
+  },
+
+  /**
+   * Calls .position() on every registered line to recalculate its endpoints.
+   */
+  positionAll() {
+    this.lines.forEach(line => line.position());
+  }
+};
+
+/**
+ * Creates two DOM anchor elements (if not already present) inside a container
+ * and draws a LeaderLine between them. Automatically registers the line
+ * into the global LeaderLineRegistry so it stays in sync with layout changes.
+ *
+ * @param {Object} config
+ * @param {string} [config.containerId='stage'] - The id of the container element
+ * @param {Object} config.from - The "from" anchor element config
+ * @param {string} config.from.id - DOM id of the starting element
+ * @param {string} [config.from.text] - Optional text content for the element
+ * @param {string} [config.from.className] - Optional CSS class
+ * @param {Object} [config.from.style] - Inline style object
+ * @param {Object} config.to - The "to" anchor element config (same fields as 'from')
+ * @param {Object} [config.lineOptions={}] - Options passed directly to new LeaderLine()
+ *
+ * @returns {Promise<LeaderLine>} Resolves with the created LeaderLine instance
+ */
+function drawLeader(config) {
+  const { containerId='stage', from, to, lineOptions={} } = config;
+
+  return new Promise(resolve => {
+    window.addEventListener('load', () => {
+      const container = document.getElementById(containerId);
+      const elements = { from, to };
+      const createdDivs = {};
+
+      for (const key in elements) {
+        const { id, text, className, style } = elements[key];
+        let el = document.getElementById(id);
+
+        if (!el || !container.contains(el)) {
+          el = document.createElement('div');
+          el.id = id;
+          el.textContent = text || '';
+          el.className = className || 'anchor80-line';
+          Object.assign(el.style, { position: 'relative', ...style });
+          container.appendChild(el);
+        }
+
+        createdDivs[key] = el;
       }
 
-      createdDivs[key] = el;
-    }
-
-    new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
+      const line = new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
+      LeaderLineRegistry.register(line);
+      resolve(line);
+    });
   });
 }
 
 </script>
+
+
+
+
+
 
 
 <link rel="stylesheet" href="../css/buttons.css">
@@ -368,16 +479,18 @@ function drawLeader({
 
 <section id="project" class="level2">
 <h2 class="anchored" data-anchor-id="project">Project</h2>
-<p>As announced in class, there will be a project.</p>
-<p>The task: Reproduce 3 figures (two 2D and one 3D) from your textbook.</p>
-<p>Note that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.</p>
-<p>Furthermore:</p>
-<ul>
-<li>The project will be done in groups of 3.</li>
-<li>The marks will be credited as bonus (i.e.&nbsp;they will not have a separate category)</li>
-<li>There will be a viva in the 15th week.</li>
-<li>The individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.)</li>
-</ul>
+<!-- As announced in class, there will be a project. 
+
+The task: Reproduce 3 figures (two 2D and one 3D) from your textbook. 
+
+Note that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.
+
+Furthermore:
+
+* The project will be done in groups of 3. 
+* The marks will be credited as bonus (i.e. they will not have a separate category)
+* There will be a viva in the 15th week. 
+* The individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.) -->
 </section>
 <section id="quizzes" class="level2">
 <h2 class="anchored" data-anchor-id="quizzes">Quizzes</h2>
@@ -393,11 +506,10 @@ function drawLeader({
 <section id="assignments" class="level2">
 <h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
 <p><a href="coursematerial/Assignments/MT202Assignment_I.pdf">Assignment 1</a><br>
-<a href="coursematerial/Assignments/MT202Assignment_II.pdf">Assignment 2</a><br>
-<a href="coursematerial/Assignments/MT202Assignment_III.pdf">Assignment 3</a><br>
-<a href="coursematerial/Assignments/MT202Assignment_IV.pdf">Assignment 4</a><br>
-<a href="coursematerial/Assignments/MT202Assignment_V.pdf">Assignment 5</a><br>
-</p>
+<!-- [Assignment 2](coursematerial/Assignments/MT202Assignment_II.pdf)\
+[Assignment 3](coursematerial/Assignments/MT202Assignment_III.pdf)\
+[Assignment 4](coursematerial/Assignments/MT202Assignment_IV.pdf)\
+[Assignment 5](coursematerial/Assignments/MT202Assignment_V.pdf)\ --></p>
 </section>
 <section id="slides-and-notebooks" class="level2">
 <h2 class="anchored" data-anchor-id="slides-and-notebooks">Slides and Notebooks</h2>
