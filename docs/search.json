@@ -1927,7 +1927,7 @@
     "href": "C0linalg/lectures/01-vectorspaces.html",
     "title": "Vector Spaces",
     "section": "",
-    "text": "What is a Vector Space?\nA vector space (also called a linear space) is a collection of objects called vectors, along with two operations:\n\nVector addition: You can add two vectors to get another vector.\n\nScalar multiplication: You can multiply a vector by a number (a scalar) to get another vector.\n\nThe scalars usually come from the real numbers \\(\\mathbb{R}\\), but they can also come from the complex numbers \\(\\mathbb{C}\\) or other fields.\n\n\n\nExample\nThe set \\(\\mathbb{R}^2\\) (the plane) is a vector space. Vectors are pairs of real numbers:\n\\[\n\\mathbf{v} = \\begin{bmatrix} x \\\\ y \\end{bmatrix}, \\quad x,y \\in \\mathbb{R}\n\\]\n\nAddition: \\[\n\\begin{bmatrix} x_1 \\\\ y_1 \\end{bmatrix} +\n\\begin{bmatrix} x_2 \\\\ y_2 \\end{bmatrix}\n= \\begin{bmatrix} x_1 + x_2 \\\\ y_1 + y_2 \\end{bmatrix}\n\\]\nScalar multiplication: \\[\nc \\begin{bmatrix} x \\\\ y \\end{bmatrix} =\n\\begin{bmatrix} c x \\\\ c y \\end{bmatrix}\n\\]\n\n\n\n\nAxioms of a Vector Space\nFor a set \\(V\\) to be a vector space (over scalars in a field \\(F\\)), it must satisfy:\n\nClosure under addition and scalar multiplication\n\nCommutativity: \\(\\mathbf{u} + \\mathbf{v} = \\mathbf{v} + \\mathbf{u}\\)\n\nAssociativity: \\((\\mathbf{u} + \\mathbf{v}) + \\mathbf{w} = \\mathbf{u} + (\\mathbf{v} + \\mathbf{w})\\)\n\nAdditive identity: There exists a vector \\(\\mathbf{0}\\) such that \\(\\mathbf{v} + \\mathbf{0} = \\mathbf{v}\\)\n\nAdditive inverse: For every \\(\\mathbf{v}\\) there exists \\(-\\mathbf{v}\\) with \\(\\mathbf{v} + (-\\mathbf{v}) = \\mathbf{0}\\)\n\nDistributivity: \\(a(\\mathbf{u} + \\mathbf{v}) = a\\mathbf{u} + a\\mathbf{v}\\) and \\((a+b)\\mathbf{v} = a\\mathbf{v} + b\\mathbf{v}\\)\n\nScalar multiplication identity: \\(1\\mathbf{v} = \\mathbf{v}\\)\n\n\n\n\nExample with Python\n\nimport numpy as np\n\n# define two vectors\nu = np.array([2, 1])\nv = np.array([1, 3])\n\n# addition\nu_plus_v = u + v\n\n# scalar multiplication\nscalar_mult = 3 * u\n\nu_plus_v, scalar_mult\n\n(array([3, 4]), array([6, 3]))",
+    "text": "What is a Vector Space?\nA vector space (also called a linear space) is a collection of objects called vectors, along with two operations:\n\nVector addition: You can add two vectors to get another vector.\n\nScalar multiplication: You can multiply a vector by a number (a scalar) to get another vector.\n\nThe scalars usually come from the real numbers \\mathbb{R}, but they can also come from the complex numbers \\mathbb{C} or other fields.\n\n\n\nExample\nThe set \\mathbb{R}^2 (the plane) is a vector space. Vectors are pairs of real numbers:\n\n\\mathbf{v} = \\begin{bmatrix} x \\\\ y \\end{bmatrix}, \\quad x,y \\in \\mathbb{R}\n\n\nAddition: \n\\begin{bmatrix} x_1 \\\\ y_1 \\end{bmatrix} +\n\\begin{bmatrix} x_2 \\\\ y_2 \\end{bmatrix}\n= \\begin{bmatrix} x_1 + x_2 \\\\ y_1 + y_2 \\end{bmatrix}\n\nScalar multiplication: \nc \\begin{bmatrix} x \\\\ y \\end{bmatrix} =\n\\begin{bmatrix} c x \\\\ c y \\end{bmatrix}\n\n\n\n\n\nAxioms of a Vector Space\nFor a set V to be a vector space (over scalars in a field F), it must satisfy:\n\nClosure under addition and scalar multiplication\n\nCommutativity: \\mathbf{u} + \\mathbf{v} = \\mathbf{v} + \\mathbf{u}\n\nAssociativity: (\\mathbf{u} + \\mathbf{v}) + \\mathbf{w} = \\mathbf{u} + (\\mathbf{v} + \\mathbf{w})\n\nAdditive identity: There exists a vector \\mathbf{0} such that \\mathbf{v} + \\mathbf{0} = \\mathbf{v}\n\nAdditive inverse: For every \\mathbf{v} there exists -\\mathbf{v} with \\mathbf{v} + (-\\mathbf{v}) = \\mathbf{0}\n\nDistributivity: a(\\mathbf{u} + \\mathbf{v}) = a\\mathbf{u} + a\\mathbf{v} and (a+b)\\mathbf{v} = a\\mathbf{v} + b\\mathbf{v}\n\nScalar multiplication identity: 1\\mathbf{v} = \\mathbf{v}\n\n\n\n\nExample with Python\n\nimport numpy as np\n\n# define two vectors\nu = np.array([2, 1])\nv = np.array([1, 3])\n\n# addition\nu_plus_v = u + v\n\n# scalar multiplication\nscalar_mult = 3 * u\n\nu_plus_v, scalar_mult\n\n(array([3, 4]), array([6, 3]))",
     "crumbs": [
       "Lectures",
       "Vector Spaces"
@@ -1967,7 +1967,7 @@
     "href": "C0linalg/home_linalg.html#assignments",
     "title": "Linear Algebra",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1",
+    "text": "Assignments\nAssignment 1\nAssignment 2",
     "crumbs": [
       "Home",
       "Linear Algebra Home"
@@ -3697,34 +3697,34 @@
   {
     "objectID": "C0manybody/lectures/LRT.html",
     "href": "C0manybody/lectures/LRT.html",
-    "title": "Linear Response Theory",
+    "title": "Linear Response Theory & Electric Susceptibility",
     "section": "",
-    "text": "We start from the general constitutive relation between the polarization P and the electric field E in a linear medium:\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi(\\mathbf{r}, t; \\mathbf{r}',t') \\, E(\\mathbf{r}',t').\n\\tag{1}\nThis Green’s function relation emerges out of the Kubo formula. Below we make two changes to it: (1) We use the component notation with the summation convention in place, and (2) We impose the constraint that time dependence is stationary (i.e. is a function of t-t') and the space dependence exhibits translational invariance or homongeneity (is a function of \\mathbf{r}-\\mathbf{r'}):\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi_{ij}(\\mathbf{r}-\\mathbf{r}',\\,t-t') \\, E_j(\\mathbf{r}',t').\n\nSo we have gone from the Kubo formula, to a space-time convolution because the susceptibility depends only on the differences \\mathbf{r}-\\mathbf{r}' and t-t'. The Fourier transform is going to turn it into a multiplication:\n\n\\boxed{\\tilde{P}_i(\\mathbf{k},\\omega)=\\varepsilon_0\\,\\tilde\\chi_{ij}(\\mathbf{k},\\omega)\\,\\tilde{E}_j(\\mathbf{k},\\omega)}.\nSo we have: \\begin{align*}\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell,m} w_\\ell\\Big(\n&e^{i\\omega_{\\ell m}\\tau} \\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle\\langle m|P_j(\\mathbf r)|\\ell\\rangle\\\\\n- &e^{i\\omega_{m\\ell}\\tau}\\langle\\ell|P_j(\\mathbf r)|m\\rangle\\langle m|P_i(\\mathbf r+\\mathbf s)|\\ell\\rangle\n\\Big).\n\\end{align*}\n\\tag{3}",
+    "text": "Since we are going to apply time-dependent perturbations in the linear response regime, we need to remind ourselves, how the values of an observable vary when the perturbation comes into play. That is to say we need to remind ourselves of:\n\n\nDerivation of Kubo formula\n\n{\\displaystyle \\langle {\\hat {A}}(t)\\rangle =\\left\\langle {\\hat {A}}\\right\\rangle _{0}-{\\frac {i}{\\hbar }}\\int _{t_{0}}^{t}dt'\\left\\langle \\left[{\\hat {A}}(t),{\\hat {V}}{\\mathord {\\left(t'\\right)}}\\right]\\right\\rangle _{0}}\n\nAnd thus in linear response theory, the change in expectation value of an operator \\hat A is \n\\delta\\langle \\hat A(t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\,\n\\langle [\\hat H_I(t'), \\hat A(t)] \\rangle_0 ,\n\\tag{1}\nwith \\hat H_I(t') the interaction Hamiltonian.\n\n\nIn our case we have a perturbation due to the interaction between electric polarization and the time dependent electric field.\n\n\\hat H(t) = H_0 - \\int d\\mathbf r'\\,\\hat{\\mathbf P}(\\mathbf r') \\cdot \\mathbf E(\\mathbf r',t),\n\\tag{2}\nwhere \\hat{\\mathbf P}(\\mathbf r) is the polarization operator.\nFor \\hat A(t) = \\hat P_i(\\mathbf r,t),\\  Equation 1 becomes: \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\n\\Big\\langle \\big[ -\\hat P_j(\\mathbf r',t') E_j(\\mathbf r',t'), \\,\n\\hat P_i(\\mathbf r,t) \\big] \\Big\\rangle_0 .\n\nSince E_j(\\mathbf r',t') is a classical field (a c-number, not an operator), it commutes with operators and can be pulled out: \n= -\\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\nE_j(\\mathbf r',t') \\, \\langle [\\hat P_j(\\mathbf r',t'), \\hat P_i(\\mathbf r,t)] \\rangle_0 .\n\nUsing [X,Y] = -[Y,X], this becomes \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\n\\langle [\\hat P_i(\\mathbf r,t), \\hat P_j(\\mathbf r',t')] \\rangle_0 \\,\nE_j(\\mathbf r',t') .\n\n\n\nWe can now introduce the retarded susceptibility (response function): \n\\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t')\n= \\frac{i}{\\hbar} \\, \\Theta(t-t') \\,\n\\langle [\\hat P_i(\\mathbf r,t), \\hat P_j(\\mathbf r',t')] \\rangle_0 .\n\nThen the response takes the compact Green’s-function form: \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').\n\\begin{align*}\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell,m} w_\\ell\\Big(\n&e^{i\\omega_{\\ell m}\\tau} \\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle\\langle m|P_j(\\mathbf r)|\\ell\\rangle\\\\\n- &e^{i\\omega_{m\\ell}\\tau}\\langle\\ell|P_j(\\mathbf r)|m\\rangle\\langle m|P_i(\\mathbf r+\\mathbf s)|\\ell\\rangle\n\\Big).\n\\end{align*}\n\\tag{5}\n\\boxed{\\;\n\\chi_{ij}(\\mathbf k,\\omega)\n= \\sum_{\\ell,m} w_\\ell\\Big[\n\\frac{(P_{i,\\mathbf k})_{\\ell m}\\,(P_{j,-\\mathbf k})_{m\\ell}}{\\hbar\\omega_{m\\ell}-\\hbar\\omega - i\\hbar\\gamma}\n\\;+\\;\n\\frac{(P_{j,-\\mathbf k})_{\\ell m}\\,(P_{i,\\mathbf k})_{m\\ell}}{\\hbar\\omega_{m\\ell}+\\hbar\\omega + i\\hbar\\gamma}\n\\Big],\n\\;}\nwhere \\omega_{m\\ell}=(E_m-E_\\ell)/\\hbar and the infinitesimal \\gamma\\to0^+ implements the adiabatic switching (and gives the usual causal i0^+ prescription).\nThis is exactly the structure of equation (6.1.31): two contributions appear corresponding to absorption-like (denominator \\hbar\\omega_{m\\ell}-\\hbar\\omega - i0^+) and emission-like (denominator \\hbar\\omega_{m\\ell}+\\hbar\\omega + i0^+) processes, each weighted by the equilibrium population w_\\ell and the relevant transition matrix elements of the polarization operator in \\mathbf k-space.",
     "crumbs": [
       "Topics",
-      "Linear Response Theory"
+      "Linear Response Theory & Electric Susceptibility"
     ]
   },
   {
     "objectID": "C0manybody/lectures/LRT.html#from-kubos-formula-to-susceptibility",
     "href": "C0manybody/lectures/LRT.html#from-kubos-formula-to-susceptibility",
-    "title": "Linear Response Theory",
-    "section": "",
-    "text": "We start from the general constitutive relation between the polarization P and the electric field E in a linear medium:\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi(\\mathbf{r}, t; \\mathbf{r}',t') \\, E(\\mathbf{r}',t').\n\\tag{1}\nThis Green’s function relation emerges out of the Kubo formula. Below we make two changes to it: (1) We use the component notation with the summation convention in place, and (2) We impose the constraint that time dependence is stationary (i.e. is a function of t-t') and the space dependence exhibits translational invariance or homongeneity (is a function of \\mathbf{r}-\\mathbf{r'}):\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi_{ij}(\\mathbf{r}-\\mathbf{r}',\\,t-t') \\, E_j(\\mathbf{r}',t').\n\nSo we have gone from the Kubo formula, to a space-time convolution because the susceptibility depends only on the differences \\mathbf{r}-\\mathbf{r}' and t-t'. The Fourier transform is going to turn it into a multiplication:\n\n\\boxed{\\tilde{P}_i(\\mathbf{k},\\omega)=\\varepsilon_0\\,\\tilde\\chi_{ij}(\\mathbf{k},\\omega)\\,\\tilde{E}_j(\\mathbf{k},\\omega)}.",
+    "title": "Linear Response Theory & Electric Susceptibility",
+    "section": "From Kubo’s Formula to Susceptibility",
+    "text": "From Kubo’s Formula to Susceptibility\nWe start from the general constitutive relation between the polarization P and the electric field E in a linear medium:\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi(\\mathbf{r}, t; \\mathbf{r}',t') \\, E(\\mathbf{r}',t').\n\\tag{3}\nThis Green’s function relation emerges out of the Kubo formula. Below we make two changes to it: (1) We use the component notation with the summation convention in place, and (2) We impose the constraint that time dependence is stationary (i.e. is a function of t-t') and the space dependence exhibits translational invariance or homongeneity (is a function of \\mathbf{r}-\\mathbf{r'}):\n\nP_i(\\mathbf{r},t)\n= \\varepsilon_0 \\int d^3r' \\int_{-\\infty}^{\\infty} dt'\\;\n\\chi_{ij}(\\mathbf{r}-\\mathbf{r}',\\,t-t') \\, E_j(\\mathbf{r}',t').\n\nSo we have gone from the Kubo formula, to a space-time convolution because the susceptibility depends only on the differences \\mathbf{r}-\\mathbf{r}' and t-t'. The Fourier transform is going to turn it into a multiplication:\n\n\\boxed{\\tilde{P}_i(\\mathbf{k},\\omega)=\\varepsilon_0\\,\\tilde\\chi_{ij}(\\mathbf{k},\\omega)\\,\\tilde{E}_j(\\mathbf{k},\\omega)}.",
     "crumbs": [
       "Topics",
-      "Linear Response Theory"
+      "Linear Response Theory & Electric Susceptibility"
     ]
   },
   {
     "objectID": "C0manybody/lectures/LRT.html#fourier-transform-conventions",
     "href": "C0manybody/lectures/LRT.html#fourier-transform-conventions",
-    "title": "Linear Response Theory",
+    "title": "Linear Response Theory & Electric Susceptibility",
     "section": "Fourier Transform Conventions",
     "text": "Fourier Transform Conventions\nWe define the Fourier transform as\n\nf(\\mathbf{r},t)\n= \\int \\frac{d^3k}{(2\\pi)^3} \\int \\frac{d\\omega}{2\\pi}\n\\; \\tilde{f}(\\mathbf{k},\\omega)\ne^{i(\\mathbf{k}\\cdot\\mathbf{r}-\\omega t)},\n\nwith the inverse transform\n\n\\tilde{f}(\\mathbf{k},\\omega)\n= \\int d^3r \\int dt\\; f(\\mathbf{r},t) e^{-i(\\mathbf{k}\\cdot\\mathbf{r}-\\omega t)}.",
     "crumbs": [
       "Topics",
-      "Linear Response Theory"
+      "Linear Response Theory & Electric Susceptibility"
     ]
   },
   {
@@ -3873,12 +3873,12 @@
   {
     "objectID": "C0manybody/lectures/LRT.html#move-to-the-energy-eigenbasis-and-heisenberg-time-dependence",
     "href": "C0manybody/lectures/LRT.html#move-to-the-energy-eigenbasis-and-heisenberg-time-dependence",
-    "title": "Linear Response Theory",
+    "title": "Linear Response Theory & Electric Susceptibility",
     "section": "2) Move to the energy eigenbasis and Heisenberg time dependence",
-    "text": "2) Move to the energy eigenbasis and Heisenberg time dependence\nLet \\{|\\ell\\rangle\\} be eigenstates of the unperturbed Hamiltonian H with energies E_\\ell. In the Heisenberg picture\n\nP_i(\\mathbf r,t) = e^{\\frac{i}{\\hbar}Ht}\\,P_i(\\mathbf r)\\,e^{-\\frac{i}{\\hbar}Ht}.\n\nInsert a complete set of eigenstates for the commutator and evaluate the expectation value as a thermal (or general diagonal) ensemble with probabilities w_\\ell (e.g. w_\\ell=e^{-\\beta E_\\ell}/Z for thermal equilibrium). Then\n\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell} w_\\ell\n\\red{\\sum_{m}}\\Big(\\langle\\ell|P_i(\\mathbf r+\\mathbf s,t+\\tau)\\red{|m\\rangle\\langle m|}P_j(\\mathbf r,t)|\\ell\\rangle \\\\\n-\n\\langle\\ell|P_j(\\mathbf r,t)\\red{|m\\rangle\\langle m|}P_i(\\mathbf r+\\mathbf s,t+\\tau)|\\ell\\rangle\\Big).\n\n\\begin{align*}\n\\chi_{ij}(\\mathbf s,\\tau)\n=\n\\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell} w_\\ell\n\\sum_{m}\\Big(\n  \\color{#F4442E}\\langle\\ell|P_i(\\mathbf r+\\mathbf s,t+\\tau)|m\\rangle\\color{black}\n  \\color{#188FA7}\\langle m|P_j(\\mathbf r,t)|\\ell\\rangle \\color{black}\\\\\n-\n\\langle\\ell|P_j(\\mathbf r,t)|m\\rangle\\langle m|P_i(\\mathbf r+\\mathbf s,t+\\tau)|\\ell\\rangle\\Big).\n\\end{align*}\n\\tag{2}\nWhere the colored bits can be reduced to their Schrodinger counterparts by using the Heisenberg time dependence:\n\\begin{align*}\n\\color{#F4442E}\\langle\\ell|P_i(\\mathbf r+\\mathbf s,t+\\tau)|m\\rangle\\color{black}\n&= e^{i\\color{green}\\tfrac{(E_\\ell-E_m)}{\\hbar}\\color{black}\n(t+\\tau)}\\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle \\\\\n&=e^{i\\color{green}\\omega_{\\ell m}\\color{black}(t+\\tau)}\\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle,\n\\end{align*}\n\n\\begin{align*}\n\\color{#188FA7}\\langle m|P_j(\\mathbf r,t)|\\ell\\rangle\\color{black}\n&= e^{i\\color{green}\\tfrac{(E_\\ell-E_m)}{\\hbar}\\color{black}t}\\langle m|P_j(\\mathbf r)|\\ell\\rangle\\\\\n&= e^{i\\color{green}\\omega_{\\ell m}\\color{black}(t)}\\langle m|P_j(\\mathbf r)|\\ell\\rangle\n\\end{align*}\n\nWhere we have introduced the Bohr frequencies\n\n\\omega_{m\\ell}\\equiv\\frac{E_m-E_\\ell}{\\hbar} = -\\omega_{\\ell m}.\n\nNote how the overall t-dependence cancels (as it must for a time-translation invariant equilibrium average), leaving \\tau-dependence through e^{\\tfrac{i}{\\hbar}(E_\\ell-E_m)\\tau}.\nSo the commutator contribution becomes (for \\tau&gt;0)\n\\begin{align*}\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell,m} w_\\ell\\Big(\n&e^{i\\omega_{\\ell m}\\tau} \\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle\\langle m|P_j(\\mathbf r)|\\ell\\rangle\\\\\n- &e^{i\\omega_{m\\ell}\\tau}\\langle\\ell|P_j(\\mathbf r)|m\\rangle\\langle m|P_i(\\mathbf r+\\mathbf s)|\\ell\\rangle\n\\Big).\n\\end{align*}",
+    "text": "2) Move to the energy eigenbasis and Heisenberg time dependence\nLet \\{|\\ell\\rangle\\} be eigenstates of the unperturbed Hamiltonian H with energies E_\\ell. In the Heisenberg picture\n\nP_i(\\mathbf r,t) = e^{\\frac{i}{\\hbar}Ht}\\,P_i(\\mathbf r)\\,e^{-\\frac{i}{\\hbar}Ht}.\n\nInsert a complete set of eigenstates for the commutator and evaluate the expectation value as a thermal (or general diagonal) ensemble with probabilities w_\\ell (e.g. w_\\ell=e^{-\\beta E_\\ell}/Z for thermal equilibrium). Then\n\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell} w_\\ell\n\\red{\\sum_{m}}\\Big(\\langle\\ell|P_i(\\mathbf r+\\mathbf s,t+\\tau)\\red{|m\\rangle\\langle m|}P_j(\\mathbf r,t)|\\ell\\rangle \\\\\n-\n\\langle\\ell|P_j(\\mathbf r,t)\\red{|m\\rangle\\langle m|}P_i(\\mathbf r+\\mathbf s,t+\\tau)|\\ell\\rangle\\Big).\n\n\\begin{align*}\n\\chi_{ij}(\\mathbf s,\\tau)\n=\n\\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell} w_\\ell\n\\sum_{m}\\Big(\n  \\color{#F4442E}\\langle\\ell|P_i(\\mathbf r+\\mathbf s,t+\\tau)|m\\rangle\\color{black}\n  \\color{#188FA7}\\langle m|P_j(\\mathbf r,t)|\\ell\\rangle \\color{black}\\\\\n-\n\\langle\\ell|P_j(\\mathbf r,t)|m\\rangle\\langle m|P_i(\\mathbf r+\\mathbf s,t+\\tau)|\\ell\\rangle\\Big).\n\\end{align*}\n\\tag{4}\nWhere the colored bits can be reduced to their Schrodinger counterparts by using the Heisenberg time dependence:\n\\begin{align*}\n\\color{#F4442E}\\langle\\ell|P_i(\\mathbf r+\\mathbf s,t+\\tau)|m\\rangle\\color{black}\n&= e^{i\\color{green}\\tfrac{(E_\\ell-E_m)}{\\hbar}\\color{black}\n(t+\\tau)}\\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle \\\\\n&=e^{i\\color{green}\\omega_{\\ell m}\\color{black}(t+\\tau)}\\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle,\n\\end{align*}\n\n\\begin{align*}\n\\color{#188FA7}\\langle m|P_j(\\mathbf r,t)|\\ell\\rangle\\color{black}\n&= e^{i\\color{green}\\tfrac{(E_\\ell-E_m)}{\\hbar}\\color{black}t}\\langle m|P_j(\\mathbf r)|\\ell\\rangle\\\\\n&= e^{i\\color{green}\\omega_{\\ell m}\\color{black}(t)}\\langle m|P_j(\\mathbf r)|\\ell\\rangle\n\\end{align*}\n\nWhere we have introduced the Bohr frequencies\n\n\\omega_{m\\ell}\\equiv\\frac{E_m-E_\\ell}{\\hbar} = -\\omega_{\\ell m}.\n\nNote how the overall t-dependence cancels (as it must for a time-translation invariant equilibrium average), leaving \\tau-dependence through e^{\\tfrac{i}{\\hbar}(E_\\ell-E_m)\\tau}.\nSo the commutator contribution becomes (for \\tau&gt;0)\n\\begin{align*}\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\Theta(\\tau)\\sum_{\\ell,m} w_\\ell\\Big(\n&e^{i\\omega_{\\ell m}\\tau} \\langle\\ell|P_i(\\mathbf r+\\mathbf s)|m\\rangle\\langle m|P_j(\\mathbf r)|\\ell\\rangle\\\\\n- &e^{i\\omega_{m\\ell}\\tau}\\langle\\ell|P_j(\\mathbf r)|m\\rangle\\langle m|P_i(\\mathbf r+\\mathbf s)|\\ell\\rangle\n\\Big).\n\\end{align*}",
     "crumbs": [
       "Topics",
-      "Linear Response Theory"
+      "Linear Response Theory & Electric Susceptibility"
     ]
   },
   {
@@ -3906,34 +3906,56 @@
   {
     "objectID": "C0manybody/lectures/LRT.html#remarks-interpretation",
     "href": "C0manybody/lectures/LRT.html#remarks-interpretation",
-    "title": "Linear Response Theory",
+    "title": "Linear Response Theory & Electric Susceptibility",
     "section": "Remarks / interpretation",
     "text": "Remarks / interpretation\n\nThe first fraction resonates when \\hbar\\omega\\approx\\hbar\\omega_{m\\ell}=E_m-E_\\ell (absorption from \\ell to m).\nThe second fraction resonates when \\hbar\\omega\\approx -\\hbar\\omega_{m\\ell} (the opposite process).\nThe small positive \\gamma enforces causality (the Fourier transform of \\Theta(\\tau) gives poles in the lower/upper half-plane consistent with retarded response).\nIf w_\\ell is thermal, you can combine terms using detailed-balance relations to express \\chi in alternative forms.",
     "crumbs": [
       "Topics",
-      "Linear Response Theory"
+      "Linear Response Theory & Electric Susceptibility"
     ]
   },
   {
     "objectID": "C0manybody/lectures/LRT.html#components-of-chimathbfk-omega",
     "href": "C0manybody/lectures/LRT.html#components-of-chimathbfk-omega",
-    "title": "Linear Response Theory",
+    "title": "Linear Response Theory & Electric Susceptibility",
     "section": "Components of \\chi(\\mathbf{k}, \\omega)",
-    "text": "Components of \\chi(\\mathbf{k}, \\omega)\nWe now want to find an expression for components of \\chi(\\mathbf{k}, \\omega). We follow Kubo linear-response formula step by step and show exactly how resonance terms (with denominators \\hbar\\omega_{\\ell\\ell'}\\mp\\hbar\\omega\\mp i\\gamma) appear.\nSo now the task is to:\n\nFind \\chi(s, \\tau)\nConvert it to \\chi(\\mathbf{k}, \\omega) using the recipes above.",
+    "text": "Components of \\chi(\\mathbf{k}, \\omega)\nWe now want to find an expression for components of \\chi(\\mathbf{k}, \\omega). If we follow Kubo linear-response formula step by step we will see that resonance terms (with denominators \\hbar\\omega_{\\ell\\ell'}\\mp\\hbar\\omega\\mp i\\gamma) appear.\nSo now the task is to:\n\nFind \\chi(s, \\tau)",
     "crumbs": [
       "Topics",
-      "Linear Response Theory"
+      "Linear Response Theory & Electric Susceptibility"
     ]
   },
   {
     "objectID": "C0manybody/lectures/LRT.html#step-1-kubo-formula-for-the-polarization-response",
     "href": "C0manybody/lectures/LRT.html#step-1-kubo-formula-for-the-polarization-response",
-    "title": "Linear Response Theory",
+    "title": "Linear Response Theory & Electric Susceptibility",
     "section": "Step 1: Kubo formula for the polarization response",
     "text": "Step 1: Kubo formula for the polarization response\nSuppose the system is perturbed by a classical electric field that couples to the polarization by\n\n\\color{green} H'(t) = -\\int d^3r'\\; P_j(\\mathbf r')\\,E_j(\\mathbf r',t).\n\nTo first order in the field, the induced expectation value of the polarization is (Kubo linear response)\n\n\\delta\\langle P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^{t} dt'\\, \\big\\langle \\big[\\color{green}H'(t')\\color{black},\\,P_i(\\mathbf r,t)\\big]\\big\\rangle_0,\n\nwhere \\langle\\cdots\\rangle_0 is the expectation value in the unperturbed equilibrium state. Inserting H'(t') and using linearity gives the response kernel\n\n\\delta\\langle P_i(\\mathbf r,t)\\rangle\n= \\int d^3r'\\int_{-\\infty}^t dt'\\;\n\\chi_{ij}(\\mathbf r-\\mathbf r',t-t')\\,E_j(\\mathbf r',t'),\n\nwith the susceptibility (Kubo form):\n\n\\boxed{\\;\n\\chi_{ij}(\\mathbf s,\\tau)\n= \\frac{i}{\\hbar}\\,\\Theta(\\tau)\\,\\langle\\,[\\,P_i(\\mathbf r+\\mathbf s,\\;t+\\tau),\\;P_j(\\mathbf r,t)\\,]\\,\\rangle_0\n\\;}\n\n(here \\mathbf s=\\mathbf r-\\mathbf r', \\tau=t-t'; because of homogeneity the kernel depends only on differences).\n\n\n\\newcommand{\\green}[1]{\\color{green}{#1}}\n\\newcommand{\\red}[1]{\\color{red}{#1}}\n\\newcommand{\\gray}[1]{\\color{gray}{#1}}",
     "crumbs": [
       "Topics",
-      "Linear Response Theory"
+      "Linear Response Theory & Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#background-kubos-formula",
+    "href": "C0manybody/lectures/LRT.html#background-kubos-formula",
+    "title": "Linear Response Theory & Electric Susceptibility",
+    "section": "",
+    "text": "Since we are going to apply time-dependent perturbations in the linear response regime, we need to remind ourselves, how the values of an observable vary when the perturbation comes into play. That is to say we need to remind ourselves of:\n\n\nDerivation of Kubo formula\n\n{\\displaystyle \\langle {\\hat {A}}(t)\\rangle =\\left\\langle {\\hat {A}}\\right\\rangle _{0}-{\\frac {i}{\\hbar }}\\int _{t_{0}}^{t}dt'\\left\\langle \\left[{\\hat {A}}(t),{\\hat {V}}{\\mathord {\\left(t'\\right)}}\\right]\\right\\rangle _{0}}\n\nAnd thus in linear response theory, the change in expectation value of an operator \\hat A is \n\\delta\\langle \\hat A(t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\,\n\\langle [\\hat H_I(t'), \\hat A(t)] \\rangle_0 ,\n\\tag{1}\nwith \\hat H_I(t') the interaction Hamiltonian.\n\n\nIn our case we have a perturbation due to the interaction between electric polarization and the time dependent electric field.\n\n\\hat H(t) = H_0 - \\int d\\mathbf r'\\,\\hat{\\mathbf P}(\\mathbf r') \\cdot \\mathbf E(\\mathbf r',t),\n\\tag{2}\nwhere \\hat{\\mathbf P}(\\mathbf r) is the polarization operator.\nFor \\hat A(t) = \\hat P_i(\\mathbf r,t),\\  Equation 1 becomes: \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\n\\Big\\langle \\big[ -\\hat P_j(\\mathbf r',t') E_j(\\mathbf r',t'), \\,\n\\hat P_i(\\mathbf r,t) \\big] \\Big\\rangle_0 .\n\nSince E_j(\\mathbf r',t') is a classical field (a c-number, not an operator), it commutes with operators and can be pulled out: \n= -\\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\nE_j(\\mathbf r',t') \\, \\langle [\\hat P_j(\\mathbf r',t'), \\hat P_i(\\mathbf r,t)] \\rangle_0 .\n\nUsing [X,Y] = -[Y,X], this becomes \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\frac{i}{\\hbar}\\int_{-\\infty}^t dt' \\int d\\mathbf r' \\,\n\\langle [\\hat P_i(\\mathbf r,t), \\hat P_j(\\mathbf r',t')] \\rangle_0 \\,\nE_j(\\mathbf r',t') .\n\n\n\nWe can now introduce the retarded susceptibility (response function): \n\\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t')\n= \\frac{i}{\\hbar} \\, \\Theta(t-t') \\,\n\\langle [\\hat P_i(\\mathbf r,t), \\hat P_j(\\mathbf r',t')] \\rangle_0 .\n\nThen the response takes the compact Green’s-function form: \n\\delta \\langle \\hat P_i(\\mathbf r,t)\\rangle\n= \\int d\\mathbf r' \\int_{-\\infty}^\\infty dt' \\,\n\\chi_{ij}^R(\\mathbf r,t;\\mathbf r',t') \\, E_j(\\mathbf r',t').",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory & Electric Susceptibility"
+    ]
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT.html#now-to-find-susceptibility-chimathbfk-omega",
+    "href": "C0manybody/lectures/LRT.html#now-to-find-susceptibility-chimathbfk-omega",
+    "title": "Linear Response Theory & Electric Susceptibility",
+    "section": "Now to find susceptibility \\chi(\\mathbf{k}, \\omega)",
+    "text": "Now to find susceptibility \\chi(\\mathbf{k}, \\omega)\nWe now want to find an expression for components of \\chi(\\mathbf{k}, \\omega). If we follow Kubo linear-response formula step by step we will see that resonance terms (with denominators \\hbar\\omega_{\\ell\\ell'}\\mp\\hbar\\omega\\mp i\\gamma) appear.\nSo now the task is to:\n\nFind \\chi(s, \\tau)",
+    "crumbs": [
+      "Topics",
+      "Linear Response Theory & Electric Susceptibility"
     ]
   }
 ]
