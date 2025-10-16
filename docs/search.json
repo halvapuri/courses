@@ -941,7 +941,7 @@
     "href": "C0calculusII/home_calculusII.html#assignments",
     "title": "Calculus II",
     "section": "Assignments",
-    "text": "Assignments\nAssignment 1",
+    "text": "Assignments\nAssignment 1\nAssignment 2",
     "crumbs": [
       "Home",
       "Calculus II Home"
@@ -3957,5 +3957,19 @@
       "Topics",
       "Linear Response Theory & Electric Susceptibility"
     ]
+  },
+  {
+    "objectID": "C0manybody/lectures/phonons/01-phononHamiltonian.html",
+    "href": "C0manybody/lectures/phonons/01-phononHamiltonian.html",
+    "title": "Phonons",
+    "section": "",
+    "text": "The crystal Hamiltonian is well known:\nH = H_{ionic} + H_{electronic} + H_{interaction}\nH_{ionic} = \\sum_l \\frac{p_l^2}{2M_l} + \\sum_{l,m} U(R_l - R_m)\nThe consequence of the adiabatic approximation is to split the many-body Schrodinger equation into an ionic and an electronic part:\nH_{ionic} \\Phi(R) = E_{ionic}\\Phi(R), \\qquad H_{electronic} = E_{electronic} \\Psi(r, R)\nSo that we can now turn our attention to phonons."
+  },
+  {
+    "objectID": "C0manybody/lectures/phonons/01-phononHamiltonian.html#phonons",
+    "href": "C0manybody/lectures/phonons/01-phononHamiltonian.html#phonons",
+    "title": "Phonons",
+    "section": "Phonons",
+    "text": "Phonons\nWe take the harmonic approximation. If the ions were independent we would have a diagonal displacement matrix. But since they are coupled, we lean on the theory of coupled oscillators our dynamical matrix would involve products of different displacement vectors: \\begin{align*}\nH_{ionic} = \\sum_l \\frac{p_l^2}{2M_l} + \\sum_{l,m} D_{l,m}(R_l - R_m)u_l u_m\n\\end{align*}"
   }
 ]

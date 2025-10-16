@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Calculus I – Worldlines</title>
+<title>Phonons – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d3105735129c7a3dfcef26b2d42d6add.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-32634ea76cc5700cc38f5814bf62e0f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,361 +68,182 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-
-
 <script>
-
 function toggleBox(header) {
-
   // Use jQuery to find the associated container and toggle its visibility
-
   $(header).next('.dd-box').slideToggle();
-
   $(header).next('.ddm-box').slideToggle();
-
 }
-
 </script>
 
-
-
 <script>
-
 function togglePill(header) {
-
   const box = header.nextElementSibling;
 
-
-
   // toggle active pill state
-
   header.classList.toggle("active");
 
-
-
   // toggle content
-
   if (box.style.display === "block") {
-
     box.style.display = "none";
-
   } else {
-
     box.style.display = "block";
-
   }
-
 }
-
 </script>
 
 
-
-
-
 <script>
-
 document.addEventListener("DOMContentLoaded", () => {
-
   document.querySelectorAll(".pill").forEach(pill => {
-
     const title = pill.getAttribute("title") || "";
-
     const bodyHtml = pill.innerHTML;
 
-
-
     // header
-
     const header = document.createElement("div");
-
     header.className = "pill-header";
-
     header.textContent = title;
 
-
-
     // body
-
     const body = document.createElement("div");
-
     body.className = "pill-body";
-
     body.innerHTML = bodyHtml;
 
-
-
     // reset pill
-
     pill.innerHTML = "";
-
     pill.appendChild(header);
-
     pill.appendChild(body);
 
-
-
     // toggle
-
     header.addEventListener("click", () => {
-
       header.classList.toggle("active");
 
-
-
       if (body.style.display === "block") {
-
         body.style.display = "none";
-
         pill.style.flexBasis = "auto";   // collapse back
-
       } else {
-
         body.style.display = "block";
-
         pill.style.flexBasis = "100%";   // expand pill to full row
-
       }
-
     });
-
   });
-
 });
-
 </script>
-
-
-
 
 
 <script>
-
 /**
-
  * Global registry and updater for all LeaderLine instances created via drawLeader.
-
  * Handles:
-
  *  - storing all lines
-
  *  - repositioning all lines on resize/scroll
-
  *  - smooth real-time repositioning during .pill transitions
-
  */
-
 const LeaderLineRegistry = {
-
   lines: [],
-
   animating: false,
-
   _initialized: false,
 
-
-
   /**
-
    * Initialize one-time global event listeners for updating all registered lines.
-
    * This runs only once, automatically when the first line is registered.
-
    */
-
   init() {
-
     if (this._initialized) return;
-
     this._initialized = true;
 
-
-
     // Reposition all lines on window resize
-
     window.addEventListener('resize', () => this.positionAll());
 
-
-
     // Reposition all lines on scroll (capturing to catch scrolls on inner containers too)
-
     document.addEventListener('scroll', () => this.positionAll(), true);
 
-
-
     // Automatically add smooth animation loop for .pill transitions
-
     const pills = document.querySelectorAll('.pill');
-
     pills.forEach(pill => {
-
       pill.addEventListener('click', () => {
-
         if (this.animating) return;
-
         this.animating = true;
 
-
-
         const step = () => {
-
           this.positionAll();
-
           if (this.animating) requestAnimationFrame(step);
-
         };
-
         requestAnimationFrame(step);
-
       });
-
-
 
       pill.addEventListener('transitionend', () => {
-
         this.animating = false;
-
         this.positionAll();
-
       });
-
     });
-
   },
 
-
-
   /**
-
    * Register a newly created LeaderLine instance so it is tracked and updated.
-
    * @param {LeaderLine} line - The LeaderLine object to register
-
    */
-
   register(line) {
-
     this.init();
-
     this.lines.push(line);
-
   },
 
-
-
   /**
-
    * Calls .position() on every registered line to recalculate its endpoints.
-
    */
-
   positionAll() {
-
     this.lines.forEach(line => line.position());
-
   }
-
 };
 
-
-
 /**
-
  * Creates two DOM anchor elements (if not already present) inside a container
-
  * and draws a LeaderLine between them. Automatically registers the line
-
  * into the global LeaderLineRegistry so it stays in sync with layout changes.
-
  *
-
  * @param {Object} config
-
  * @param {string} [config.containerId='stage'] - The id of the container element
-
  * @param {Object} config.from - The "from" anchor element config
-
  * @param {string} config.from.id - DOM id of the starting element
-
  * @param {string} [config.from.text] - Optional text content for the element
-
  * @param {string} [config.from.className] - Optional CSS class
-
  * @param {Object} [config.from.style] - Inline style object
-
  * @param {Object} config.to - The "to" anchor element config (same fields as 'from')
-
  * @param {Object} [config.lineOptions={}] - Options passed directly to new LeaderLine()
-
  *
-
  * @returns {Promise<LeaderLine>} Resolves with the created LeaderLine instance
-
  */
-
 function drawLeader(config) {
-
   const { containerId='stage', from, to, lineOptions={} } = config;
 
-
-
   return new Promise(resolve => {
-
     window.addEventListener('load', () => {
-
       const container = document.getElementById(containerId);
-
       const elements = { from, to };
-
       const createdDivs = {};
 
-
-
       for (const key in elements) {
-
         const { id, text, className, style } = elements[key];
-
         let el = document.getElementById(id);
 
-
-
         if (!el || !container.contains(el)) {
-
           el = document.createElement('div');
-
           el.id = id;
-
           el.textContent = text || '';
-
           el.className = className || 'anchor80-line';
-
           Object.assign(el.style, { position: 'relative', ...style });
-
           container.appendChild(el);
-
         }
 
-
-
         createdDivs[key] = el;
-
       }
 
-
-
       const line = new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
-
       LeaderLineRegistry.register(line);
-
       resolve(line);
-
     });
-
   });
-
 }
-
-
 
 </script>
 
@@ -432,32 +252,67 @@ function drawLeader(config) {
 
 
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
-
-
-
-
-
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
-<link rel="stylesheet" href="../css/fonts-ebgaramond.css">
-<link rel="stylesheet" href="../css/fonts-hand.css">
-<link rel="stylesheet" href="../css/shapes.css">
-<link rel="stylesheet" href="../css/leaders.css">
+<link rel="stylesheet" href="../../../css/buttons.css">
+<link rel="stylesheet" href="../../../css/tabs.css">
+<link rel="stylesheet" href="../../../css/callouts.css">
+<link rel="stylesheet" href="../../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../../css/shapes.css">
+<link rel="stylesheet" href="../../../css/leaders.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -468,11 +323,11 @@ function drawLeader(config) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -481,19 +336,19 @@ function drawLeader(config) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="../C0calculusI/home_calculusI.html">
+    <a class="dropdown-item" href="../../../C0calculusI/home_calculusI.html">
  <span class="dropdown-text">Calculus I</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0calculusII/home_calculusII.html">
+    <a class="dropdown-item" href="../../../C0calculusII/home_calculusII.html">
  <span class="dropdown-text">Calculus II</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0ode/home_ode.html">
+    <a class="dropdown-item" href="../../../C0ode/home_ode.html">
  <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0noneqthermo/home_noneqthermo.html">
+    <a class="dropdown-item" href="../../../C0noneqthermo/home_noneqthermo.html">
  <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
   </li>  
     </ul>
@@ -504,7 +359,7 @@ function drawLeader(config) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
         <li>
-    <a class="dropdown-item" href="../D0abinit/home_abinit.html">
+    <a class="dropdown-item" href="../../../D0abinit/home_abinit.html">
  <span class="dropdown-text">Ab initio calculation</span></a>
   </li>  
     </ul>
@@ -520,166 +375,26 @@ function drawLeader(config) {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Undergraduate Courses</a></li><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">MT101 - Calculus I</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
-      </a>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Undergraduate Courses</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">MT101 - Calculus I</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MT202 - Calculus II</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MT102 - Ordinary Differential Equations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0linalg/home_linalg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ES304 - Adv. Linear Algebra</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Graduate Courses</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Under Development</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Many-Body Systems</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Probability Theory</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stochastic Processes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistical Mechanics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topology</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Differential Geometry</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#announcements" id="toc-announcements" class="nav-link active" data-scroll-target="#announcements">Announcements</a></li>
-  <li><a href="#midterm" id="toc-midterm" class="nav-link" data-scroll-target="#midterm">Midterm</a></li>
-  <li><a href="#quizzes" id="toc-quizzes" class="nav-link" data-scroll-target="#quizzes">Quizzes</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#slides-and-notebooks" id="toc-slides-and-notebooks" class="nav-link" data-scroll-target="#slides-and-notebooks">Slides and Notebooks</a></li>
-  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course Outline</a></li>
-  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other Resources</a>
-  <ul class="collapse">
-  <li><a href="#python-related" id="toc-python-related" class="nav-link" data-scroll-target="#python-related">Python related</a></li>
-  </ul></li>
-  <li><a href="#contacts" id="toc-contacts" class="nav-link" data-scroll-target="#contacts">Contacts</a></li>
+  <li><a href="#phonons" id="toc-phonons" class="nav-link active" data-scroll-target="#phonons">Phonons</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Undergraduate Courses</a></li><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">MT101 - Calculus I</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Calculus I</h1>
+<h1 class="title">Phonons</h1>
 </div>
 
 
@@ -696,75 +411,24 @@ function drawLeader(config) {
 </header>
 
 
-<p>This is the home page for calculus I (MT-101). All assignments, announcements, and other relevant materials will be posted here.</p>
-<section id="announcements" class="level2">
-<h2 class="anchored" data-anchor-id="announcements">Announcements</h2>
-<!-- ## Course Assignments
-[Assignments](assignments.qmd) -->
-<!-- 
-## Lectures 
-[History](lectures/C0history.qmd)\
-[Limits and Continuity](lectures/C0limits.qmd)\
-[Download test](notebooks/_test.ipynb){download=""} -->
-</section>
-<section id="midterm" class="level2">
-<h2 class="anchored" data-anchor-id="midterm">Midterm</h2>
-<p>The midterm will include everything studied in class up till (and including) section 4.1.</p>
-</section>
-<section id="quizzes" class="level2">
-<h2 class="anchored" data-anchor-id="quizzes">Quizzes</h2>
-<p>We will most likely have three quizzes. Tentatively:</p>
-<ul>
-<li>Quiz 1 [5 Marks]</li>
-<li>Quiz 2 (10 marks, 8th week)</li>
-<li>Quiz 3 (10 marks, 13th week)<br>
-
-<ul>
-<li><span style="color:crimson;">December 10 (Tuesday), 6:00pm at LH4, FES </span></li>
-<li><span style="color:crimson;">4.3 to 4.5, 5.1 to 5.6 (as studied in class), 6.1, 6.2</span></li>
-</ul></li>
-</ul>
-<p><em>N.B.:</em> If you can’t take the quiz for some reason, you need to inform us in advance.</p>
-</section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<p><a href="coursematerial/Assignments/MT101Assignment_I.pdf">Assignment 1</a><br>
-<a href="coursematerial/Assignments/MT101Assignment_II.pdf">Assignment 2</a><br>
-<a href="coursematerial/Assignments/MT101Assignment_III.pdf">Assignment 3</a><br>
-<a href="coursematerial/Assignments/MT101Assignment_IV.pdf">Assignment 4</a><br>
-<a href="coursematerial/Assignments/MT101Assignment_V.pdf">Assignment 5</a><br>
-</p>
-</section>
-<section id="slides-and-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-notebooks">Slides and Notebooks</h2>
-<p>Note: You may need to setup python and sympy. You can either see an online tutorial for that, or consult me.</p>
-<p>If you want a quick solution, then you can use sympy on Google colab as shown <a href="https://colab.research.google.com/github/jrjohansson/scientific-python-lectures/blob/master/Lecture-5-Sympy.ipynb">here</a></p>
-<!-- - [Functions](notebooks/01functions.ipynb) -->
-<ul>
-<li><a href="../C0calculusI/lectures/1functions.html">Functions</a></li>
-<li><a href="../C0calculusI/lectures/2limitscontinuity.html">Limits and Continuity</a></li>
-</ul>
-</section>
-<section id="course-outline" class="level2">
-<h2 class="anchored" data-anchor-id="course-outline">Course Outline</h2>
-<p><a href="coursematerial/MT101 - Course Outline - Fall 2024.pdf">Outline (pdf)</a></p>
-</section>
-<section id="other-resources" class="level2">
-<h2 class="anchored" data-anchor-id="other-resources">Other Resources</h2>
-<section id="python-related" class="level3">
-<h3 class="anchored" data-anchor-id="python-related">Python related</h3>
-<ul>
-<li><a href="https://www.youtube.com/watch?v=-SdIZHPuW9o">Calculus I in python</a></li>
-</ul>
-</section>
-</section>
-<section id="contacts" class="level2">
-<h2 class="anchored" data-anchor-id="contacts">Contacts</h2>
-<p>In case of queries regarding attendance, quizzes, and assignments contact:</p>
-<p>Mr.&nbsp;Hassan Ali<br>
-Email: hassan.ali@giki.edu.pk</p>
-<p>Mr.&nbsp;Aamir Shehzad<br>
-Email: aamir.shehzad@giki.edu.pk</p>
+<p>The crystal Hamiltonian is well known:</p>
+<p><span class="math display">
+H = H_{ionic} + H_{electronic} + H_{interaction}
+</span></p>
+<p><span class="math display">
+H_{ionic} = \sum_l \frac{p_l^2}{2M_l} + \sum_{l,m} U(R_l - R_m)
+</span></p>
+<p>The consequence of the adiabatic approximation is to split the many-body Schrodinger equation into an ionic and an electronic part:</p>
+<p><span class="math display">
+H_{ionic} \Phi(R) = E_{ionic}\Phi(R), \qquad H_{electronic} = E_{electronic} \Psi(r, R)
+</span></p>
+<p>So that we can now turn our attention to phonons.</p>
+<section id="phonons" class="level2">
+<h2 class="anchored" data-anchor-id="phonons">Phonons</h2>
+<p>We take the harmonic approximation. If the ions were independent we would have a diagonal displacement matrix. But since they are coupled, we lean on the theory of <a href="https://phys.libretexts.org/Bookshelves/Classical_Mechanics/Essential_Graduate_Physics_-_Classical_Mechanics_(Likharev)/06%3A_From_Oscillations_to_Waves/6.01%3A_Two_Coupled_Oscillators">coupled oscillators</a> our dynamical matrix would involve products of different displacement vectors: <span class="math display">\begin{align*}
+H_{ionic} = \sum_l \frac{p_l^2}{2M_l} + \sum_{l,m} D_{l,m}(R_l - R_m)u_l u_m
+\end{align*}
+</span></p>
 
 
 </section>
@@ -821,14 +485,13 @@ Email: aamir.shehzad@giki.edu.pk</p>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1171,7 +834,7 @@ Email: aamir.shehzad@giki.edu.pk</p>
   });
   </script>
 </div> <!-- /content -->
-<script src="../scripts/leader-line-master/leader-line.min.js"></script>
+<script src="../../../scripts/leader-line-master/leader-line.min.js"></script>
 
 
 

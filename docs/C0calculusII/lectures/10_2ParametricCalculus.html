@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d3105735129c7a3dfcef26b2d42d6add.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-32634ea76cc5700cc38f5814bf62e0f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -103,184 +104,369 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<script>
-function toggleBox(header) {
-  // Use jQuery to find the associated container and toggle its visibility
-  $(header).next('.dd-box').slideToggle();
-  $(header).next('.ddm-box').slideToggle();
-}
-</script>
+
 
 <script>
+
+function toggleBox(header) {
+
+  // Use jQuery to find the associated container and toggle its visibility
+
+  $(header).next('.dd-box').slideToggle();
+
+  $(header).next('.ddm-box').slideToggle();
+
+}
+
+</script>
+
+
+
+<script>
+
 function togglePill(header) {
+
   const box = header.nextElementSibling;
 
+
+
   // toggle active pill state
+
   header.classList.toggle("active");
 
+
+
   // toggle content
+
   if (box.style.display === "block") {
+
     box.style.display = "none";
+
   } else {
+
     box.style.display = "block";
+
   }
+
 }
+
 </script>
 
 
+
+
+
 <script>
+
 document.addEventListener("DOMContentLoaded", () => {
+
   document.querySelectorAll(".pill").forEach(pill => {
+
     const title = pill.getAttribute("title") || "";
+
     const bodyHtml = pill.innerHTML;
 
+
+
     // header
+
     const header = document.createElement("div");
+
     header.className = "pill-header";
+
     header.textContent = title;
 
+
+
     // body
+
     const body = document.createElement("div");
+
     body.className = "pill-body";
+
     body.innerHTML = bodyHtml;
 
+
+
     // reset pill
+
     pill.innerHTML = "";
+
     pill.appendChild(header);
+
     pill.appendChild(body);
 
+
+
     // toggle
+
     header.addEventListener("click", () => {
+
       header.classList.toggle("active");
 
+
+
       if (body.style.display === "block") {
+
         body.style.display = "none";
+
         pill.style.flexBasis = "auto";   // collapse back
+
       } else {
+
         body.style.display = "block";
+
         pill.style.flexBasis = "100%";   // expand pill to full row
+
       }
+
     });
+
   });
+
 });
+
 </script>
+
+
+
 
 
 <script>
+
 /**
+
  * Global registry and updater for all LeaderLine instances created via drawLeader.
+
  * Handles:
+
  *  - storing all lines
+
  *  - repositioning all lines on resize/scroll
+
  *  - smooth real-time repositioning during .pill transitions
+
  */
+
 const LeaderLineRegistry = {
+
   lines: [],
+
   animating: false,
+
   _initialized: false,
 
+
+
   /**
+
    * Initialize one-time global event listeners for updating all registered lines.
+
    * This runs only once, automatically when the first line is registered.
+
    */
+
   init() {
+
     if (this._initialized) return;
+
     this._initialized = true;
 
+
+
     // Reposition all lines on window resize
+
     window.addEventListener('resize', () => this.positionAll());
 
+
+
     // Reposition all lines on scroll (capturing to catch scrolls on inner containers too)
+
     document.addEventListener('scroll', () => this.positionAll(), true);
 
+
+
     // Automatically add smooth animation loop for .pill transitions
+
     const pills = document.querySelectorAll('.pill');
+
     pills.forEach(pill => {
+
       pill.addEventListener('click', () => {
+
         if (this.animating) return;
+
         this.animating = true;
 
+
+
         const step = () => {
+
           this.positionAll();
+
           if (this.animating) requestAnimationFrame(step);
+
         };
+
         requestAnimationFrame(step);
+
       });
+
+
 
       pill.addEventListener('transitionend', () => {
+
         this.animating = false;
+
         this.positionAll();
+
       });
+
     });
+
   },
 
+
+
   /**
+
    * Register a newly created LeaderLine instance so it is tracked and updated.
+
    * @param {LeaderLine} line - The LeaderLine object to register
+
    */
+
   register(line) {
+
     this.init();
+
     this.lines.push(line);
+
   },
 
+
+
   /**
+
    * Calls .position() on every registered line to recalculate its endpoints.
+
    */
+
   positionAll() {
+
     this.lines.forEach(line => line.position());
+
   }
+
 };
 
+
+
 /**
+
  * Creates two DOM anchor elements (if not already present) inside a container
+
  * and draws a LeaderLine between them. Automatically registers the line
+
  * into the global LeaderLineRegistry so it stays in sync with layout changes.
+
  *
+
  * @param {Object} config
+
  * @param {string} [config.containerId='stage'] - The id of the container element
+
  * @param {Object} config.from - The "from" anchor element config
+
  * @param {string} config.from.id - DOM id of the starting element
+
  * @param {string} [config.from.text] - Optional text content for the element
+
  * @param {string} [config.from.className] - Optional CSS class
+
  * @param {Object} [config.from.style] - Inline style object
+
  * @param {Object} config.to - The "to" anchor element config (same fields as 'from')
+
  * @param {Object} [config.lineOptions={}] - Options passed directly to new LeaderLine()
+
  *
+
  * @returns {Promise<LeaderLine>} Resolves with the created LeaderLine instance
+
  */
+
 function drawLeader(config) {
+
   const { containerId='stage', from, to, lineOptions={} } = config;
 
+
+
   return new Promise(resolve => {
+
     window.addEventListener('load', () => {
+
       const container = document.getElementById(containerId);
+
       const elements = { from, to };
+
       const createdDivs = {};
 
+
+
       for (const key in elements) {
+
         const { id, text, className, style } = elements[key];
+
         let el = document.getElementById(id);
 
+
+
         if (!el || !container.contains(el)) {
+
           el = document.createElement('div');
+
           el.id = id;
+
           el.textContent = text || '';
+
           el.className = className || 'anchor80-line';
+
           Object.assign(el.style, { position: 'relative', ...style });
+
           container.appendChild(el);
+
         }
 
+
+
         createdDivs[key] = el;
+
       }
 
+
+
       const line = new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
+
       LeaderLineRegistry.register(line);
+
       resolve(line);
+
     });
+
   });
+
 }
 
+
+
 </script>
+
+
+
+
+
+
 
 
 
@@ -315,7 +501,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -347,6 +533,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
@@ -430,7 +618,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../../index.html" class="sidebar-logo-link">
-      <img src="../../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -565,10 +754,10 @@ window.Quarto = {
 
 <section id="section" class="level2">
 <h2 class="anchored" data-anchor-id="section"></h2>
-<div id="320f97eb" class="cell" data-execution_count="1">
+<div id="26cbc020" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Some plotting routines. Click to expand</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> plot_parametric, symbols</span>
@@ -611,15 +800,15 @@ window.Quarto = {
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            text,</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            sp.latex(expr, mode<span class="op">=</span><span class="st">'inline'</span>)</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>          ))</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="integration-and-differentiation-via-python" class="level2">
 <h2 class="anchored" data-anchor-id="integration-and-differentiation-via-python">Integration and Differentiation via python</h2>
 <p>A quick reminder, you can perform differentiation and integration (definite or indefinite) as follows:</p>
-<div id="14e9f418" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<div id="5f1b31d7" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> sp.symbols(<span class="st">'x y z'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sp.cos(x)<span class="op">**</span><span class="dv">3</span></span>
@@ -627,13 +816,13 @@ window.Quarto = {
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> sp.diff(f)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>result</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">## To evaluate a function, substitute the value of x.</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># result.subs(x,sp.pi/3)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># result.subs(x,sp.pi/3)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="2">
 <p><span class="math inline">\displaystyle - 3 \sin{\left(x \right)} \cos^{2}{\left(x \right)}</span></p>
 </div>
 </div>
-<div id="d5dda243" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>inf <span class="op">=</span> sp.oo</span>
+<div id="74f2d211" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>inf <span class="op">=</span> sp.oo</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> sp.symbols(<span class="st">'x y z'</span>)</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -642,18 +831,18 @@ window.Quarto = {
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>sp.integrate(f,x)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Definite integrals</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>sp.integrate(sp.exp(<span class="op">-</span>x), (x, <span class="dv">0</span>, inf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>sp.integrate(sp.exp(<span class="op">-</span>x), (x, <span class="dv">0</span>, inf))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
 <p><span class="math inline">\displaystyle 1</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled" title="Warning">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+<span class="screen-reader-only">Caution</span>Warning
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -674,30 +863,30 @@ Warning
 <section id="example-1-first-derivative" class="level3">
 <h3 class="anchored" data-anchor-id="example-1-first-derivative">Example 1 (First derivative):</h3>
 <p><em>Find the tangent to the line <span class="math inline">x = sec(t), y = tan(t)</span> at <span class="math inline">(\sqrt(2),1)</span> where <span class="math inline">t=\pi/4</span>.</em></p>
-<div id="ec6a390a" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>)</span>
+<div id="043077e6" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sp.sec(t)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sp.tan(t)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>splot((f, g), (t, <span class="op">-</span>sp.pi<span class="op">/</span><span class="dv">3</span>, sp.pi<span class="op">/</span><span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>splot((f, g), (t, <span class="op">-</span>sp.pi<span class="op">/</span><span class="dv">3</span>, sp.pi<span class="op">/</span><span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_2ParametricCalculus_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="10_2ParametricCalculus_files/figure-html/cell-5-output-1.png" width="252" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Now we need to find the slope:</p>
-<div id="1df3c632" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>evalat <span class="op">=</span> sp.pi<span class="op">/</span><span class="dv">4</span></span>
+<div id="c83e0fe2" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>evalat <span class="op">=</span> sp.pi<span class="op">/</span><span class="dv">4</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dy_dx <span class="op">=</span> sp.diff(g)<span class="op">/</span>sp.diff(f)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>slope <span class="op">=</span> dy_dx.subs(t, evalat)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>display(dy_dx)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>display(slope)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>display(slope)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p><span class="math inline">\displaystyle \frac{\tan^{2}{\left(t \right)} + 1}{\tan{\left(t \right)} \sec{\left(t \right)}}</span></p>
 </div>
@@ -706,8 +895,8 @@ Warning
 </div>
 </div>
 <p>So our tangent is a line passing through <span class="math inline">(\sqrt{2},1)</span> with slope sqrt(2). Let’s plot the curve and this tangent line together.</p>
-<div id="80c4e7e7" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From question</span></span>
+<div id="0f4f8140" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># From question</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x0, y0 <span class="op">=</span> sp.sqrt(<span class="dv">2</span>), <span class="dv">1</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Parametric representation of a line</span></span>
@@ -717,11 +906,11 @@ Warning
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot both the curve and the tangent.</span></span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>splot((f, g,    (t, <span class="op">-</span>sp.pi<span class="op">/</span><span class="dv">3</span>, sp.pi<span class="op">/</span><span class="dv">3</span>)), </span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>      (t, y_t,  (t, <span class="dv">0</span>, <span class="dv">2</span>)),</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_2ParametricCalculus_files/figure-html/cell-7-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="10_2ParametricCalculus_files/figure-html/cell-7-output-1.png" width="249" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -732,8 +921,8 @@ Warning
 <p>Find <span class="math inline">\frac{d^{2}y}{dx^{2}}</span> as a function of <span class="math inline">t</span> if: <span class="math display">
 x = t − t^2;\quad y = t − t^3
 </span></p>
-<div id="7aed038d" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramterizations</span></span>
+<div id="60dc4c02" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramterizations</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> t <span class="op">-</span> t<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> t <span class="op">-</span> t<span class="op">**</span><span class="dv">3</span></span>
@@ -747,11 +936,11 @@ x = t − t^2;\quad y = t − t^3
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Display resulting equations</span></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'First derivative:'</span>, dy_dx)</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'Second derivative:'</span>, d2y_dx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'Second derivative:'</span>, d2y_dx)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_2ParametricCalculus_files/figure-html/cell-8-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="10_2ParametricCalculus_files/figure-html/cell-8-output-1.png" width="272" height="372" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -763,32 +952,32 @@ x = t − t^2;\quad y = t − t^3
 </div>
 </div>
 <p>Now we need to find the slope:</p>
-<div id="7d3bc0ed" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>evalat <span class="op">=</span> <span class="op">-</span><span class="fl">0.75</span></span>
+<div id="4b387a43" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>evalat <span class="op">=</span> <span class="op">-</span><span class="fl">0.75</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> f.subs(t, evalat)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>y0 <span class="op">=</span> g.subs(t, evalat)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>slope <span class="op">=</span> dy_dx.subs(t, evalat)</span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="ss">f"Slope at t = </span><span class="sc">{</span>evalat<span class="sc">}</span><span class="ss"> is:"</span>, slope)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="ss">f"Slope at t = </span><span class="sc">{</span>evalat<span class="sc">}</span><span class="ss"> is:"</span>, slope)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Slope at t = -0.75 is: <span class="math inline">-0.275</span></p>
 </div>
 </div>
 <p>Let’s replot the curve with the tangent.</p>
-<div id="0388ffb0" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x   <span class="op">=</span> t</span>
+<div id="59adaed6" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x   <span class="op">=</span> t</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>y_t <span class="op">=</span> slope <span class="op">*</span> (t <span class="op">-</span> x0) <span class="op">+</span> y0 </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot both the curve and the tangent.</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>splot((f, g,    (t, <span class="op">-</span>sp.pi<span class="op">/</span><span class="dv">3</span>, sp.pi<span class="op">/</span><span class="dv">3</span>)), </span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      (t, y_t,  (t, evalat <span class="op">-</span> <span class="dv">1</span>, evalat <span class="op">+</span> <span class="dv">1</span>)),</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_2ParametricCalculus_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="10_2ParametricCalculus_files/figure-html/cell-10-output-1.png" width="374" height="189" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -799,8 +988,8 @@ x = t − t^2;\quad y = t − t^3
 <h2 class="anchored" data-anchor-id="areas-of-parametric-cruves">Areas of Parametric Cruves</h2>
 <section id="example-3-area-of-astroid" class="level3">
 <h3 class="anchored" data-anchor-id="example-3-area-of-astroid">Example 3 (Area of astroid)</h3>
-<div id="d97f6996" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramterizations</span></span>
+<div id="3c665e10" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramterizations</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> symbols(<span class="st">'t'</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sp.cos(t)<span class="op">**</span><span class="dv">3</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sp.sin(t)<span class="op">**</span><span class="dv">3</span></span>
@@ -814,11 +1003,11 @@ x = t − t^2;\quad y = t − t^3
 <span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">## Display resulting equations</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'First derivative:'</span>, dy_dx)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'Second derivative:'</span>, d2y_dx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">'Second derivative:'</span>, d2y_dx)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_2ParametricCalculus_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="10_2ParametricCalculus_files/figure-html/cell-11-output-1.png" width="373" height="373" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -830,12 +1019,12 @@ x = t − t^2;\quad y = t − t^3
 </div>
 </div>
 <p>To find the area we make use of the symmetry of the object. We integrate <span class="math inline">y</span> from <span class="math inline">x=[0,1]</span> and multiply it by 4:</p>
-<div id="b1520935" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> sp.diff(f, t)</span>
+<div id="e451314f" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dx <span class="op">=</span> sp.diff(f, t)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> g</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>_displayM(<span class="st">"Integrand:"</span>, y<span class="op">*</span>dx)</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>sp.integrate(<span class="dv">4</span><span class="op">*</span>y<span class="op">*</span>dx, (t, sp.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>sp.integrate(<span class="dv">4</span><span class="op">*</span>y<span class="op">*</span>dx, (t, sp.pi<span class="op">/</span><span class="dv">2</span>, <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Integrand: <span class="math inline">- 3 \sin^{4}{\left(t \right)} \cos^{2}{\left(t \right)}</span></p>
 </div>
@@ -847,8 +1036,8 @@ x = t − t^2;\quad y = t − t^3
 </section>
 <section id="length-of-parametric-curves" class="level2">
 <h2 class="anchored" data-anchor-id="length-of-parametric-curves">Length of Parametric Curves</h2>
-<div id="e90d5d0e" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>marker <span class="op">=</span> {<span class="st">"color"</span>: <span class="st">"r"</span>, <span class="st">"marker"</span>: <span class="st">"s"</span>, <span class="st">"fillstyle"</span>:<span class="st">'full'</span>,<span class="st">"markerfacecolor"</span>:<span class="st">'white'</span>, <span class="st">"markersize"</span>:<span class="dv">3</span>, <span class="st">"linestyle"</span>:<span class="st">'--'</span>}</span>
+<div id="5c59738e" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>marker <span class="op">=</span> {<span class="st">"color"</span>: <span class="st">"r"</span>, <span class="st">"marker"</span>: <span class="st">"s"</span>, <span class="st">"fillstyle"</span>:<span class="st">'full'</span>,<span class="st">"markerfacecolor"</span>:<span class="st">'white'</span>, <span class="st">"markersize"</span>:<span class="dv">3</span>, <span class="st">"linestyle"</span>:<span class="st">'--'</span>}</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> sp.symbols(<span class="st">'t'</span>)</span>
@@ -863,11 +1052,11 @@ x = t − t^2;\quad y = t − t^3
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>marker[<span class="st">"args"</span>] <span class="op">=</span> [fvals,gvals]</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot parameters</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>sp.plot_parametric(f,g, (t, <span class="dv">0</span>, <span class="dv">1</span>), markers <span class="op">=</span> marker)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>sp.plot_parametric(f,g, (t, <span class="dv">0</span>, <span class="dv">1</span>), markers <span class="op">=</span> marker)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_2ParametricCalculus_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+<p><img src="10_2ParametricCalculus_files/figure-html/cell-13-output-1.png" width="657" height="467" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -876,8 +1065,8 @@ x = t − t^2;\quad y = t − t^3
 L = \int_a^b\sqrt{f'(t)^2 + g'(t)^2} dt
 </span></p>
 <p>To make things convenient we will convert our operations into a function.</p>
-<div id="0378c42b" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _curvelength(f, g, var):</span>
+<div id="348b4930" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _curvelength(f, g, var):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">"""</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">  Inputs:</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">    f, g: x and y parametrizations</span></span>
@@ -898,17 +1087,17 @@ L = \int_a^b\sqrt{f'(t)^2 + g'(t)^2} dt
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  res <span class="op">=</span> sp.integrate(integ, (t, a, b))</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">"gives:"</span>)</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> res</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="example-circlespiral" class="level3">
 <h3 class="anchored" data-anchor-id="example-circlespiral">Example (circle/spiral)</h3>
-<div id="4e5f6a7b" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>t, r <span class="op">=</span> sp.symbols(<span class="st">'t r'</span>, positive <span class="op">=</span> <span class="va">True</span>)</span>
+<div id="34912e85" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>t, r <span class="op">=</span> sp.symbols(<span class="st">'t r'</span>, positive <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> r <span class="op">*</span> sp.cos(t)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> r <span class="op">*</span> sp.sin(t)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>_curvelength(f,g, (t, <span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> sp.pi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>_curvelength(f,g, (t, <span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> sp.pi))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Integrating: <span class="math inline">\sqrt{r^{2} \sin^{2}{\left(t \right)} + r^{2} \cos^{2}{\left(t \right)}}</span></p>
 </div>
@@ -925,14 +1114,14 @@ L = \int_a^b\sqrt{f'(t)^2 + g'(t)^2} dt
 </section>
 <section id="example-astroid" class="level3">
 <h3 class="anchored" data-anchor-id="example-astroid">Example (astroid)</h3>
-<div id="5d46d831" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> sp.symbols(<span class="st">'t'</span>)</span>
+<div id="c4f1872e" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> sp.symbols(<span class="st">'t'</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> (sp.cos(t))<span class="op">**</span><span class="dv">3</span></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> (sp.sin(t))<span class="op">**</span><span class="dv">3</span></span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>_curvelength(f,g, (t, <span class="dv">0</span>, sp.pi<span class="op">/</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>_curvelength(f,g, (t, <span class="dv">0</span>, sp.pi<span class="op">/</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Integrating: <span class="math inline">\sqrt{9 \sin^{4}{\left(t \right)} \cos^{2}{\left(t \right)} + 9 \sin^{2}{\left(t \right)} \cos^{4}{\left(t \right)}}</span></p>
 </div>
@@ -949,13 +1138,13 @@ L = \int_a^b\sqrt{f'(t)^2 + g'(t)^2} dt
 </section>
 <section id="example-ellipse" class="level3">
 <h3 class="anchored" data-anchor-id="example-ellipse">Example (ellipse)</h3>
-<div id="5eceaeab" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>t, a, b <span class="op">=</span> sp.symbols(<span class="st">'t a b'</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
+<div id="ea9896d2" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>t, a, b <span class="op">=</span> sp.symbols(<span class="st">'t a b'</span>, positive<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> a <span class="op">*</span> sp.cos(t)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> b <span class="op">*</span> sp.sin(t)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>_curvelength(f, g, (t, <span class="dv">0</span>, sp.pi<span class="op">/</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>_curvelength(f, g, (t, <span class="dv">0</span>, sp.pi<span class="op">/</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown">
 <p>Integrating: <span class="math inline">\sqrt{a^{2} \sin^{2}{\left(t \right)} + b^{2} \cos^{2}{\left(t \right)}}</span></p>
 </div>
@@ -971,12 +1160,12 @@ L = \int_a^b\sqrt{f'(t)^2 + g'(t)^2} dt
 </div>
 <p>This is a special integral called the <em>complete elliptic integral of the second kind</em>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Elliptic Integrals">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Elliptic Integrals
+<span class="screen-reader-only">Note</span>Elliptic Integrals
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -987,8 +1176,8 @@ Elliptic Integrals
 </div>
 </div>
 <p>Let’s take the parametrization again and look for a series solution.</p>
-<div id="dc53af91" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dx_dt <span class="op">=</span> sp.diff(f,t)</span>
+<div id="99bffb85" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dx_dt <span class="op">=</span> sp.diff(f,t)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>dy_dt <span class="op">=</span> sp.diff(g,t)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>ecc <span class="op">=</span> sp.symbols(<span class="st">'e'</span>)</span>
@@ -999,15 +1188,15 @@ Elliptic Integrals
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>integrand <span class="op">=</span> (dx_dt<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> dy_dt<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>integrand <span class="op">=</span> integrand.subs({a: b<span class="op">/</span>sp.sqrt(<span class="dv">1</span><span class="op">-</span>ecc<span class="op">**</span><span class="dv">2</span>),</span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>                            sp.cos(t)<span class="op">**</span><span class="dv">2</span>: <span class="dv">1</span> <span class="op">-</span> sp.sin(t<span class="op">**</span><span class="dv">2</span>)})</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>integrand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>integrand</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="17">
 <p><span class="math inline">\displaystyle b^{2} \left(1 - \sin{\left(t^{2} \right)}\right) + \frac{b^{2} \sin^{2}{\left(t \right)}}{1 - e^{2}}</span></p>
 </div>
 </div>
-<div id="9290f678" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t, e <span class="op">=</span> sp.symbols(<span class="st">'t e'</span>)</span>
+<div id="3d3ef43f" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>t, e <span class="op">=</span> sp.symbols(<span class="st">'t e'</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sp.sqrt(<span class="dv">1</span> <span class="op">-</span> e<span class="op">**</span><span class="dv">2</span> <span class="op">*</span> sp.sin(t<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>sp.series(f,t)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>sp.series(f,t)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="18">
 <p><span class="math inline">\displaystyle 1 - \frac{e^{2} t^{2}}{2} - \frac{e^{4} t^{4}}{8} + O\left(t^{6}\right)</span></p>
 </div>
@@ -1069,13 +1258,14 @@ Elliptic Integrals
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
