@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Differential Geometry – Worldlines</title>
+<title>LRT - Interaction Hamiltonian – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -252,24 +252,67 @@ function drawLeader(config) {
 
 
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
-<link rel="stylesheet" href="../css/fonts-ebgaramond.css">
-<link rel="stylesheet" href="../css/fonts-hand.css">
-<link rel="stylesheet" href="../css/shapes.css">
-<link rel="stylesheet" href="../css/leaders.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../css/buttons.css">
+<link rel="stylesheet" href="../../../css/tabs.css">
+<link rel="stylesheet" href="../../../css/callouts.css">
+<link rel="stylesheet" href="../../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../../css/shapes.css">
+<link rel="stylesheet" href="../../../css/leaders.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -280,11 +323,11 @@ function drawLeader(config) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -293,19 +336,19 @@ function drawLeader(config) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="../C0calculusI/home_calculusI.html">
+    <a class="dropdown-item" href="../../../C0calculusI/home_calculusI.html">
  <span class="dropdown-text">Calculus I</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0calculusII/home_calculusII.html">
+    <a class="dropdown-item" href="../../../C0calculusII/home_calculusII.html">
  <span class="dropdown-text">Calculus II</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0ode/home_ode.html">
+    <a class="dropdown-item" href="../../../C0ode/home_ode.html">
  <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0noneqthermo/home_noneqthermo.html">
+    <a class="dropdown-item" href="../../../C0noneqthermo/home_noneqthermo.html">
  <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
   </li>  
     </ul>
@@ -316,7 +359,7 @@ function drawLeader(config) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
         <li>
-    <a class="dropdown-item" href="../D0abinit/home_abinit.html">
+    <a class="dropdown-item" href="../../../D0abinit/home_abinit.html">
  <span class="dropdown-text">Ab initio calculation</span></a>
   </li>  
     </ul>
@@ -332,155 +375,20 @@ function drawLeader(config) {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0manybody/home_manybody.html">Under Development</a></li><li class="breadcrumb-item"><a href="../C0diffgeom/home_diffgeom.html">Differential Geometry</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Undergraduate Courses</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MT101 - Calculus I</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MT202 - Calculus II</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0ode/home_ode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MT102 - Ordinary Differential Equations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0linalg/home_linalg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ES304 - Adv. Linear Algebra</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Graduate Courses</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Under Development</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Many-Body Systems</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Probability Theory</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stochastic Processes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistical Mechanics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topology</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Differential Geometry</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#lectures" id="toc-lectures" class="nav-link active" data-scroll-target="#lectures">Lectures</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0manybody/home_manybody.html">Under Development</a></li><li class="breadcrumb-item"><a href="../C0diffgeom/home_diffgeom.html">Differential Geometry</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Differential Geometry</h1>
+<h1 class="title">LRT - Interaction Hamiltonian</h1>
 </div>
 
 
@@ -497,13 +405,110 @@ function drawLeader(config) {
 </header>
 
 
-<p><span style="font-family: 'EB Garamond It'">Content related to DG.</span></p>
-<section id="lectures" class="level2">
-<h2 class="anchored" data-anchor-id="lectures">Lectures</h2>
-<p><a href="../C0diffgeom/lectures/differentiablemanifolds.html">Differentiable Manifolds</a></p>
-
-
+<div class="pillset">
+<div class="pill" title="Vector potential A: c-number and or q-number">
+<p>In equation 6.1.6, Toyozawa discusses why the vector potential <span class="math inline">\mathbf{A}</span> is treated as a c-number rather than a q-number.</p>
+<section id="why-mathbfa-is-treated-as-a-c-number-and-mathbfj-as-a-q-number" class="level2">
+<h2 class="anchored" data-anchor-id="why-mathbfa-is-treated-as-a-c-number-and-mathbfj-as-a-q-number">Why <span class="math inline">\mathbf{A}</span> is treated as a c-number and <span class="math inline">\mathbf{j}</span> as a q-number</h2>
+<p>We consider a system with Hamiltonian</p>
+<p><span class="math display">
+H = H_0 + H_t',
+</span></p>
+<p>where ( H_0 ) is the Hamiltonian of the unperturbed quantum system, and</p>
+<p><span class="math display">
+H_t' = -\int d\mathbf{r}\, \mathbf{j}(\mathbf{r}) \cdot \mathbf{A}(\mathbf{r}, t)
+</span></p>
+<p>is the interaction of the system with an external time-dependent field.</p>
+<hr>
+<section id="two-parts-system-and-field" class="level3">
+<h3 class="anchored" data-anchor-id="two-parts-system-and-field">1. Two parts: system and field</h3>
+<p>In <strong>linear response theory</strong>, we study how a <em>quantum system</em> responds to a <em>classical perturbation</em>.<br>
+Here,</p>
+<ul>
+<li>( (, t) ) is the <strong>external field</strong>, a <em>given</em> classical function (a <strong>c-number</strong>);</li>
+<li>( () ) is the <strong>current density operator</strong> of the system, a <em>quantum operator</em> (a <strong>q-number</strong>).</li>
+</ul>
+<p>Thus, the external field is something we can control, while the current is something we can only measure as an expectation value.</p>
+<hr>
 </section>
+<section id="why-treat-as-a-c-number" class="level3">
+<h3 class="anchored" data-anchor-id="why-treat-as-a-c-number">2. Why treat ( ) as a c-number?</h3>
+<p>We are not quantizing the electromagnetic field here.<br>
+Our goal is to describe the <em>response of matter</em> to an <em>applied</em> electromagnetic field (e.g., an optical or magnetic perturbation).</p>
+<p>Hence, ( (, t) ) is a <strong>classical probe</strong>, not a fluctuating quantum variable.<br>
+If we were to include the quantized nature of light (such as photon emission or absorption), ( ) would need to be a <strong>q-number</strong>, as in <strong>quantum electrodynamics (QED)</strong>.</p>
+<hr>
+</section>
+<section id="why-must-remain-quantum-mechanical" class="level3">
+<h3 class="anchored" data-anchor-id="why-must-remain-quantum-mechanical">3. Why ( () ) must remain quantum mechanical</h3>
+<p>The current density operator is defined as</p>
+<p><span class="math display">
+\mathbf{j}(\mathbf{r}) = \sum_i \frac{e_i}{m_i} \frac{1}{2}\Big[\mathbf{p}_i \delta(\mathbf{r}_i - \mathbf{r}) + \delta(\mathbf{r}_i - \mathbf{r}) \mathbf{p}_i\Big],
+</span></p>
+<p>and it depends on the <strong>non-commuting position and momentum operators</strong>, ( _i ) and ( _i ).<br>
+Therefore, ( () ) must be treated as a <strong>quantum operator</strong> whose expectation value gives the measurable current.</p>
+<p>In linear response, the induced current is expressed as</p>
+<p><span class="math display">
+\langle \mathbf{j}(\mathbf{r}, t) \rangle
+= \int dt'\, d\mathbf{r}'\, \chi(\mathbf{r}, \mathbf{r}'; t - t')\, \mathbf{A}(\mathbf{r}', t'),
+</span></p>
+<p>where the response function ( ) is derived from <strong>commutators of current operators</strong>, such as</p>
+<p><span class="math display">
+\chi_{jj}(\mathbf{r}, \mathbf{r}'; t - t') \propto -\frac{i}{\hbar} \theta(t - t')
+\langle [ \mathbf{j}(\mathbf{r}, t), \mathbf{j}(\mathbf{r}', t') ] \rangle.
+</span></p>
+<hr>
+</section>
+<section id="summary-the-division-of-roles" class="level3">
+<h3 class="anchored" data-anchor-id="summary-the-division-of-roles">4. Summary: the division of roles</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 40%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th>Treated as</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>( (, t) )</td>
+<td>c-number (classical field)</td>
+<td>External control field; not quantized in linear response</td>
+</tr>
+<tr class="even">
+<td>( () )</td>
+<td>q-number (operator)</td>
+<td>Observable of the quantum system</td>
+</tr>
+<tr class="odd">
+<td>( )</td>
+<td>Correlator between q-numbers</td>
+<td>Built from commutators of ( ) operators</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="if-were-quantized" class="level3">
+<h3 class="anchored" data-anchor-id="if-were-quantized">5. If ( ) were quantized</h3>
+<p>If we quantized ( ), it would also be an operator, and the interaction term</p>
+<p><span class="math display">
+-\int \mathbf{j} \cdot \mathbf{A}
+</span></p>
+<p>would couple <em>two quantum fields</em>.<br>
+This is the setting of <strong>quantum electrodynamics (QED)</strong>, where spontaneous emission, photon statistics, and radiative corrections appear naturally.</p>
+<p>Ordinary <strong>linear response theory</strong> (such as Kubo or TDDFT) stops short of this: it assumes the perturbing field is <em>externally prescribed</em> and <em>not dynamical</em>.</p>
+</section>
+</section>
+</div>
+</div>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -906,7 +911,7 @@ function drawLeader(config) {
   });
   </script>
 </div> <!-- /content -->
-<script src="../scripts/leader-line-master/leader-line.min.js"></script>
+<script src="../../../scripts/leader-line-master/leader-line.min.js"></script>
 
 
 

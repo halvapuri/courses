@@ -1857,14 +1857,22 @@
     "href": "C0diffgeom/home_diffgeom.html",
     "title": "Differential Geometry",
     "section": "",
-    "text": "Content related to DG."
+    "text": "Content related to DG.",
+    "crumbs": [
+      "Under Development",
+      "Differential Geometry"
+    ]
   },
   {
     "objectID": "C0diffgeom/home_diffgeom.html#lectures",
     "href": "C0diffgeom/home_diffgeom.html#lectures",
     "title": "Differential Geometry",
     "section": "Lectures",
-    "text": "Lectures\nDifferentiable Manifolds"
+    "text": "Lectures\nDifferentiable Manifolds",
+    "crumbs": [
+      "Under Development",
+      "Differential Geometry"
+    ]
   },
   {
     "objectID": "C0diffgeom/lectures/differentiablemanifolds.html",
@@ -3971,5 +3979,82 @@
     "title": "Phonons",
     "section": "Phonons",
     "text": "Phonons\nWe take the harmonic approximation. If the ions were independent we would have a diagonal displacement matrix. But since they are coupled, we lean on the theory of coupled oscillators our dynamical matrix would involve products of different displacement vectors: \\begin{align*}\nH_{ionic} = \\sum_l \\frac{p_l^2}{2M_l} + \\sum_{l,m} D_{l,m}(R_l - R_m)u_l u_m\n\\end{align*}"
+  },
+  {
+    "objectID": "D0quartoexamples/leaderline/example2reveal.html#section",
+    "href": "D0quartoexamples/leaderline/example2reveal.html#section",
+    "title": "Worldlines",
+    "section": "",
+    "text": "Kubo Formula\n\n\nKubo Formula asdf asd …\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKubo Formula\n\n\n\n\nKubo Formula\n\n\nKubo Formula asdf asd …\n\n\n\n\nKubo Formula\n\n\nKubo Formula asdf asd …\n\n\n\n\nHere is some text.\nYou can put the target text within a span to select it.\nYou can point to any element you can select using CSS selector."
+  },
+  {
+    "objectID": "D0quartoexamples/leaderline/example1.html",
+    "href": "D0quartoexamples/leaderline/example1.html",
+    "title": "Leaderlines",
+    "section": "",
+    "text": "Start\n\n\nEnd"
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT/02-interactionham.html",
+    "href": "C0manybody/lectures/LRT/02-interactionham.html",
+    "title": "LRT - Interaction Hamiltonian",
+    "section": "",
+    "text": "In equation 6.1.6, Toyozawa discusses why the vector potential \\mathbf{A} is treated as a c-number rather than a q-number.\n\n\nWe consider a system with Hamiltonian\n\nH = H_0 + H_t',\n\nwhere ( H_0 ) is the Hamiltonian of the unperturbed quantum system, and\n\nH_t' = -\\int d\\mathbf{r}\\, \\mathbf{j}(\\mathbf{r}) \\cdot \\mathbf{A}(\\mathbf{r}, t)\n\nis the interaction of the system with an external time-dependent field.\n\n\n\nIn linear response theory, we study how a quantum system responds to a classical perturbation.\nHere,\n\n( (, t) ) is the external field, a given classical function (a c-number);\n( () ) is the current density operator of the system, a quantum operator (a q-number).\n\nThus, the external field is something we can control, while the current is something we can only measure as an expectation value.\n\n\n\n\nWe are not quantizing the electromagnetic field here.\nOur goal is to describe the response of matter to an applied electromagnetic field (e.g., an optical or magnetic perturbation).\nHence, ( (, t) ) is a classical probe, not a fluctuating quantum variable.\nIf we were to include the quantized nature of light (such as photon emission or absorption), ( ) would need to be a q-number, as in quantum electrodynamics (QED).\n\n\n\n\nThe current density operator is defined as\n\n\\mathbf{j}(\\mathbf{r}) = \\sum_i \\frac{e_i}{m_i} \\frac{1}{2}\\Big[\\mathbf{p}_i \\delta(\\mathbf{r}_i - \\mathbf{r}) + \\delta(\\mathbf{r}_i - \\mathbf{r}) \\mathbf{p}_i\\Big],\n\nand it depends on the non-commuting position and momentum operators, ( _i ) and ( _i ).\nTherefore, ( () ) must be treated as a quantum operator whose expectation value gives the measurable current.\nIn linear response, the induced current is expressed as\n\n\\langle \\mathbf{j}(\\mathbf{r}, t) \\rangle\n= \\int dt'\\, d\\mathbf{r}'\\, \\chi(\\mathbf{r}, \\mathbf{r}'; t - t')\\, \\mathbf{A}(\\mathbf{r}', t'),\n\nwhere the response function ( ) is derived from commutators of current operators, such as\n\n\\chi_{jj}(\\mathbf{r}, \\mathbf{r}'; t - t') \\propto -\\frac{i}{\\hbar} \\theta(t - t')\n\\langle [ \\mathbf{j}(\\mathbf{r}, t), \\mathbf{j}(\\mathbf{r}', t') ] \\rangle.\n\n\n\n\n\n\n\n\n\n\n\n\n\nQuantity\nTreated as\nReason\n\n\n\n\n( (, t) )\nc-number (classical field)\nExternal control field; not quantized in linear response\n\n\n( () )\nq-number (operator)\nObservable of the quantum system\n\n\n( )\nCorrelator between q-numbers\nBuilt from commutators of ( ) operators\n\n\n\n\n\n\n\nIf we quantized ( ), it would also be an operator, and the interaction term\n\n-\\int \\mathbf{j} \\cdot \\mathbf{A}\n\nwould couple two quantum fields.\nThis is the setting of quantum electrodynamics (QED), where spontaneous emission, photon statistics, and radiative corrections appear naturally.\nOrdinary linear response theory (such as Kubo or TDDFT) stops short of this: it assumes the perturbing field is externally prescribed and not dynamical."
+  },
+  {
+    "objectID": "C0manybody/lectures/LRT/02-interactionham.html#why-mathbfa-is-treated-as-a-c-number-and-mathbfj-as-a-q-number",
+    "href": "C0manybody/lectures/LRT/02-interactionham.html#why-mathbfa-is-treated-as-a-c-number-and-mathbfj-as-a-q-number",
+    "title": "LRT - Interaction Hamiltonian",
+    "section": "",
+    "text": "We consider a system with Hamiltonian\n\nH = H_0 + H_t',\n\nwhere ( H_0 ) is the Hamiltonian of the unperturbed quantum system, and\n\nH_t' = -\\int d\\mathbf{r}\\, \\mathbf{j}(\\mathbf{r}) \\cdot \\mathbf{A}(\\mathbf{r}, t)\n\nis the interaction of the system with an external time-dependent field.\n\n\n\nIn linear response theory, we study how a quantum system responds to a classical perturbation.\nHere,\n\n( (, t) ) is the external field, a given classical function (a c-number);\n( () ) is the current density operator of the system, a quantum operator (a q-number).\n\nThus, the external field is something we can control, while the current is something we can only measure as an expectation value.\n\n\n\n\nWe are not quantizing the electromagnetic field here.\nOur goal is to describe the response of matter to an applied electromagnetic field (e.g., an optical or magnetic perturbation).\nHence, ( (, t) ) is a classical probe, not a fluctuating quantum variable.\nIf we were to include the quantized nature of light (such as photon emission or absorption), ( ) would need to be a q-number, as in quantum electrodynamics (QED).\n\n\n\n\nThe current density operator is defined as\n\n\\mathbf{j}(\\mathbf{r}) = \\sum_i \\frac{e_i}{m_i} \\frac{1}{2}\\Big[\\mathbf{p}_i \\delta(\\mathbf{r}_i - \\mathbf{r}) + \\delta(\\mathbf{r}_i - \\mathbf{r}) \\mathbf{p}_i\\Big],\n\nand it depends on the non-commuting position and momentum operators, ( _i ) and ( _i ).\nTherefore, ( () ) must be treated as a quantum operator whose expectation value gives the measurable current.\nIn linear response, the induced current is expressed as\n\n\\langle \\mathbf{j}(\\mathbf{r}, t) \\rangle\n= \\int dt'\\, d\\mathbf{r}'\\, \\chi(\\mathbf{r}, \\mathbf{r}'; t - t')\\, \\mathbf{A}(\\mathbf{r}', t'),\n\nwhere the response function ( ) is derived from commutators of current operators, such as\n\n\\chi_{jj}(\\mathbf{r}, \\mathbf{r}'; t - t') \\propto -\\frac{i}{\\hbar} \\theta(t - t')\n\\langle [ \\mathbf{j}(\\mathbf{r}, t), \\mathbf{j}(\\mathbf{r}', t') ] \\rangle.\n\n\n\n\n\n\n\n\n\n\n\n\n\nQuantity\nTreated as\nReason\n\n\n\n\n( (, t) )\nc-number (classical field)\nExternal control field; not quantized in linear response\n\n\n( () )\nq-number (operator)\nObservable of the quantum system\n\n\n( )\nCorrelator between q-numbers\nBuilt from commutators of ( ) operators\n\n\n\n\n\n\n\nIf we quantized ( ), it would also be an operator, and the interaction term\n\n-\\int \\mathbf{j} \\cdot \\mathbf{A}\n\nwould couple two quantum fields.\nThis is the setting of quantum electrodynamics (QED), where spontaneous emission, photon statistics, and radiative corrections appear naturally.\nOrdinary linear response theory (such as Kubo or TDDFT) stops short of this: it assumes the perturbing field is externally prescribed and not dynamical."
+  },
+  {
+    "objectID": "C0foundational/home_foundational.html",
+    "href": "C0foundational/home_foundational.html",
+    "title": "Foundational Texts",
+    "section": "",
+    "text": "An assortment of historic papers and foundational texts separated by field."
+  },
+  {
+    "objectID": "C0foundational/home_foundational.html#classical-mechanics",
+    "href": "C0foundational/home_foundational.html#classical-mechanics",
+    "title": "Foundational Texts",
+    "section": "Classical Mechanics",
+    "text": "Classical Mechanics"
+  },
+  {
+    "objectID": "C0foundational/home_foundational.html#quantum-mechanics",
+    "href": "C0foundational/home_foundational.html#quantum-mechanics",
+    "title": "Foundational Texts",
+    "section": "Quantum Mechanics",
+    "text": "Quantum Mechanics\n\nOld Quantum Theory (Pre-Schrodinger)\n(1901) Planck: On black body radiation\n\n\nNew Quantum Theory (Post-Schrodinger)\n\n\nQuantum Coherence\nMott Problem. See references therein.\n\n\nFoundations of Quantum Mechanics\n(1935) EPR: QM and completeness\n\n\nPhilosophy of Quantum Mechanics\n(1961) Wigner: Remarks on the Mind-Body Question\n\n\n\n\n\n\nRemarks\n\n\n\n\n\nWigner’s argument depended on dualism. Wigner assumed mind is non-physical, so only consciousness could cause a collapse. Modern physics and cognitive science don’t support that. We have no evidence of a special “mind-stuff” that interacts with quantum states. Once the dualist premise goes, his conclusion goes with it. Additionally decoherence theory solved most of the measurement problem he was trying to address. The current stance is that interaction with the environment ⇒ rapid entanglement ⇒ suppression of interference terms ⇒ classical outcomes emerge without any observer. We still need an interpretation of what “collapse” means, but don’t need consciousness to trigger it.\nWigner distanced himself from the idea later. Consciousness runs into falsification issues. There are also alternative approaches that don’t invoke consciousness:\n\nDecoherence + Many Worlds\nDecoherence + “collapse as Bayesian updating” (QBism)\nObjective-collapse models (GRW, CSL)\nBohmian mechanics (no collapse at all)\n\nSee also (2021) Chalmers and Mcqueen: Consciousness and the Collapse of the Wave Function"
+  },
+  {
+    "objectID": "C0foundational/home_foundational.html#biology",
+    "href": "C0foundational/home_foundational.html#biology",
+    "title": "Foundational Texts",
+    "section": "Biology",
+    "text": "Biology\n\nEvolution\n(1964) The genetical evolution of social behaviour. Wikipedia"
+  },
+  {
+    "objectID": "D0quartoexamples/leaderline/example3.html",
+    "href": "D0quartoexamples/leaderline/example3.html",
+    "title": "Leaderline Exmaple 3",
+    "section": "",
+    "text": "Kubo Formula\n\n\nConnects how time dependent perturbations may impact expectation values of operator \\hat A\n\n\n\n\nManifold\n\n\nTopological space locally R^n\n\n\n\n\nManifold\n\n\nTopological space locally R^n"
+  },
+  {
+    "objectID": "D0abinit/home_abinit.html#codes",
+    "href": "D0abinit/home_abinit.html#codes",
+    "title": "Ab initio calculations",
+    "section": "Codes",
+    "text": "Codes\n\nGIPAW\nEspresso"
+  },
+  {
+    "objectID": "D0abinit/home_abinit.html#theoretical-background",
+    "href": "D0abinit/home_abinit.html#theoretical-background",
+    "title": "Ab initio calculations",
+    "section": "Theoretical Background",
+    "text": "Theoretical Background\n\nPseudopotentials\n\nPlanewaves and Pseudopotentials"
   }
 ]
