@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -32,15 +32,14 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-d3105735129c7a3dfcef26b2d42d6add.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-32634ea76cc5700cc38f5814bf62e0f1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,369 +68,184 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-
-
 <script>
-
 function toggleBox(header) {
-
   // Use jQuery to find the associated container and toggle its visibility
-
   $(header).next('.dd-box').slideToggle();
-
   $(header).next('.ddm-box').slideToggle();
-
 }
-
 </script>
 
-
-
 <script>
-
 function togglePill(header) {
-
   const box = header.nextElementSibling;
 
-
-
   // toggle active pill state
-
   header.classList.toggle("active");
 
-
-
   // toggle content
-
   if (box.style.display === "block") {
-
     box.style.display = "none";
-
   } else {
-
     box.style.display = "block";
-
   }
-
 }
-
 </script>
 
 
-
-
-
 <script>
-
 document.addEventListener("DOMContentLoaded", () => {
-
   document.querySelectorAll(".pill").forEach(pill => {
-
     const title = pill.getAttribute("title") || "";
-
     const bodyHtml = pill.innerHTML;
 
-
-
     // header
-
     const header = document.createElement("div");
-
     header.className = "pill-header";
-
     header.textContent = title;
 
-
-
     // body
-
     const body = document.createElement("div");
-
     body.className = "pill-body";
-
     body.innerHTML = bodyHtml;
 
-
-
     // reset pill
-
     pill.innerHTML = "";
-
     pill.appendChild(header);
-
     pill.appendChild(body);
 
-
-
     // toggle
-
     header.addEventListener("click", () => {
-
       header.classList.toggle("active");
 
-
-
       if (body.style.display === "block") {
-
         body.style.display = "none";
-
         pill.style.flexBasis = "auto";   // collapse back
-
       } else {
-
         body.style.display = "block";
-
         pill.style.flexBasis = "100%";   // expand pill to full row
-
       }
-
     });
-
   });
-
 });
-
 </script>
-
-
-
 
 
 <script>
-
 /**
-
  * Global registry and updater for all LeaderLine instances created via drawLeader.
-
  * Handles:
-
  *  - storing all lines
-
  *  - repositioning all lines on resize/scroll
-
  *  - smooth real-time repositioning during .pill transitions
-
  */
-
 const LeaderLineRegistry = {
-
   lines: [],
-
   animating: false,
-
   _initialized: false,
 
-
-
   /**
-
    * Initialize one-time global event listeners for updating all registered lines.
-
    * This runs only once, automatically when the first line is registered.
-
    */
-
   init() {
-
     if (this._initialized) return;
-
     this._initialized = true;
 
-
-
     // Reposition all lines on window resize
-
     window.addEventListener('resize', () => this.positionAll());
 
-
-
     // Reposition all lines on scroll (capturing to catch scrolls on inner containers too)
-
     document.addEventListener('scroll', () => this.positionAll(), true);
 
-
-
     // Automatically add smooth animation loop for .pill transitions
-
     const pills = document.querySelectorAll('.pill');
-
     pills.forEach(pill => {
-
       pill.addEventListener('click', () => {
-
         if (this.animating) return;
-
         this.animating = true;
 
-
-
         const step = () => {
-
           this.positionAll();
-
           if (this.animating) requestAnimationFrame(step);
-
         };
-
         requestAnimationFrame(step);
-
       });
-
-
 
       pill.addEventListener('transitionend', () => {
-
         this.animating = false;
-
         this.positionAll();
-
       });
-
     });
-
   },
 
-
-
   /**
-
    * Register a newly created LeaderLine instance so it is tracked and updated.
-
    * @param {LeaderLine} line - The LeaderLine object to register
-
    */
-
   register(line) {
-
     this.init();
-
     this.lines.push(line);
-
   },
 
-
-
   /**
-
    * Calls .position() on every registered line to recalculate its endpoints.
-
    */
-
   positionAll() {
-
     this.lines.forEach(line => line.position());
-
   }
-
 };
 
-
-
 /**
-
  * Creates two DOM anchor elements (if not already present) inside a container
-
  * and draws a LeaderLine between them. Automatically registers the line
-
  * into the global LeaderLineRegistry so it stays in sync with layout changes.
-
  *
-
  * @param {Object} config
-
  * @param {string} [config.containerId='stage'] - The id of the container element
-
  * @param {Object} config.from - The "from" anchor element config
-
  * @param {string} config.from.id - DOM id of the starting element
-
  * @param {string} [config.from.text] - Optional text content for the element
-
  * @param {string} [config.from.className] - Optional CSS class
-
  * @param {Object} [config.from.style] - Inline style object
-
  * @param {Object} config.to - The "to" anchor element config (same fields as 'from')
-
  * @param {Object} [config.lineOptions={}] - Options passed directly to new LeaderLine()
-
  *
-
  * @returns {Promise<LeaderLine>} Resolves with the created LeaderLine instance
-
  */
-
 function drawLeader(config) {
-
   const { containerId='stage', from, to, lineOptions={} } = config;
 
-
-
   return new Promise(resolve => {
-
     window.addEventListener('load', () => {
-
       const container = document.getElementById(containerId);
-
       const elements = { from, to };
-
       const createdDivs = {};
 
-
-
       for (const key in elements) {
-
         const { id, text, className, style } = elements[key];
-
         let el = document.getElementById(id);
 
-
-
         if (!el || !container.contains(el)) {
-
           el = document.createElement('div');
-
           el.id = id;
-
           el.textContent = text || '';
-
           el.className = className || 'anchor80-line';
-
           Object.assign(el.style, { position: 'relative', ...style });
-
           container.appendChild(el);
-
         }
 
-
-
         createdDivs[key] = el;
-
       }
 
-
-
       const line = new LeaderLine(createdDivs.from, createdDivs.to, lineOptions);
-
       LeaderLineRegistry.register(line);
-
       resolve(line);
-
     });
-
   });
-
 }
 
-
-
 </script>
-
-
-
-
-
-
 
 
 
@@ -455,8 +269,6 @@ function drawLeader(config) {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
@@ -540,8 +352,7 @@ function drawLeader(config) {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -551,6 +362,12 @@ function drawLeader(config) {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../C1essays/01teaching_philosophy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">On Teaching</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -821,14 +638,13 @@ Email: aamir.shehzad@giki.edu.pk</p>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

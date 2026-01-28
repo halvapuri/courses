@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Ordinary Differential Equations – Worldlines</title>
+<title>Excitons – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-1299936a809ae67bc7a7e26fb973ba17.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -252,24 +252,67 @@ function drawLeader(config) {
 
 
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<link rel="stylesheet" href="../css/buttons.css">
-<link rel="stylesheet" href="../css/tabs.css">
-<link rel="stylesheet" href="../css/callouts.css">
-<link rel="stylesheet" href="../css/fonts-ebgaramond.css">
-<link rel="stylesheet" href="../css/fonts-hand.css">
-<link rel="stylesheet" href="../css/shapes.css">
-<link rel="stylesheet" href="../css/leaders.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../css/buttons.css">
+<link rel="stylesheet" href="../../../css/tabs.css">
+<link rel="stylesheet" href="../../../css/callouts.css">
+<link rel="stylesheet" href="../../../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../../../css/fonts-hand.css">
+<link rel="stylesheet" href="../../../css/shapes.css">
+<link rel="stylesheet" href="../../../css/leaders.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -280,11 +323,11 @@ function drawLeader(config) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -293,19 +336,19 @@ function drawLeader(config) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="../C0calculusI/home_calculusI.html">
+    <a class="dropdown-item" href="../../../C0calculusI/home_calculusI.html">
  <span class="dropdown-text">Calculus I</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0calculusII/home_calculusII.html">
+    <a class="dropdown-item" href="../../../C0calculusII/home_calculusII.html">
  <span class="dropdown-text">Calculus II</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0ode/home_ode.html">
+    <a class="dropdown-item" href="../../../C0ode/home_ode.html">
  <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../C0noneqthermo/home_noneqthermo.html">
+    <a class="dropdown-item" href="../../../C0noneqthermo/home_noneqthermo.html">
  <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
   </li>  
     </ul>
@@ -316,7 +359,7 @@ function drawLeader(config) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
         <li>
-    <a class="dropdown-item" href="../D0abinit/home_abinit.html">
+    <a class="dropdown-item" href="../../../D0abinit/home_abinit.html">
  <span class="dropdown-text">Ab initio calculation</span></a>
   </li>  
     </ul>
@@ -332,169 +375,32 @@ function drawLeader(config) {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Undergraduate Courses</a></li><li class="breadcrumb-item"><a href="../C0ode/home_ode.html">MT102 - Ordinary Differential Equations</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../_figs/hugorheinholdchimp.png" alt="Undergraduate ponders mysteries of physics, mathematics, and life" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C1essays/01teaching_philosophy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">On Teaching</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Undergraduate Courses</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0calculusI/home_calculusI.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MT101 - Calculus I</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0calculusII/home_calculusII.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">MT202 - Calculus II</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0ode/home_ode.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">MT102 - Ordinary Differential Equations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0linalg/home_linalg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ES304 - Adv. Linear Algebra</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Graduate Courses</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0noneqthermo/home_noneqthermo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Non-equilibrium Thermodynamics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Under Development</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0manybody/home_manybody.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Many-Body Systems</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0probtheory/home_probabilitytheory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Probability Theory</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0stochastic/home_stoch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Stochastic Processes</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0statmech/home_statmech.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Statistical Mechanics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0topology/home_topology.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Topology</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../C0diffgeom/home_diffgeom.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Differential Geometry</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lecture-notes" id="toc-lecture-notes" class="nav-link active" data-scroll-target="#lecture-notes">Lecture Notes</a>
+  <li><a href="#g-factor" id="toc-g-factor" class="nav-link active" data-scroll-target="#g-factor">g-factor</a></li>
+  <li><a href="#what-is-the-valley" id="toc-what-is-the-valley" class="nav-link" data-scroll-target="#what-is-the-valley">What is the Valley</a>
   <ul class="collapse">
-  <li><a href="#under-construction" id="toc-under-construction" class="nav-link" data-scroll-target="#under-construction">Under Construction</a></li>
+  <li><a href="#perovskites-which-show-valleys" id="toc-perovskites-which-show-valleys" class="nav-link" data-scroll-target="#perovskites-which-show-valleys">Perovskites which show valleys</a></li>
   </ul></li>
-  <li><a href="#quizzes" id="toc-quizzes" class="nav-link" data-scroll-target="#quizzes">Quizzes</a></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments">Assignments</a></li>
-  <li><a href="#slides-and-notebooks" id="toc-slides-and-notebooks" class="nav-link" data-scroll-target="#slides-and-notebooks">Slides and Notebooks</a></li>
-  <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course Outline</a></li>
-  <li><a href="#other-info" id="toc-other-info" class="nav-link" data-scroll-target="#other-info">Other info</a></li>
+  <li><a href="#valley-dependent-zeeman-splitting" id="toc-valley-dependent-zeeman-splitting" class="nav-link" data-scroll-target="#valley-dependent-zeeman-splitting">Valley-dependent Zeeman splitting</a></li>
+  <li><a href="#exciton-states" id="toc-exciton-states" class="nav-link" data-scroll-target="#exciton-states">Exciton States</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../C0calculusI/home_calculusI.html">Undergraduate Courses</a></li><li class="breadcrumb-item"><a href="../C0ode/home_ode.html">MT102 - Ordinary Differential Equations</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Ordinary Differential Equations</h1>
+<h1 class="title">Excitons</h1>
 </div>
 
 
@@ -511,77 +417,38 @@ function drawLeader(config) {
 </header>
 
 
-<!-- ## Project -->
-<!-- As announced in class, there will be a project. 
-
-The task: Reproduce 3 figures (two 2D and one 3D) from your textbook. 
-
-Note that the figure must be accurate in terms of annotations and labels, tick marks, precision etc.
-
-Furthermore:
-
-* The project will be done in groups of 3. 
-* The marks will be credited as bonus (i.e. they will not have a separate category)
-* There will be a viva in the 15th week. 
-* The individual with the lowest midterm marks in the group will most likely give the viva (although other members of the group can be called upon too.) -->
-<section id="lecture-notes" class="level2">
-<h2 class="anchored" data-anchor-id="lecture-notes">Lecture Notes</h2>
-<p>A word of thanks to Hassan Raza Shaikh and Emaan Tahir Swati for putting time and energy into preparing these notes. Nevertheless they are still in need of revision and if you would like build on their work, feel free to contact me.</p>
+<section id="g-factor" class="level2">
+<h2 class="anchored" data-anchor-id="g-factor">g-factor</h2>
+<p>The dimensionless quantity g-factor characterizes the magnetic moment and angular momentum of a whole atom, a particle, or a nucleus. It is the ratio of the magnetic moment (or, equivalently, the <span class="math inline">gyromagnetic\ ratio =(magnetic\ moment)/(angular\ momentum)</span>) of a particle to that expected of a classical particle of the same charge and angular momentum.</p>
+<p>g-factor can be both measured as well as calculated very precisely, and thus are used as tests for theories in particle physics.</p>
+<p>In terms of a magnetic response, a g-factor tells you how an energy level shifts in a magnetic field:</p>
+<p><span class="math display">
+\Delta E = g \mu_B B
+</span></p>
+<p>For excitons, the g-factor can have contributions from: - electron spin - hole spin - orbital motion - valley magnetic moment</p>
+</section>
+<section id="what-is-the-valley" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-valley">What is the Valley</h2>
+<p>For some semiconductors, particularly 2D materials such as TMDCs and certain perovskites, the band extrema are not unique.</p>
+<p>You can have inequivalent energy minima (or maxima) at different k-points in the Brillouin zone — typically labeled K and K′.</p>
+<p>These are called valleys, and they act like a discrete quantum number, much like spin. ::: {.callout-note icon=false collapse=true}</p>
+<section id="perovskites-which-show-valleys" class="level3">
+<h3 class="anchored" data-anchor-id="perovskites-which-show-valleys">Perovskites which show valleys</h3>
 <ul>
-<li><a href="../C0ode/lecture_notes/Ch_Differential_Equations/main.html">Differential Equations</a></li>
-<li><a href="../C0ode/lecture_notes/Ch_Higher_Order_Differentials/main.html">Higher Order Differential Equations</a></li>
-<li><a href="../C0ode/lecture_notes/Ch_System_of_Linear_Differential_Equations/main.html">System of Linear Equations</a></li>
-</ul>
-<section id="under-construction" class="level3">
-<h3 class="anchored" data-anchor-id="under-construction">Under Construction</h3>
-<ul>
-<li><a href="../C0ode/lecture_notes/dev/Ch_Differential_Equations/main.html">System of Linear Equations</a></li>
-<li><a href="../C0ode/lecture_notes/dev/using_plotly.html">Incorporating plotly</a></li>
+<li>Atomically Thin Perovskite Derivatives: Few-layer <span class="math inline">\text{Cs}_{3}\text{Bi}_{2}\text{I}_{9}</span> (an all-inorganic, lead-free bismuth halide) exhibits robust, optically addressable valleys and strong valley polarization at room temperature when synthesized in odd-numbered layers (e.g., 3, 5, 7, 9, or 11 layers). Even layers are symmetric and lack this property.</li>
+<li>2D Ruddlesden–Popper (2DRP) Halide Perovskites: These materials (general formula <span class="math inline">(\text{BA})_{2}(\text{MA})_{n-1}\text{Pb}_{n}\text{I}_{3n+1}</span>) possess Rashba spin-splitting, which, when integrated into heterostructures with monolayer transition metal dichalcogenides (TMDs), facilitates the creation of strongly valley-polarized interlayer excitons.</li>
+<li>Chiral Lead Halide Perovskites: Specifically, naphthylethylammine-based one-dimensional chiral lead halide perovskites (e.g., R- and S-<span class="math inline">\text{NEAPbI}_{3}</span>) can act as “spin filters” in heterostructures with materials like monolayer (_{2}), enabling robust room-temperature valley polarization via spin-selective charge transfer.</li>
+<li>Engineered Perovskite Lattices/Metasurfaces: Researchers have designed two-dimensional valley-Hall perovskite lattices, often using materials like <span class="math inline">\text{CsPbBr}_{3}</span>, by patterning them into honeycomb structures with broken inversion symmetry. This engineering creates artificial valleys with valley-dependent optical properties and directional light propagation, even at room temperature.&nbsp; :::</li>
 </ul>
 </section>
 </section>
-<section id="quizzes" class="level2">
-<h2 class="anchored" data-anchor-id="quizzes">Quizzes</h2>
-<p>We will three quizzes:</p>
-<ul>
-<li>Quiz 1 (5 Marks)</li>
-<li>Quiz 2 (10 marks, 8th week)</li>
-<li>Quiz 3 (10 marks, 13th week)<br>
-
-<ul>
-<li><span style="color:crimson;">Apr 29 (Tuesday)</span></li>
-<li><span style="color:crimson;">Venue: Brabers building (Subject to availability)</span><br>
-</li>
-<li><span style="color:crimson;">Syllabus: Chapter 4 (Zill: 10th Ed.)</span></li>
-</ul></li>
-</ul>
+<section id="valley-dependent-zeeman-splitting" class="level2">
+<h2 class="anchored" data-anchor-id="valley-dependent-zeeman-splitting">Valley-dependent Zeeman splitting</h2>
+<p>Valley-dependent Zeeman splitting is the lifting of energy degeneracy between the K and K’ valleys in 2D materials (like TMDs) by an external magnetic field, causing bands in one valley to shift up and the other down, enabling control of the valley pseudospin for applications in spintronics and quantum information. This splitting arises from the intrinsic magnetic moments of electrons in each valley and is crucial for manipulating valley-polarized light and electrons, though it often requires low temperatures or magnetic doping to observe clearly</p>
 </section>
-<section id="assignments" class="level2">
-<h2 class="anchored" data-anchor-id="assignments">Assignments</h2>
-<p><a href="coursematerial/Assignments/MT102Assignment_I.pdf">Assignment 1</a><br>
-<a href="coursematerial/Assignments/MT102Assignment_II.pdf">Assignment 2</a><br>
-<a href="coursematerial/Assignments/MT102Assignment_III.pdf">Assignment 3</a><br>
-<a href="coursematerial/Assignments/MT102Assignment_IV.pdf">Assignment 4</a><br>
-<a href="coursematerial/Assignments/MT102Assignment_V.pdf">Assignment 5</a>&nbsp;</p>
-</section>
-<section id="slides-and-notebooks" class="level2">
-<h2 class="anchored" data-anchor-id="slides-and-notebooks">Slides and Notebooks</h2>
-<p>You can use any programming language of your liking. We will most likely use one of python, julia, and R. If you need to set any of these up, either see me or the TA.</p>
-<ul>
-<li><p><a href="../C0ode/lectures/00-PracticeQuestions.html">Practice questions</a></p></li>
-<li><p><a href="../C0QuickReference/julia/matrices.html">Julia: Quick reference for matrices</a></p></li>
-<li><p><a href="../C0ode/lectures/01-GaussElimination.html">Gaussian Elimination</a></p></li>
-<li><p><a href="../C0QuickReference/julia/ode.html">Julia: ODEs</a></p></li>
-<li><p><a href="../C0ode/lectures/02-Summaryof1stODE.html">Summary of 1st order ODEs</a></p></li>
-</ul>
-</section>
-<section id="course-outline" class="level2">
-<h2 class="anchored" data-anchor-id="course-outline">Course Outline</h2>
-<p><a href="coursematerial/outline.pdf">Outline (pdf)</a></p>
-</section>
-<section id="other-info" class="level2">
-<h2 class="anchored" data-anchor-id="other-info">Other info</h2>
-<p>Course TA: Ms.&nbsp;Misbah Shaheen Email: misbah.shaheen [at] giki.edu.pk</p>
+<section id="exciton-states" class="level2">
+<h2 class="anchored" data-anchor-id="exciton-states">Exciton States</h2>
+<p>Exciton states are labeled similarly to atomic orbitals. Thus we have <em>s-excitons (l=0)</em> and <em>p-excitons (l=1)</em>. “p-excitons” have orbital angular momentum associated with the relative motion of the electron–hole pair.</p>
 
 
 </section>
@@ -987,7 +854,7 @@ Furthermore:
   });
   </script>
 </div> <!-- /content -->
-<script src="../scripts/leader-line-master/leader-line.min.js"></script>
+<script src="../../../scripts/leader-line-master/leader-line.min.js"></script>
 
 
 
