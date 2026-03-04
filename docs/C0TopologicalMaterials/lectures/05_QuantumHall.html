@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Leaderlines – Worldlines</title>
+<title>Quantum Hall Effect – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -252,6 +252,49 @@ function drawLeader(config) {
 
 
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../css/buttons.css">
 <link rel="stylesheet" href="../../css/tabs.css">
@@ -346,7 +389,7 @@ function drawLeader(config) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Leaderlines</h1>
+<h1 class="title">Quantum Hall Effect</h1>
 </div>
 
 
@@ -363,14 +406,77 @@ function drawLeader(config) {
 </header>
 
 
-<div style="display: flex; justify-content: space-between; margin-top: 100px;">
-<div id="start-element" style="width: 80px; height: 30px; background-color: lightblue;">
-Start
-</div>
-<div id="end-element" style="width: 80px; height: 30px; background-color: lightcoral;">
-End
-</div>
-</div>
+<p>The Quantum Hall Effect refers to the collection of phenomena that lead to the quantization of the Hall resistance. Some major types of QHEs are shown in the table below.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Abbreviation</th>
+<th>Physical Origin</th>
+<th>Hall Conductivity</th>
+<th>Magnetic Field</th>
+<th>Key Features / Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Integer Quantum Hall Effect</td>
+<td>IQHE</td>
+<td>Landau level quantization of <strong>non-interacting electrons</strong></td>
+<td><span class="math display">\sigma_{xy} = \nu \frac{e^2}{h}, \quad \nu \in \mathbb{Z}</span></td>
+<td>Strong external (B)</td>
+<td>Disorder-induced localization, topologically protected edge states</td>
+</tr>
+<tr class="even">
+<td>Fractional Quantum Hall Effect</td>
+<td>FQHE</td>
+<td><strong>Strong electron–electron interactions</strong>, formation of correlated states</td>
+<td><span class="math display">\sigma_{xy} = \nu \frac{e^2}{h}, \quad \nu \in \mathbb{Q}</span></td>
+<td>Strong external (B)</td>
+<td>Fractional charge quasiparticles, anyons, Laughlin states</td>
+</tr>
+<tr class="odd">
+<td>Anomalous Quantum Hall Effect</td>
+<td>AQHE / QAH</td>
+<td><strong>Intrinsic band topology</strong> and magnetism (Berry curvature)</td>
+<td><span class="math display">\sigma_{xy} = C \frac{e^2}{h}</span></td>
+<td>None (internal magnetization)</td>
+<td>Quantized Hall effect without Landau levels; magnetic topological insulators</td>
+</tr>
+<tr class="even">
+<td>Quantum Spin Hall Effect</td>
+<td>QSHE</td>
+<td><strong>Spin–orbit coupling</strong> and time-reversal symmetry</td>
+<td><span class="math display">\sigma_{xy}^{\uparrow} = -\sigma_{xy}^{\downarrow}</span></td>
+<td>None</td>
+<td>Helical edge states, zero net charge Hall current</td>
+</tr>
+<tr class="odd">
+<td>Fractional Chern Insulator</td>
+<td>FCI</td>
+<td>Interaction-driven fractional states in <strong>Chern bands</strong></td>
+<td><span class="math display">\sigma_{xy} = \nu \frac{e^2}{h}</span></td>
+<td>None</td>
+<td>Lattice analogue of FQHE without Landau levels</td>
+</tr>
+<tr class="even">
+<td>Valley Quantum Hall Effect</td>
+<td>VQHE</td>
+<td>Broken inversion symmetry in multivalley systems</td>
+<td><span class="math display">\sigma_{xy}^{K} = -\sigma_{xy}^{K'}</span></td>
+<td>None</td>
+<td>Valley-polarized edge states (e.g.&nbsp;graphene, TMDs)</td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -1,0 +1,26 @@
+/* Sidebar text */
+.sidebar-navigation a {
+  color: #000000;   /* change to whatever color you want */
+}
+
+/* Sidebar section titles */
+.sidebar-navigation .sidebar-title {
+  color: #00cc00;
+}
+
+/* Hover color */
+.sidebar-navigation a:hover {
+  color: #4169E1;
+}
+
+.sidebar-item-text {
+  font-weight: 600;
+}
+
+
+.sidebar ul li.active {
+  /* Background for the active item */
+  background-color: #007bff; /* Example: a blue background */
+}
+
+

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Leaderlines – Worldlines</title>
+<title>Defects example – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -346,7 +346,7 @@ function drawLeader(config) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Leaderlines</h1>
+<h1 class="title">Defects example</h1>
 </div>
 
 
@@ -363,14 +363,143 @@ function drawLeader(config) {
 </header>
 
 
-<div style="display: flex; justify-content: space-between; margin-top: 100px;">
-<div id="start-element" style="width: 80px; height: 30px; background-color: lightblue;">
-Start
+<!-- <div style="display: flex; justify-content: space-between; margin-top: 100px;">
+  <div id="V-st" style="width: 80px; height: 30px;">V</div>
+  <div id="V-end" style="width: 80px; height: 30px;">V</div>
+  <div id="V-st" style="width: 80px; height: 30px;">V</div>
+  <div id="V-end" style="width: 80px; height: 30px;">V</div>
+</div> -->
+<div id="stage" class="stage" style="position: relative; height: 300px;">
+<div id="V-st" style="width: 30px; height: 30px; position: absolute; top: 80%; left: 0%;">
+V
 </div>
-<div id="end-element" style="width: 80px; height: 30px; background-color: lightcoral;">
-End
+<div id="Cr-st" style="width: 30px; height: 30px; position: absolute; top: 0%; left: 0%;">
+Cr
+</div>
+<div id="Co-st" style="width: 30px; height: 30px; position: absolute; top: 10%; left: 0%;">
+Co
+</div>
+<div id="Cu-st" style="width: 30px; height: 30px; position: absolute; top: 20%; left: 0%;">
+Cu
+</div>
+<div id="Fe-st" style="width: 30px; height: 30px; position: absolute; top: 50%; left: 0%;">
+Fe
+</div>
+<div id="Mn-st" style="width: 30px; height: 30px; position: absolute; top: 90%; left: 0%;">
+Mn
+</div>
+<div id="Ni-st" style="width: 30px; height: 30px; position: absolute; top: 40%; left: 0%;">
+Ni
+</div>
+<div id="Sc-st" style="width: 30px; height: 30px; position: absolute; top: 70%; left: 0%;">
+Sc
+</div>
+<div id="Ti-st" style="width: 30px; height: 30px; position: absolute; top: 60%; left: 0%;">
+Ti
+</div>
+<div id="Zn-st" style="width: 30px; height: 30px; position: absolute; top: 30%; left: 0%;">
+Zn
+</div>
+<div id="V-en" style="width: 80px; height: 30px; position: absolute; top: 80%; left: 50%;">
+V
+</div>
+<div id="Co-en" style="width: 80px; height: 30px; position: absolute; top: 20%; left: 50%;">
+Co
+</div>
+<div id="Cr-en" style="width: 80px; height: 30px; position: absolute; top: 0%; left: 50%;">
+Cr
+</div>
+<div id="Cu-en" style="width: 80px; height: 30px; position: absolute; top: 40%; left: 50%;">
+Cu
+</div>
+<div id="Fe-en" style="width: 80px; height: 30px; position: absolute; top: 60%; left: 50%;">
+Fe
+</div>
+<div id="Mn-en" style="width: 80px; height: 30px; position: absolute; top: 90%; left: 50%;">
+Mn
+</div>
+<div id="Ni-en" style="width: 80px; height: 30px; position: absolute; top: 70%; left: 50%;">
+Ni
+</div>
+<div id="Sc-en" style="width: 80px; height: 30px; position: absolute; top: 50%; left: 50%;">
+Sc
+</div>
+<div id="Ti-en" style="width: 80px; height: 30px; position: absolute; top: 10%; left: 50%;">
+Ti
+</div>
+<div id="Zn-en" style="width: 80px; height: 30px; position: absolute; top: 30%; left: 50%;">
+Zn
 </div>
 </div>
+<script>
+ // Usage
+drawLeader({
+  from: { id: 'V-st' },
+  to: { id: 'V-en' },
+  lineOptions: { color: 'DarkGoldenRod' }
+});
+
+drawLeader({
+  from: { id: 'Co-st' },
+  to: { id: 'Co-en' },
+  lineOptions: { color: '#3c5488' }
+});
+
+drawLeader({
+  from: { id: 'Cr-st' },
+  to: { id: 'Cr-en' },
+  lineOptions: { color: '#009f75' }
+});
+
+drawLeader({
+  from: { id: 'Cu-st' },
+  to: { id: 'Cu-en' },
+  lineOptions: { color: '#edae49' }
+});
+
+drawLeader({
+  from: { id: 'Fe-st' },
+  to: { id: 'Fe-en' },
+  lineOptions: { color: '#d54799' }
+});
+
+drawLeader({
+  from: { id: 'Mn-st' },
+  to: { id: 'Mn-en' },
+  lineOptions: { color: '#3c5488' }
+});
+
+drawLeader({
+  from: { id: 'Ni-st' },
+  to: { id: 'Ni-en' },
+  lineOptions: { color: '#f39b7f' }
+});
+
+drawLeader({
+  from: { id: 'Sc-st' },
+  to: { id: 'Sc-en' },
+  lineOptions: { color: '#7e6148' }
+});
+
+drawLeader({
+  from: { id: 'Ti-st' },
+  to: { id: 'Ti-en' },
+  lineOptions: { color: '#e64b35' }
+});
+
+drawLeader({
+  from: { id: 'Zn-st' },
+  to: { id: 'Zn-en' },
+  lineOptions: { color: '#91d1c2' }
+});
+
+// drawLeader({
+//   from: { id: 'nodeA' },
+//   to: { id: 'nodeB' },
+//   lineOptions: { color: 'crimson' }
+// });
+
+</script>
 
 
 
