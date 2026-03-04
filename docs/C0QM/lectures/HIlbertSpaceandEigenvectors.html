@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Plots Demo – Worldlines</title>
+<title>By Way of Analogy – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -287,6 +252,49 @@ function drawLeader(config) {
 
 
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../css/buttons.css">
 <link rel="stylesheet" href="../../css/tabs.css">
@@ -373,15 +381,28 @@ function drawLeader(config) {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#expansion-of-an-arbitrary-state-axiom" id="toc-expansion-of-an-arbitrary-state-axiom" class="nav-link active" data-scroll-target="#expansion-of-an-arbitrary-state-axiom">3. Expansion of an arbitrary state (axiom)</a></li>
+  <li><a href="#definition-of-the-exciton-hamiltonian-matrix" id="toc-definition-of-the-exciton-hamiltonian-matrix" class="nav-link" data-scroll-target="#definition-of-the-exciton-hamiltonian-matrix">4. Definition of the exciton Hamiltonian matrix</a></li>
+  <li><a href="#eigenvalue-problem-operator-vs-matrix" id="toc-eigenvalue-problem-operator-vs-matrix" class="nav-link" data-scroll-target="#eigenvalue-problem-operator-vs-matrix">5. Eigenvalue problem: operator vs matrix</a></li>
+  <li><a href="#derivation-of-the-matrix-eigenvalue-equation-the-proof" id="toc-derivation-of-the-matrix-eigenvalue-equation-the-proof" class="nav-link" data-scroll-target="#derivation-of-the-matrix-eigenvalue-equation-the-proof">6. Derivation of the matrix eigenvalue equation (the proof)</a></li>
+  <li><a href="#reconstruction-of-the-state-from-the-eigenvector" id="toc-reconstruction-of-the-state-from-the-eigenvector" class="nav-link" data-scroll-target="#reconstruction-of-the-state-from-the-eigenvector">7. Reconstruction of the state from the eigenvector</a></li>
+  <li><a href="#why-an-is-not-a-ket" id="toc-why-an-is-not-a-ket" class="nav-link" data-scroll-target="#why-an-is-not-a-ket">8. Why (A^n) is NOT a ket</a></li>
+  <li><a href="#analogy-that-usually-clicks" id="toc-analogy-that-usually-clicks" class="nav-link" data-scroll-target="#analogy-that-usually-clicks">9. Analogy that usually clicks</a></li>
+  <li><a href="#final-conclusion-formal-statement" id="toc-final-conclusion-formal-statement" class="nav-link" data-scroll-target="#final-conclusion-formal-statement">10. Final conclusion (formal statement)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Plots Demo</h1>
+<h1 class="title">By Way of Analogy</h1>
 </div>
 
 
@@ -398,23 +419,201 @@ function drawLeader(config) {
 </header>
 
 
-<div id="2" class="cell" data-execution_count="0">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">10</span>)  <span class="co"># Random y values</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a plot</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>     title<span class="op">=</span><span class="st">"Simple Plot"</span>, </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     xlabel<span class="op">=</span><span class="st">"X-axis"</span>, </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>     ylabel<span class="op">=</span><span class="st">"Y-axis"</span>, </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>     label<span class="op">=</span><span class="st">"Random Data"</span>, </span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>     legend<span class="op">=:</span>topright)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>We have been discussing how the best way to understand a subject is to cast it into familiar terms; in situations that everyone can understand.</p>
+<p>Take this equation for instance. It is commonly encountered in a course in quantum mechanics:</p>
+<p><span class="math display">
+|X_{n\mathbf Q}\rangle =
+\sum_{v c \mathbf k}
+A^{n\mathbf Q}_{v c \mathbf k}
+|v c \mathbf k \mathbf Q\rangle.
+</span></p>
+<p>What this equation is saying is […].</p>
+<p>Good — this is exactly the right place to be picky. The short answer is: **no, (A^{nQ}_{vck}) is not a ket like (|vckQ)**. It is a column vector of <em>numbers</em>, while (|vckQ) is a column vector of <em>states</em>. Let me prove this carefully and cleanly, step by step, using linear algebra only.</p>
+<hr>
+<p>Fix <span class="math inline">(\mathbf Q)</span>. Consider the excitonic Hilbert subspace <span class="math display">
+\mathcal H_{\mathbf Q} = \text{span}\{|v c \mathbf k \mathbf Q\rangle\}.
+</span></p>
+<p>Each (<span class="math inline">|v c \mathbf k \mathbf Q\rangle</span>) is a <strong>basis vector in a Hilbert space</strong>.</p>
+<p>But we could lump this indices together so that <span class="math inline">\alpha \equiv (v,c,\mathbf k)</span> and Then we write the basis as <span class="math display">
+|\alpha\rangle \equiv |v c \mathbf k \mathbf Q\rangle.
+</span></p>
+<p>In linear algebra there are two different vector spaces involved. There are the (A) hysical but abstract Hilbert space vectors which live in the abstract Hilbert space, $ |H_{Q}. $ and there are the (B) coordinate vectors (column vectors of numbers). These live in <span class="math inline">(\mathbb C^N)</span> and depend on a chosen basis:</p>
+<p><span class="math display">
+\vec \psi =
+\begin{pmatrix}
+\psi_1 \
+\psi_2 \
+\vdots
+\end{pmatrix},
+\qquad
+\psi_\alpha = \langle \alpha | \psi \rangle.
+</span></p>
+<p>They are <strong>not states</strong>. They are <em>representations</em> of states.</p>
+<blockquote class="blockquote">
+<p>A ket is not a column vector of numbers until you choose a basis.</p>
+</blockquote>
+<p>Now we need to make sense of this statement and for that we turn to Shakespeare. By way of analogy, we can think Hamlet as a character in an abstract space. Indeed, we do not know much about Hamlet looks like. How tall or short is he? What is the exact complexion of his skin or the color of his hair.</p>
+<p>To be able to place a face on him, we need to select an actor. Or to put another way, the</p>
+<p>Thus we have three different realms. The realm of characters in which Hamlet lives. But Hamlet is an abstraction without flesh and blood and to be given flesh and blood we need to bind him to an actor.</p>
+<p>We may conclude that different actors highlight different aspects of the same underlying reality. Hence Olivier’s version would be different from Burton’s.</p>
+<p>Now Hamlet as it occupies the society’s consciousness might be a fusion of several of these interpretations.</p>
+<section id="expansion-of-an-arbitrary-state-axiom" class="level2">
+<h2 class="anchored" data-anchor-id="expansion-of-an-arbitrary-state-axiom">3. Expansion of an arbitrary state (axiom)</h2>
+<p>Any state in (H_{Q}) can be expanded as [ |= _|| .]</p>
+<p>Define [ _| .]</p>
+<p>Then [ |= <em></em>|.]</p>
+<p>This is a <strong>theorem of Hilbert spaces</strong>, not an assumption.</p>
+<hr>
+</section>
+<section id="definition-of-the-exciton-hamiltonian-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-the-exciton-hamiltonian-matrix">4. Definition of the exciton Hamiltonian matrix</h2>
+<p>Define the operator (H^X(Q)) acting on (H_{Q}).</p>
+<p>Its matrix elements in the chosen basis are [ H_{}(Q) ==========================</p>
+<p>| H^X(Q) | . ]</p>
+<p>This defines a <strong>numerical matrix</strong> (H(Q)).</p>
+<hr>
+</section>
+<section id="eigenvalue-problem-operator-vs-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="eigenvalue-problem-operator-vs-matrix">5. Eigenvalue problem: operator vs matrix</h2>
+<p>The <strong>operator eigenvalue equation</strong> is [ H^X(Q),|X_{nQ} =====================================</p>
+<p>E^X_{nQ},|X_{nQ}. ]</p>
+<p>Now insert the resolution of identity: [ = _||.]</p>
+<hr>
+</section>
+<section id="derivation-of-the-matrix-eigenvalue-equation-the-proof" class="level2">
+<h2 class="anchored" data-anchor-id="derivation-of-the-matrix-eigenvalue-equation-the-proof">6. Derivation of the matrix eigenvalue equation (the proof)</h2>
+<p>Start from (A):</p>
+<p>[ H^X |X_n= E_n |X_n.]</p>
+<p>Insert identity on the right-hand side: [ H^X _||X_n ===================================================</p>
+<p>E_n _||X_n. ]</p>
+<p>Project onto (|): [ _| H^X | | X_n ===========================</p>
+<p>E_n | X_n . ]</p>
+<p>Define: [ A^{n}_{} | X_n .]</p>
+<p>Then [ <em>H</em>{},A^n_ ====================================</p>
+<p>E_n,A^n_. ]</p>
+<p>Equation (B) is a <strong>matrix eigenvalue equation</strong>.</p>
+<p>Thus:</p>
+<ul>
+<li>(A^n) is a <strong>column vector of numbers</strong></li>
+<li><ol start="8" type="A">
+<li>is a <strong>matrix of numbers</strong></li>
+</ol></li>
+<li>(E_n) is a scalar</li>
+</ul>
+<hr>
+</section>
+<section id="reconstruction-of-the-state-from-the-eigenvector" class="level2">
+<h2 class="anchored" data-anchor-id="reconstruction-of-the-state-from-the-eigenvector">7. Reconstruction of the state from the eigenvector</h2>
+<p>Once the numerical eigenvector (A^n) is found, the <strong>physical eigenstate</strong> is reconstructed as: [ |X_n ===========</p>
+<p><em>A^n</em>|. ]</p>
+<p>Equation (C) is <strong>not</strong> an eigenvalue equation; it is a <strong>change of representation</strong>.</p>
+<hr>
+</section>
+<section id="why-an-is-not-a-ket" class="level2">
+<h2 class="anchored" data-anchor-id="why-an-is-not-a-ket">8. Why (A^n) is NOT a ket</h2>
+<ul>
+<li>(|): element of Hilbert space (H_{Q})</li>
+<li>(A^n_): complex number</li>
+<li>((A^n_)): column vector in (C^N)</li>
+</ul>
+<p>They live in <strong>different vector spaces</strong>.</p>
+<p>Calling both “vectors” is standard but dangerous.</p>
+<hr>
+</section>
+<section id="analogy-that-usually-clicks" class="level2">
+<h2 class="anchored" data-anchor-id="analogy-that-usually-clicks">9. Analogy that usually clicks</h2>
+<p>Let:</p>
+<ul>
+<li>(e_i) = unit vectors in physical space</li>
+<li>(v = _i v_i e_i)</li>
+</ul>
+<p>Then:</p>
+<ul>
+<li>(v) ≠ ((v_1, v_2, v_3)^T)</li>
+<li>The latter is only the coordinate representation</li>
+</ul>
+<p>Same logic here: [ |X_n(A^n_{vck}) |X_n(A^n_{vck}) .]</p>
+<hr>
+</section>
+<section id="final-conclusion-formal-statement" class="level2">
+<h2 class="anchored" data-anchor-id="final-conclusion-formal-statement">10. Final conclusion (formal statement)</h2>
+<p><strong>Theorem (Exciton BSE diagonalization)</strong> Given the basis (|v c k Q),</p>
+<ol type="1">
+<li>The exciton Hamiltonian defines a matrix (H_{}).</li>
+<li>Its eigenvectors (A^n) are coordinate vectors.</li>
+<li>Each eigenvector uniquely defines a physical exciton state by [ |X_{nQ}= <em>{v c k} A^{nQ}</em>{v c k} |v c k Q.]</li>
+</ol>
+<p>No contradiction, no double counting, no operator-state confusion — just representation theory.</p>
+<p>If you want, next I can:</p>
+<ul>
+<li>prove orthonormality and completeness of exciton states, or</li>
+<li>connect this to Wannier excitons and real-space wavefunctions.</li>
+</ul>
+<p>Once again we need to lean on our ability to make stories. This time we turn to the doddering Prince of Denmark who couldn’t quite make up his mind this way or that.</p>
+<p>Think first about a familiar situation outside physics. Hamlet is a character. He exists as an abstract role in a play. Hamlet is not tall or short, not young or old, not British or Pakistani. None of those properties belong to Hamlet himself. They belong to the <em>actor</em> who plays Hamlet in a particular performance.</p>
+<p>Now imagine a theater company. For a given production, they choose a specific cast. One night Hamlet is played by Actor A, another night by Actor B. The character Hamlet is the same, but the <em>representation</em> of Hamlet has changed.</p>
+<p>This distinction—between the abstract character and its concrete realization—is exactly the distinction between a <strong>Hilbert-space vector</strong> and its <strong>representation in a chosen basis</strong>.</p>
+<hr>
+<p>In quantum mechanics, a physical state is an abstract object. We denote it by a ket, <span class="math display">
+|\psi\rangle.
+</span> This object lives in a Hilbert space. It is not a column of numbers. It does not have components until we choose a basis. Just as Hamlet does not have a height until an actor is chosen, a quantum state does not have coordinates until a basis is fixed.</p>
+<p>Now fix the center-of-mass momentum <span class="math inline">\mathbf Q</span> of an exciton. We define a Hilbert space <span class="math inline">\mathcal H_{\mathbf Q}</span> spanned by the electron–hole pair states <span class="math display">
+|v c \mathbf k \mathbf Q\rangle.
+</span> Each of these states corresponds to “an electron in band <span class="math inline">c</span> at <span class="math inline">\mathbf k+\mathbf Q/2</span> and a hole in band <span class="math inline">v</span> at <span class="math inline">\mathbf k-\mathbf Q/2</span>”. These states form a basis: $$ v c k Q | v’ c’ k’ Q ====================================================================</p>
+<p><em>{vv’}</em>{cc’}<em>{kk’}, <span class="math display">
+and they resolve the identity,
+</span> </em>{v c k} |v c k Q v c k Q| ================================</p>
+<p><em>{H</em>{Q}}. $$</p>
+<p>In the analogy, these basis states are the <strong>actors</strong> available to play Hamlet.</p>
+<hr>
+<p>The exciton itself is a physical state, <span class="math display">
+|X_{n\mathbf Q}\rangle \in \mathcal H_{\mathbf Q}.
+</span> This is Hamlet. It is not tied to any single actor.</p>
+<p>Because the basis is complete, the state can always be expanded as $$ |X_{nQ} ======================</p>
+<p><em>{v c k} |v c k Q v c k Q | X</em>{nQ}. <span class="math display">
+We now *define* the coefficients
+</span> A^{nQ}<em>{v c k} v c k Q | X</em>{nQ}. <span class="math display">
+With this definition,
+</span> |X_{nQ} ======================</p>
+<p><em>{v c k} A^{nQ}</em>{v c k} |v c k Q. $$</p>
+<p>These coefficients are just complex numbers. They tell us “how much” the exciton looks like each electron–hole pair state. In the analogy, they are the <em>weights</em> describing which actor is playing Hamlet and how strongly that actor contributes to the role.</p>
+<hr>
+<p>Now comes the crucial distinction.</p>
+<p>The set of numbers <span class="math inline">{A^{n\mathbf Q}_{v c \mathbf k}}</span> can be arranged into a column, $$ A^{nQ} ======================</p>
+<span class="math display">\begin{pmatrix}
+A^{n\mathbf Q}*{1} \
+A^{n\mathbf Q}*{2} \
+\vdots
+\end{pmatrix}</span>
+<p>}*{2}<br>
+\end{pmatrix}. $$ This object lives in <span class="math inline">\mathbb C^N</span>. It is a <strong>coordinate vector</strong>. It is not a physical state. It depends on the chosen basis <span class="math inline">{|v c \mathbf k \mathbf Q\rangle}</span>. If we change basis, this column changes, even though the physical state <span class="math inline">|X_{n\mathbf Q}\rangle</span> does not.</p>
+<p>Hamlet is not the list of actors. The list of actors is only one way to <em>represent</em> Hamlet.</p>
+<hr>
+<p>The exciton Hamiltonian <span class="math inline">H^X(\mathbf Q)</span> is an operator acting on <span class="math inline">\mathcal H_{\mathbf Q}</span>. The physical eigenvalue problem is $$ H^X(Q),|X_{nQ} =====================================</p>
+<p>E^X_{nQ},|X_{nQ}. $$ This equation lives entirely in Hilbert space. No matrices have appeared yet.</p>
+<p>To turn this into something computable, we choose the basis <span class="math inline">{|v c \mathbf k \mathbf Q\rangle}</span>. We define matrix elements $$ H_{(v c k),(v’ c’ k’)}(Q) =================================================</p>
+<p>v c k Q | H^X(Q) | v’ c’ k’ Q. <span class="math display">
+Projecting the operator equation onto the basis gives
+</span> <em>{v’ c’ k’} H</em>{(v c k),(v’ c’ k’)}(Q) ,A^{nQ}_{v’ c’ k’} ==================================</p>
+<p>E^X_{nQ} ,A^{nQ}_{v c k}. <span class="math display">
+This is a **matrix eigenvalue problem**:
+</span> H(Q),A^{nQ} ===================================</p>
+<p>E<sup>X_{nQ},A</sup>{nQ}. $$</p>
+<p>Here the eigenvector is <span class="math inline">\mathbf A^{n\mathbf Q}</span>, the column of numbers. This eigenvector lives in coordinate space, not in the Hilbert space of physical states.</p>
+<hr>
+<p>Finally, once the matrix problem is solved, the physical state is reconstructed as <span class="math display">
+|X_{n\mathbf Q}\rangle =
+\sum_{v c \mathbf k}
+A^{n\mathbf Q}_{v c \mathbf k}
+|v c \mathbf k \mathbf Q\rangle.
+</span></p>
+<p>This step is not diagonalization; it is <strong>reconstruction</strong>. It is how the abstract character Hamlet is realized by a specific cast.</p>
+<p>So when you ask, “If <span class="math inline">A^{n\mathbf Q}_{v c \mathbf k}</span> is an eigenvector, why isn’t it a ket like <span class="math inline">|v c \mathbf k \mathbf Q\rangle</span>?”, the answer is now clear:</p>
+<p>The ket is Hamlet. The column vector is the casting list.</p>
+<p>They are related, but they do not live in the same space, and confusing them is the source of nearly all notation headaches in many-body theory.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
