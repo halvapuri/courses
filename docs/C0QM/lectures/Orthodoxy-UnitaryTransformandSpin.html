@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hubbard Model – Worldlines</title>
+<title>orthodoxy-unitarytransformandspin – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -252,6 +252,49 @@ function drawLeader(config) {
 
 
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../css/buttons.css">
 <link rel="stylesheet" href="../../css/tabs.css">
@@ -343,105 +386,245 @@ function drawLeader(config) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#h.m.-mott-insulators" id="toc-h.m.-mott-insulators" class="nav-link active" data-scroll-target="#h.m.-mott-insulators">H.M. &amp; Mott insulators</a></li>
-  <li><a href="#h.m.-superconductivity" id="toc-h.m.-superconductivity" class="nav-link" data-scroll-target="#h.m.-superconductivity">H.M. &amp; superconductivity</a></li>
-  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  <li><a href="#unitary-transformations-and-spin-rotations" id="toc-unitary-transformations-and-spin-rotations" class="nav-link active" data-scroll-target="#unitary-transformations-and-spin-rotations">Unitary Transformations and Spin Rotations</a>
+  <ul class="collapse">
+  <li><a href="#spin-rotations" id="toc-spin-rotations" class="nav-link" data-scroll-target="#spin-rotations">Spin Rotations</a></li>
+  <li><a href="#example-rotation-about-the-z-axis" id="toc-example-rotation-about-the-z-axis" class="nav-link" data-scroll-target="#example-rotation-about-the-z-axis">Example: Rotation About the (z)-Axis</a></li>
+  <li><a href="#how-pauli-matrices-transform" id="toc-how-pauli-matrices-transform" class="nav-link" data-scroll-target="#how-pauli-matrices-transform">How Pauli Matrices Transform</a></li>
+  <li><a href="#explicit-calculation" id="toc-explicit-calculation" class="nav-link" data-scroll-target="#explicit-calculation">Explicit Calculation</a></li>
+  <li><a href="#physical-interpretation" id="toc-physical-interpretation" class="nav-link" data-scroll-target="#physical-interpretation">Physical Interpretation</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Hubbard Model</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>The Hubbard model is one of the most fundamental lattice models in condensed matter physics. It describes interacting electrons on a lattice and captures the essential competition between electron mobility and on-site Coulomb repulsion. Despite its apparent simplicity, the model exhibits rich physics including magnetism, metal–insulator transitions, and strong correlation effects.</p>
-<p>In Hubbard model:</p>
-<ul>
-<li>the electrons move on a lattice within a tight-binding scheme and correlation is in- troduced through an on-site repulsive term.</li>
-<li>the competition among the kinetic and the interaction term, the Hubbard model shows a rich phase diagram where both the dimensionality and the different lattice geometries play an important role.</li>
-</ul>
-<section id="h.m.-mott-insulators" class="level2">
-<h2 class="anchored" data-anchor-id="h.m.-mott-insulators">H.M. &amp; Mott insulators</h2>
-<p>Mott - Considered a 1d H atom chain. Mott’s Gedankenexperiment follows what happens if the lattice constant a is increased from its equilibrium value to larger interatomic sep- arations. This corresponds to increase the ratio between the Coulomb repulsion and the kinetic energy. According to band theory, this systems would always be a metal since the tight-binding valence s-band, which becomes narrower when increasing a, is always half filled (see Figure 1.1). This metallic state is indeed realized for small lattice spacings. In the opposite limit, the independent-electron picture clearly fails, since for very large interatomic distances the system will be composed by a set of neutral atoms, which is no more conducting. This happens because at large distances the overlap between the atomic wavefunctions is small, giving a very small energy gain due to the hopping of charges among the lattice. Since the kinetic term is very small, the dominant contribution, which is respon- sible of the localization of the electrons, comes from the Coulomb repulsion U of two electrons on the same lattice site. In this simple model, above a critical value of the lattice constant ac, the system becomes an insulator which cannot be de- scribed by the band theory approach: the Mott insulator. Its insulating character does not result in the lack of available states at low energies, as it occurs in con- ventional band insulators. In a Mott insulator the repulsion among electrons is the most relevant term and determines their localization on the different atoms.</p>
-<p>the main ingredient which characterizes Mott insulators is the presence of a suf- ficiently narrow band for valence electrons. There are other classes of materials where correlation plays a fundamental role. These systems are generally characterized by partially-filled valence bands, with a consequent failure of the band-theory approach in predicting their properties. Indeed, most of these materials are insulators with a large gap, while the independent-electron approach would predict a metallic behavior.</p>
-
-<div id="stage" class="stage" style="position: relative; height: 300px;">
-<div id="nodeA" class="tbox">
-<div id="nodeAh" class="theader" style="">
-d bands are more localized
-</div>
-<div id="nodeAc" class="tbody" style="">
-Wave function decays rapidly
-</div>
-</div>
-<div id="nodeA2" class="tbox" style="top: 20%; left: 70%;">
-<div id="nodeA2h" class="theader" style="">
-Overlap is small
-</div>
-<div id="nodeA2c" class="tbody" style="">
-Band width depends on hopping parameter t which depends on overlap
-</div>
-</div>
-<div id="nodeA3" class="tbox" style="position: absolute; top: 70%; left: 10%;">
-<div id="nodeA3h" class="theader" style="">
-Strong correlations
-</div>
-<div id="nodeA3c" class="tbody" style="">
-KE is small; e-e repulsion is large
-</div>
-</div>
-<p><!-- <div class="anchor80-line" id="nodeC" style="width: 30%; position: absolute; top: 80%; left: 100px;">
-    bb
-  </div> --></p>
-</div>
-<script>
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA'},
-    to: {id: 'nodeA2'},
-    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
-
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA2'},
-    to: {id: 'nodeA3'},
-    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
-
-  // drawLeader({
-  //   containerId: 'stage',
-  //   from: {id: 'nodeA'},
-  //   to: {id: 'nodeC'},
-  //   lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  // });
-</script>
+<section id="unitary-transformations-and-spin-rotations" class="level1">
+<h1>Unitary Transformations and Spin Rotations</h1>
+<p>In quantum mechanics, many important transformations are represented by <strong>unitary operators</strong>. A matrix (U) is unitary if</p>
+<p><span class="math display">
+U^\dagger U = I .
+</span></p>
+<p>Unitary transformations preserve inner products and therefore preserve probabilities. Because of this property, they naturally describe symmetry transformations and time evolution in quantum systems.</p>
+<p>A key result from the theory of continuous symmetries is that any continuous unitary transformation can be written as the exponential of a Hermitian operator. In general,</p>
+<p><span class="math display">
+U(\theta) = e^{-i\theta G},
+</span></p>
+<p>where (G) is a Hermitian generator. This form automatically produces a unitary operator. Indeed,</p>
+<p><span class="math display">
+U^\dagger
+=
+\left(e^{-i\theta G}\right)^\dagger
+=
+e^{i\theta G},
+</span></p>
+<p>so</p>
+<p><span class="math display">
+U^\dagger U
+=
+e^{i\theta G}e^{-i\theta G}
+=
+I.
+</span></p>
+<p>Thus exponentiating a Hermitian operator produces a unitary transformation.</p>
+<p>The appearance of the exponential can also be understood by considering infinitesimal transformations. For a small parameter change (d),</p>
+<p><span class="math display">
+U(d\theta) \approx I - i\,d\theta\,G.
+</span></p>
+<p>If we apply many such small transformations in sequence, the total transformation becomes a product of matrices. In the continuous limit, this product becomes an exponential,</p>
+<p><span class="math display">
+U(\theta) = \exp(-i\theta G).
+</span></p>
+<p>This idea appears in many places in quantum mechanics, for example in time evolution,</p>
+<p><span class="math display">
+U(t) = e^{-iHt/\hbar}.
+</span></p>
+<p>Here the Hamiltonian (H) plays the role of the generator.</p>
+<section id="spin-rotations" class="level2">
+<h2 class="anchored" data-anchor-id="spin-rotations">Spin Rotations</h2>
+<p>For spin systems, the generators of rotations are the spin operators</p>
+<p><span class="math display">
+S^a = \frac12 \sigma^a,
+</span></p>
+<p>where the (^a) are the Pauli matrices,</p>
+<p><span class="math display">
+\sigma_x =
+\begin{pmatrix}
+0 &amp; 1\\
+1 &amp; 0
+\end{pmatrix},
+\quad
+\sigma_y =
+\begin{pmatrix}
+0 &amp; -i\\
+i &amp; 0
+\end{pmatrix},
+\quad
+\sigma_z =
+\begin{pmatrix}
+1 &amp; 0\\
+0 &amp; -1
+\end{pmatrix}.
+</span></p>
+<p>A rotation by angle () around an axis (n) is therefore generated by</p>
+<p><span class="math display">
+U(\theta) =
+\exp(-i\theta\, \hat n\cdot \vec S).
+</span></p>
+<p>Substituting (S^a = ^a/2) gives</p>
+<p><span class="math display">
+U =
+\exp\left(
+-\frac{i\theta}{2}
+\hat n \cdot \vec{\sigma}
+\right).
+</span></p>
+<p>This operator belongs to the group (SU(2)), which describes rotations of spin-() particles.</p>
 </section>
-<section id="h.m.-superconductivity" class="level2">
-<h2 class="anchored" data-anchor-id="h.m.-superconductivity">H.M. &amp; superconductivity</h2>
+<section id="example-rotation-about-the-z-axis" class="level2">
+<h2 class="anchored" data-anchor-id="example-rotation-about-the-z-axis">Example: Rotation About the (z)-Axis</h2>
+<p>Consider a rotation about the (z)-axis. The rotation axis is</p>
+<p><span class="math display">
+\hat n = (0,0,1).
+</span></p>
+<p>The unitary operator becomes</p>
+<p><span class="math display">
+U =
+\exp\left(
+-\frac{i\theta}{2}\sigma_z
+\right).
+</span></p>
+<p>Since</p>
+<p><span class="math display">
+\sigma_z =
+\begin{pmatrix}
+1 &amp; 0\\
+0 &amp; -1
+\end{pmatrix},
+</span></p>
+<p>the exponential of this matrix is</p>
+<p><span class="math display">
+e^{a\sigma_z}
+=
+\begin{pmatrix}
+e^{a} &amp; 0\\
+0 &amp; e^{-a}
+\end{pmatrix}.
+</span></p>
+<p>Setting (a=-i/2) gives</p>
+<p><span class="math display">
+U =
+\begin{pmatrix}
+e^{-i\theta/2} &amp; 0\\
+0 &amp; e^{i\theta/2}
+\end{pmatrix}.
+</span></p>
+<p>If the spinor is</p>
+<p><span class="math display">
+\psi =
+\begin{pmatrix}
+c_\uparrow \\
+c_\downarrow
+\end{pmatrix},
+</span></p>
+<p>then the rotated spinor is</p>
+<p><span class="math display">
+\psi' = U\psi
+=
+\begin{pmatrix}
+e^{-i\theta/2} c_\uparrow \\
+e^{i\theta/2} c_\downarrow
+\end{pmatrix}.
+</span></p>
+<p>The two spin components acquire opposite phases. This transformation corresponds to a physical rotation of the spin vector around the (z)-axis.</p>
 </section>
-<section id="sources" class="level2">
-<h2 class="anchored" data-anchor-id="sources">Sources</h2>
-<p><a href="https://iris.sissa.it/retrieve/dd8a4bf7-055d-20a0-e053-d805fe0a8cb0/1963_1897_Capello.pdf">Link</a></p>
+<section id="how-pauli-matrices-transform" class="level2">
+<h2 class="anchored" data-anchor-id="how-pauli-matrices-transform">How Pauli Matrices Transform</h2>
+<p>A useful identity for spin rotations is</p>
+<p><span class="math display">
+U^\dagger \sigma_i U
+=
+\sum_j R_{ij}\sigma_j.
+</span></p>
+<p>At first glance this expression can seem confusing. The matrix (R) is (3), while the Pauli matrices are (2). The key point is that</p>
+<p><span class="math display">
+\vec{\sigma} = (\sigma_x,\sigma_y,\sigma_z)
+</span></p>
+<p>is treated as a <strong>vector of matrices</strong>. The rotation matrix acts on the index labeling the matrices rather than on their internal entries.</p>
+<p>More explicitly,</p>
+<p><span class="math display">
+U^\dagger \sigma_i U
+=
+R_{i1}\sigma_x
++
+R_{i2}\sigma_y
++
+R_{i3}\sigma_z.
+</span></p>
+<p>Thus the Pauli matrices transform among themselves under spin rotations.</p>
+</section>
+<section id="explicit-calculation" class="level2">
+<h2 class="anchored" data-anchor-id="explicit-calculation">Explicit Calculation</h2>
+<p>For a rotation around the (z)-axis,</p>
+<p><span class="math display">
+U = e^{-i\theta\sigma_z/2}.
+</span></p>
+<p>One can compute</p>
+<p><span class="math display">
+U^\dagger \sigma_x U
+=
+\cos\theta\,\sigma_x
++
+\sin\theta\,\sigma_y,
+</span></p>
+<p><span class="math display">
+U^\dagger \sigma_y U
+=
+-\sin\theta\,\sigma_x
++
+\cos\theta\,\sigma_y,
+</span></p>
+<p><span class="math display">
+U^\dagger \sigma_z U
+=
+\sigma_z.
+</span></p>
+<p>These coefficients correspond exactly to the three-dimensional rotation matrix</p>
+<p><span class="math display">
+R_z(\theta)=
+\begin{pmatrix}
+\cos\theta &amp; \sin\theta &amp; 0\\
+-\sin\theta &amp; \cos\theta &amp; 0\\
+0 &amp; 0 &amp; 1
+\end{pmatrix}.
+</span></p>
+<p>Thus conjugating the Pauli matrices by the unitary operator produces the same transformation that rotates an ordinary three-dimensional vector.</p>
+</section>
+<section id="physical-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="physical-interpretation">Physical Interpretation</h2>
+<p>The spin operator can be written in terms of a spinor () as</p>
+<p><span class="math display">
+\vec S =
+\frac12
+\psi^\dagger \vec{\sigma} \psi.
+</span></p>
+<p>Under a spin rotation,</p>
+<p><span class="math display">
+\psi \rightarrow U\psi,
+</span></p>
+<p>the spin operator transforms as</p>
+<p><span class="math display">
+\vec S \rightarrow R\vec S.
+</span></p>
+<p>Therefore the expectation value of the spin behaves exactly like a classical vector under spatial rotations.</p>
+<p>This relationship between the matrices (U) and (R) explains why the group (SU(2)) describes spin rotations. The operator (U) acts on spinors, while the corresponding matrix (R) rotates vectors in ordinary three-dimensional space.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

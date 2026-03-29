@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hubbard Model – Worldlines</title>
+<title>Computational vs.&nbsp;Singlet/Triplet Basis for Two-Electron Systems – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-cbdf90ff2cca10b7d18035842fdac510.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-cbdf90ff2cca10b7d18035842fdac510.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,12 +68,27 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
 <script>
 function toggleBox(header) {
-  // Use jQuery to find the associated container and toggle its visibility
-  $(header).next('.dd-box').slideToggle();
-  $(header).next('.ddm-box').slideToggle();
+    $(header).next('.dd-box, .ddm-box, .ddp-box').slideToggle("slow");
 }
+</script> 
+
+
+<script>
+function toggleDesc(header) {
+    $(header).next('p').slideToggle("slow");
+}
+</script>
+
+
+<script>
+//function toggleBox(header) {
+//  // Use jQuery to find the associated container and toggle its visibility
+//  $(header).next('.dd-box').slideToggle();
+//  $(header).next('.ddm-box').slideToggle();
+//}
 </script>
 
 <script>
@@ -252,15 +267,58 @@ function drawLeader(config) {
 
 
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
-<link rel="stylesheet" href="../../css/buttons.css">
-<link rel="stylesheet" href="../../css/tabs.css">
-<link rel="stylesheet" href="../../css/callouts.css">
-<link rel="stylesheet" href="../../css/fonts-ebgaramond.css">
-<link rel="stylesheet" href="../../css/fonts-hand.css">
-<link rel="stylesheet" href="../../css/shapes.css">
-<link rel="stylesheet" href="../../css/sidebar.css">
-<link rel="stylesheet" href="../../css/leaders.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../css/buttons.css">
+<link rel="stylesheet" href="../css/tabs.css">
+<link rel="stylesheet" href="../css/callouts.css">
+<link rel="stylesheet" href="../css/fonts-ebgaramond.css">
+<link rel="stylesheet" href="../css/fonts-hand.css">
+<link rel="stylesheet" href="../css/shapes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+<link rel="stylesheet" href="../css/leaders.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -270,7 +328,7 @@ function drawLeader(config) {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Worldlines</span>
     </a>
   </div>
@@ -281,11 +339,11 @@ function drawLeader(config) {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -294,19 +352,19 @@ function drawLeader(config) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-courses">    
         <li>
-    <a class="dropdown-item" href="../../C0calculusI/home_calculusI.html">
+    <a class="dropdown-item" href="../C0calculusI/home_calculusI.html">
  <span class="dropdown-text">Calculus I</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../C0calculusII/home_calculusII.html">
+    <a class="dropdown-item" href="../C0calculusII/home_calculusII.html">
  <span class="dropdown-text">Calculus II</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../C0ode/home_ode.html">
+    <a class="dropdown-item" href="../C0ode/home_ode.html">
  <span class="dropdown-text">Diff. Eqs. &amp; Lin. Alg.</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../C0noneqthermo/home_noneqthermo.html">
+    <a class="dropdown-item" href="../C0noneqthermo/home_noneqthermo.html">
  <span class="dropdown-text">Non-equilibrium Thermodynamics</span></a>
   </li>  
     </ul>
@@ -317,7 +375,7 @@ function drawLeader(config) {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-guides">    
         <li>
-    <a class="dropdown-item" href="../../D0abinit/home_abinit.html">
+    <a class="dropdown-item" href="../D0abinit/home_abinit.html">
  <span class="dropdown-text">Ab initio calculation</span></a>
   </li>  
     </ul>
@@ -343,9 +401,7 @@ function drawLeader(config) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#h.m.-mott-insulators" id="toc-h.m.-mott-insulators" class="nav-link active" data-scroll-target="#h.m.-mott-insulators">H.M. &amp; Mott insulators</a></li>
-  <li><a href="#h.m.-superconductivity" id="toc-h.m.-superconductivity" class="nav-link" data-scroll-target="#h.m.-superconductivity">H.M. &amp; superconductivity</a></li>
-  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link active" data-scroll-target="#example">Example</a></li>
   </ul>
 </nav>
     </div>
@@ -354,7 +410,7 @@ function drawLeader(config) {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hubbard Model</h1>
+<h1 class="title">Computational vs.&nbsp;Singlet/Triplet Basis for Two-Electron Systems</h1>
 </div>
 
 
@@ -371,75 +427,50 @@ function drawLeader(config) {
 </header>
 
 
-<p>The Hubbard model is one of the most fundamental lattice models in condensed matter physics. It describes interacting electrons on a lattice and captures the essential competition between electron mobility and on-site Coulomb repulsion. Despite its apparent simplicity, the model exhibits rich physics including magnetism, metal–insulator transitions, and strong correlation effects.</p>
-<p>In Hubbard model:</p>
+<p><a href="https://physics.stackexchange.com/questions/677577/why-are-two-electron-systems-usually-described-in-singlet-triplet-basis">See also</a></p>
+<p>In many-body quantum mechanics, we often describe electrons using a <strong>computational basis</strong>, which simply labels the spin state of each electron. For a spin-<span class="math inline">\frac{1}{2}</span> system, the basic single-electron states are</p>
+<p><span class="math display">
+|u\rangle = |\uparrow\rangle, \quad |d\rangle = |\downarrow\rangle
+</span></p>
+<p>and a two-electron system can be written as</p>
+<p><span class="math display">
+|uu\rangle, \quad |ud\rangle, \quad |du\rangle, \quad |dd\rangle.
+</span></p>
+<p>This computational basis is extremely useful in <strong>numerical methods</strong> such as exact diagonalization, tensor network methods, and quantum computing. Each basis state corresponds to a binary occupation of spin-orbitals, making it natural to represent the Hilbert space as bitstrings like <span class="math inline">|01\rangle</span> or <span class="math inline">|10\rangle</span>. Operators such as creation and annihilation operators act directly on this basis, and the antisymmetry of electrons is automatically enforced via the fermionic commutation relations:</p>
+<p><span class="math display">
+\{ c_i^\dagger, c_j^\dagger \} = 0 \quad \Rightarrow \quad c_i^\dagger c_j^\dagger |0\rangle = - c_j^\dagger c_i^\dagger |0\rangle.
+</span></p>
+<p>Thus, while a state like <span class="math inline">|ud\rangle</span> appears “unsymmetrized,” the correct fermionic antisymmetry is encoded in the algebra of the operators.</p>
+<p>However, sometimes it is advantageous to switch to the <strong>singlet/triplet basis</strong>, which explicitly encodes the symmetry of the spin wavefunction. For two electrons, this basis is defined as:</p>
+<p><span class="math display">
+|S=0, M=0\rangle = \frac{1}{\sqrt{2}} (|ud\rangle - |du\rangle),
+</span></p>
+<p><span class="math display">
+|S=1, M=1\rangle = |uu\rangle, \quad |S=1, M=0\rangle = \frac{1}{\sqrt{2}} (|ud\rangle + |du\rangle), \quad |S=1, M=-1\rangle = |dd\rangle.
+</span></p>
+<p>The singlet is <strong>antisymmetric under particle exchange</strong>, while the triplet states are symmetric.</p>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>The singlet/triplet basis is particularly useful when the Hamiltonian of the system respects <strong>spin symmetry</strong>, such as the <strong>Heisenberg exchange Hamiltonian</strong>:</p>
+<p><span class="math display">
+H = J \vec{S}_1 \cdot \vec{S}_2,
+</span></p>
+<p>where <span class="math inline">\vec{S}_i</span> is the spin operator of electron <span class="math inline">i</span>. In the computational basis, the Hamiltonian mixes the states <span class="math inline">|ud\rangle</span> and <span class="math inline">|du\rangle</span>, and one must diagonalize the <span class="math inline">2\times 2</span> subspace to find the eigenstates.</p>
+<p><span class="math display">
+\vec{S}_1 \cdot \vec{S}_2 |ud\rangle = \frac{1}{2}(|du\rangle - |ud\rangle) (plus\ diagonal\ term)
+</span></p>
+<p>In contrast, the singlet/triplet basis <strong>diagonalizes the Hamiltonian automatically</strong>, since these states are eigenstates of total spin <span class="math inline">S^2</span>:</p>
 <ul>
-<li>the electrons move on a lattice within a tight-binding scheme and correlation is in- troduced through an on-site repulsive term.</li>
-<li>the competition among the kinetic and the interaction term, the Hubbard model shows a rich phase diagram where both the dimensionality and the different lattice geometries play an important role.</li>
+<li>Singlet: <span class="math inline">S=0</span>, eigenvalue <span class="math inline">S(S+1) = 0</span><br>
+</li>
+<li>Triplet: <span class="math inline">S=1</span>, eigenvalue <span class="math inline">S(S+1) = 2</span></li>
 </ul>
-<section id="h.m.-mott-insulators" class="level2">
-<h2 class="anchored" data-anchor-id="h.m.-mott-insulators">H.M. &amp; Mott insulators</h2>
-<p>Mott - Considered a 1d H atom chain. Mott’s Gedankenexperiment follows what happens if the lattice constant a is increased from its equilibrium value to larger interatomic sep- arations. This corresponds to increase the ratio between the Coulomb repulsion and the kinetic energy. According to band theory, this systems would always be a metal since the tight-binding valence s-band, which becomes narrower when increasing a, is always half filled (see Figure 1.1). This metallic state is indeed realized for small lattice spacings. In the opposite limit, the independent-electron picture clearly fails, since for very large interatomic distances the system will be composed by a set of neutral atoms, which is no more conducting. This happens because at large distances the overlap between the atomic wavefunctions is small, giving a very small energy gain due to the hopping of charges among the lattice. Since the kinetic term is very small, the dominant contribution, which is respon- sible of the localization of the electrons, comes from the Coulomb repulsion U of two electrons on the same lattice site. In this simple model, above a critical value of the lattice constant ac, the system becomes an insulator which cannot be de- scribed by the band theory approach: the Mott insulator. Its insulating character does not result in the lack of available states at low energies, as it occurs in con- ventional band insulators. In a Mott insulator the repulsion among electrons is the most relevant term and determines their localization on the different atoms.</p>
-<p>the main ingredient which characterizes Mott insulators is the presence of a suf- ficiently narrow band for valence electrons. There are other classes of materials where correlation plays a fundamental role. These systems are generally characterized by partially-filled valence bands, with a consequent failure of the band-theory approach in predicting their properties. Indeed, most of these materials are insulators with a large gap, while the independent-electron approach would predict a metallic behavior.</p>
-
-<div id="stage" class="stage" style="position: relative; height: 300px;">
-<div id="nodeA" class="tbox">
-<div id="nodeAh" class="theader" style="">
-d bands are more localized
-</div>
-<div id="nodeAc" class="tbody" style="">
-Wave function decays rapidly
-</div>
-</div>
-<div id="nodeA2" class="tbox" style="top: 20%; left: 70%;">
-<div id="nodeA2h" class="theader" style="">
-Overlap is small
-</div>
-<div id="nodeA2c" class="tbody" style="">
-Band width depends on hopping parameter t which depends on overlap
-</div>
-</div>
-<div id="nodeA3" class="tbox" style="position: absolute; top: 70%; left: 10%;">
-<div id="nodeA3h" class="theader" style="">
-Strong correlations
-</div>
-<div id="nodeA3c" class="tbody" style="">
-KE is small; e-e repulsion is large
-</div>
-</div>
-<p><!-- <div class="anchor80-line" id="nodeC" style="width: 30%; position: absolute; top: 80%; left: 100px;">
-    bb
-  </div> --></p>
-</div>
-<script>
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA'},
-    to: {id: 'nodeA2'},
-    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
-
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA2'},
-    to: {id: 'nodeA3'},
-    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
-
-  // drawLeader({
-  //   containerId: 'stage',
-  //   from: {id: 'nodeA'},
-  //   to: {id: 'nodeC'},
-  //   lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  // });
-</script>
-</section>
-<section id="h.m.-superconductivity" class="level2">
-<h2 class="anchored" data-anchor-id="h.m.-superconductivity">H.M. &amp; superconductivity</h2>
-</section>
-<section id="sources" class="level2">
-<h2 class="anchored" data-anchor-id="sources">Sources</h2>
-<p><a href="https://iris.sissa.it/retrieve/dd8a4bf7-055d-20a0-e053-d805fe0a8cb0/1963_1897_Capello.pdf">Link</a></p>
+<p>By working in the singlet/triplet basis, the symmetry of the problem is made explicit, and the relationship between spin and orbital symmetry becomes transparent. For example, a singlet spin state requires a symmetric spatial (orbital) wavefunction to satisfy overall fermionic antisymmetry, while a triplet spin state requires an antisymmetric spatial wavefunction.</p>
+<ul>
+<li>The <strong>computational basis</strong> is ideal for bookkeeping, numerical representation, and operator algebra. Antisymmetry is enforced automatically by the operators.<br>
+</li>
+<li>The <strong>singlet/triplet basis</strong> is ideal for exploiting spin symmetry, diagonalizing spin Hamiltonians like the Heisenberg Hamiltonian, and understanding the connection between spin and spatial symmetry.</li>
+</ul>
 
 
 </section>
@@ -845,7 +876,7 @@ KE is small; e-e repulsion is large
   });
   </script>
 </div> <!-- /content -->
-<script src="../../scripts/leader-line-master/leader-line.min.js"></script>
+<script src="../scripts/leader-line-master/leader-line.min.js"></script>
 
 
 

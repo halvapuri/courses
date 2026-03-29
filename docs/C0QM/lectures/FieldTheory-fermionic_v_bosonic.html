@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hubbard Model – Worldlines</title>
+<title>Fermionic Systems and Hamiltonians – Worldlines</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,12 +68,27 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
 <script>
 function toggleBox(header) {
-  // Use jQuery to find the associated container and toggle its visibility
-  $(header).next('.dd-box').slideToggle();
-  $(header).next('.ddm-box').slideToggle();
+    $(header).next('.dd-box, .ddm-box, .ddp-box').slideToggle("slow");
 }
+</script> 
+
+
+<script>
+function toggleDesc(header) {
+    $(header).next('p').slideToggle("slow");
+}
+</script>
+
+
+<script>
+//function toggleBox(header) {
+//  // Use jQuery to find the associated container and toggle its visibility
+//  $(header).next('.dd-box').slideToggle();
+//  $(header).next('.ddm-box').slideToggle();
+//}
 </script>
 
 <script>
@@ -252,6 +267,49 @@ function drawLeader(config) {
 
 
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../css/buttons.css">
 <link rel="stylesheet" href="../../css/tabs.css">
@@ -338,23 +396,15 @@ function drawLeader(config) {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#h.m.-mott-insulators" id="toc-h.m.-mott-insulators" class="nav-link active" data-scroll-target="#h.m.-mott-insulators">H.M. &amp; Mott insulators</a></li>
-  <li><a href="#h.m.-superconductivity" id="toc-h.m.-superconductivity" class="nav-link" data-scroll-target="#h.m.-superconductivity">H.M. &amp; superconductivity</a></li>
-  <li><a href="#sources" id="toc-sources" class="nav-link" data-scroll-target="#sources">Sources</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hubbard Model</h1>
+<h1 class="title">Fermionic Systems and Hamiltonians</h1>
 </div>
 
 
@@ -371,78 +421,187 @@ function drawLeader(config) {
 </header>
 
 
-<p>The Hubbard model is one of the most fundamental lattice models in condensed matter physics. It describes interacting electrons on a lattice and captures the essential competition between electron mobility and on-site Coulomb repulsion. Despite its apparent simplicity, the model exhibits rich physics including magnetism, metal–insulator transitions, and strong correlation effects.</p>
-<p>In Hubbard model:</p>
-<ul>
-<li>the electrons move on a lattice within a tight-binding scheme and correlation is in- troduced through an on-site repulsive term.</li>
-<li>the competition among the kinetic and the interaction term, the Hubbard model shows a rich phase diagram where both the dimensionality and the different lattice geometries play an important role.</li>
-</ul>
-<section id="h.m.-mott-insulators" class="level2">
-<h2 class="anchored" data-anchor-id="h.m.-mott-insulators">H.M. &amp; Mott insulators</h2>
-<p>Mott - Considered a 1d H atom chain. Mott’s Gedankenexperiment follows what happens if the lattice constant a is increased from its equilibrium value to larger interatomic sep- arations. This corresponds to increase the ratio between the Coulomb repulsion and the kinetic energy. According to band theory, this systems would always be a metal since the tight-binding valence s-band, which becomes narrower when increasing a, is always half filled (see Figure 1.1). This metallic state is indeed realized for small lattice spacings. In the opposite limit, the independent-electron picture clearly fails, since for very large interatomic distances the system will be composed by a set of neutral atoms, which is no more conducting. This happens because at large distances the overlap between the atomic wavefunctions is small, giving a very small energy gain due to the hopping of charges among the lattice. Since the kinetic term is very small, the dominant contribution, which is respon- sible of the localization of the electrons, comes from the Coulomb repulsion U of two electrons on the same lattice site. In this simple model, above a critical value of the lattice constant ac, the system becomes an insulator which cannot be de- scribed by the band theory approach: the Mott insulator. Its insulating character does not result in the lack of available states at low energies, as it occurs in con- ventional band insulators. In a Mott insulator the repulsion among electrons is the most relevant term and determines their localization on the different atoms.</p>
-<p>the main ingredient which characterizes Mott insulators is the presence of a suf- ficiently narrow band for valence electrons. There are other classes of materials where correlation plays a fundamental role. These systems are generally characterized by partially-filled valence bands, with a consequent failure of the band-theory approach in predicting their properties. Indeed, most of these materials are insulators with a large gap, while the independent-electron approach would predict a metallic behavior.</p>
+<p>Fermionic Hamiltonians possess structural features that arise directly from the algebra satisfied by their creation and annihilation operators. These operators obey the canonical anticommutation relations</p>
+<p><span class="math display">
+\{c_i, c_j^\dagger\} = \delta_{ij}, \qquad
+\{c_i, c_j\} = 0 .
+</span></p>
+<p>This algebra implies several immediate consequences. First, fermionic creation operators satisfy</p>
+<p><span class="math display">
+(c_i^\dagger)^2 = 0 ,
+</span></p>
+<p>which expresses the Pauli exclusion principle: a single quantum state can be occupied by at most one fermion. The number operator</p>
+<p><span class="math display">
+n_i = c_i^\dagger c_i
+</span></p>
+<p>therefore has eigenvalues</p>
+<p><span class="math display">
+n_i \in \{0,1\}.
+</span></p>
+<p>Each single-particle orbital behaves as a two-level system, corresponding to the presence or absence of a fermion. This simple structure already distinguishes fermionic systems sharply from bosonic ones, whose occupation numbers can take arbitrarily large values.</p>
+<p>A generic fermionic Hamiltonian written in second quantization takes the form</p>
+<p><span class="math display">
+H =
+\sum_{ij} t_{ij} c_i^\dagger c_j
++
+\sum_{ijkl} V_{ijkl} c_i^\dagger c_j^\dagger c_k c_l .
+</span></p>
+<p>The first term typically describes single-particle motion such as hopping on a lattice, while the second describes interactions between particles. A notable feature of such Hamiltonians is that every term contains an <strong>even number of fermionic operators</strong>. This property is not accidental: it is tied to a fundamental symmetry known as <strong>fermion parity</strong>.</p>
+<p>Define the total particle number operator</p>
+<p><span class="math display">
+N = \sum_i c_i^\dagger c_i .
+</span></p>
+<p>But many physical Hamiltonians do not conserve <span class="math inline">N</span>. A famous example is superconductivity (BCS theory), where Cooper pairs can be created or destroyed. However, something does remain conserved: enter the <strong>fermion parity operator</strong></p>
+<p><span class="math display">
+P = (-1)^N .
+</span></p>
+<p>States with an even number of fermions have eigenvalue (+1), while states with an odd number have eigenvalue (-1). Because typical fermionic Hamiltonians contain only even numbers of creation and annihilation operators, one finds</p>
+<p><span class="math display">
+[H, (-1)^N] = 0 .
+</span></p>
+<p>Thus fermion parity is conserved. The Hilbert space separates into two sectors—states with even particle number and states with odd particle number—and the Hamiltonian never mixes them.</p>
+<div class="ddp">
+<div class="ddp-head" onclick="toggleBox(this)">
+<p>Fermion Parity and the Meaning of <code>Parity</code></p>
+</div>
+<div class="ddp-box">
+<p>The word <em>parity</em> can lead to confusion. In relativistic quantum mechanics, parity typically refers to a spatial symmetry, while in many-body fermionic systems it refers to the evenness or oddness of the total particle number. Although these meanings are different physically, they share a common mathematical structure: both are <span class="math inline">\mathbb{Z}_2</span> symmetries whose operators square to the identity.</p>
+<p><strong>Spatial Parity</strong></p>
+<p>In quantum mechanics, spatial parity corresponds to inversion of spatial coordinates <span class="math display">
+\mathbf{x} \rightarrow -\mathbf{x}.
+</span></p>
+<p>The corresponding operator <span class="math inline">P</span> acts on wavefunctions as <span class="math display">
+(P\psi)(\mathbf{x}) = \psi(-\mathbf{x}).
+</span></p>
+<p>Applying the transformation twice restores the original state, <span class="math display">
+P^2 = 1.
+</span></p>
+<p>Because of this property, energy eigenstates can be chosen as eigenstates of parity with eigenvalues <span class="math display">
+P = \pm 1.
+</span></p>
+<p>States with eigenvalue <span class="math inline">+1</span> are called <em>even</em> under parity, while those with eigenvalue <span class="math inline">-1</span> are <em>odd</em>. For example, <span class="math display">
+\psi(x) = \cos x \quad \text{is even}, \qquad
+\psi(x) = \sin x \quad \text{is odd}.
+</span></p>
+<p>Thus spatial parity distinguishes whether a wavefunction is symmetric or antisymmetric under reflection.</p>
+<p><strong>Fermion Parity</strong></p>
+<p>In many-body fermionic systems, the term refers instead to the parity of the total fermion number. Define the particle number operator <span class="math display">
+N = \sum_i c_i^\dagger c_i,
+</span> where <span class="math inline">c_i^\dagger</span> and <span class="math inline">c_i</span> are fermionic creation and annihilation operators.</p>
+<p>The fermion parity operator is defined as <span class="math display">
+P = (-1)^N.
+</span></p>
+<p>Its action on a Fock state <span class="math inline">|n\rangle</span> with <span class="math inline">n</span> fermions is <span class="math display">
+P |n\rangle = (-1)^n |n\rangle.
+</span></p>
+<p>Thus <span class="math display">
+\text{even number of fermions} \Rightarrow P = +1,
+</span> <span class="math display">
+\text{odd number of fermions} \Rightarrow P = -1.
+</span></p>
+<p>In other words, the operator <span class="math inline">P</span> measures whether the total fermion number is even or odd. The terminology ``parity’’ here reflects the mathematical meaning of parity as the classification of integers into even and odd.</p>
+<p><strong>Transformation of Fermionic Operators</strong></p>
+<p>Fermionic annihilation operators change the particle number by one, <span class="math display">
+c_j |n\rangle \rightarrow |n-1\rangle.
+</span></p>
+<p>Conjugating a fermionic operator with the parity operator gives <span class="math display">
+P c_j P^{-1} = -c_j.
+</span></p>
+<p>Thus fermionic operators are <em>odd</em> under fermion parity. By contrast, operators containing an even number of fermionic fields, such as <span class="math display">
+c_i^\dagger c_j,
+</span> are invariant under parity.</p>
+<p>Because physical observables must commute with the parity operator, <span class="math display">
+[P,O] = 0,
+</span></p>
+<p>only operators containing <em>an even number of fermionic operators</em> can represent measurable quantities. This leads to the fermion parity superselection rule discussed in many-body theory.</p>
+<p><strong>Parity as a Subgroup of Particle-Number Symmetry</strong></p>
+<p>The parity operator can also be written in exponential form <span class="math display">
+P = e^{i\pi N}.
+</span></p>
+<p>This expression arises from the continuous <span class="math inline">U(1)</span> symmetry associated with particle-number conservation, <span class="math display">
+U(\theta) = e^{i\theta N}.
+</span></p>
+<p>Under this transformation the fermionic operators transform as <span class="math display">
+U(\theta) c_j U^\dagger(\theta) = e^{-i\theta} c_j.
+</span></p>
+<p>Choosing the special value <span class="math display">
+\theta = \pi
+</span> gives <span class="math display">
+P = e^{i\pi N},
+</span> which produces the transformation <span class="math display">
+c_j \rightarrow -c_j.
+</span></p>
+<p>Thus fermion parity may be understood as the <span class="math inline">\mathbb{Z}_2</span> subgroup of the global <span class="math inline">U(1)</span> particle-number symmetry.</p>
+<p>So although spatial parity and fermion parity refer to different physical transformations, both share the same mathematical structure as <span class="math inline">\mathbb{Z}_2</span> symmetries. Spatial parity distinguishes wavefunctions that are even or odd under spatial reflection, while fermion parity distinguishes states containing an even or odd number of fermions. The latter plays a central role in many-body physics because physical observables must preserve fermion parity, leading to the fermion parity superselection rule.</p>
+</div>
+</div>
+<p>At first sight this might appear to be merely a feature of particular Hamiltonians. In fact it reflects a deeper principle. Observable operators must behave like <strong>bosonic operators</strong>: they must commute with other observables at spacelike separation in order to preserve locality and causality. A single fermionic operator does not satisfy this requirement because fermionic fields anticommute. As a result, physical observables must always contain <strong>an even number of fermionic fields</strong>, ensuring that they commute at large separations.</p>
+<p>This restriction leads to what is known as the <strong>fermion parity superselection rule</strong>. Because physical observables commute with the parity operator (P), states belonging to different parity sectors cannot be connected by any observable operation. In practice this means that coherent superpositions of states with even and odd fermion number cannot be observed. The Hilbert space therefore decomposes into two superselection sectors corresponding to even and odd fermion parity.</p>
+<p>These ideas become particularly clear when one examines how fermionic operators are represented in many-body systems. In certain constructions—such as the Jordan–Wigner transformation used to map fermions onto spin systems—the annihilation operator for mode (j) contains a phase factor of the form</p>
+<p><span class="math display">
+(-1)^{\sum_{k=1}^{j-1} N_k},
+</span></p>
+<p>where</p>
+<p><span class="math display">
+N_k = c_k^\dagger c_k
+</span></p>
+<p>counts the occupation of orbitals preceding (j) in some chosen ordering. This phase ensures that the fermionic operators obey the correct anticommutation relations. However, it introduces an interesting subtlety: the phase depends on the occupation numbers of other modes. Since the ordering of modes is merely a matter of convention, physical predictions must ultimately be independent of such choices.</p>
+<p>A deeper concern arises if one imagines measuring an operator containing an <strong>odd number of fermionic creation or annihilation operators</strong>. Because of the phase string above, the result of such a measurement could depend on the occupation numbers of distant modes. One could then imagine a situation in which one fermionic mode is located far away—for instance on Mars—while other modes are measured on Earth. The phase appearing in the measurement outcome could reveal whether a particle is present on Mars or not. In principle this would allow instantaneous communication across arbitrary distances, violating the principle of causality.</p>
+<p>The resolution of this apparent paradox is precisely the fermion parity superselection rule. Operators containing an odd number of fermionic operators are <strong>not physical observables</strong>. Only operators that commute with the parity operator are allowed. Such operators always contain an even number of fermionic creation and annihilation operators. When written out explicitly, the phase strings associated with the Jordan–Wigner representation cancel in pairs, ensuring that the resulting observable is local and independent of the ordering of modes.</p>
+<p>Another remarkable symmetry that appears naturally in fermionic systems is <strong>particle–hole symmetry</strong>. Because each orbital can only be either empty or occupied, the absence of a particle may be viewed as a distinct quasiparticle known as a hole. Mathematically this idea can be expressed through the transformation</p>
+<p><span class="math display">
+c_i \rightarrow c_i^\dagger .
+</span></p>
+<p>Under this transformation the number operator changes as</p>
+<p><span class="math display">
+n_i = c_i^\dagger c_i \;\rightarrow\; 1 - n_i .
+</span></p>
+<p>An occupied state becomes empty, and an empty state becomes occupied. Because fermionic occupation numbers take only the values (0) or (1), this transformation maps the Hilbert space onto itself in a natural way.</p>
+<p>Particle–hole symmetry frequently appears in lattice models. Consider the tight-binding Hamiltonian</p>
+<p><span class="math display">
+H = -t \sum_{\langle ij\rangle} c_i^\dagger c_j .
+</span></p>
+<p>On a bipartite lattice one may define the transformation</p>
+<p><span class="math display">
+c_i \rightarrow (-1)^i c_i^\dagger .
+</span></p>
+<p>Using the anticommutation relation</p>
+<p><span class="math display">
+c_i c_j^\dagger = -c_j^\dagger c_i + \delta_{ij},
+</span></p>
+<p>one finds that the Hamiltonian transforms back into itself up to constant energy shifts. The energy spectrum then becomes symmetric around half filling: particle excitations above the Fermi level correspond directly to hole excitations below it.</p>
+<p>Particle–hole symmetry becomes especially important in superconductivity. In the Bogoliubov–de Gennes formalism, particle and hole degrees of freedom are combined into the Nambu spinor</p>
+<p><span class="math display">
+\Psi =
+\begin{pmatrix}
+c \\
+c^\dagger
+\end{pmatrix}.
+</span></p>
+<p>The Bogoliubov–de Gennes Hamiltonian satisfies a symmetry relation</p>
+<p><span class="math display">
+C H(k) C^{-1} = -H(-k),
+</span></p>
+<p>where (C) is the particle–hole operator. This symmetry ensures that every positive-energy quasiparticle state has a corresponding negative-energy partner.</p>
+<p>A particularly illuminating way to see the structure of fermionic systems is to rewrite fermionic operators in terms of <strong>Majorana operators</strong></p>
+<p><span class="math display">
+\gamma_1 = c + c^\dagger,
+</span></p>
+<p><span class="math display">
+\gamma_2 = i(c^\dagger - c).
+</span></p>
+<p>These operators are Hermitian and satisfy the algebra</p>
+<p><span class="math display">
+\{\gamma_i, \gamma_j\} = 2\delta_{ij}.
+</span></p>
+<p>Each complex fermion can therefore be viewed as being composed of two real Majorana modes. In this representation the fermion parity operator for a single mode takes the simple form</p>
+<p><span class="math display">
+P = i\,\gamma_1 \gamma_2 .
+</span></p>
+<p>Physical observables must contain even numbers of Majorana operators, once again reflecting the underlying parity constraint. This perspective is particularly useful in the study of topological superconductors, where spatially separated Majorana modes can encode quantum information in the global fermion parity of the system.</p>
+<p>Taken together, these features illustrate how deeply the algebra of fermionic operators shapes the structure of many-body physics. Anticommutation relations lead to the Pauli exclusion principle, the emergence of fermion parity conservation and its associated superselection rule, the natural appearance of particle–hole symmetry, and the Majorana representation that plays an important role in modern condensed matter theory.</p>
 
-<div id="stage" class="stage" style="position: relative; height: 300px;">
-<div id="nodeA" class="tbox">
-<div id="nodeAh" class="theader" style="">
-d bands are more localized
-</div>
-<div id="nodeAc" class="tbody" style="">
-Wave function decays rapidly
-</div>
-</div>
-<div id="nodeA2" class="tbox" style="top: 20%; left: 70%;">
-<div id="nodeA2h" class="theader" style="">
-Overlap is small
-</div>
-<div id="nodeA2c" class="tbody" style="">
-Band width depends on hopping parameter t which depends on overlap
-</div>
-</div>
-<div id="nodeA3" class="tbox" style="position: absolute; top: 70%; left: 10%;">
-<div id="nodeA3h" class="theader" style="">
-Strong correlations
-</div>
-<div id="nodeA3c" class="tbody" style="">
-KE is small; e-e repulsion is large
-</div>
-</div>
-<p><!-- <div class="anchor80-line" id="nodeC" style="width: 30%; position: absolute; top: 80%; left: 100px;">
-    bb
-  </div> --></p>
-</div>
-<script>
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA'},
-    to: {id: 'nodeA2'},
-    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
 
-  drawLeader({
-    containerId: 'stage',
-    from: {id: 'nodeA2'},
-    to: {id: 'nodeA3'},
-    lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  });
-
-  // drawLeader({
-  //   containerId: 'stage',
-  //   from: {id: 'nodeA'},
-  //   to: {id: 'nodeC'},
-  //   lineOptions: {color: 'navy', endLabel: 'T(x)',path: 'fluid', startPlug: 'disc', endPlug: 'arrow3'}
-  // });
-</script>
-</section>
-<section id="h.m.-superconductivity" class="level2">
-<h2 class="anchored" data-anchor-id="h.m.-superconductivity">H.M. &amp; superconductivity</h2>
-</section>
-<section id="sources" class="level2">
-<h2 class="anchored" data-anchor-id="sources">Sources</h2>
-<p><a href="https://iris.sissa.it/retrieve/dd8a4bf7-055d-20a0-e053-d805fe0a8cb0/1963_1897_Capello.pdf">Link</a></p>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
