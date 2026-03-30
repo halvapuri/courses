@@ -39,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-343313b17078e6c2acf5a6c8a244e039.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cbdf90ff2cca10b7d18035842fdac510.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-8ad033bb18bad352b951f1a420ffd3bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,12 +68,27 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
 <script>
 function toggleBox(header) {
-  // Use jQuery to find the associated container and toggle its visibility
-  $(header).next('.dd-box').slideToggle();
-  $(header).next('.ddm-box').slideToggle();
+    $(header).next('.dd-box, .ddm-box, .ddp-box').slideToggle("slow");
 }
+</script> 
+
+
+<script>
+function toggleDesc(header) {
+    $(header).next('p').slideToggle("slow");
+}
+</script>
+
+
+<script>
+//function toggleBox(header) {
+//  // Use jQuery to find the associated container and toggle its visibility
+//  $(header).next('.dd-box').slideToggle();
+//  $(header).next('.ddm-box').slideToggle();
+//}
 </script>
 
 <script>

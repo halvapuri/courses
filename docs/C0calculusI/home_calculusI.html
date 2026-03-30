@@ -68,12 +68,27 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
 <script>
 function toggleBox(header) {
-  // Use jQuery to find the associated container and toggle its visibility
-  $(header).next('.dd-box').slideToggle();
-  $(header).next('.ddm-box').slideToggle();
+    $(header).next('.dd-box, .ddm-box, .ddp-box').slideToggle("slow");
 }
+</script> 
+
+
+<script>
+function toggleDesc(header) {
+    $(header).next('p').slideToggle("slow");
+}
+</script>
+
+
+<script>
+//function toggleBox(header) {
+//  // Use jQuery to find the associated container and toggle its visibility
+//  $(header).next('.dd-box').slideToggle();
+//  $(header).next('.ddm-box').slideToggle();
+//}
 </script>
 
 <script>
